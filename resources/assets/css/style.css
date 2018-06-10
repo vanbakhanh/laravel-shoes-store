@@ -1,0 +1,31 @@
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+	margin-bottom: 80px;
+}
+#nav-down {
+    transition: all 0.5s ease;
+}
+.card-product img:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: all 0.5s ease;
+}
+.card-product {
+	border: none;
+}
+.dropdown:hover>.dropdown-menu {
+  	display: block;
+}
+footer {
+	background-color: #F7F7F9;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
