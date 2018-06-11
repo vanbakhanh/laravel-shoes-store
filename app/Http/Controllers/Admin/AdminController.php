@@ -11,6 +11,7 @@ use App\Models\Admin;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Product;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -37,16 +38,21 @@ class AdminController extends Controller
         return view('backend/admin/index', compact(['user', 'category', 'product']));
     }
 
-    // Change password
-    public function showPasswordForm($id)
+    /**
+     * Change password.
+     */
+    public function showPasswordForm()
     {
-        $admin = Admin::findOrFail($id);
-        return view('backend.admin.password',compact('admin'));
+        if (Auth::check()) {
+            $admin = Admin::findOrFail(Auth::user()->id);
+            return view('backend.admin.password',compact('admin'));
+        }
+        return redirect()->back();
     }
-    public function changePassword(ChangePasswordRequest $request, $id)
+    public function changePassword(ChangePasswordRequest $request)
     {
         try {
-            $admin = Admin::findOrFail($id);
+            $admin = Admin::findOrFail(Auth::user()->id);
             $admin->password = Hash::make($request['password']);
             $admin->save();
             return redirect()->back()->with('status', 'Password has been changed');

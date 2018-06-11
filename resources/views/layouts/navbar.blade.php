@@ -52,11 +52,11 @@
         <li class="dropdown">
           <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">
+            <a class="dropdown-item" href="{{ route('user.edit') }}">
               {{ trans('layout.profile') }}
             </a>
             <a class="dropdown-item" href="{{ route('order') }}">{{ trans('layout.order') }}</a>
-            <a class="dropdown-item" href="{{ route('user.password.edit', Auth::user()->id) }}">{{ trans('layout.change_password') }}</a>
+            <a class="dropdown-item" href="{{ route('user.password.edit') }}">{{ trans('layout.change_password') }}</a>
             <a class="dropdown-item" href="{{ route('user.logout') }}"
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\User\UserUpdateRequest;
 use App\Http\Requests\User\ChangePasswordRequest;
 use App\Models\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -50,10 +51,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $user = User::findOrFail($id);
-        return view('frontend.user.show', compact('user'));
+
     }
 
     /**
@@ -62,10 +62,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $user = User::findOrFail($id);
-        return view('frontend.user.edit', compact('user'));
+        if (Auth::check()) {
+            $user = User::findOrFail(Auth::user()->id);
+            return view('frontend.user.edit', compact('user'));
+        }
+        return redirect()->back();
     }
 
     /**
@@ -75,10 +78,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(UserUpdateRequest $request)
     {
         try {
-            $user = User::findOrFail($id);
+            $user = User::findOrFail(Auth::user()->id);
             $user->update($request->only('name', 'email', 'address', 'phone', 'birthday', 'gender'));
             return redirect()->back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -101,16 +104,21 @@ class UserController extends Controller
         return redirect()->back()->with('status', 'Delete successful');
     }
 
-    // Change password
-    public function showPasswordForm($id)
+    /**
+     * Change password.
+     */
+    public function showPasswordForm()
     {
-        $user = User::findOrFail($id);
-        return view('frontend.user.password', compact('user'));
+        if (Auth::check()) {
+            $user = User::findOrFail(Auth::user()->id);
+            return view('frontend.user.password', compact('user'));
+        }
+        return redirect()->back();
     }
-    public function changePassword(ChangePasswordRequest $request, $id)
+    public function changePassword(ChangePasswordRequest $request)
     {
         try {
-            $user = User::findOrFail($id);
+            $user = User::findOrFail(Auth::user()->id);
             $user->password = Hash::make($request['password']);
             $user->save();
             return redirect()->back()->with('status', 'Password has been changed');

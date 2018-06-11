@@ -1,20 +1,21 @@
 @extends('layouts.master')
-@section('title', 'Edit Profile')
+@section('title', 'Profile')
 @section('content')
 
 <div class="row justify-content-center">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="card">
             <div  class="card-body">
-                <h5 class="card-title text-center">{{ __('Edit Profile') }}</h5>
+                <h5 class="card-title text-center">{{ __('Profile') }}</h5>
             </div>
-            
+
             <div class="card-body">
                 {{ Form::open(['route' => ['user.update', $user->id], 'method' => 'PUT']) }}
                 @csrf
 
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
                     <div class="col-md-6">
                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
 
@@ -28,6 +29,7 @@
 
                 <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
                     <div class="col-md-6">
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
 
@@ -41,6 +43,7 @@
 
                 <div class="form-group row">
                     <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+
                     <div class="col-md-6">
                         <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ $user->address }}" required autofocus>
 
@@ -54,6 +57,7 @@
 
                 <div class="form-group row">
                     <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
+
                     <div class="col-md-6">
                         <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ $user->phone }}" required autofocus>
 
@@ -67,6 +71,7 @@
 
                 <div class="form-group row">
                     <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
+
                     <div class="col-md-6">
                         <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ $user->birthday }}" required autofocus>
 
@@ -80,10 +85,11 @@
 
                 <div class="form-group row">
                     <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
                     <div class="col-md-6">
                         <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ $user->gender }}" required autofocus>
-                          <option @if ($user->gender == 'male') selected="selected" @endif value="male">Male</option>
-                          <option @if ($user->gender == 'female') selected="selected" @endif value="female">Female</option>
+                          <option @if($user->gender == 'male') selected="selected" @endif value="male">Male</option>
+                          <option @if($user->gender == 'female') selected="selected" @endif value="female">Female</option>
                       </select>
 
                       @if ($errors->has('gender'))
