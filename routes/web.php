@@ -51,8 +51,8 @@ Route::group(['middleware' => 'locale'], function() {
   //----- Front-end --------------------------------------------------------------------------------------------
   Route::group(array('namespace' => 'User', 'middleware' => 'auth'), function(){
     Route::resource('/user', 'UserController', ['only' => ['edit', 'update', 'show']]);
-    Route::get('/user/password/{slug}/edit', 'UserController@showPasswordForm')->name('user.password.edit');
-    Route::put('/user/password/{slug}', 'UserController@changePassword')->name('user.password.update');
+    Route::get('/user/password/{id}/edit', 'UserController@showPasswordForm')->name('user.password.edit');
+    Route::put('/user/password/{id}', 'UserController@changePassword')->name('user.password.update');
     Route::resource('/user/comment', 'CommentController');
   });
 

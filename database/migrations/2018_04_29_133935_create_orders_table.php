@@ -18,10 +18,6 @@ class CreateOrdersTable extends Migration
             $table->double('total');
             $table->string('status')->default('Pending');
             $table->integer('user_id')->unsigned()->index();
-            // $table->foreign('user_id')
-            //     ->references('id')->on('users')
-            //     ->onUpdate('cascade')
-            //     ->onDelete('cascade');
             $table->timestamps();
         });
     }

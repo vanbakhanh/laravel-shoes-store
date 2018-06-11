@@ -10,7 +10,7 @@
             </div>
             
             <div class="card-body">
-                {{ Form::open(['route' => ['user.update', $user->slug], 'method' => 'PUT']) }}
+                {{ Form::open(['route' => ['user.update', $user->id], 'method' => 'PUT']) }}
                 @csrf
 
                 <div class="form-group row">

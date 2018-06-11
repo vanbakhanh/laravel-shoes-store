@@ -57,7 +57,6 @@ class RegisterController extends Controller
             'phone' => 'required|string|max:20',
             'birthday' => 'required|date',
             'gender' => 'required|string|max:6',
-            'slug' => '',
         ]);
     }
 
@@ -69,7 +68,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $slug = uniqid();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -78,7 +76,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'birthday' => $data['birthday'],
             'gender' => $data['gender'],
-            'slug' => $slug,
+            'remember_token' => str_random(10),
         ]);
     }
 }

@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->date('birthday');
             $table->string('gender');
-            $table->string('slug')->nullable()->unique();
             $table->rememberToken();
             $table->timestamps();
         });

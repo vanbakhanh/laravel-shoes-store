@@ -23,7 +23,6 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'phone' => $faker->phoneNumber,
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'gender' => $gender,
-        'slug' => str_random(10),
         'remember_token' => str_random(10),
     ];
 });

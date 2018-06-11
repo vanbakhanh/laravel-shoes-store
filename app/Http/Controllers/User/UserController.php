@@ -50,9 +50,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $user = User::whereSlug($slug)->firstOrFail();
+        $user = User::findOrFail($id);
         return view('frontend.user.show', compact('user'));
     }
 
@@ -62,9 +62,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $user = User::whereSlug($slug)->firstOrFail();
+        $user = User::findOrFail($id);
         return view('frontend.user.edit', compact('user'));
     }
 
@@ -75,10 +75,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, $slug)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
-            $user = User::whereSlug($slug)->firstOrFail();
+            $user = User::findOrFail($id);
             $user->update($request->only('name', 'email', 'address', 'phone', 'birthday', 'gender'));
             return redirect()->back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -92,9 +92,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $user = User::whereSlug($slug)->firstOrFail();
+        $user = User::findOrFail($id);
         $user->orders()->delete();
         $user->comments()->delete();
         $user->delete();
@@ -102,15 +102,15 @@ class UserController extends Controller
     }
 
     // Change password
-    public function showPasswordForm($slug)
+    public function showPasswordForm($id)
     {
-        $user = User::whereSlug($slug)->firstOrFail();
+        $user = User::findOrFail($id);
         return view('frontend.user.password', compact('user'));
     }
-    public function changePassword(ChangePasswordRequest $request, $slug)
+    public function changePassword(ChangePasswordRequest $request, $id)
     {
         try {
-            $user = User::whereSlug($slug)->firstOrFail();
+            $user = User::findOrFail($id);
             $user->password = Hash::make($request['password']);
             $user->save();
             return redirect()->back()->with('status', 'Password has been changed');
