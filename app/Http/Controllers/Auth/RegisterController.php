@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'birthday' => $data['birthday'],
             'gender' => $data['gender'],
+            'status' => 0,
             'remember_token' => str_random(10),
         ]);
     }
