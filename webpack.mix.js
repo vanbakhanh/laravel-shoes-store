@@ -1,4 +1,9 @@
-let mix = require('laravel-mix');
+const { mix } = require('laravel-mix');
+
+const ASSETS_PATH = 'resources/assets/';
+const PUBLIC_PATH = 'public/';
+const NODE_PATH = 'node_modules/';
+const SCSS_PATH = 'resources/assets/sass/';
 
 /*
  |--------------------------------------------------------------------------
@@ -11,20 +16,14 @@ let mix = require('laravel-mix');
  |
  */
 
-// mix.js('resources/assets/js/app.js', 'public/js')
-//    .sass('resources/assets/sass/app.scss', 'public/css');
-
-mix.styles([
-    'resources/assets/css/bootstrap.min.css',
-    'resources/assets/css/dataTables.bootstrap4.min.css',
-    'resources/assets/css/simple-sidebar.css',
-    'resources/assets/css/style.css',
-], 'public/css/all.css');
-
-mix.scripts([
-	'resources/assets/js/jquery-3.3.1.min.js',
-	'resources/assets/js/popper.min.js',
-	'resources/assets/js/jquery.dataTables.min.js',
-    'resources/assets/js/bootstrap.min.js',
-    'resources/assets/js/dataTables.bootstrap4.min.js',
-], 'public/js/all.js');
+mix.copyDirectory(NODE_PATH + 'bootswatch/dist/lux/bootstrap.min.css', PUBLIC_PATH + 'css')
+	.copyDirectory(ASSETS_PATH + 'css/dataTables.bootstrap4.min.css', PUBLIC_PATH + 'css')
+	.copyDirectory(ASSETS_PATH + 'css/simple-sidebar.css', PUBLIC_PATH + 'css')
+	.copyDirectory(ASSETS_PATH + 'css/style.css', PUBLIC_PATH + 'css')
+	.copyDirectory(NODE_PATH + 'jquery/dist/jquery.min.js', PUBLIC_PATH + 'js')
+	.copyDirectory(NODE_PATH + 'popper.js/dist/umd/popper.min.js', PUBLIC_PATH + 'js')
+	.copyDirectory(NODE_PATH + 'bootstrap/dist/js/bootstrap.min.js', PUBLIC_PATH + 'js')
+	.scripts([
+		'resources/assets/js/jquery.dataTables.min.js',
+	    'resources/assets/js/dataTables.bootstrap4.min.js',
+	], 'public/js/dataTable.js');
