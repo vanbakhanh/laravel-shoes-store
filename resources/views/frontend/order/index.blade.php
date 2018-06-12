@@ -37,7 +37,7 @@
 				<tr>
 					<th scope="row"><a href="{{ route('order.detail', $orderProduct->pivot->order_id) }}">{{ $orderProduct->pivot->order_id }}</a></th>
 					<th>
-						<img src="{{ asset("/images/product/" . $orderProduct->image) }}" width="30" height="30">
+						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="30" height="30">
 					</th>
 					<td><a href="{!! route('product.show',$orderProduct->pivot->product_id) !!}">
 						{{$orderProduct->name }}</a>

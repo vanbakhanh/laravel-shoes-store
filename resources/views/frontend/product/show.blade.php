@@ -5,7 +5,7 @@
 <!-- Portfolio Item Row -->
 <div class="row">
 	<div class="col-md-6">
-		<img class="img-fluid mw-100" src="{{ asset('/images/product/' . $productSelected->image) }}">
+		<img class="img-fluid mw-100" src="{{ asset('images/product/' . $productSelected->image) }}">
 	</div>
 	<div class="col-md-6 text-center">
 		<p class="my-4">
@@ -83,7 +83,7 @@
 	@foreach ($products as $product)
 	<div class="col-md-3 col-sm-6 mb-4">
 		<div class="card card-product h-100 text-center">
-			<a href="{{ route('product.show', $product->id) }}"><img class="card-img-top" src="{{ asset('/images/product/' . $product->image) }}" alt=""></a>
+			<a href="{{ route('product.show', $product->id) }}"><img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt=""></a>
 			<div class="card-body">
 				<p class="card-title"><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></p>
 				<p class="card-text">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>

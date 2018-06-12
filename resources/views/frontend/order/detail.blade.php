@@ -55,7 +55,7 @@
 				@foreach ($orderProducts as $orderProduct)
 				<tr>
 					<td>
-						<img src="{{ asset("/images/product/" . $orderProduct->image) }}" width="30" height="30">
+						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="30" height="30">
 					</td>
 					<td><a href="{!! route('product.show', $orderProduct->pivot->product_id) !!}">
 						{{ $orderProduct->name }}</a>

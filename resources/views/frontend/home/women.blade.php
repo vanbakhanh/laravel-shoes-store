@@ -64,7 +64,7 @@
 			@foreach ($products as $product)
 			<div class="col-lg-3 col-md-4 col-sm-6">
 				<div class="card card-product h-100 text-center">
-					<a href="{{ route('product.show', $product->id) }}"><img class="card-img-top" src="{{ asset('/images/product/' . $product->image) }}" alt=""></a>
+					<a href="{{ route('product.show', $product->id) }}"><img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt=""></a>
 					<div class="card-body">
 						<h5 class="card-title"><small><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></small></h5>
 						<p class="card-text">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>
