@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\User;
+use Mail;
+use App\Mail\VerifyUser;
 
 class RegisterController extends Controller
 {
@@ -68,7 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -77,7 +79,15 @@ class RegisterController extends Controller
             'birthday' => $data['birthday'],
             'gender' => $data['gender'],
             'status' => 0,
-            'remember_token' => str_random(10),
+            'token' => str_random(60),
         ]);
+
+        Mail::to($user)->send(new VerifyUser($user));
+        return $user;
+    }
+
+    protected function verify($token)
+    {
+
     }
 }

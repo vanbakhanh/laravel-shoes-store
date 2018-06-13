@@ -22,7 +22,8 @@ Route::group(['middleware' => 'locale'], function() {
   
   Auth::routes();
   Route::post('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
-  
+  Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
+
   Route::prefix('admin')->group(function() {
     	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

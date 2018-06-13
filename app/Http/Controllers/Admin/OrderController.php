@@ -36,7 +36,7 @@ class OrderController extends Controller
         $orderDetail = Order::findOrFail($id);
         $orderProducts = $orderDetail->products()->get();
         $user = User::findOrFail($orderDetail->user_id);
-        return view('backend.order.detailPending', compact(['orderProducts', 'ordersPending', 'orderDetail', 'user']));
+        return view('backend.order.detail-pending', compact(['orderProducts', 'ordersPending', 'orderDetail', 'user']));
     }
 
     public function managerDetailVerified($id)
@@ -45,7 +45,7 @@ class OrderController extends Controller
         $orderDetail = Order::findOrFail($id);
         $orderProducts = $orderDetail->products()->get();
         $user = User::findOrFail($orderDetail->user_id);
-        return view('backend.order.detailVerified', compact(['orderProducts', 'ordersVerified', 'orderDetail', 'user']));
+        return view('backend.order.detail-verified', compact(['orderProducts', 'ordersVerified', 'orderDetail', 'user']));
     }
     
     public function verify($id)
