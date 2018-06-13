@@ -78,16 +78,21 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'birthday' => $data['birthday'],
             'gender' => $data['gender'],
-            'status' => 0,
+            'status' => '0',
             'token' => str_random(60),
         ]);
 
         Mail::to($user)->send(new VerifyUser($user));
+        
         return $user;
     }
 
     protected function verify($token)
     {
+        $user = User::where('token', $token)->first();
+        $user->status = '1';
+        $user->save();
 
+        return $user;
     }
 }
