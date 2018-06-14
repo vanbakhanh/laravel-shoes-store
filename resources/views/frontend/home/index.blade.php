@@ -2,7 +2,7 @@
 @section('title', 'Nike Fake Website')
 @section('content')
 
-<h4 class="text-center">New arrivals</h4>
+<h4 class="text-center my-4">New arrivals</h4>
 <hr>
 
 <div class="row">

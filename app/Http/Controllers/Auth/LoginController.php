@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -42,5 +43,13 @@ class LoginController extends Controller
     {
         Auth::guard('web')->logout();
         return redirect('/');
+    }
+
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required|exists:users,' . $this->username() . ',status,1',
+            'password' => 'required',
+        ]);
     }
 }
