@@ -10,7 +10,14 @@
                 </div>
 
                 <div class="card-body">
-
+                    <div class="col-md-12">
+                        @if (session('status'))
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session('status') }}
+                        </div>
+                        @endif
+                    </div>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">

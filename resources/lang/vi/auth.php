@@ -34,5 +34,7 @@ return [
     'female' => 'Nữ',
     'reset_password' => 'Đặt lại mật khẩu',
     'confirm' => 'Xác nhận',
+    'verify_email' => 'Kiểm tra liên kết xác minh email mà chúng tôi đã gửi đến email của bạn.',
+    'verified_email' => 'Email của bạn đã được xác minh.',
 
 ];

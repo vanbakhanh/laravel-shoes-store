@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Order;
 use Auth;
 use Cart;
+use Mail;
+use App\Mail\OrderShipped;
 
 class CartController extends Controller
 {
@@ -50,6 +52,7 @@ class CartController extends Controller
         $user = Auth::user();
         $order = $user->orders()->create([
             'total' => Cart::total(),
+            'status' => 'Pending',
         ]);
         foreach (Cart::content() as $data) {
             $order->products()->attach($data->id, [
@@ -60,6 +63,10 @@ class CartController extends Controller
             ]);
         }
         Cart::destroy();
+
+        $orderProducts = $order->products()->get();
+        Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user));
+
         return redirect()->back()->with('status', 'Thank you for shopping at Nike! Your order has been received and is going through verification process.');
     }
 }

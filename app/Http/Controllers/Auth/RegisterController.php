@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Mail;
-use Auth;
-use App\Models\User;
-use App\Mail\VerifyUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\User;
+use Auth;
+use Mail;
+use App\Mail\VerifyUser;
 
 class RegisterController extends Controller
 {
@@ -94,6 +94,6 @@ class RegisterController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('login');
+        return redirect()->route('login')->with('status', trans('auth.verified_email'));
     }
 }
