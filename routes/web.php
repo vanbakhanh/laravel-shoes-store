@@ -22,7 +22,7 @@ Route::group(['middleware' => 'locale'], function() {
   
   Auth::routes();
   Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
-  Route::post('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+  Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
   Route::prefix('admin')->group(function() {
     	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

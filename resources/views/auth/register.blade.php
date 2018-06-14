@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div  class="card-body">
+                <div class="card-body">
                     <h5 class="card-title text-center">{{ trans('auth.register') }}</h5>
                 </div>
 
@@ -110,8 +110,8 @@
 
                             <div class="col-md-6">
                                 <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
-                                  <option>{{ trans('auth.male') }}</option>
-                                  <option>{{ trans('auth.female') }}</option>
+                                  <option value="male">{{ trans('auth.male') }}</option>
+                                  <option value="female">{{ trans('auth.female') }}</option>
                                 </select>
 
                                 @if ($errors->has('gender'))

@@ -102,7 +102,7 @@
 				</tbody>
 			</table>
 			<div class="text-right">
-				<a href="{{ route('user.show', Auth::user()->slug) }}" class="btn btn-primary">Edit</a>
+				<a href="{{ route('user.edit') }}" class="btn btn-primary">Edit</a>
 			</div>
 			@endguest
 		</div>
