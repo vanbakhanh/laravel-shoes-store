@@ -111,6 +111,12 @@ class RegisterController extends Controller
         $user->status = '1';
         $user->save();
 
-        return redirect()->route('login')->with('status', trans('auth.verified_email'));
+        try {
+            if ($user->save()){
+                return redirect()->route('login')->with('status', trans('auth.verified_email'));
+            }
+        } catch (Exception $e) {
+            
+        }
     }
 }

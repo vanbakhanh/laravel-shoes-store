@@ -16,10 +16,10 @@ class Locale
     public function handle($request, Closure $next)
     {
         $language = \Session::get('website_language', config('app.locale'));
-        // Lấy dữ liệu lưu trong Session, không có thì trả về default lấy trong config
+        // Get data in Session, if null return default
 
         config(['app.locale' => $language]);
-        // Chuyển ứng dụng sang ngôn ngữ được chọn
+        // Transfer the app to the selected language
 
         return $next($request);
     }
