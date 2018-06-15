@@ -13,12 +13,18 @@ use App\Mail\OrderShipped;
 
 class CartController extends Controller
 {
+    /**
+     * Display cart.
+     */
     public function index()
     {
     	$items = Cart::content();
     	return view('frontend.cart.index', compact('items'));
     }
 
+    /**
+     * Add to cart.
+     */
     public function addItem(Request $request)
     {
     	$product = Product::findOrFail($request->productId);
@@ -35,18 +41,27 @@ class CartController extends Controller
     	return redirect()->back();
     }
 
+    /**
+     * Update cart.
+     */
     public function update(Request $request)
     {
         Cart::update($request->rowId, $request->qty);
         return redirect()->back();
     }
 
+    /**
+     * Remove item in cart.
+     */
     public function removeItem($rowId)
     {
     	Cart::remove($rowId);
     	return redirect()->back();
     }
 
+    /**
+     * Checkout and send mail to user.
+     */
     public function checkout()
     {
         $user = Auth::user();

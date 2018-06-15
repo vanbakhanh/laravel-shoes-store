@@ -30,6 +30,9 @@ class HomeController extends Controller
         return view('frontend.home.index', compact('products'));
     }
 
+    /**
+     * Display products of men follow to category.
+     */
     public function men($id)
     {
         $categorySelected = Category::findOrFail($id);
@@ -38,6 +41,9 @@ class HomeController extends Controller
         return view('frontend.home.men', compact(['products', 'categorySelected', 'categories']));
     }
 
+    /**
+     * Display products of women follow to category.
+     */
     public function women($id)
     {
         $categorySelected = Category::findOrFail($id);
@@ -46,6 +52,9 @@ class HomeController extends Controller
         return view('frontend.home.women', compact(['products', 'categorySelected', 'categories']));
     }
 
+    /**
+     * Search product follow to name.
+     */
     public function search(SearchRequest $request)
     {
         $results = Product::where('name', 'LIKE', '%' . $request['keyword'] . '%')->orderBy('name')->get()->take(24);
@@ -53,6 +62,9 @@ class HomeController extends Controller
         return view('frontend.home.search', compact(['results', 'keyword']));
     }
 
+    /**
+     * Change language.
+     */
     public function changeLanguage($language)
     {
         \Session::put('website_language', $language);

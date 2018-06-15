@@ -90,6 +90,9 @@ class RegisterController extends Controller
         return $user;
     }
 
+    /**
+     * Overriding this function to register without auto login.
+     */
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -99,6 +102,9 @@ class RegisterController extends Controller
         return back()->with('status', trans('auth.verify_email'));
     }
 
+    /**
+     * Verify user when click the link sent via email.
+     */
     protected function verify($token)
     {
         $user = User::where('token', $token)->first();

@@ -26,13 +26,13 @@ class AdminLoginController extends Controller
         'password' => 'required|min:6',
       ]);
 
-      // Attempt to log the user in
+      // Attempt to log the user in.
       if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-        // if successful, then redirect to their intended location
+        // If successful, then redirect to their intended location.
         return redirect()->route('admin.index');
       }
 
-      // if unsuccessful, then redirect back to the login with the form data
+      // If unsuccessful, then redirect back to the login with the form data.
       return redirect()->back()->withInput($request->only('email', 'remember'));
     }
 

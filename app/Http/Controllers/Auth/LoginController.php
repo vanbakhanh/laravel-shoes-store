@@ -39,12 +39,18 @@ class LoginController extends Controller
         $this->middleware('guest', ['except' => ['logout', 'userLogout']]);
     }
 
+    /**
+     * Just logout user, not logout admin.
+     */
     public function userLogout()
     {
         Auth::guard('web')->logout();
         return redirect('/');
     }
 
+    /**
+     * Overriding this function to verify user when login.
+     */
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
