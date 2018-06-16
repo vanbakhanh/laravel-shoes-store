@@ -72,7 +72,7 @@ class OrderController extends Controller
             Order::findOrFail($id)->update(['status' => 'Verified']);
             return redirect()->route('admin.order');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 }

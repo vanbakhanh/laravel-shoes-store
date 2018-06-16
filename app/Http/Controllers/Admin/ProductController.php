@@ -141,7 +141,7 @@ class ProductController extends Controller
             }
             return redirect()->back()->with('status', 'Update successful');
         } catch (\Exception $e) {
-
+            return $e->getMessage();
         }
     }
 
@@ -157,7 +157,7 @@ class ProductController extends Controller
             Product::findOrFail($id)->delete();
             return redirect()->back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {
-
+            return $e->getMessage();
         }
     }
 }

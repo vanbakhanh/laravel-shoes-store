@@ -57,7 +57,7 @@ class AdminController extends Controller
             $admin->save();
             return redirect()->back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 }

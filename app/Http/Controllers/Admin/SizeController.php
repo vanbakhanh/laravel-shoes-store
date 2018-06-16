@@ -44,7 +44,7 @@ class SizeController extends Controller
             Size::create($request->only('name'));
             return redirect()->back()->with('status', 'Create successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 
@@ -85,7 +85,7 @@ class SizeController extends Controller
             Size::findOrFail($id)->update($request->only('name'));
             return redirect()->back()->with('status', 'Update successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 
@@ -101,7 +101,7 @@ class SizeController extends Controller
             Size::findOrFail($id)->delete();
             return redirect()->back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 }

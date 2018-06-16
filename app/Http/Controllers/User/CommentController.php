@@ -45,7 +45,7 @@ class CommentController extends Controller
             $user->comments()->create($request->only('content', 'product_id'));
             return redirect()->back();
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 

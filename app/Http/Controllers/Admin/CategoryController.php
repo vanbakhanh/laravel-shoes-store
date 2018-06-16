@@ -45,7 +45,7 @@ class CategoryController extends Controller
             Category::create($category);
             return redirect()->back()->with('status', 'Create successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 
@@ -86,7 +86,7 @@ class CategoryController extends Controller
             Category::findOrFail($id)->update($request->only('name', 'description'));
             return redirect()->back()->with('status', 'Update successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 
@@ -102,7 +102,7 @@ class CategoryController extends Controller
             Category::findOrFail($id)->delete();
             return redirect()->back()->with('delete', 'Delete successful');
        } catch (\Exception $e) {
-           
+            return $e->getMessage();
        }
     }
 }

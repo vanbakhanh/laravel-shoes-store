@@ -85,7 +85,7 @@ class UserController extends Controller
             $user->update($request->only('name', 'email', 'address', 'phone', 'birthday', 'gender'));
             return redirect()->back()->with('status', 'Update successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 
@@ -123,7 +123,7 @@ class UserController extends Controller
             $user->save();
             return redirect()->back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 }

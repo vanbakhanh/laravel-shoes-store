@@ -115,7 +115,7 @@ class RegisterController extends Controller
                 return redirect()->route('login')->with('status', trans('auth.verified_email'));
             }
         } catch (Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 }
