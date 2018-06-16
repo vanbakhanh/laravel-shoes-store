@@ -78,8 +78,8 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 @yield('content')
+                @include('layouts.footer')
             </div>
-            @include('layouts.footer')
         </div>
     </div>
 

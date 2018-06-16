@@ -22,12 +22,13 @@
 	<link rel="icon" href="{{ asset('images/logo_site.png') }}"/>
 </head>
 <body>
+
 	@include('layouts.navbar')
 
 	<div class="container">
 		@yield('content')
+		@include('layouts.footer')
 	</div>
 	
-	@include('layouts.footer')
 </body>
 </html>

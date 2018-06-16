@@ -36,6 +36,8 @@
 					</thead>
 					<tbody>
 						@foreach ($products as $product)
+						{{ Form::open(['method' => 'DELETE', 'route' => ['product.destroy', $product->id]]) }}
+						@csrf
 						<tr>
 							<th scope="row">{{ $product->id }}</th>
 							<td><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></td>
@@ -46,13 +48,11 @@
 							<td>
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-warning btn-sm" href="{{ route('product.edit', $product->id) }}">Edit</a>
-									{{ Form::open(['method' => 'DELETE', 'route' => ['product.destroy', $product->id]]) }}
-									@csrf
 									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
-									{{ Form::close() }}
 								</div>
 							</td>
 						</tr>
+						{{ Form::close() }}
 						@endforeach
 					</tbody>
 				</table>

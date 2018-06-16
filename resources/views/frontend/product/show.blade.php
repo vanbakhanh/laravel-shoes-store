@@ -16,14 +16,14 @@
 		<h4 class="my-4">$<b>{{ $productSelected->price }}</b></h4>
 		<hr>
 
-		{{ Form::open(['action' => ['Admin\CartController@addItem'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
+		{{ Form::open(['class' => 'form-horizontal']) }}
 		@csrf
 		<div class="form-group row">
 			<label class="col-md-6 col-form-label"><b>COLOR</b></label>
 			<div class="col-md-6">
 				<select class="form-control custom-select" name="color">
 					@foreach ($productSelected->colors()->pluck('name')->sort() as $color)
-					<option value="{{ $color }}">
+					<option value="{{ $color }}" id="color">
 						{{ $color }}
 					</option>
 					@endforeach
@@ -35,7 +35,7 @@
 			<div class="col-md-6">
 				<select class="form-control custom-select" name="size">
 					@foreach ($productSelected->sizes()->pluck('name')->sort() as $size)
-					<option value="{{ $size }}">
+					<option value="{{ $size }}" id="size">
 						{{ $size }}
 					</option>
 					@endforeach
@@ -45,13 +45,13 @@
 		<div class="form-group row">
 			<label class="col-md-6 col-form-label"><b>QUANTITY</b></label>
 			<div class="col-md-6">
-				{{ Form::number('qty', 1, ['class' => 'form-control form-control-sm', 'min' => '1', 'max' => '10']) }}
+				{{ Form::number('qty', 1, ['id' => 'qty', 'class' => 'form-control', 'min' => '1', 'max' => '10']) }}
 			</div>
 		</div>
 		<div class="form-group row mb-0">
 			<div class="col-md-12">
-				{{ Form::hidden('productId', $productSelected->id) }}
-				{{ Form::submit('Add to cart',['class'=>'btn btn-primary btn-block']) }}
+				{{ Form::hidden('productId', $productSelected->id, ['id' => 'productId']) }}
+				{{ Form::submit('Add to cart', ['class' => 'btn btn-primary btn-block', 'id' => 'addToCart']) }}
 			</div>
 		</div>
 		{{ Form::close() }}
@@ -133,5 +133,29 @@
 	@endforeach
 </div>
 <!-- /.Comments -->
+
+<!-- Script -->
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('#addToCart').click(function(e) {
+			e.preventDefault();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			jQuery.ajax({
+				url: "{{ url('/cart/add') }}",
+				method: 'POST',
+				data: {
+					color: jQuery('#color').val(),
+					size: jQuery('#size').val(),
+					qty: jQuery('#qty').val(),
+					productId: jQuery('#productId').val(),
+				},
+			});
+		});
+	});
+</script>
 
 @endsection

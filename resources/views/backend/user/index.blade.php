@@ -47,7 +47,6 @@
                             <td>{{ $user->address }}</td>
                             <td>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 @csrf
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
                                 {{ Form::close() }}

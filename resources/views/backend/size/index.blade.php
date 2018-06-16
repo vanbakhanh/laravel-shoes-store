@@ -32,19 +32,19 @@
 					</thead>
 					<tbody id="myTable">
 						@foreach ($sizes as $size)
+						{{ Form::open(['method' => 'DELETE', 'route' => ['size.destroy', $size->id]]) }}
+						@csrf
 						<tr>
 							<th scope="row">{{ $size->id }}</th>
 							<td>{{ $size->name }}</td>
 							<td>
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-warning btn-sm" href="{{ route('size.edit', $size->id) }}">Edit</a>
-									{{ Form::open(['method' => 'DELETE', 'route' => ['size.destroy', $size->id]]) }}
-									@csrf
 									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
-									{{ Form::close() }}
 								</div>
 							</td>
 						</tr>
+						{{ Form::close() }}
 						@endforeach
 					</tbody>
 				</table>

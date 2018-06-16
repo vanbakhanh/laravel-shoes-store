@@ -72,19 +72,19 @@
 					</thead>
 					<tbody id="myTable">
 						@foreach ($colors as $color)
+						{{ Form::open(['method' => 'DELETE', 'route' => ['color.destroy', $color->id]]) }}
+						@csrf
 						<tr>
 							<th scope="row">{{ $color->id }}</th>
 							<td>{{ $color->name }}</td>
 							<td>
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-warning btn-sm" href="{{ route('color.edit', $color->id) }}">Edit</a>
-									{{ Form::open(['method' => 'DELETE', 'route' => ['color.destroy', $color->id]]) }}
-									@csrf
 									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
-									{{ Form::close() }}
 								</div>
 							</td>
 						</tr>
+						{{ Form::close() }}
 						@endforeach
 					</tbody>
 				</table>

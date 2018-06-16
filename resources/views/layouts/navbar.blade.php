@@ -82,7 +82,7 @@
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("nav-down").style.top = "0";
     } else {
-      document.getElementById("nav-down").style.top = "-60px";
+      document.getElementById("nav-down").style.top = "-65px";
     }
     prevScrollpos = currentScrollPos;
   }
