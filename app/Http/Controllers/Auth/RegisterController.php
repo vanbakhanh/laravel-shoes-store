@@ -107,11 +107,10 @@ class RegisterController extends Controller
      */
     protected function verify($token)
     {
-        $user = User::where('token', $token)->first();
-        $user->status = '1';
-        $user->save();
-
         try {
+            $user = User::where('token', $token)->first();
+            $user->status = '1';
+            $user->save();
             if ($user->save()){
                 return redirect()->route('login')->with('status', trans('auth.verified_email'));
             }

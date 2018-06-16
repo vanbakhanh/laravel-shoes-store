@@ -33,7 +33,7 @@
 						</p>
 						@endforeach
 						@endif
-						{{ Form::submit('Create', ['class'=>'btn btn-primary']) }}
+						{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
 					</div>
 				</div>
 			</div>
@@ -62,7 +62,7 @@
 					<p class="mb-0">There is no color! <a href="{{ route('color.create') }}" class="alert-link">Click here to create new</a>.</p>
 				</div>
 				@else
-				<table id="example" class="table table-hover table-md table-bordered text-center">
+				<table id="table" class="table table-hover table-md table-bordered text-center">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
@@ -77,10 +77,10 @@
 							<td>{{ $color->name }}</td>
 							<td>
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('color.edit',$color->id) }}">Edit</a>
+									<a class="btn btn-warning btn-sm" href="{{ route('color.edit', $color->id) }}">Edit</a>
 									{{ Form::open(['method' => 'DELETE', 'route' => ['color.destroy', $color->id]]) }}
 									@csrf
-									{{ Form::submit('Delete', ['class'=>"btn btn-danger btn-sm"]) }}
+									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
 									{{ Form::close() }}
 								</div>
 							</td>
@@ -96,7 +96,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('#example').DataTable();
+		$('#table').DataTable();
 	} );
 </script>
 

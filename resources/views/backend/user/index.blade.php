@@ -22,7 +22,7 @@
                     <p class="mb-0">There is no user! <a href="{{ route('register') }}" class="alert-link">Click here to create new</a>.</p>
                 </div>
                 @else
-                <table id="example" class="table table-hover table-md text-center table-bordered">
+                <table id="table" class="table table-hover table-md text-center table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -64,7 +64,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#table').DataTable();
     } );
 </script>
 

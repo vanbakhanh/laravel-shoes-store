@@ -2,7 +2,7 @@
 @section('title', 'Edit Category')
 @section('content')
 
-{{ Form::open(['action' => ['Admin\CategoryController@update', $category->id], 'method' => 'PUT','class' => 'form-horizontal']) }}
+{{ Form::open(['action' => ['Admin\CategoryController@update', $category->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
 @csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
@@ -20,7 +20,7 @@
 				<div class="form-group row">
 					<label class="col-md-4 col-form-label text-md-right">Description</label>
 					<div class="col-md-6">
-						{{ Form::textarea('description', $category->description, ['class'=>'form-control', 'maxlength' => '255', 'rows' => '4']) }}
+						{{ Form::textarea('description', $category->description, ['class' => 'form-control', 'maxlength' => '255', 'rows' => '4']) }}
 					</div>	
 				</div>	
 				<div class="form-group row mb-0">
@@ -39,7 +39,7 @@
 						</p>
 						@endforeach
 						@endif
-						{{ Form::submit('Update' ,['class'=>'btn btn-primary']) }}
+						{{ Form::submit('Update' ,['class'=> 'btn btn-primary' ]) }}
 					</div>
 				</div>
 			</div>

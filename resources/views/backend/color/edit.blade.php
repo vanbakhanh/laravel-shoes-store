@@ -33,7 +33,7 @@
 						</p>
 						@endforeach
 						@endif
-						{{ Form::submit('Update', ['class'=>'btn btn-primary']) }}
+						{{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
 					</div>
 				</div>
 			</div>

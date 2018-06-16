@@ -10,7 +10,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table id="example1" class="table table-hover table-md text-center table-bordered">
+					<table id="table1" class="table table-hover table-md text-center table-bordered">
 						<thead>
 							<tr>
 								<th scope="col">ID</th>
@@ -47,7 +47,7 @@
 			<div class="card-body">
 				<div class="table-responsive">
 					<div class="table-responsive">
-						<table id="example2" class="table table-hover table-md text-center table-bordered">
+						<table id="table2" class="table table-hover table-md text-center table-bordered">
 							<thead>
 								<tr>
 									<th scope="col">ID</th>
@@ -80,10 +80,10 @@
 
 <script>
 	$(document).ready(function() {
-		$('#example1').DataTable();
+		$('#table1').DataTable();
 	} );
 	$(document).ready(function() {
-		$('#example2').DataTable();
+		$('#table2').DataTable();
 	} );
 </script>
 

@@ -2,7 +2,7 @@
 @section('title', 'Create Product')
 @section('content')
 
-{{ Form::open(['action' => ['Admin\ProductController@store'], 'files'=>true, 'method' => 'POST', 'class' => 'form-horizontal']) }}
+{{ Form::open(['action' => ['Admin\ProductController@store'], 'files' => true, 'method' => 'POST', 'class' => 'form-horizontal']) }}
 @csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
@@ -87,7 +87,7 @@
 
 				<div class="form-group row mb-0">
 					<div class="col-md-6 offset-md-4">
-						{{ Form::submit('Create', ['class'=>'btn btn-primary']) }}
+						{{ Form::submit('Create', ['class' => 'btn btn-primary']) }}
 					</div>
 				</div>
 			</div>

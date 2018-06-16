@@ -51,7 +51,7 @@
 
         <!-- Navbar -->
         <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-2">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-brand p-0">
                     <a id="menu-toggle" href="#menu-toggle">
                         <span class="navbar-toggler-icon"></span>
@@ -76,7 +76,7 @@
 
         <!-- Content -->
         <div id="page-content-wrapper">
-            <div class="container">
+            <div class="container-fluid">
                 @yield('content')
             </div>
             @include('layouts.footer')

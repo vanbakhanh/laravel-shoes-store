@@ -2,7 +2,7 @@
 @section('title', 'Edit Product')
 @section('content')
 
-{{ Form::open(['action' => ['Admin\ProductController@update', $product->id], 'files'=>true, 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+{{ Form::open(['action' => ['Admin\ProductController@update', $product->id], 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) }}
 @csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
@@ -85,7 +85,7 @@
 					<div class="col-md-6">
 						<select class="form-control" id="category" name="category">
 							@foreach ($categories as $category)
-							<option value="{{ $category->id }}" @if($category->id == $selectedCategories)) selected="selected" @endif>
+							<option value="{{ $category->id }}" @if ($category->id == $selectedCategories)) selected="selected" @endif>
 								{{ $category->name }}
 							</option>
 							@endforeach
