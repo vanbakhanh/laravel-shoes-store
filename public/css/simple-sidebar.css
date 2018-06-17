@@ -27,7 +27,7 @@ body {
   margin-left: -250px;
   overflow-y: auto;
   background: white;
-  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 4px -4px 8px rgba(0, 0, 0, 0.05);
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;

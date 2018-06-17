@@ -48,35 +48,29 @@
             </ul>
         </div>
 
-        <!-- Navbar -->
-        <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-2">
-            <div class="container">
-                <div class="navbar-brand p-0">
-                    <a id="menu-toggle" href="#menu-toggle">
-                        <span class="navbar-toggler-icon"></span>
-                    </a>
-                </div>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                    <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                    @else
-                    <li><a class="nav-link disabled" href="#">{{ trans('layout.welcome', ['name' => Auth::user()->name]) }}</a></li>
-                    @endguest
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Content -->
         <div id="page-content-wrapper">
             <div class="container">
+                <!-- Navbar -->
+                <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-4 rounded">
+                    <div class="container">
+                        <div class="navbar-brand p-0">
+                            <a id="menu-toggle" href="#menu-toggle">
+                                <span class="navbar-toggler-icon"></span>
+                            </a>
+                        </div>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a></li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto">
+                            <li><a class="nav-link disabled" href="#">{{ trans('layout.welcome', ['name' => Auth::user()->name]) }}</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- Content -->
                 @yield('content')
+
+                <!-- Footer -->
                 @include('layouts.footer')
             </div>
         </div>
