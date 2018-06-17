@@ -9,7 +9,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/simple-sidebar.css') }}">
 
@@ -51,7 +50,7 @@
 
         <!-- Navbar -->
         <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-2">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="navbar-brand p-0">
                     <a id="menu-toggle" href="#menu-toggle">
                         <span class="navbar-toggler-icon"></span>
@@ -76,7 +75,7 @@
 
         <!-- Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
+            <div class="container">
                 @yield('content')
                 @include('layouts.footer')
             </div>
@@ -99,7 +98,7 @@
         if (prevScrollpos > currentScrollPos) {
           document.getElementById("nav-down").style.top = "0";
         } else {
-          document.getElementById("nav-down").style.top = "-60px";
+          document.getElementById("nav-down").style.top = "-65px";
         }
         prevScrollpos = currentScrollPos;
       }
