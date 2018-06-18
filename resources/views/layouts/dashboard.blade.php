@@ -10,7 +10,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/simple-sidebar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -27,7 +27,7 @@
 
     <!-- Wrapper -->
     <div id="wrapper">
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" class="shadow-sm">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="{{ route('admin.index') }}">{{ trans('layout.dashboard') }}</a></li>
                 <li><a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a></li>
@@ -51,7 +51,7 @@
         <div id="page-content-wrapper">
             <div class="container">
                 <!-- Navbar -->
-                <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-4 rounded">
+                <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded py-2 mb-4">
                     <div class="container">
                         <div class="navbar-brand p-0">
                             <a id="menu-toggle" href="#menu-toggle">

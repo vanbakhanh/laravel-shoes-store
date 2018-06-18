@@ -58,10 +58,11 @@
 		<p class="my-4">{{ $productSelected->description }}</p>
 	</div>
 </div>
+<br>
 
 <!-- Category Description -->
 <div class="jumbotron text-center mt-4">
-	<h4 class="display-5">{{ $categorySelected->name }}</h4>
+	<h4 class="display-5 text-uppercase">{{ $categorySelected->name }}</h4>
 	<p class="lead">{{ $categorySelected->description }}</p>
 	<p class="lead">
 		@if ($productSelected->gender == 'male')
@@ -71,12 +72,12 @@
 		@endif 
 	</p>
 </div>
-<hr>
+<br>
 
 <!-- Related Projects Row -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
-		<h4>YOU MIGHT ALSO LIKE</h4>
+		<h4 class="text-uppercase">You might also like</h4>
 	</div>
 </div>
 <div class="row">
@@ -93,12 +94,12 @@
 	</div>
 	@endforeach
 </div>
-<hr>
+<br>
 
 <!-- Comments -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
-		<h4>Customer Reviews</h4>
+		<h4 class="text-uppercase">Customer reviews</h4>
 	</div>
 </div>
 
