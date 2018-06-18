@@ -47,7 +47,7 @@
 					{{ Form::open(['action' => ['Admin\CartController@update'], 'method' => 'PUT','class' => 'form-horizontal']) }}
 					@csrf
 					<tr>
-						<th><img src="{{ asset("images/product/" . App\Models\Product::findOrFail($item->id)->image) }}" width="30" height="30" alt=""></th>
+						<th><img src="{{ asset("images/product/" . $item->options->image) }}" width="50" height="50" alt=""></th>
 						<td><a href="{{ route('product.show', $item->id) }}">{{ $item->name }}</a></td>
 						<td>
 							{{ Form::hidden('rowId', $item->rowId) }}

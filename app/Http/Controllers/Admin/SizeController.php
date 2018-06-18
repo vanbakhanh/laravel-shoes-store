@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Size\SizeStoreRequest;
 use App\Http\Requests\Size\SizeUpdateRequest;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Size;
 
 class SizeController extends Controller
@@ -18,6 +18,7 @@ class SizeController extends Controller
     public function index()
     {
         $sizes = Size::all();
+
         return view('backend.size.index', compact('sizes'));
     }
 
@@ -29,6 +30,7 @@ class SizeController extends Controller
     public function create()
     {
         $sizes = Size::all();
+
         return view('backend.size.create', compact('sizes'));
     }
 
@@ -42,7 +44,8 @@ class SizeController extends Controller
     {
         try {
             Size::create($request->only('name'));
-            return redirect()->back()->with('status', 'Create successful');
+
+            return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -57,6 +60,7 @@ class SizeController extends Controller
     public function show($id)
     {
         $size = Size::findOrFail($id);
+
         return view('backend.size.show', compact('size'));
     }
 
@@ -69,6 +73,7 @@ class SizeController extends Controller
     public function edit($id)
     {
         $size = Size::findOrFail($id);
+
         return view('backend.size.edit', compact('size'));
     }
 
@@ -83,7 +88,8 @@ class SizeController extends Controller
     {
         try {
             Size::findOrFail($id)->update($request->only('name'));
-            return redirect()->back()->with('status', 'Update successful');
+
+            return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -99,7 +105,8 @@ class SizeController extends Controller
     {
         try {
             Size::findOrFail($id)->delete();
-            return redirect()->back()->with('delete', 'Delete successful');
+            
+            return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

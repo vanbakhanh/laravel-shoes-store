@@ -21,6 +21,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+
         return view('backend.user.index', compact('users'));
     }
 
@@ -66,9 +67,10 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $user = User::findOrFail(Auth::user()->id);
+
             return view('frontend.user.edit', compact('user'));
         }
-        return redirect()->back();
+        return back();
     }
 
     /**
@@ -83,7 +85,8 @@ class UserController extends Controller
         try {
             $user = User::findOrFail(Auth::user()->id);
             $user->update($request->only('name', 'email', 'address', 'phone', 'birthday', 'gender'));
-            return redirect()->back()->with('status', 'Update successful');
+
+            return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -97,11 +100,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->orders()->delete();
-        $user->comments()->delete();
-        $user->delete();
-        return redirect()->back()->with('status', 'Delete successful');
+        try {
+            $user = User::findOrFail($id);
+            $user->orders()->delete();
+            $user->comments()->delete();
+            $user->delete();
+
+            return back()->with('status', 'Delete successful');
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -111,17 +119,20 @@ class UserController extends Controller
     {
         if (Auth::check()) {
             $user = User::findOrFail(Auth::user()->id);
+
             return view('frontend.user.password', compact('user'));
         }
         return redirect()->back();
     }
+    
     public function changePassword(ChangePasswordRequest $request)
     {
         try {
             $user = User::findOrFail(Auth::user()->id);
             $user->password = Hash::make($request['password']);
             $user->save();
-            return redirect()->back()->with('status', 'Password has been changed');
+
+            return back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

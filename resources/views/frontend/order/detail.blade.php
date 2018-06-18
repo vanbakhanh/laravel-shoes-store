@@ -52,10 +52,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($orderProducts as $orderProduct)
+				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
 					<td>
-						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="30" height="30">
+						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50">
 					</td>
 					<td><a href="{!! route('product.show', $orderProduct->pivot->product_id) !!}">
 						{{ $orderProduct->name }}</a>

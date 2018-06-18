@@ -6,7 +6,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header">
-				Pending ({{ $orders->where('status', 'Pending')->count() }})
+				Pending ({{ $ordersPending->count() }})
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -22,10 +22,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($orders->where('status', 'Pending') as $orderPending)
+							@foreach ($ordersPending as $orderPending)
 							<tr>
 								<th scope="row">{{ $orderPending->id }}</th>
-								<td>{{ App\Models\User::find($orderPending->user_id)->name }}</td>
+								<td>{{ $orderPending->user->name }}</td>
 								<td>${{ $orderPending->total }}</td>
 								<td>{{ $orderPending->created_at }}</td>
 								<td>{{ $orderPending->updated_at }}</td>
@@ -42,7 +42,7 @@
 	<div class="col-md-12 my-4">
 		<div class="card">
 			<div class="card-header">
-				Verified ({{ $orders->where('status', 'Verified')->count() }})
+				Verified ({{ $ordersVerified->count() }})
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -59,10 +59,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach ($orders->where('status', 'Verified') as $orderVerified)
+								@foreach ($ordersVerified as $orderVerified)
 								<tr>
 									<th scope="row">{{ $orderVerified->id }}</th>
-									<td>{{ App\Models\User::find($orderVerified->user_id)->name }}</td>
+									<td>{{ $orderVerified->user->name }}</td>
 									<td>${{ $orderVerified->total }}</td>
 									<td>{{ $orderVerified->created_at }}</td>
 									<td>{{ $orderVerified->updated_at }}</td>

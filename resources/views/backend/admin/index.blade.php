@@ -34,19 +34,19 @@
     <div class="card border-warning text-warning">
         <div class="card-body text-center">
             <p class="card-text">Products</p>
-            <h1 class="text-warning">{{ App\Models\Product::all()->count() }}</h1>
+            <h1 class="text-warning">{{ $products }}</h1>
         </div>
     </div>
     <div class="card border-primary">
         <div class="card-body text-center text-primary">
             <p class="card-text">Users</p>
-            <h1 class="text-primary">{{ App\Models\User::all()->count() }}</h1>
+            <h1 class="text-primary">{{ $users }}</h1>
         </div>
     </div>
     <div class="card border-danger">
         <div class="card-body text-center text-danger">
             <p class="card-text">Orders</p>
-            <h1 class="text-danger">{{ App\Models\Order::all()->count() }}</h1>
+            <h1 class="text-danger">{{ $orders }}</h1>
         </div>
     </div> 
 </div>

@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::orderBy('created_at')->paginate(24);
+
         return view('frontend.home.index', compact('products'));
     }
 
@@ -28,6 +29,7 @@ class HomeController extends Controller
         $categorySelected = Category::findOrFail($id);
         $categories = Category::all()->sortBy('name');
         $products = Category::findOrFail($id)->products()->where('gender', 'male')->orderBy('created_at')->paginate(24);
+
         return view('frontend.home.men', compact(['products', 'categorySelected', 'categories']));
     }
 
@@ -39,6 +41,7 @@ class HomeController extends Controller
         $categorySelected = Category::findOrFail($id);
         $categories = Category::all()->sortBy('name');
         $products = Category::findOrFail($id)->products()->where('gender', 'female')->orderBy('created_at')->paginate(24);
+
         return view('frontend.home.women', compact(['products', 'categorySelected', 'categories']));
     }
 
@@ -49,6 +52,7 @@ class HomeController extends Controller
     {
         $results = Product::where('name', 'LIKE', '%' . $request['keyword'] . '%')->orderBy('name')->get()->take(24);
         $keyword = $request['keyword'];
+        
         return view('frontend.home.search', compact(['results', 'keyword']));
     }
 
@@ -58,6 +62,6 @@ class HomeController extends Controller
     public function changeLanguage($language)
     {
         \Session::put('website_language', $language);
-        return redirect()->back();
+        return back();
     }
 }

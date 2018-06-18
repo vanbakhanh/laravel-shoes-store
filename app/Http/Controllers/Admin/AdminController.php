@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\User\ChangePasswordRequest;
 use App\Models\Admin;
 use App\Models\User;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
 use Auth;
 
 class AdminController extends Controller
@@ -32,10 +32,11 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $user = User::count();
-        $category = Category::count();
-        $product = Product::count();
-        return view('backend/admin/index', compact(['user', 'category', 'product']));
+        $users = User::count();
+        $orders = Order::count();
+        $products = Product::count();
+        
+        return view('backend/admin/index', compact(['users', 'orders', 'products']));
     }
 
     /**
@@ -45,17 +46,20 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $admin = Admin::findOrFail(Auth::user()->id);
+
             return view('backend.admin.password',compact('admin'));
         }
-        return redirect()->back();
+        return back();
     }
+
     public function changePassword(ChangePasswordRequest $request)
     {
         try {
             $admin = Admin::findOrFail(Auth::user()->id);
             $admin->password = Hash::make($request['password']);
             $admin->save();
-            return redirect()->back()->with('status', 'Password has been changed');
+
+            return back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

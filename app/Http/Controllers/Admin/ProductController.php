@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductStoreRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Color;
@@ -22,6 +22,7 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+
         return view('backend.product.index', compact('products'));
     }
 
@@ -35,6 +36,7 @@ class ProductController extends Controller
         $categories = Category::all();
         $colors = Color::pluck('name', 'id');
         $sizes = Size::pluck('name', 'id');
+
         return view('backend.product.create',compact(['categories', 'colors', 'sizes']));
     }
 
@@ -63,7 +65,8 @@ class ProductController extends Controller
                 $product->sizes()->attach($request['size']);
                 $product->save();
             }
-            return redirect()->back()->with('status', 'Create successful');
+            
+            return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
             
         }
@@ -78,12 +81,16 @@ class ProductController extends Controller
     public function show($id)
     {
         $productSelected = Product::findOrFail($id);
+
         $products = Category::findOrFail($productSelected->category_id)
         ->products()
         ->where('id', '!=', $productSelected['id'])
         ->where('gender', $productSelected->gender)->get()->shuffle()->take(4);
+
         $categorySelected = Category::find($productSelected->category_id);
-        $comments = Comment::where('product_id', $id)->get()->sortByDesc('created_at')->take(10);
+
+        $comments = Comment::where('product_id', $id)->with('user')->get()->sortByDesc('created_at');
+
         return view('frontend.product.show', compact(['productSelected', 'products', 'comments', 'categorySelected']));
     }
 
@@ -139,7 +146,8 @@ class ProductController extends Controller
                 $product->sizes()->sync($request['size']);
                 $product->save();
             }
-            return redirect()->back()->with('status', 'Update successful');
+
+            return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -155,7 +163,8 @@ class ProductController extends Controller
     {
         try {
             Product::findOrFail($id)->delete();
-            return redirect()->back()->with('delete', 'Delete successful');
+            
+            return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

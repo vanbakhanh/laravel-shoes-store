@@ -4,8 +4,8 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h4>Verified ({{ $ordersVerified->count() }})</h4>
-		<div class="list-group list-group-flush my-4">
+		<h4 class="my-4">Verified ({{ $ordersVerified->count() }})</h4>
+		<div class="list-group list-group-flush">
 			@foreach ($ordersVerified as $orderVerified)
 			<a href="{{ route('admin.order.detail.verified', $orderVerified->id) }}" class="list-group-item list-group-item-action">
 				{{ $orderVerified->created_at }} - Order {{ $orderVerified->id }}
@@ -16,8 +16,8 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h4 class="float-left">Order #{{ $orderDetail->id }}</h4>
-				<h4 class="float-right">Total ${{ $orderDetail->total }}</h4>
+				<h4 class="float-left my-4">Order #{{ $orderDetail->id }}</h4>
+				<h4 class="float-right my-4">Total ${{ $orderDetail->total }}</h4>
 			</div>
 		</div>
 		<div class="row">
@@ -37,7 +37,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($orderProducts as $orderProduct)
+				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
 					<td><a href="{{ route('product.show', $orderProduct->pivot->product_id) }}">{{ $orderProduct->name }}</a></td>
 					<td>{{ $orderProduct->pivot->qty }}</td>
@@ -52,23 +52,23 @@
 			<tbody>
 				<tr>
 					<th scope="row">User ID</th>
-					<td class="text-right">{{ $user->id }}</td>
+					<td class="text-right">{{ $orderDetail->user->id }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Name</th>
-					<td class="text-right">{{ $user->name }}</td>
+					<td class="text-right">{{ $orderDetail->user->name }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Email</th>
-					<td class="text-right">{{ $user->email }}</td>
+					<td class="text-right">{{ $orderDetail->user->email }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Phone</th>
-					<td class="text-right">{{ $user->phone }}</td>
+					<td class="text-right">{{ $orderDetail->user->phone }}</td>
 				</tr>
 				<tr>
 					<th scope="row">Address</th>
-					<td class="text-right">{{ $user->address }}</td>
+					<td class="text-right">{{ $orderDetail->user->address }}</td>
 				</tr>
 			</tbody>
 		</table>

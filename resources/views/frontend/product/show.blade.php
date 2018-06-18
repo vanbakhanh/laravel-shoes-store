@@ -125,8 +125,8 @@
 	@foreach ($comments as $cmt)
 	<div class="list-group-item flex-column align-items-start">
 		<div class="d-flex w-100 justify-content-between">
-			<h5 class="mb-1">{{ App\Models\User::find($cmt->user_id)->name }}</h5>
-			<small class="text-muted">Joined at {{ App\Models\User::findOrFail($cmt->user_id)->created_at }}</small>
+			<h5 class="mb-1">{{ $cmt->user->name }}</h5>
+			<small class="text-muted">Joined at {{ $cmt->user->created_at }}</small>
 		</div>
 		<p class="mb-1">{{ $cmt->content }}</p>
 		<small class="text-muted">{{ $cmt->created_at->diffForHumans() }}</small>

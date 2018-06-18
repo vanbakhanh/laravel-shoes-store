@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Http\Requests\Category\CategoryStoreRequest;
-use App\Http\Requests\Category\CategoryUpdateRequest;
 
 class CategoryController extends Controller
 {
@@ -18,6 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+
         return view('backend.category.index', compact('categories'));
     }
 
@@ -29,6 +30,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         return view('backend.category.create', compact('categories'));
     }
 
@@ -43,7 +45,8 @@ class CategoryController extends Controller
         try {
             $category = $request->only('name', 'description');
             Category::create($category);
-            return redirect()->back()->with('status', 'Create successful');
+
+            return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -58,6 +61,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
+
         return view('backend.category.show', compact('category'));
     }
 
@@ -70,6 +74,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
+
         return view('backend.category.edit', compact('category'));
     }
 
@@ -84,7 +89,8 @@ class CategoryController extends Controller
     {
         try {
             Category::findOrFail($id)->update($request->only('name', 'description'));
-            return redirect()->back()->with('status', 'Update successful');
+
+            return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -100,7 +106,8 @@ class CategoryController extends Controller
     {
        try {
             Category::findOrFail($id)->delete();
-            return redirect()->back()->with('delete', 'Delete successful');
+            
+            return back()->with('delete', 'Delete successful');
        } catch (\Exception $e) {
             return $e->getMessage();
        }

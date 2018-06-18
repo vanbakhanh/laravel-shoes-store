@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\OrderShipped;
 use App\Models\Product;
 use App\Models\Order;
 use Auth;
 use Cart;
 use Mail;
-use App\Mail\OrderShipped;
+
 
 class CartController extends Controller
 {
@@ -19,6 +20,7 @@ class CartController extends Controller
     public function index()
     {
     	$items = Cart::content();
+
     	return view('frontend.cart.index', compact('items'));
     }
 
@@ -36,9 +38,11 @@ class CartController extends Controller
     		'options' => [
                 'size' => $request->size, 
                 'color' => $request->color,
+                'image' => $product->image,
             ],
         ]);
-    	return redirect()->back();
+
+    	return back();
     }
 
     /**
@@ -47,7 +51,8 @@ class CartController extends Controller
     public function update(Request $request)
     {
         Cart::update($request->rowId, $request->qty);
-        return redirect()->back();
+
+        return back();
     }
 
     /**
@@ -56,7 +61,8 @@ class CartController extends Controller
     public function removeItem($rowId)
     {
     	Cart::remove($rowId);
-    	return redirect()->back();
+
+    	return back();
     }
 
     /**
@@ -65,10 +71,12 @@ class CartController extends Controller
     public function checkout()
     {
         $user = Auth::user();
+        
         $order = $user->orders()->create([
             'total' => Cart::total(),
             'status' => 'Pending',
         ]);
+
         foreach (Cart::content() as $data) {
             $order->products()->attach($data->id, [
                 'qty' => $data->qty,
@@ -82,6 +90,6 @@ class CartController extends Controller
         $orderProducts = $order->products()->get();
         Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user));
 
-        return redirect()->back()->with('status', 'Thank you for shopping at Nike! Your order has been received and is going through verification process.');
+        return back()->with('status', 'Thank you for shopping at Nike! Your order has been received and is going through verification process.');
     }
 }

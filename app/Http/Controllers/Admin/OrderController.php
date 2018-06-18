@@ -16,6 +16,7 @@ class OrderController extends Controller
     public function index()
     {
     	$orders = User::findOrFail(Auth::user()->id)->orders()->with('products')->get()->sortByDesc('created_at');
+
         return view('frontend.order.index', compact('orders'));
     }
 
@@ -25,9 +26,9 @@ class OrderController extends Controller
     public function detail($id)
     {
     	$orders = User::findOrFail(Auth::user()->id)->orders()->get()->sortByDesc('created_at');
-    	$orderDetail = Order::findOrFail($id);
-        $orderProducts = $orderDetail->products()->get();
-    	return view('frontend.order.detail', compact(['orderDetail', 'orders', 'orderProducts']));
+    	$orderDetail = Order::findOrFail($id)->with('products')->first();
+
+    	return view('frontend.order.detail', compact(['orderDetail', 'orders']));
     }
 
     /**
@@ -35,8 +36,10 @@ class OrderController extends Controller
      */
     public function manager()
     {
-        $orders = Order::all();
-        return view('backend.order.index', compact('orders'));
+        $ordersPending = Order::with('user')->where('status', 'Pending')->get();
+        $ordersVerified = Order::with('user')->where('status', 'Verified')->get();
+
+        return view('backend.order.index', compact(['ordersVerified', 'ordersPending']));
     }
 
     /**
@@ -45,10 +48,9 @@ class OrderController extends Controller
     public function managerDetailPending($id)
     {
         $ordersPending = Order::where('status', 'Pending')->get()->take(15)->sortByDesc('created_at');
-        $orderDetail = Order::findOrFail($id);
-        $orderProducts = $orderDetail->products()->get();
-        $user = User::findOrFail($orderDetail->user_id);
-        return view('backend.order.detail-pending', compact(['orderProducts', 'ordersPending', 'orderDetail', 'user']));
+        $orderDetail = Order::findOrFail($id)->with('products', 'user')->first();
+
+        return view('backend.order.detail-pending', compact(['ordersPending', 'orderDetail']));
     }
 
     /**
@@ -57,10 +59,9 @@ class OrderController extends Controller
     public function managerDetailVerified($id)
     {
         $ordersVerified = Order::where('status', 'Verified')->get()->take(15)->sortByDesc('created_at');
-        $orderDetail = Order::findOrFail($id);
-        $orderProducts = $orderDetail->products()->get();
-        $user = User::findOrFail($orderDetail->user_id);
-        return view('backend.order.detail-verified', compact(['orderProducts', 'ordersVerified', 'orderDetail', 'user']));
+        $orderDetail = Order::findOrFail($id)->with('products', 'user')->first();;
+
+        return view('backend.order.detail-verified', compact(['ordersVerified', 'orderDetail']));
     }
     
     /**
@@ -70,6 +71,7 @@ class OrderController extends Controller
     {
         try {
             Order::findOrFail($id)->update(['status' => 'Verified']);
+            
             return redirect()->route('admin.order');
         } catch (\Exception $e) {
             return $e->getMessage();

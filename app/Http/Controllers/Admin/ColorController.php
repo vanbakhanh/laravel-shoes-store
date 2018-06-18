@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\Color\ColorStoreRequest;
+use App\Http\Requests\Color\ColorUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Color;
-use App\Http\Requests\Color\ColorStoreRequest;
-use App\Http\Requests\Color\ColorUpdateRequest;
 
 class ColorController extends Controller
 {
@@ -18,6 +18,7 @@ class ColorController extends Controller
     public function index()
     {
         $colors = Color::all();
+
         return view('backend.color.index', compact('colors'));
     }
 
@@ -29,6 +30,7 @@ class ColorController extends Controller
     public function create()
     {
         $colors = Color::all();
+
         return view('backend.color.create', compact('colors'));
     }
 
@@ -42,7 +44,8 @@ class ColorController extends Controller
     {
         try {
             Color::create($request->only('name'));
-            return redirect()->back()->with('status', 'Create successful');
+
+            return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -57,6 +60,7 @@ class ColorController extends Controller
     public function show($id)
     {
         $color = Color::findOrFail($id);
+
         return view('backend.color.show', compact('color'));
     }
 
@@ -69,6 +73,7 @@ class ColorController extends Controller
     public function edit($id)
     {
         $color = Color::findOrFail($id);
+
         return view('backend.color.edit', compact('color'));
     }
 
@@ -83,7 +88,8 @@ class ColorController extends Controller
     {
         try {
             Color::findOrFail($id)->update($request->only('name'));
-            return redirect()->back()->with('status', 'Update successful');
+
+            return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -99,7 +105,8 @@ class ColorController extends Controller
     {
         try {
             Color::findOrFail($id)->delete();
-            return redirect()->back()->with('delete', 'Delete successful');
+            
+            return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

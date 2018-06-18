@@ -43,7 +43,8 @@ class CommentController extends Controller
         try {
             $user = User::findOrFail(Auth::user()->id);
             $user->comments()->create($request->only('content', 'product_id'));
-            return redirect()->back();
+            
+            return back();
         } catch (\Exception $e) {
             return $e->getMessage();
         }

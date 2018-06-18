@@ -5,8 +5,8 @@
 <div class="row">
 
 	<div class="col-lg-3">
-		<h4>Men's</h4>
-		<div class="list-group list-group-flush my-4">
+		<h4 class="my-4">Men's</h4>
+		<div class="list-group list-group-flush">
 			@foreach ($categories as $category)
 			<a href="{{ route('category.men', $category->id) }}" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
 				{{ $category->name }}
@@ -14,24 +14,7 @@
 			</a>
 			@endforeach
 		</div>
-		<h4 class="my-4">Filters</h4>
-		<div class="form-group my-4">
-			<select class="form-control custom-select">
-				<option value="">Color</option>
-				@foreach(App\Models\Color::all() as $color)
-				<option value="{{ $color->id }}">{{ $color->name }}</option>
-				@endforeach
-			</select>
-		</div>
-		<div class="form-group my-4">
-			<select class="form-control custom-select">
-				<option value="">Price</option>
-				<option value="0-100">0-100</option>
-				<option value="100-300">100-300</option>
-				<option value="300-500">300-500</option>
-				<option value="500-1000">500-1000</option>
-			</select>
-		</div>
+		<br>
 		<div class="jumbotron text-center">
 			<h5 class="display-5">{{ $categorySelected->name }}</h5>
 			<p class="lead">{{ $categorySelected->description }}</p>
@@ -41,8 +24,8 @@
 	<div class="col-lg-9">
 		<div class="row">
 			<div class="col-md-12">
-				<h4 class="float-left">Men's {{ $categorySelected->name }} Shoes ({{ $products->count() }})</h4>
-				<div class="dropdown float-right">
+				<h4 class="float-left my-4">Men's {{ $categorySelected->name }} Shoes ({{ $products->count() }})</h4>
+				<div class="dropdown float-right my-4">
 					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Sort by
 					</button>
@@ -55,7 +38,6 @@
 				</div>
 			</div>
 		</div>
-		<hr>
 
 		<div class="row">
 			@if ($products->isEmpty())
