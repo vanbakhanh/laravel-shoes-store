@@ -61,7 +61,7 @@
 <br>
 
 <!-- Category Description -->
-<div class="jumbotron text-center mt-4">
+<div class="jumbotron text-center my-4">
 	<h4 class="display-5 text-uppercase">{{ $categorySelected->name }}</h4>
 	<p class="lead">{{ $categorySelected->description }}</p>
 	<p class="lead">
@@ -109,31 +109,36 @@
 	<strong>You are not logged in! </strong> <a href="{{ route('login') }}" class="alert-link">Login</a> and try review again.
 </div>
 @else
-{{ Form::open(['route' => ['comment.store']]) }}
-@csrf
-{{ Form::hidden('product_id', $productSelected->id) }}
-<div class="form-group">
-	{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
+<div class="card">
+	<div class="card-body">
+		{{ Form::open(['route' => ['comment.store']]) }}
+		@csrf
+		{{ Form::hidden('product_id', $productSelected->id) }}
+		<div class="form-group">
+			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
+		</div>
+		{{ Form::submit('Review', ['class' => 'btn btn-primary float-right']) }}
+		{{ Form::close() }}
+	</div>
 </div>
-<div class="form-group">
-	{{ Form::submit('Review', ['class' => 'btn btn-primary btn-block']) }}
-</div>
-{{ Form::close() }}
 @endguest
 
-<div class="list-group">
-	@foreach ($comments as $cmt)
+<div class="list-group my-4">
 	<div class="list-group-item flex-column align-items-start">
+		@if ($comments->isNotEmpty())
+		@foreach ($comments as $cmt)
 		<div class="d-flex w-100 justify-content-between">
-			<h5 class="mb-1">{{ $cmt->user->name }}</h5>
-			<small class="text-muted">Joined at {{ $cmt->user->created_at }}</small>
+			<h5 class="my-2 text-primary">{{ $cmt->user->name }}
+				<small class="text-muted pl-1">{{ $cmt->created_at->diffForHumans() }}</small>
+			</h5>
 		</div>
-		<p class="mb-1">{{ $cmt->content }}</p>
-		<small class="text-muted">{{ $cmt->created_at->diffForHumans() }}</small>
+		<p class="mb-2">{{ $cmt->content }}</p>
+		@endforeach
+		@else
+		<p class="text-center p-0 m-0">No review</p>
+		@endif
 	</div>
-	@endforeach
 </div>
-<!-- /.Comments -->
 
 <!-- Script -->
 <script type="text/javascript">
