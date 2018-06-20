@@ -6,12 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <style type="text/css">
+        body {
+            background-color: #fbfbfb;
+        }
+    </style>
 </head>
 <body>
     <div class="row justify-content-center my-4">
-        <div class="col-md-8 table-responsive mt-4">
+        <div class="col-md-8 bg-secondary rounded shadow-sm py-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <blockquote class="blockquote">
+                      <p class="mb-0">Thank you for your order</p>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Your order has been received and is currently being processed. Your order details are shown below for your reference:</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="float-left">Order #{{ $orderDetail->id }}</h4>
@@ -23,7 +38,7 @@
                     <p class="float-left">Created at {{ $orderDetail->created_at }}</p>
                 </div>
             </div>
-            <table class="table table-hover table-bordered text-center table-light">
+            <table class="table table-bordered text-center table-light">
                 <thead>
                     <tr>
                         <th scope="col">Items</th>
