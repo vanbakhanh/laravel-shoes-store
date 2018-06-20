@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable = ['content', 'product_id'];
+    protected $fillable = [
+    	'content', 'product_id'
+    ];
     
     public function product()
     {
