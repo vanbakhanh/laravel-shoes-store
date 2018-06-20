@@ -37,7 +37,9 @@ class ProductController extends Controller
         $colors = Color::pluck('name', 'id');
         $sizes = Size::pluck('name', 'id');
 
-        return view('backend.product.create',compact(['categories', 'colors', 'sizes']));
+        return view('backend.product.create', compact([
+            'categories', 'colors', 'sizes'
+        ]));
     }
 
     /**
@@ -87,7 +89,9 @@ class ProductController extends Controller
 
         $comments = Comment::where('product_id', $id)->with('user')->get()->sortByDesc('created_at');
 
-        return view('frontend.product.show', compact(['productSelected', 'products', 'comments', 'categorySelected']));
+        return view('frontend.product.show', compact([
+            'productSelected', 'products', 'comments', 'categorySelected'
+        ]));
     }
 
     /**
@@ -109,7 +113,9 @@ class ProductController extends Controller
         $sizes = Size::all();
         $selectedSizes = $product->sizes->pluck('id')->toArray();
 
-        return view('backend.product.edit', compact(['product', 'colors', 'selectedColors', 'sizes','selectedSizes', 'categories', 'selectedCategories']));
+        return view('backend.product.edit', compact([
+            'product', 'colors', 'selectedColors', 'sizes','selectedSizes', 'categories', 'selectedCategories'
+        ]));
     }
 
     /**

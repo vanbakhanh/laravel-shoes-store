@@ -36,7 +36,9 @@ class AdminController extends Controller
         $orders = Order::count();
         $products = Product::count();
         
-        return view('backend/admin/index', compact(['users', 'orders', 'products']));
+        return view('backend/admin/index', compact([
+            'users', 'orders', 'products'
+        ]));
     }
 
     /**
