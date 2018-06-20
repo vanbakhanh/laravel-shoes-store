@@ -54,21 +54,17 @@ class ProductController extends Controller
 
             $category = Category::findOrFail($request['category']);
             if($category){
-                $product = $category->products()->create([
-                    'name' => $request['name'],
-                    'description' => $request['description'],
-                    'gender' => $request['gender'],
-                    'price' => $request['price'],
-                    'image' => $imageName,
-                ]);
+                $data = $request->only('name', 'description', 'gender', 'price');
+                $data['image'] = $imageName;
+
+                $product = $category->products()->create($data);
                 $product->colors()->attach($request['color']);
                 $product->sizes()->attach($request['size']);
-                $product->save();
             }
             
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
-            
+            return $e->getMessage();
         }
     }
 
@@ -83,9 +79,9 @@ class ProductController extends Controller
         $productSelected = Product::findOrFail($id);
 
         $products = Category::findOrFail($productSelected->category_id)
-        ->products()
-        ->where('id', '!=', $productSelected['id'])
-        ->where('gender', $productSelected->gender)->get()->shuffle()->take(4);
+            ->products()
+            ->where('id', '!=', $productSelected['id'])
+            ->where('gender', $productSelected->gender)->get()->shuffle()->take(4);
 
         $categorySelected = Category::find($productSelected->category_id);
 
@@ -131,20 +127,18 @@ class ProductController extends Controller
                 $request['image']->move(public_path('images/product'), $imageName);
             }
 
-            $category = Category::findOrFail($request['category']);
+            $category = Category::findOrFail($request['category_id']);
             if ($category){
-                $product = Product::findOrFail($id);
-                $product->name = $request['name'];
-                $product->description = $request['description'];
-                $product->gender = $request['gender'];
-                $product->price = $request['price'];
+                $data = $request->only('name', 'description', 'gender', 'price', 'category_id');
                 if ($request['image']) {
-                    $product->image = $imageName;
+                    $data['image'] = $imageName;
                 }
-                $product->category_id = $request['category'];
+
+                $product = Product::findOrFail($id);
+                $product->update($data);
+                
                 $product->colors()->sync($request['color']);
                 $product->sizes()->sync($request['size']);
-                $product->save();
             }
 
             return back()->with('status', 'Update successful');
@@ -163,7 +157,7 @@ class ProductController extends Controller
     {
         try {
             Product::findOrFail($id)->delete();
-            
+
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {
             return $e->getMessage();

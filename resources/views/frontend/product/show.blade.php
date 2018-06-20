@@ -19,7 +19,7 @@
 		{{ Form::open(['class' => 'form-horizontal']) }}
 		@csrf
 		<div class="form-group row">
-			<label class="col-md-6 col-form-label"><b>COLOR</b></label>
+			<label class="col-md-6 col-form-label text-uppercase"><b>COLOR</b></label>
 			<div class="col-md-6">
 				<select class="form-control custom-select" name="color">
 					@foreach ($productSelected->colors()->pluck('name')->sort() as $color)
@@ -31,7 +31,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-md-6 col-form-label"><b>SIZE</b></label>
+			<label class="col-md-6 col-form-label text-uppercase"><b>SIZE</b></label>
 			<div class="col-md-6">
 				<select class="form-control custom-select" name="size">
 					@foreach ($productSelected->sizes()->pluck('name')->sort() as $size)
@@ -43,7 +43,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-md-6 col-form-label"><b>QUANTITY</b></label>
+			<label class="col-md-6 col-form-label text-uppercase"><b>QUANTITY</b></label>
 			<div class="col-md-6">
 				{{ Form::number('qty', 1, ['id' => 'qty', 'class' => 'form-control', 'min' => '1', 'max' => '10']) }}
 			</div>
