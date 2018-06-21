@@ -58,7 +58,7 @@
 						<td>{{ $item->options->color }}</td>
 						<td>
 							<div class="btn-group btn-group-toggle">
-								<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-danger btn-sm">Remove</a>
+								<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-warning btn-sm">Remove</a>
 								{{ Form::submit('Update', ['class'=>"btn btn-primary btn-sm"]) }}
 							</div>
 						</td>
