@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
 use Illuminate\Http\Request;
@@ -10,6 +11,13 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    protected $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +25,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->all();
 
         return view('backend.category.index', compact('categories'));
     }
@@ -29,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->all();
 
         return view('backend.category.create', compact('categories'));
     }
@@ -43,8 +51,7 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         try {
-            $category = $request->only('name', 'description');
-            Category::create($category);
+            $this->categoryRepository->create($request->only('name', 'description'));
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -60,7 +67,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->categoryRepository->findOrFail($id);
 
         return view('backend.category.show', compact('category'));
     }
@@ -73,7 +80,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->categoryRepository->findOrFail($id);
 
         return view('backend.category.edit', compact('category'));
     }
@@ -88,7 +95,7 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         try {
-            Category::findOrFail($id)->update($request->only('name', 'description'));
+            $this->categoryRepository->update($id, $request->only('name', 'description'));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -105,7 +112,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
        try {
-            Category::findOrFail($id)->delete();
+            $this->categoryRepository->delete($id);
             
             return back()->with('delete', 'Delete successful');
        } catch (\Exception $e) {
