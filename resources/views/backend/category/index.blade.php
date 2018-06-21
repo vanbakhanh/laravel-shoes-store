@@ -33,20 +33,20 @@
 					</thead>
 					<tbody id="myTable">
 						@foreach ($categories as $category)
-						{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
-						@csrf
 						<tr>
 							<th scope='row'>{{ $category->id }}</th>
 							<td>{{ $category->name }}</td>
 							<td>{{ $category->description }}</td>
 							<td>
+								{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
+								@csrf
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-warning btn-sm" href="{{ route('category.edit', $category->id) }}">Edit</a>
 									{{ Form::submit('Delete',['class'=>"btn btn-danger btn-sm"]) }}
 								</div>
+								{{ Form::close() }}
 							</td>
 						</tr>
-						{{ Form::close() }}
 						@endforeach
 					</tbody>
 				</table>
