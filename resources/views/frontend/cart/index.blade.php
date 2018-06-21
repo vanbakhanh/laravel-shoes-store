@@ -72,7 +72,9 @@
 	</div>
 </div>
 
-<div class="card-deck mt-4">
+<br>
+
+<div class="card-deck">
 	<div class="card">
 		<div class="card-header">
 			Shipping Address

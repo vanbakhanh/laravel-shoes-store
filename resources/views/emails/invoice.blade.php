@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Order Shipped</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+    <title>Order Shipped</title>
 </head>
 <body>
     <div class="row justify-content-center my-4">
         <div class="col-md-8 bg-secondary rounded shadow-sm py-4">
             <div class="row">
                 <div class="col-md-12">
-                    <blockquote class="blockquote">
-                      <p class="mb-0">Thank you for your order</p>
-                    </blockquote>
+                    <p>Thank you for your order</p>
                 </div>
             </div>
             <div class="row">

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Verify User</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+    <title>Verify User</title>
 </head>
 <body>
     <div class="row justify-content-center my-4">
@@ -13,8 +14,9 @@
             <p>Thanks for registering for an account on Nike! Before we get started, we just need to confirm that this is you. Click below to verify your email address:</p>
             <a class="btn btn-primary mb-4" href="{{ route('verify', $user->token) }}" target="_blank">Verify Email</a>
             <p>Good luck! Hope it works.</p>
-            <p>Van Ba Khanh.</p>
+            <p>Van Ba Khanh</p>
+            <p>Thanks,</p>
         </div>
-      </div>
+    </div>
 </body>
 </html>

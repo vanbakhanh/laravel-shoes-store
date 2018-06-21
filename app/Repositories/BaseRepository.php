@@ -29,17 +29,22 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function __call($method, $args)
     {
         $model = $this->model;
+
         if ($method == head($args)) {
             $this->model = call_user_func_array([$model, $method], array_diff($args, [head($args)]));
+
             return $this;
         }
+
         if (!$model instanceof Model) {
             $model = $model->first();
             if (!$model) {
                 throw new ModelNotFoundException();
             }
         }
+
         $this->model = call_user_func_array([$model, $method], $args);
+        
         return $this;
     }
 
@@ -51,12 +56,14 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function __get($name)
     {
         $model = $this->model;
+
         if (!$model instanceof Model) {
             $model = $model->first();
             if (!$model) {
                 throw new ModelNotFoundException();
             }
         }
+
         return $model->$name;
     }
 
@@ -66,15 +73,18 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $this->guard = $guard;
         $this->user = Auth::guard($this->guard)->user();
+
         return $this;
     }
 
     public function makeModel()
     {
         $model = $this->app->make($this->model());
+
         if (!$model instanceof Model) {
             throw new Exception("Class {$this->model()} must be an instance of Illuminate\\Database\\Eloquent\\Model");
         }
+
         return $this->model = $model;
     }
 
@@ -96,6 +106,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function withTrashed()
     {
         $this->model = $this->model->withTrashed();
+
         return $this;
     }
 
@@ -107,6 +118,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function onlyTrashed()
     {
         $this->model = $this->model->onlyTrashed();
+
         return $this;
     }
 
@@ -119,6 +131,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model = $this->model->pluck($column, $key);
         $this->makeModel();
+
         return $model;
     }
 
@@ -127,6 +140,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         $limit = $limit ?: config('setting.paginate');
         $model = $this->model->paginate($limit, $columns);
         $this->makeModel();
+
         return $model;
     }
 
@@ -140,6 +154,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
         try {
             $model = $this->model->findOrFail($id, $columns);
             $this->makeModel();
+
             return $model;
         } catch (ModelNotFoundException $e) {
             throw new \App\Exceptions\Api\NotFoundException('Model not found with id:' . $id, NOT_FOUND);
@@ -150,12 +165,14 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $values = is_array($values) ? $values : [$values];
         $this->model = $this->model->whereIn($column, $values);
+
         return $this;
     }
 
     public function orWhere($column, $operator = null, $value = null)
     {
         $this->model = $this->model->orWhere($column, $operator, $value);
+
         return $this;
     }
 
@@ -163,42 +180,49 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $values = is_array($values) ? $values : [$values];
         $this->model = $this->model->orWhereIn($column, $values);
+
         return $this;
     }
 
     public function where($conditions, $operator = null, $value = null)
     {
         $this->model = $this->model->where($conditions, $operator, $value);
+
         return $this;
     }
 
     public function whereBetween($colunm, $values)
     {
         $this->model = $this->model->whereBetween($colunm, $values);
+
         return $this;
     }
 
     public function whereNotIn($colunm, $values)
     {
         $this->model = $this->model->whereNotIn($colunm, $values);
+
         return $this;
     }
 
     public function whereNull($colunm)
     {
         $this->model = $this->model->whereNull($colunm);
+
         return $this;
     }
 
     public function whereNotNull($colunm)
     {
         $this->model = $this->model->whereNotNull($colunm);
+
         return $this;
     }
 
     public function whereHas($relationships, $function)
     {
         $this->model = $this->model->whereHas($relationships, $function);
+
         return $this;
     }
 
@@ -227,24 +251,28 @@ abstract class BaseRepository implements BaseRepositoryInterface
         $model = $this->model->findOrFail($id);
         $model->fill($input);
         $model->save();
+
         return $model;
     }
 
     public function multiUpdate($column, $value, $input)
     {
         $value = is_array($value) ? $value : [$value];
+
         return $this->model->whereIn($column, $value)->update($input);
     }
 
     public function delete($ids)
     {
         $ids = is_array($ids) ? $ids : [$ids];
+
         return $this->model->whereIn('id', $ids)->delete();
     }
 
     public function forceDelete($ids)
     {
         $ids = is_array($ids) ? $ids : [$ids];
+
         return $this->model->whereIn('id', $ids)->forceDelete();
     }
 
@@ -252,6 +280,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model = $this->model->orderBy($column, $option);
         $this->makeModel();
+
         return $model;
     }
 
@@ -267,12 +296,14 @@ abstract class BaseRepository implements BaseRepositoryInterface
             default:
                 $this->model = $this->model->join($tableName, $tableColumn, $modelColumn);
         }
+
         return $this;
     }
 
     public function groupBy($colunms)
     {
         $colunms = is_array($colunms) ? $colunms : [$colunms];
+
         return $this->model->groupBy($colunms);
     }
 
@@ -280,6 +311,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model = $this->model->count();
         $this->makeModel();
+
         return $model;
     }
 
@@ -287,6 +319,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model = $this->model->first($columns);
         $this->makeModel();
+
         return $model;
     }
 
@@ -295,7 +328,9 @@ abstract class BaseRepository implements BaseRepositoryInterface
         if (is_string($relationships)) {
             $relationships = func_get_args();
         }
+
         $this->model = $this->model->with($relationships);
+
         return $this;
     }
 
@@ -320,20 +355,25 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $columns = is_array($columns) ? $columns : func_get_args();
         $this->model = $this->model->select($columns);
+
         return $this;
     }
 
     public function createByRelationship($method, $inputs, $option = false)
     {
         $inputs = is_array($inputs) ? $inputs : [$inputs];
+
         if (!empty($inputs['model'])) {
             $this->model = $inputs['model'];
             $inputs = array_except($inputs, ['model']);
         }
+
         if (empty($inputs['attribute'])) {
             throw new Exception('No input field to create model');
         }
+
         $this->__call($method, []);
+
         return !$option
             ? $this->model->create($inputs['attribute'])
             : $this->model->createMany($inputs['attribute']);
@@ -349,12 +389,14 @@ abstract class BaseRepository implements BaseRepositoryInterface
     public function take($limit)
     {
         $this->model = $this->model->take($limit);
+
         return $this;
     }
 
     public function inRandomOrder()
     {
         $this->model = $this->model->inRandomOrder();
+
         return $this;
     }
     
@@ -362,6 +404,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $model = $this->model->pluck($column, $key);
         $this->makeModel();
+        
         return $model;
     }
 }

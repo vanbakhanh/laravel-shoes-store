@@ -88,40 +88,40 @@
 
                     <div class="col-md-6">
                         <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ $user->gender }}" required autofocus>
-                          <option @if($user->gender == 'male') selected="selected" @endif value="male">Male</option>
-                          <option @if($user->gender == 'female') selected="selected" @endif value="female">Female</option>
-                      </select>
+                            <option @if($user->gender == 'male') selected="selected" @endif value="male">Male</option>
+                            <option @if($user->gender == 'female') selected="selected" @endif value="female">Female</option>
+                        </select>
 
-                      @if ($errors->has('gender'))
-                      <span class="invalid-feedback">
-                        <strong>{{ $errors->first('gender') }}</strong>
-                    </span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                    @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
+                        @if ($errors->has('gender'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('gender') }}</strong>
+                        </span>
+                        @endif
                     </div>
-                    @endif
-                    @if ($errors->any())
-                    @foreach ($errors->all() as $err)
-                    <p class="alert alert-dismissible alert-danger">
-                        <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        {{ $err }}
-                    </p>
-                    @endforeach
-                    @endif
-                    {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
                 </div>
+
+                <div class="form-group row mb-0">
+                    <div class="col-md-6 offset-md-4">
+                        @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                        @endif
+                        @if ($errors->any())
+                        @foreach ($errors->all() as $err)
+                        <p class="alert alert-dismissible alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ $err }}
+                        </p>
+                        @endforeach
+                        @endif
+                        {{ Form::submit('Update', ['class' => 'btn btn-primary']) }}
+                    </div>
+                </div>
+                {{ Form::close() }}
             </div>
-            {{ Form::close() }}
         </div>
     </div>
-</div>
 </div>
 
 @endsection
