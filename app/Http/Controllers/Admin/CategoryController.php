@@ -7,12 +7,16 @@ use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 
 class CategoryController extends Controller
 {
     protected $categoryRepository;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
@@ -111,12 +115,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-       try {
+        try {
             $this->categoryRepository->delete($id);
             
             return back()->with('delete', 'Delete successful');
-       } catch (\Exception $e) {
+        } catch (\Exception $e) {
             return $e->getMessage();
-       }
+        }
     }
 }

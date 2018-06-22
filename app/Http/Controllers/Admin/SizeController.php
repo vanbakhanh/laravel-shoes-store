@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Contracts\SizeRepositoryInterface;
 use App\Http\Requests\Size\SizeStoreRequest;
 use App\Http\Requests\Size\SizeUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Size;
 
 class SizeController extends Controller
 {
+    protected $sizeRepository;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(SizeRepositoryInterface $sizeRepository)
+    {
+        $this->sizeRepository = $sizeRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +29,7 @@ class SizeController extends Controller
      */
     public function index()
     {
-        $sizes = Size::all();
+        $sizes = $this->sizeRepository->all();
 
         return view('backend.size.index', compact('sizes'));
     }
@@ -29,7 +41,7 @@ class SizeController extends Controller
      */
     public function create()
     {
-        $sizes = Size::all();
+        $sizes = $this->sizeRepository->all();
 
         return view('backend.size.create', compact('sizes'));
     }
@@ -43,7 +55,7 @@ class SizeController extends Controller
     public function store(SizeStoreRequest $request)
     {
         try {
-            Size::create($request->only('name'));
+            $this->sizeRepository->create($request->only('name'));
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -59,7 +71,7 @@ class SizeController extends Controller
      */
     public function show($id)
     {
-        $size = Size::findOrFail($id);
+        $size = $this->sizeRepository->findOrFail($id);
 
         return view('backend.size.show', compact('size'));
     }
@@ -72,7 +84,7 @@ class SizeController extends Controller
      */
     public function edit($id)
     {
-        $size = Size::findOrFail($id);
+        $size = $this->sizeRepository->findOrFail($id);
 
         return view('backend.size.edit', compact('size'));
     }
@@ -87,7 +99,7 @@ class SizeController extends Controller
     public function update(SizeUpdateRequest $request, $id)
     {
         try {
-            Size::findOrFail($id)->update($request->only('name'));
+            $this->sizeRepository->update($id, $request->only('name'));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -104,7 +116,7 @@ class SizeController extends Controller
     public function destroy($id)
     {
         try {
-            Size::findOrFail($id)->delete();
+            $this->sizeRepository->delete($id);
             
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {

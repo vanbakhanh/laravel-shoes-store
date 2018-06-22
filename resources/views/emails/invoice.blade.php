@@ -53,6 +53,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <br>
             <table class="table table-light">
                 <tbody>
                     <tr>

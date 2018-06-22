@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Http\Requests\User\UserUpdateRequest;
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\User\UserUpdateRequest;
-use App\Http\Requests\User\ChangePasswordRequest;
-use App\Models\User;
 use Auth;
 
 class UserController extends Controller
 {
+    protected $userRepository;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(UserRepositoryInterface $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = $this->userRepository->all();
 
         return view('backend.user.index', compact('users'));
     }
@@ -66,7 +78,7 @@ class UserController extends Controller
     public function edit()
     {
         if (Auth::check()) {
-            $user = User::findOrFail(Auth::user()->id);
+            $user = $this->userRepository->findOrFail(Auth::user()->id);
 
             return view('frontend.user.edit', compact('user'));
         }
@@ -83,8 +95,9 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request)
     {
         try {
-            $user = User::findOrFail(Auth::user()->id);
-            $user->update($request->only('name', 'email', 'address', 'phone', 'birthday', 'gender'));
+            $this->userRepository->update(Auth::user()->id, $request->only(
+                'name', 'email', 'address', 'phone', 'birthday', 'gender'
+            ));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -101,7 +114,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            $user = User::findOrFail($id);
+            $user = $this->userRepository->findOrFail($id);
             $user->orders()->delete();
             $user->comments()->delete();
             $user->delete();
@@ -118,7 +131,7 @@ class UserController extends Controller
     public function showPasswordForm()
     {
         if (Auth::check()) {
-            $user = User::findOrFail(Auth::user()->id);
+            $user = $this->userRepository->findOrFail(Auth::user()->id);
 
             return view('frontend.user.password', compact('user'));
         }
@@ -128,7 +141,7 @@ class UserController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         try {
-            $user = User::findOrFail(Auth::user()->id);
+            $user = $this->userRepository->findOrFail(Auth::user()->id);
             $user->password = Hash::make($request['password']);
             $user->save();
 

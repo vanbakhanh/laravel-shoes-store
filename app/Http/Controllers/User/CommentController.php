@@ -2,16 +2,30 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\CommentRepositoryInterface;
+use App\Http\Requests\Comment\CommentStoreRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Comment\CommentStoreRequest;
-use App\Models\Product;
-use App\Models\Comment;
-use App\Models\User;
 use Auth;
 
 class CommentController extends Controller
 {
+    protected $commentRepository;
+    protected $userRepository;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(
+        CommentRepositoryInterface $commentRepository, UserRepositoryInterface $userRepository
+    ) {
+        $this->commentRepository = $commentRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +55,7 @@ class CommentController extends Controller
     public function store(CommentStoreRequest $request)
     {
         try {
-            $user = User::findOrFail(Auth::user()->id);
+            $user = $this->userRepository->findOrFail(Auth::user()->id);
             $user->comments()->create($request->only('content', 'product_id'));
             
             return back();

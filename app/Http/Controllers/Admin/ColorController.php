@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Contracts\ColorRepositoryInterface;
 use App\Http\Requests\Color\ColorStoreRequest;
 use App\Http\Requests\Color\ColorUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Color;
 
 class ColorController extends Controller
 {
+    protected $colorRepository;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(ColorRepositoryInterface $colorRepository)
+    {
+        $this->colorRepository = $colorRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +29,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
+        $colors = $this->colorRepository->all();
 
         return view('backend.color.index', compact('colors'));
     }
@@ -29,7 +41,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        $colors = Color::all();
+        $colors = $this->colorRepository->all();
 
         return view('backend.color.create', compact('colors'));
     }
@@ -43,7 +55,7 @@ class ColorController extends Controller
     public function store(ColorStoreRequest $request)
     {
         try {
-            Color::create($request->only('name'));
+            $this->colorRepository->create($request->only('name'));
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -59,7 +71,7 @@ class ColorController extends Controller
      */
     public function show($id)
     {
-        $color = Color::findOrFail($id);
+        $color = $this->colorRepository->findOrFail($id);
 
         return view('backend.color.show', compact('color'));
     }
@@ -72,7 +84,7 @@ class ColorController extends Controller
      */
     public function edit($id)
     {
-        $color = Color::findOrFail($id);
+        $color = $this->colorRepository->findOrFail($id);
 
         return view('backend.color.edit', compact('color'));
     }
@@ -87,7 +99,7 @@ class ColorController extends Controller
     public function update(ColorUpdateRequest $request, $id)
     {
         try {
-            Color::findOrFail($id)->update($request->only('name'));
+            $this->colorRepository->update($id, $request->only('name'));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -104,7 +116,7 @@ class ColorController extends Controller
     public function destroy($id)
     {
         try {
-            Color::findOrFail($id)->delete();
+            $this->colorRepository->delete($id);
             
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {

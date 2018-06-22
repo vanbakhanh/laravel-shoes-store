@@ -2,27 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Contracts\AdminRepositoryInterface;
+use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\User\ChangePasswordRequest;
-use App\Models\Admin;
+use Auth;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Order;
-use Auth;
 
 class AdminController extends Controller
 {
+    protected $adminRepository;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AdminRepositoryInterface $adminRepository)
     {
         $this->middleware('auth:admin');
+        $this->adminRepository = $adminRepository;
     }
 
     /**
@@ -47,7 +50,7 @@ class AdminController extends Controller
     public function showPasswordForm()
     {
         if (Auth::check()) {
-            $admin = Admin::findOrFail(Auth::user()->id);
+            $admin = $this->adminRepository->findOrFail(Auth::user()->id);
 
             return view('backend.admin.password',compact('admin'));
         }
@@ -57,7 +60,7 @@ class AdminController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         try {
-            $admin = Admin::findOrFail(Auth::user()->id);
+            $admin = $this->adminRepository->findOrFail(Auth::user()->id);
             $admin->password = Hash::make($request['password']);
             $admin->save();
 
