@@ -2,20 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Order;
 use Auth;
 
 class OrderController extends Controller
 {
+    protected $orderRepository;
+    protected $userRepository;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(
+        OrderRepositoryInterface $orderRepository,
+        UserRepositoryInterface $userRepository
+    ) {
+        $this->orderRepository = $orderRepository;
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * Display order of user - user.
      */
     public function index()
     {
-    	$orders = User::findOrFail(Auth::user()->id)->orders()->with('products')->get()->sortByDesc('created_at');
+    	$orders = $this->userRepository->findOrFail(Auth::user()->id)
+            ->orders()
+            ->with('products')
+            ->get()
+            ->sortByDesc('created_at');
 
         return view('frontend.order.index', compact('orders'));
     }
@@ -25,8 +45,12 @@ class OrderController extends Controller
      */
     public function detail($id)
     {
-    	$orders = User::findOrFail(Auth::user()->id)->orders()->get()->sortByDesc('created_at');
-    	$orderDetail = Order::where('id' ,$id)->with('products')->first();
+    	$orders = $this->userRepository->findOrFail(Auth::user()->id)
+            ->orders()
+            ->get()
+            ->sortByDesc('created_at');
+
+    	$orderDetail = $this->orderRepository->where('id', $id)->with('products')->first();
 
     	return view('frontend.order.detail', compact([
             'orderDetail', 'orders'
@@ -38,8 +62,8 @@ class OrderController extends Controller
      */
     public function manager()
     {
-        $ordersPending = Order::with('user')->where('status', 'Pending')->get();
-        $ordersVerified = Order::with('user')->where('status', 'Verified')->get();
+        $ordersPending = $this->orderRepository->with('user')->where('status', 'Pending')->get();
+        $ordersVerified = $this->orderRepository->with('user')->where('status', 'Verified')->get();
 
         return view('backend.order.index', compact([
             'ordersVerified', 'ordersPending'
@@ -51,8 +75,12 @@ class OrderController extends Controller
      */
     public function managerDetailPending($id)
     {
-        $ordersPending = Order::where('status', 'Pending')->get()->take(15)->sortByDesc('created_at');
-        $orderDetail = Order::where('id' ,$id)->with('products', 'user')->first();
+        $ordersPending = $this->orderRepository->where('status', 'Pending')
+            ->get()
+            ->take(15)
+            ->sortByDesc('created_at');
+
+        $orderDetail = $this->orderRepository->where('id' ,$id)->with('products', 'user')->first();
 
         return view('backend.order.detail-pending', compact([
             'ordersPending', 'orderDetail'
@@ -64,8 +92,12 @@ class OrderController extends Controller
      */
     public function managerDetailVerified($id)
     {
-        $ordersVerified = Order::where('status', 'Verified')->get()->take(15)->sortByDesc('created_at');
-        $orderDetail = Order::where('id' ,$id)->with('products', 'user')->first();;
+        $ordersVerified = $this->orderRepository->where('status', 'Verified')
+            ->get()
+            ->take(15)
+            ->sortByDesc('created_at');
+
+        $orderDetail = $this->orderRepository->where('id' ,$id)->with('products', 'user')->first();
 
         return view('backend.order.detail-verified', compact([
             'ordersVerified', 'orderDetail'
@@ -78,7 +110,7 @@ class OrderController extends Controller
     public function verify($id)
     {
         try {
-            Order::findOrFail($id)->update(['status' => 'Verified']);
+            $this->orderRepository->update($id, ['status' => 'Verified']);
             
             return redirect()->route('admin.order');
         } catch (\Exception $e) {
