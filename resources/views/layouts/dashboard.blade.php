@@ -27,7 +27,7 @@
 
     <!-- Wrapper -->
     <div id="wrapper">
-        <div id="sidebar-wrapper" class="shadow-sm">
+        <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="{{ route('admin.index') }}">{{ trans('layout.dashboard') }}</a></li>
                 <li><a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a></li>
