@@ -141,9 +141,10 @@ class UserController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         try {
-            $user = $this->userRepository->findOrFail(Auth::user()->id);
-            $user->password = Hash::make($request['password']);
-            $user->save();
+            $user = $this->userRepository->update(
+                Auth::user()->id, 
+                ['password' => Hash::make($request['password'])
+            ]);
 
             return back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {

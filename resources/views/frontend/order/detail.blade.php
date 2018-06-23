@@ -43,27 +43,25 @@
 		<table class="table table-hover table-md table-bordered text-center table-light">
 			<thead>
 				<tr>
-					<th scope="col">Image</th>
 					<th scope="col">Item</th>
-					<th scope="col">Quantity</th>
 					<th scope="col">Size</th>
 					<th scope="col">Color</th>
 					<th scope="col">Total</th>
+					<th scope="col">Quantity</th>
 				</tr>
 			</thead>
 			<tbody>
 				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
-					<td>
-						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50">
-					</td>
-					<td><a href="{!! route('product.show', $orderProduct->pivot->product_id) !!}">
+					<td class="text-left">
+						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50" alt="image" class="mr-2">
+						<a href="{!! route('product.show', $orderProduct->pivot->product_id) !!}">
 						{{ $orderProduct->name }}</a>
 					</td>
-					<td>{{ $orderProduct->pivot->qty }}</td>
 					<td>{{ $orderProduct->pivot->size }}</td>
 					<td>{{ $orderProduct->pivot->color }}</td>
 					<td>${{ $orderProduct->pivot->total }}</td>
+					<td>{{ $orderProduct->pivot->qty }}</td>
 				</tr>
 				@endforeach
 			</tbody>

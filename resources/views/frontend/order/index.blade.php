@@ -24,26 +24,26 @@
 		<table class="table table-hover table-md table-bordered text-center table-light">
 			<thead>
 				<tr>
-					<th scope="col">Order#</th>
-					<th scope="col">Image</th>
 					<th scope="col">Item</th>
-					<th scope="col">Quantity</th>
 					<th scope="col">Total</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Order#</th>
 				</tr>
 			</thead>
 			<tbody>
 				@if ($orders->count() > 0)
 				@foreach ($orders->first()->products as $orderProduct)
 				<tr>
-					<th scope="row"><a href="{{ route('order.detail', $orderProduct->pivot->order_id) }}">{{ $orderProduct->pivot->order_id }}</a></th>
-					<th>
-						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50">
-					</th>
-					<td><a href="{!! route('product.show',$orderProduct->pivot->product_id) !!}">
+					<td class="text-left">
+						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50" alt="image" class="mr-2">
+						<a href="{{ route('product.show',$orderProduct->pivot->product_id) }}">
 						{{$orderProduct->name }}</a>
 					</td>
-					<td>{{ $orderProduct->pivot->qty }}</td>
 					<td>${{ $orderProduct->pivot->total }}</td>
+					<td>{{ $orderProduct->pivot->qty }}</td>
+					<td>
+						<a href="{{ route('order.detail', $orderProduct->pivot->order_id) }}">{{ $orderProduct->pivot->order_id }}</a>
+					</td>
 				</tr>
 				@endforeach
 				@else

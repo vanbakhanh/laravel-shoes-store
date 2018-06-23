@@ -33,12 +33,11 @@
 			<table class="table table-hover table-md table-bordered text-center">
 				<thead>
 					<tr>
-						<th scope="col">Image</th>
-						<th scope="col">Name</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Price</th>
+						<th scope="col">Item</th>
 						<th scope="col">Size</th>
 						<th scope="col">Color</th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -47,15 +46,17 @@
 					{{ Form::open(['action' => ['Admin\CartController@update'], 'method' => 'PUT','class' => 'form-horizontal']) }}
 					@csrf
 					<tr>
-						<th><img src="{{ asset("images/product/" . $item->options->image) }}" width="50" height="50" alt=""></th>
-						<td><a href="{{ route('product.show', $item->id) }}">{{ $item->name }}</a></td>
+						<td class="text-left">
+							<img src="{{ asset("images/product/" . $item->options->image) }}" width="50" height="50" alt="image" class="mr-2">
+							<a href="{{ route('product.show', $item->id) }}">{{ $item->name }}</a>
+						</td>
+						<td>{{ $item->options->size }}</td>
+						<td>{{ $item->options->color }}</td>
+						<td>${{ ($item->price) * ($item->qty) }}</td>
 						<td>
 							{{ Form::hidden('rowId', $item->rowId) }}
 							{{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center', 'min' => '1', 'max' => '10']) }}
 						</td>
-						<td>${{ ($item->price) * ($item->qty) }}</td>
-						<td>{{ $item->options->size }}</td>
-						<td>{{ $item->options->color }}</td>
 						<td>
 							<div class="btn-group btn-group-toggle">
 								<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-warning btn-sm">Remove</a>
