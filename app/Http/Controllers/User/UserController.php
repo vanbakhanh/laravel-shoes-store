@@ -64,9 +64,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-
+        //
     }
 
     /**
@@ -75,10 +75,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        if (Auth::check()) {
-            $user = $this->userRepository->findOrFail(Auth::user()->id);
+        if (Auth::check() && Auth::user()->id == $id) {
+            $user = $this->userRepository->findOrFail($id);
 
             return view('frontend.user.edit', compact('user'));
         }
@@ -92,10 +92,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request)
+    public function update(UserUpdateRequest $request, $id)
     {
         try {
-            $this->userRepository->update(Auth::user()->id, $request->only(
+            $this->userRepository->update($id, $request->only(
                 'name', 'email', 'address', 'phone', 'birthday', 'gender'
             ));
 
@@ -128,21 +128,21 @@ class UserController extends Controller
     /**
      * Change password.
      */
-    public function showPasswordForm()
+    public function showPasswordForm($id)
     {
-        if (Auth::check()) {
-            $user = $this->userRepository->findOrFail(Auth::user()->id);
+        if (Auth::check() && Auth::user()->id == $id) {
+            $user = $this->userRepository->findOrFail($id);
 
             return view('frontend.user.password', compact('user'));
         }
         return redirect()->back();
     }
     
-    public function changePassword(ChangePasswordRequest $request)
+    public function changePassword(ChangePasswordRequest $request, $id)
     {
         try {
             $user = $this->userRepository->update(
-                Auth::user()->id, 
+                $id, 
                 ['password' => Hash::make($request['password'])
             ]);
 

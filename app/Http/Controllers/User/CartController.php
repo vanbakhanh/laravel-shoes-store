@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
+use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\OrderShipped;
-use App\Models\Product;
-use App\Models\Order;
 use Auth;
 use Cart;
 use Mail;
@@ -14,6 +13,18 @@ use Mail;
 
 class CartController extends Controller
 {
+    protected $productRepository;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     /**
      * Display cart.
      */
@@ -29,7 +40,7 @@ class CartController extends Controller
      */
     public function addItem(Request $request)
     {
-    	$product = Product::findOrFail($request->productId);
+    	$product = $this->productRepository->find($request->productId);
     	Cart::add([
     		'id' => $product->id,
     		'name' => $product->name,

@@ -1,8 +1,9 @@
 <!-- Navbar -->
 <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-4">
   <div class="container">
+    
     <a class="navbar-brand" href="{{ route('home') }}">
-      <img src="{{ asset('/images/logo-black.png') }}" width="60" height="20" alt="logo">
+      <img src="{{ asset('images/logo-black.png') }}" width="60" height="20" alt="logo">
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,6 +11,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarColor03">
+
       <ul class="navbar-nav mr-auto">
         <li>
           <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
@@ -40,6 +42,7 @@
       </ul>
       
       <ul class="navbar-nav ml-auto">
+        <!-- Search Form -->
         {{ Form::open(['route' => 'search', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) }}
             @csrf
             {{ Form::text('keyword', '', ['class' => 'form-control form-control-sm mr-3', 'placeholder' => trans('layout.search')]) }}
@@ -52,11 +55,11 @@
         <li class="dropdown">
           <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ route('user.edit') }}">
+            <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">
               {{ trans('layout.profile') }}
             </a>
             <a class="dropdown-item" href="{{ route('order') }}">{{ trans('layout.order') }}</a>
-            <a class="dropdown-item" href="{{ route('user.password.edit') }}">{{ trans('layout.change_password') }}</a>
+            <a class="dropdown-item" href="{{ route('user.password.edit', Auth::user()->id) }}">{{ trans('layout.change_password') }}</a>
             <a class="dropdown-item" href="{{ route('user.logout') }}"
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
@@ -70,7 +73,9 @@
         <li><a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a></li>
         @endguest
       </ul>
+
     </div>
+
   </div>
 </nav>
 

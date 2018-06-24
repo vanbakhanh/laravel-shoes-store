@@ -43,7 +43,7 @@
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
-					{{ Form::open(['action' => ['Admin\CartController@update'], 'method' => 'PUT','class' => 'form-horizontal']) }}
+					{{ Form::open(['route' => ['cart.update'], 'method' => 'PUT','class' => 'form-horizontal']) }}
 					@csrf
 					<tr>
 						<td class="text-left">
@@ -105,7 +105,7 @@
 				</tbody>
 			</table>
 			<div class="text-right">
-				<a href="{{ route('user.edit') }}" class="btn btn-primary">Edit</a>
+				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-primary">Edit</a>
 			</div>
 			@endguest
 		</div>
