@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\ColorRepositoryInterface;
-use App\Http\Requests\Color\ColorStoreRequest;
-use App\Http\Requests\Color\ColorUpdateRequest;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ColorController extends Controller
+class CategoryController extends Controller
 {
-    protected $colorRepository;
+    protected $categoryRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ColorRepositoryInterface $colorRepository)
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
-        $this->colorRepository = $colorRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     /**
@@ -29,9 +29,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = $this->colorRepository->all();
+        $categories = $this->categoryRepository->all();
 
-        return view('backend.color.index', compact('colors'));
+        return view('backend.category.index', compact('categories'));
     }
 
     /**
@@ -41,9 +41,9 @@ class ColorController extends Controller
      */
     public function create()
     {
-        $colors = $this->colorRepository->all();
+        $categories = $this->categoryRepository->all();
 
-        return view('backend.color.create', compact('colors'));
+        return view('backend.category.create', compact('categories'));
     }
 
     /**
@@ -52,10 +52,10 @@ class ColorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ColorStoreRequest $request)
+    public function store(CategoryStoreRequest $request)
     {
         try {
-            $this->colorRepository->create($request->only('name'));
+            $this->categoryRepository->create($request->only('name', 'description'));
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -71,9 +71,9 @@ class ColorController extends Controller
      */
     public function show($id)
     {
-        $color = $this->colorRepository->findOrFail($id);
+        $category = $this->categoryRepository->findOrFail($id);
 
-        return view('backend.color.show', compact('color'));
+        return view('backend.category.show', compact('category'));
     }
 
     /**
@@ -84,9 +84,9 @@ class ColorController extends Controller
      */
     public function edit($id)
     {
-        $color = $this->colorRepository->findOrFail($id);
+        $category = $this->categoryRepository->findOrFail($id);
 
-        return view('backend.color.edit', compact('color'));
+        return view('backend.category.edit', compact('category'));
     }
 
     /**
@@ -96,10 +96,10 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ColorUpdateRequest $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
         try {
-            $this->colorRepository->update($id, $request->only('name'));
+            $this->categoryRepository->update($id, $request->only('name', 'description'));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -116,7 +116,7 @@ class ColorController extends Controller
     public function destroy($id)
     {
         try {
-            $this->colorRepository->delete($id);
+            $this->categoryRepository->delete($id);
             
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {

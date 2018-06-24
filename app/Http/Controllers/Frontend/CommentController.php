@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CommentRepositoryInterface;

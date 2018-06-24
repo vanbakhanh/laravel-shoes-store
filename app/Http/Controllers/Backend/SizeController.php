@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Repositories\Contracts\SizeRepositoryInterface;
 use App\Http\Requests\Size\SizeStoreRequest;

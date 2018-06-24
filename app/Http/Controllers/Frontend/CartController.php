@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use Illuminate\Http\Request;
@@ -40,7 +40,7 @@ class CartController extends Controller
      */
     public function addItem(Request $request)
     {
-    	$product = $this->productRepository->find($request->productId);
+    	$product = $this->productRepository->findOrFail($request->productId);
     	Cart::add([
     		'id' => $product->id,
     		'name' => $product->name,

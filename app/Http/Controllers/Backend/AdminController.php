@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Repositories\Contracts\AdminRepositoryInterface;
 use App\Http\Requests\User\ChangePasswordRequest;
