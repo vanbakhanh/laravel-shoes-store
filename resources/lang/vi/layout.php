@@ -25,5 +25,8 @@ return [
     'size' => 'Kích thước',
     'welcome' => 'Chào, :name',
     'status' => 'Trạng thái',
+    'language' => 'Ngôn ngữ',
+    'english' => 'Tiếng anh',
+    'vietnamese' => 'Tiếng việt',
 
 ];

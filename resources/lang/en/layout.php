@@ -25,5 +25,8 @@ return [
     'size' => 'Size',
     'welcome' => 'Hello, :name',
     'status' => 'Status',
-
+    'language' => 'Language',
+    'english' => 'English',
+    'vietnamese' => 'Vietnamese',
+    
 ];

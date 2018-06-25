@@ -58,20 +58,38 @@
                                 <span class="navbar-toggler-icon"></span>
                             </a>
                         </div>
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a></li>
+                        <ul class="navbar-nav">
+                            <li class="nav-item disabled">
+                                {{ trans('layout.welcome', ['name' => Auth::user()->name]) }}
+                            </li>
                         </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li><a class="nav-link disabled" href="#">{{ trans('layout.welcome', ['name' => Auth::user()->name]) }}</a></li>
-                        </ul>
+
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ trans('layout.language') }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('user.change-language', ['en']) }}">{{ trans('layout.english') }}</a>
+                                        <a class="dropdown-item" href="{{ route('user.change-language', ['vi']) }}">{{ trans('layout.vietnamese') }}</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
 
                 <!-- Content -->
                 @yield('content')
             </div>
-            <!-- Footer -->
-            @include('layouts.footer')
         </div>
     </div>
 
