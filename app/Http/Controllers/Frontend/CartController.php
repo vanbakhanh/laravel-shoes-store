@@ -10,7 +10,6 @@ use Auth;
 use Cart;
 use Mail;
 
-
 class CartController extends Controller
 {
     protected $productRepository;

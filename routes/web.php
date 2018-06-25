@@ -12,99 +12,101 @@
 */
 
 Route::group(['middleware' => 'locale'], function() {
-  Route::get('change-language/{language}', 'Frontend\HomeController@changeLanguage')->name('user.change-language');
+    Route::get('change-language/{language}', 'Frontend\HomeController@changeLanguage')->name('user.change-language');
 
-  /*
-  |--------------------------------------------------------------------------
-  | AUTH
-  |--------------------------------------------------------------------------
-  */
+    /*
+    |--------------------------------------------------------------------------
+    | AUTH
+    |--------------------------------------------------------------------------
+    */
   
-  Auth::routes();
-  Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
-  Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
+    Auth::routes();
+    Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
+    Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
-  Route::group(array('prefix' => 'admin', 'namespace' => 'Auth'), function() {
-      // Admin Auth
-    	Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
-    	Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
-    	Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
+    Route::group(array('prefix' => 'admin', 'namespace' => 'Auth'), function() {
+        // Admin Auth
+      	Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
+      	Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
+      	Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
 
-      // Password Reset
-      Route::post('/password/email', 'AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-      Route::get('/password/reset', 'AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-      Route::post('/password/reset', 'AdminResetPasswordController@reset');
-      Route::get('/password/reset/{token}', 'AdminResetPasswordController@showResetForm')->name('admin.password.reset');
-  });
+        // Password Reset
+        Route::post('/password/email', 'AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+        Route::get('/password/reset', 'AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+        Route::post('/password/reset', 'AdminResetPasswordController@reset');
+        Route::get('/password/reset/{token}', 'AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+    });
 
-  /*
-  |--------------------------------------------------------------------------
-  | BACK END
-  |--------------------------------------------------------------------------
-  */
+    /*
+    |--------------------------------------------------------------------------
+    | BACK END
+    |--------------------------------------------------------------------------
+    */
 
-  Route::group(array('prefix' => 'admin', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
-    // Admin
-    Route::get('/index', 'AdminController@index')->name('admin.index');
-  	Route::get('/password/edit', 'AdminController@showPasswordForm')->name('admin.password.edit');
-    Route::put('/password', 'AdminController@changePassword')->name('admin.password.update');
+    Route::group(array('prefix' => 'admin', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
+        // Admin
+        Route::get('/index', 'AdminController@index')->name('admin.index');
+      	Route::get('/password/edit', 'AdminController@showPasswordForm')->name('admin.password.edit');
+        Route::put('/password', 'AdminController@changePassword')->name('admin.password.update');
 
-    Route::resource('/category', 'CategoryController');
-    Route::resource('/product', 'ProductController');
-    Route::resource('/size', 'SizeController');
-    Route::resource('/color', 'ColorController');
+        Route::resource('/category', 'CategoryController');
+        Route::resource('/product', 'ProductController');
+        Route::resource('/size', 'SizeController');
+        Route::resource('/color', 'ColorController');
+
+        // Order
+        Route::get('/order', 'OrderController@manager')->name('admin.order');
+        Route::get('/order/detail/pending/{id}', 'OrderController@managerDetailPending')->name('admin.order.detail.pending');
+        Route::get('/order/detail/verified/{id}', 'OrderController@managerDetailVerified')->name('admin.order.detail.verified');
+        Route::get('/order/verify/{id}', 'OrderController@verify')->name('admin.order.verify');
+    });
+
+    // User
+    Route::group(array('prefix' => 'admin', 'namespace' => 'Frontend', 'middleware' => 'auth:admin'), function(){
+        Route::resource('/user', 'UserController', ['only' => ['index', 'destroy']]);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | FRONT END
+    |--------------------------------------------------------------------------
+    */
+
+    // User
+    Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function(){
+        Route::resource('/user', 'UserController', ['only' => ['edit', 'update']]);
+        Route::get('/user/{user}/password/edit', 'UserController@showPasswordForm')->name('user.password.edit');
+        Route::put('/user/{user}/password', 'UserController@changePassword')->name('user.password.update');
+        Route::resource('/comment', 'CommentController');
+    });
 
     // Order
-    Route::get('/order', 'OrderController@manager')->name('admin.order');
-    Route::get('/order/detail/pending/{id}', 'OrderController@managerDetailPending')->name('admin.order.detail.pending');
-    Route::get('/order/detail/verified/{id}', 'OrderController@managerDetailVerified')->name('admin.order.detail.verified');
-    Route::get('/order/verify/{id}', 'OrderController@verify')->name('admin.order.verify');
-  });
+    Route::group(array('namespace' => 'Backend', 'middleware' => 'auth'), function(){
+        Route::get('/order', 'OrderController@index')->name('order');
+        Route::get('/order/detail/{id}', 'OrderController@detail')->name('order.detail');
+    });
 
-  // User
-  Route::group(array('prefix' => 'admin', 'namespace' => 'Frontend', 'middleware' => 'auth:admin'), function(){
-    Route::resource('/user', 'UserController', ['only' => ['index', 'destroy']]);
-  });
+    // Home
+    Route::group(array('namespace' => 'Frontend'), function(){
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::get('/category/men/{id}', 'HomeController@men')->name('category.men');
+        Route::get('/category/women/{id}', 'HomeController@women')->name('category.women');
+        Route::get('/search', 'HomeController@search')->name('search');
+    });
+    
+    //Product
+    Route::resource('/product', 'Backend\ProductController', ['only' => 'show']);
 
-  /*
-  |--------------------------------------------------------------------------
-  | FRONT END
-  |--------------------------------------------------------------------------
-  */
-
-  // User
-  Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function(){
-    Route::resource('/user', 'UserController', ['only' => ['edit', 'update']]);
-    Route::get('/user/{user}/password/edit', 'UserController@showPasswordForm')->name('user.password.edit');
-    Route::put('/user/{user}/password', 'UserController@changePassword')->name('user.password.update');
-    Route::resource('/comment', 'CommentController');
-  });
-
-  // Order
-  Route::group(array('namespace' => 'Backend', 'middleware' => 'auth'), function(){
-    Route::get('/checkout', 'CartController@checkout')->name('checkout');
-    Route::get('/order', 'OrderController@index')->name('order');
-    Route::get('/order/detail/{id}', 'OrderController@detail')->name('order.detail');
-  });
-
-  // Home
-  Route::group(array('namespace' => 'Frontend'), function(){
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/category/men/{id}', 'HomeController@men')->name('category.men');
-    Route::get('/category/women/{id}', 'HomeController@women')->name('category.women');
-    Route::get('/search', 'HomeController@search')->name('search');
-  });
-  
-  //Product
-  Route::resource('/product', 'Backend\ProductController', ['only' => 'show']);
-
-  // Cart
-  Route::group(array('namespace' => 'Frontend'), function(){
-    Route::get('/cart', 'CartController@index')->name('cart.index');
-    Route::post('/cart/add', 'CartController@addItem')->name('cart.add');
-    Route::get('/cart/remove/{rowId}', 'CartController@removeItem')->name('cart.remove');
-    Route::put('/cart/update', 'CartController@update')->name('cart.update');
-  });
+    // Cart
+    Route::group(array('namespace' => 'Frontend'), function(){
+        Route::get('/cart', 'CartController@index')->name('cart.index');
+        Route::post('/cart/add', 'CartController@addItem')->name('cart.add');
+        Route::get('/cart/remove/{rowId}', 'CartController@removeItem')->name('cart.remove');
+        Route::put('/cart/update', 'CartController@update')->name('cart.update');
+    });
+    Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function(){
+        Route::get('/checkout', 'CartController@checkout')->name('checkout');
+    });
 
 });
 
