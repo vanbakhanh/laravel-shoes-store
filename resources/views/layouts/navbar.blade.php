@@ -74,8 +74,8 @@
                         {{ trans('layout.language') }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('user.change-language', ['en']) }}">{{ trans('layout.english') }}</a>
-                            <a class="dropdown-item" href="{{ route('user.change-language', ['vi']) }}">{{ trans('layout.vietnamese') }}</a>
+                            <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">{{ trans('layout.english') }}</a>
+                            <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">{{ trans('layout.vietnamese') }}</a>
                         </div>
                     </li>
                 @endguest
