@@ -12,8 +12,8 @@
 			@if ($productSelected->gender == 'male') Men's @else Women's @endif 
 			{{ $categorySelected->name }} Shoes
 		</p>
-		<h4 class="my-2">{{ $productSelected->name }}</h4>
-		<h4 class="my-4">$<b>{{ $productSelected->price }}</b></h4>
+		<h3 class="my-2">{{ $productSelected->name }}</h3>
+		<h3 class="my-4">$<b>{{ $productSelected->price }}</b></h3>
 		<hr>
 
 		{{ Form::open(['class' => 'form-horizontal']) }}
@@ -62,7 +62,7 @@
 
 <!-- Category Description -->
 <div class="jumbotron text-center my-4">
-	<h4 class="display-5 text-uppercase">{{ $categorySelected->name }}</h4>
+	<h3 class="display-5 text-uppercase">{{ $categorySelected->name }}</h3>
 	<p class="lead">{{ $categorySelected->description }}</p>
 	<p class="lead">
 		@if ($productSelected->gender == 'male')
@@ -77,7 +77,7 @@
 <!-- Related Projects Row -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
-		<h4 class="text-uppercase">You might also like</h4>
+		<h3 class="text-uppercase">You might also like</h3>
 	</div>
 </div>
 <div class="row">
@@ -99,7 +99,7 @@
 <!-- Comments -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
-		<h4 class="text-uppercase">Customer reviews</h4>
+		<h3 class="text-uppercase">Customer reviews</h3>
 	</div>
 </div>
 

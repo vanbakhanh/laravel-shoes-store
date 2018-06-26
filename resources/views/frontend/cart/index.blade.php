@@ -3,29 +3,25 @@
 @section('content')
 
 <div class="row">
-	<div class="col-md-12">
-		@if (session('status'))
-		<div class="alert alert-dismissible alert-success">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			{{ session('status') }}
-		</div>
-		@endif
-		@if ($errors->any())
-		@foreach ($errors->all() as $err)
-		<p class="alert alert-dismissible alert-danger">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			{{ $err }}
-		</p>
-		@endforeach
-		@endif
+	@if (session('status'))
+	<div class="alert alert-dismissible alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{ session('status') }}
 	</div>
+	@endif
+	@if ($errors->any())
+	@foreach ($errors->all() as $err)
+	<p class="alert alert-dismissible alert-danger">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		{{ $err }}
+	</p>
+	@endforeach
+	@endif
 </div>
 
 <div class="card">
-	<div class="card-header">
-		Order Details
-	</div>
 	<div class="card-body">
+		<h3 class="card-title my-4">Order Details</h3>
 		@if (Cart::count() == 0)
 		<p class="card-text">There are no items in this cart. <a href="{{ route('home') }}" class="card-link">Continue Shopping now!</a></p>
 		@else
@@ -77,10 +73,8 @@
 
 <div class="card-deck">
 	<div class="card">
-		<div class="card-header">
-			Shipping Address
-		</div>
 		<div class="card-body table-responsive">
+			<h3 class="card-title my-4">Shipping Addresss</h3>
 			@guest
 			<p class="card-text">You are not logged in. <a href="{{ route('login') }}" class="card-link">Login to checkout now!</a></p>
 			@else
@@ -111,10 +105,8 @@
 		</div>
 	</div>
 	<div class="card">
-		<div class="card-header">
-			Total Summary
-		</div>
 		<div class="card-body table-responsive">
+			<h3 class="card-title my-4">Total Summary</h3>
 			<table class="table">
 				<tbody>
 					<tr>

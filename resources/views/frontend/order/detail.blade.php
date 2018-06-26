@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h4 class="my-4">My Orders ({{ $orders->count() }})</h4>
+		<h3 class="my-4">My Orders ({{ $orders->count() }})</h3>
 		<div class="list-group list-group-flush">
 			@foreach ($orders as $order)
 			<a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
@@ -16,8 +16,8 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h4 class="float-left my-4">Order #{{ $orderDetail->id }}</h4>
-				<h4 class="float-right my-4">Total ${{ $orderDetail->total }}</h4>
+				<h3 class="float-left my-4">Order #{{ $orderDetail->id }}</h3>
+				<h3 class="float-right my-4">Total ${{ $orderDetail->total }}</h3>
 			</div>
 		</div>
 		<div class="row">
@@ -28,13 +28,13 @@
 		</div>
 		<div class="jumbotron">
 			@if ($orderDetail->status == 'Pending')
-			<h4 class="text-center">Pending</h4>
+			<h3 class="text-center">Pending</h3>
 			<div class="progress">
 				<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
 			</div>
 			@endif
 			@if ($orderDetail->status == 'Verified')
-			<h4 class="text-center">Verified</h4>
+			<h3 class="text-center">Verified</h3>
 			<div class="progress">
 				<div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
 			</div>

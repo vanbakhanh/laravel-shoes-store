@@ -5,10 +5,8 @@
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header">
-                List of users
-            </div>
             <div class="card-body table-responsive">
+                <h3 class="card-title my-4">List of users</h3>
                 @if (session('status'))
                 <div class="alert alert-dismissible alert-success">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -18,8 +16,7 @@
                 @if ($users->isEmpty())
                 <div class="alert alert-dismissible alert-warning">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4 class="alert-heading">Warning!</h4>
-                    <p class="mb-0">There is no user! <a href="{{ route('register') }}" class="alert-link">Click here to create new</a>.</p>
+                    <p class="mb-0">There is no user!</p>
                 </div>
                 @else
                 <table id="table" class="table table-hover table-md text-center table-bordered">

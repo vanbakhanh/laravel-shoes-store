@@ -116,7 +116,9 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $this->categoryRepository->delete($id);
+            $category = $this->categoryRepository->findOrFail($id);
+            $category->products()->delete();
+            $category->delete();
             
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {

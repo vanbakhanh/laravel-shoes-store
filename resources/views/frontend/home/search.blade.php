@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="col-md-12 text-center my-4">
-	<h4>Search for '{{ $keyword }}'</h4>
+	<h3>Search for '{{ $keyword }}'</h3>
 	<p>{{ $results->count() }} Results</p>
 </div>
 

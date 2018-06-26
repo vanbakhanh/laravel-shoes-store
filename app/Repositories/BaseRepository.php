@@ -157,7 +157,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
             return $model;
         } catch (ModelNotFoundException $e) {
-            throw new \App\Exceptions\Api\NotFoundException('Model not found with id:' . $id, NOT_FOUND);
+            return false;
         }
     }
 

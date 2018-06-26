@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h4 class="my-4">My Orders ({{ $orders->count() }})</h4>
+		<h3 class="my-4">My Orders ({{ $orders->count() }})</h3>
 		<div class="list-group list-group-flush">
 			@foreach($orders as $order)
 			<a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
@@ -17,8 +17,8 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h4 class="float-left my-4">Recent Orders</h4>
-				<h4 class="float-right my-4">{{ $orders->first()['status'] }}</h4>
+				<h3 class="float-left my-4">Recent Orders</h3>
+				<h3 class="float-right my-4">{{ $orders->first()['status'] }}</h3>
 			</div>
 		</div>
 		<table class="table table-hover table-md table-bordered text-center table-light">
