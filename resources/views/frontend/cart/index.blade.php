@@ -2,22 +2,20 @@
 @section('title', 'Your Cart')
 @section('content')
 
-<div class="row">
-	@if (session('status'))
-	<div class="alert alert-dismissible alert-success">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		{{ session('status') }}
-	</div>
-	@endif
-	@if ($errors->any())
-	@foreach ($errors->all() as $err)
-	<p class="alert alert-dismissible alert-danger">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		{{ $err }}
-	</p>
-	@endforeach
-	@endif
+@if (session('status'))
+<div class="alert alert-dismissible alert-success">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	{{ session('status') }}
 </div>
+@endif
+@if ($errors->any())
+@foreach ($errors->all() as $err)
+<p class="alert alert-dismissible alert-danger">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	{{ $err }}
+</p>
+@endforeach
+@endif
 
 <div class="card">
 	<div class="card-body">
