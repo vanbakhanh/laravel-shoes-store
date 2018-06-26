@@ -21,7 +21,7 @@
 				<h3 class="float-right my-4">{{ $orders->first()['status'] }}</h3>
 			</div>
 		</div>
-		<table class="table table-hover table-md table-bordered text-center table-light">
+		<table class="table table-hover table-md table-bordered table-light">
 			<thead>
 				<tr>
 					<th scope="col">Item</th>

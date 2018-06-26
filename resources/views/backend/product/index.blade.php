@@ -22,7 +22,7 @@
 					<p class="mb-0">There is no product! <a href="{{ route('product.create') }}" class="alert-link">Click here to create new</a>.</p>
 				</div>
 				@else
-				<table id="table" class="table table-hover table-md text-center table-bordered">
+				<table id="table" class="table table-hover table-md table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>

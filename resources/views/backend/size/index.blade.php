@@ -22,7 +22,7 @@
 					<p class="mb-0">There is no size! <a href="{{ route('size.create') }}" class="alert-link">Click here to create new</a>.</p>
 				</div>
 				@else
-				<table id="table" class="table table-hover table-md table-bordered text-center">
+				<table id="table" class="table table-hover table-md table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>

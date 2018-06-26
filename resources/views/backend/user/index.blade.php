@@ -19,7 +19,7 @@
                     <p class="mb-0">There is no user!</p>
                 </div>
                 @else
-                <table id="table" class="table table-hover table-md text-center table-bordered">
+                <table id="table" class="table table-hover table-md table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
