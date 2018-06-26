@@ -4,9 +4,9 @@
 
 <div class="row justify-content-center">
 	<div class="col-md-12">
+		<h3 class="card-title my-4">Pending ({{ $ordersPending->count() }})</h3>
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title my-4">Pending ({{ $ordersPending->count() }})</h3>
 				<div class="table-responsive">
 					<table id="table1" class="table table-hover table-md text-center table-bordered">
 						<thead>
@@ -38,9 +38,9 @@
 	</div>
 
 	<div class="col-md-12 my-4">
+		<h3 class="card-title my-4">Verified ({{ $ordersVerified->count() }})</h3>
 		<div class="card">
 			<div class="card-body">
-				<h3 class="card-title my-4">Verified ({{ $ordersVerified->count() }})</h3>
 				<div class="table-responsive">
 					<div class="table-responsive">
 						<table id="table2" class="table table-hover table-md text-center table-bordered">
