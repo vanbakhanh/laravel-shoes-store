@@ -8,7 +8,7 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
-					<table id="table1" class="table table-hover table-md text-center table-bordered">
+					<table id="table1" class="table table-hover table-md table-bordered">
 						<thead>
 							<tr>
 								<th scope="col">ID</th>
@@ -43,7 +43,7 @@
 			<div class="card-body">
 				<div class="table-responsive">
 					<div class="table-responsive">
-						<table id="table2" class="table table-hover table-md text-center table-bordered">
+						<table id="table2" class="table table-hover table-md table-bordered">
 							<thead>
 								<tr>
 									<th scope="col">ID</th>

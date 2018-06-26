@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h4 class="my-4">Verified ({{ $ordersVerified->count() }})</h4>
+		<h3 class="my-4">Verified ({{ $ordersVerified->count() }})</h3>
 		<div class="list-group list-group-flush">
 			@foreach ($ordersVerified as $orderVerified)
 			<a href="{{ route('admin.order.detail.verified', $orderVerified->id) }}" class="list-group-item list-group-item-action">
@@ -16,8 +16,8 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h4 class="float-left my-4">Order #{{ $orderDetail->id }}</h4>
-				<h4 class="float-right my-4">Total ${{ $orderDetail->total }}</h4>
+				<h3 class="float-left my-4">Order #{{ $orderDetail->id }}</h3>
+				<h3 class="float-right my-4">Total ${{ $orderDetail->total }}</h3>
 			</div>
 		</div>
 		<div class="row">

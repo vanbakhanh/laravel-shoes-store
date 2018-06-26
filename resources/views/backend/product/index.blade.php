@@ -4,10 +4,8 @@
 
 <div class="row justify-content-center">
 	<div class="col-md-12">
+		<h3 class="card-title my-4">List of products</h3>
 		<div class="card">
-			<div class="card-header">
-				List of products
-			</div>
 			<div class="card-body table-responsive">
 				@if (session('delete'))
 				<div class="alert alert-dismissible alert-success">
