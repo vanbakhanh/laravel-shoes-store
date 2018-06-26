@@ -2,8 +2,12 @@ body {
     overflow-x: hidden;
 }
 
-#nav-down {
+#nav-hide {
     transition: all 0.3s ease;
+}
+
+#toggler .navbar-toggler {
+    display: initial !important;
 }
 
 #wrapper {
@@ -47,10 +51,6 @@ body {
 #wrapper.toggled #page-content-wrapper {
     position: absolute;
     margin-right: -250px;
-}
-
-#menu-toggle {
-    margin-bottom: 2em;
 }
 
 /* Sidebar Styles */
@@ -119,5 +119,8 @@ body {
     #wrapper.toggled #page-content-wrapper {
         position: relative;
         margin-right: 0;
+    }
+    #toggler {
+        margin-right: 1rem;
     }
 }

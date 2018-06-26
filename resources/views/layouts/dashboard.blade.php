@@ -51,12 +51,12 @@
         <div id="page-content-wrapper">
             <div class="container">
                 <!-- Navbar -->
-                <nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded py-2 mb-4">
+                <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded py-2 mb-4">
                     <div class="container">
-                        <div class="navbar-brand p-0">
-                            <a id="menu-toggle" href="#menu-toggle">
+                        <div id="toggler">
+                            <button id="menu-toggle" class="navbar-toggler" type="button">
                                 <span class="navbar-toggler-icon"></span>
-                            </a>
+                            </button>
                         </div>
                         <ul class="navbar-nav">
                             <li class="nav-item disabled">
@@ -107,9 +107,9 @@
       window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
-          document.getElementById("nav-down").style.top = "0";
+          document.getElementById("nav-hide").style.top = "0";
         } else {
-          document.getElementById("nav-down").style.top = "-65px";
+          document.getElementById("nav-hide").style.top = "-65px";
         }
         prevScrollpos = currentScrollPos;
       }

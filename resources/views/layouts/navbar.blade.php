@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav id="nav-down" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-4">
+<nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-4">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('images/logo-black.png') }}" width="60" height="20" alt="logo">
@@ -47,8 +47,21 @@
                 {{ Form::close() }}
                 <!-- Authentication Links -->
                 @guest
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">{{ trans('layout.login') }}</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ trans('layout.login') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ trans('layout.language') }}
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">{{ trans('layout.english') }}</a>
+                            <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">{{ trans('layout.vietnamese') }}</a>
+                        </div>
+                    </li>
                 @else
                     <li class="dropdown nav-item">
                         <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
@@ -90,9 +103,9 @@
     window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
-            document.getElementById("nav-down").style.top = "0";
+            document.getElementById("nav-hide").style.top = "0";
         } else {
-            document.getElementById("nav-down").style.top = "-65px";
+            document.getElementById("nav-hide").style.top = "-65px";
         }
         prevScrollpos = currentScrollPos;
     }
