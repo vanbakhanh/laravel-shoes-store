@@ -4,6 +4,12 @@
 
 <div class="row justify-content-center">
 	<div class="col-md-12">
+		@if (session('status'))
+		<div class="alert alert-dismissible alert-success">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ session('status') }}
+		</div>
+		@endif
 		<h3 class="card-title my-4">Pending ({{ $ordersPending->count() }})</h3>
 		<div class="card">
 			<div class="card-body">
@@ -27,7 +33,15 @@
 								<td>${{ $orderPending->total }}</td>
 								<td>{{ $orderPending->created_at }}</td>
 								<td>{{ $orderPending->updated_at }}</td>
-								<td><a href="{{ route('admin.order.detail.pending', $orderPending->id) }}" class="btn btn-primary btn-sm">Detail</a></td>
+								<td>
+									{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderPending->id]]) }}
+									@csrf
+									<div class="btn-group btn-group-toggle">
+										<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="btn btn-primary btn-sm">Detail</a>
+										{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+									</div>
+									{{ Form::close() }}
+								</td>
 							</tr>
 							@endforeach
 						</tbody>
@@ -62,7 +76,15 @@
 									<td>${{ $orderVerified->total }}</td>
 									<td>{{ $orderVerified->created_at }}</td>
 									<td>{{ $orderVerified->updated_at }}</td>
-									<td><a href="{{ route('admin.order.detail.verified', $orderVerified->id) }}" class="btn btn-primary btn-sm">Detail</a></td>
+									<td>
+										{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderVerified->id]]) }}
+										@csrf
+										<div class="btn-group btn-group-toggle">
+											<a href="{{ route('order.delete', $orderVerified->id) }}" class="btn btn-primary btn-sm">Detail</a>
+											{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+										</div>
+										{{ Form::close() }}
+									</td>
 								</tr>
 								@endforeach
 							</tbody>

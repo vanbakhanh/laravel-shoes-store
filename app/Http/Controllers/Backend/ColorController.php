@@ -71,9 +71,7 @@ class ColorController extends Controller
      */
     public function show($id)
     {
-        $color = $this->colorRepository->findOrFail($id);
-
-        return view('backend.color.show', compact('color'));
+        
     }
 
     /**

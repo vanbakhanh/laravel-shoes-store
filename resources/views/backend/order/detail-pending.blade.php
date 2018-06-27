@@ -7,7 +7,7 @@
 		<h3 class="my-4">Pending ({{ $ordersPending->count() }})</h3>
 		<div class="list-group list-group-flush">
 			@foreach ($ordersPending as $orderPending)
-			<a href="{{ route('admin.order.detail.pending', $orderPending->id) }}" class="list-group-item list-group-item-action">
+			<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="list-group-item list-group-item-action">
 				{{ $orderPending->created_at }} - Order {{ $orderPending->id }}
 			</a>
 			@endforeach
@@ -73,7 +73,7 @@
 			</tbody>
 		</table>
 		<div class="row mb-4">
-			<a href="{{ route('admin.order.verify', $orderDetail->id) }}" class="btn btn-primary btn-block">Verify</a>
+			<a href="{{ route('order.verify', $orderDetail->id) }}" class="btn btn-primary btn-block">Verify</a>
 		</div>
 	</div>
 </div>

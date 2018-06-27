@@ -32,10 +32,10 @@ class OrderController extends Controller
     public function index()
     {
     	$orders = $this->userRepository->findOrFail(Auth::user()->id)
-            ->orders()
-            ->with('products')
-            ->get()
-            ->sortByDesc('created_at');
+        ->orders()
+        ->with('products')
+        ->get()
+        ->sortByDesc('created_at');
 
         return view('frontend.order.index', compact('orders'));
     }
@@ -46,13 +46,13 @@ class OrderController extends Controller
     public function detail($id)
     {
     	$orders = $this->userRepository->findOrFail(Auth::user()->id)
-            ->orders()
-            ->get()
-            ->sortByDesc('created_at');
+        ->orders()
+        ->get()
+        ->sortByDesc('created_at');
 
-    	$orderDetail = $this->orderRepository->where('id', $id)->with('products')->first();
+        $orderDetail = $this->orderRepository->where('id', $id)->with('products')->first();
 
-    	return view('frontend.order.detail', compact([
+        return view('frontend.order.detail', compact([
             'orderDetail', 'orders'
         ]));
     }
@@ -76,9 +76,9 @@ class OrderController extends Controller
     public function managerDetailPending($id)
     {
         $ordersPending = $this->orderRepository->where('status', 'Pending')
-            ->get()
-            ->take(15)
-            ->sortByDesc('created_at');
+        ->get()
+        ->take(15)
+        ->sortByDesc('created_at');
 
         $orderDetail = $this->orderRepository->where('id' ,$id)->with('products', 'user')->first();
 
@@ -93,9 +93,9 @@ class OrderController extends Controller
     public function managerDetailVerified($id)
     {
         $ordersVerified = $this->orderRepository->where('status', 'Verified')
-            ->get()
-            ->take(15)
-            ->sortByDesc('created_at');
+        ->get()
+        ->take(15)
+        ->sortByDesc('created_at');
 
         $orderDetail = $this->orderRepository->where('id' ,$id)->with('products', 'user')->first();
 
@@ -114,6 +114,20 @@ class OrderController extends Controller
             
             return redirect()->route('admin.order');
         } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    /**
+     * Delete order - admin.
+     */
+    public function destroy($id)
+    {
+        try {
+            $this->orderRepository->delete($id);
+
+            return back()->with('status', 'Delete successful');
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }

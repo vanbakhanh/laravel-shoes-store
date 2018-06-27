@@ -126,7 +126,7 @@ class UserController extends Controller
     }
 
     /**
-     * Change password.
+     * Show password form.
      */
     public function showPasswordForm($id)
     {
@@ -138,6 +138,9 @@ class UserController extends Controller
         return redirect()->back();
     }
     
+    /**
+     * Change password.
+     */
     public function changePassword(ChangePasswordRequest $request, $id)
     {
         try {

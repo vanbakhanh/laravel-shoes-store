@@ -31,7 +31,7 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><a href="{{ route('admin.index') }}">{{ trans('layout.dashboard') }}</a></li>
                 <li><a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a></li>
-                <li><a href="{{ route('admin.order') }}">{{ trans('layout.order') }}</a></li>              
+                <li><a href="{{ route('order.manager') }}">{{ trans('layout.order') }}</a></li>              
                 <li>
                     <a href="#product" data-toggle="collapse" aria-expanded="false">{{ trans('layout.product') }}</a>
                     <ul class="collapse list-unstyled" id="product">

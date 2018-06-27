@@ -45,7 +45,7 @@ class AdminController extends Controller
     }
 
     /**
-     * Change password.
+     * Show password form.
      */
     public function showPasswordForm()
     {
@@ -54,9 +54,13 @@ class AdminController extends Controller
 
             return view('backend.admin.password',compact('admin'));
         }
+        
         return back();
     }
 
+    /**
+     * Change password.
+     */
     public function changePassword(ChangePasswordRequest $request)
     {
         try {

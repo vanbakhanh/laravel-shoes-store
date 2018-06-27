@@ -71,9 +71,7 @@ class SizeController extends Controller
      */
     public function show($id)
     {
-        $size = $this->sizeRepository->findOrFail($id);
-
-        return view('backend.size.show', compact('size'));
+        
     }
 
     /**

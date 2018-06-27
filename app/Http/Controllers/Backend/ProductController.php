@@ -106,13 +106,16 @@ class ProductController extends Controller
         $productSelected = $this->productRepository->findOrFail($id);
 
         $products = $this->categoryRepository->findOrFail($productSelected->category_id)
-            ->products()
-            ->where('id', '!=', $productSelected['id'])
-            ->where('gender', $productSelected->gender)->get()->shuffle()->take(4);
+        ->products()
+        ->where('id', '!=', $productSelected['id'])
+        ->where('gender', $productSelected->gender)->get()->shuffle()->take(4);
 
         $categorySelected = $this->categoryRepository->find($productSelected->category_id);
 
-        $comments = $this->commentRepository->where('product_id', $id)->with('user')->get()->sortByDesc('created_at');
+        $comments = $this->commentRepository->where('product_id', $id)
+        ->with('user')
+        ->get()
+        ->sortByDesc('created_at');
 
         return view('frontend.product.show', compact([
             'productSelected', 'products', 'comments', 'categorySelected'
@@ -165,8 +168,7 @@ class ProductController extends Controller
                     $data['image'] = $imageName;
                 }
 
-                $product = $this->productRepository->findOrFail($id);
-                $product->update($data);
+                $product = $this->productRepository->update($id, $data);
                 
                 $product->colors()->sync($request['color']);
                 $product->sizes()->sync($request['size']);
@@ -187,7 +189,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         try {
-            $this->productRepository->findOrFail($id)->delete();
+            $this->productRepository->delete($id);
 
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {

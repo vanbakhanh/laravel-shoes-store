@@ -7,7 +7,7 @@
 		<h3 class="my-4">Verified ({{ $ordersVerified->count() }})</h3>
 		<div class="list-group list-group-flush">
 			@foreach ($ordersVerified as $orderVerified)
-			<a href="{{ route('admin.order.detail.verified', $orderVerified->id) }}" class="list-group-item list-group-item-action">
+			<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="list-group-item list-group-item-action">
 				{{ $orderVerified->created_at }} - Order {{ $orderVerified->id }}
 			</a>
 			@endforeach

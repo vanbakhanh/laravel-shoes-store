@@ -71,9 +71,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = $this->categoryRepository->findOrFail($id);
 
-        return view('backend.category.show', compact('category'));
     }
 
     /**

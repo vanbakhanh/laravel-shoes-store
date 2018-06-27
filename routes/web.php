@@ -55,10 +55,11 @@ Route::group(['middleware' => 'locale'], function() {
         Route::resource('/color', 'ColorController');
 
         // Order
-        Route::get('/order', 'OrderController@manager')->name('admin.order');
-        Route::get('/order/detail/pending/{id}', 'OrderController@managerDetailPending')->name('admin.order.detail.pending');
-        Route::get('/order/detail/verified/{id}', 'OrderController@managerDetailVerified')->name('admin.order.detail.verified');
-        Route::get('/order/verify/{id}', 'OrderController@verify')->name('admin.order.verify');
+        Route::get('/order', 'OrderController@manager')->name('order.manager');
+        Route::get('/order/detail/pending/{id}', 'OrderController@managerDetailPending')->name('order.detail.pending');
+        Route::get('/order/detail/verified/{id}', 'OrderController@managerDetailVerified')->name('order.detail.verified');
+        Route::get('/order/verify/{id}', 'OrderController@verify')->name('order.verify');
+        Route::delete('/order/delete/{id}', 'OrderController@destroy')->name('order.delete');
     });
 
     // User
