@@ -71,7 +71,7 @@
 </div>
 <div class="row">
 	@foreach ($products as $product)
-	<div class="col mb-4">
+	<div class="col">
 		<div class="card card-product h-100 text-center">
 			<a href="{{ route('product.show', $product->id) }}">
 				<img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt="">
@@ -79,7 +79,7 @@
 			<div class="card-body">
 				<h5 class="card-title m-0 p-0">
 					<small>
-						<a class="text-dark" href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+						<a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
 					</small>
 				</h5>
 				<p class="card-text m-0 p-0">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>
@@ -88,6 +88,15 @@
 		</div>
 	</div>
 	@endforeach
+</div>
+<div class="row">
+	<p class="col-md-12 text-center text-uppercase my-4">
+		@if ($productSelected->gender == 'male')
+		<a href="{{ route('category.men', $productSelected->category_id) }}">See more</a>
+		@else 
+		<a href="{{ route('category.women', $productSelected->category_id) }}">See more</a>
+		@endif 
+	</p>
 </div>
 
 <br>
@@ -99,12 +108,32 @@
 	</div>
 </div>
 
+@guest
+<div class="alert alert-dismissible alert-dark">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>You are not logged in! </strong> <a href="{{ route('login') }}" class="alert-link">Login</a> and try review again.
+</div>
+@else
+<div class="list-group">
+	<div class="list-group-item">
+		{{ Form::open(['route' => ['comment.store']]) }}
+		@csrf
+		{{ Form::hidden('product_id', $productSelected->id) }}
+		<div class="form-group">
+			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
+		</div>
+		{{ Form::submit('Review', ['class' => 'btn btn-dark float-right']) }}
+		{{ Form::close() }}
+	</div>
+</div>
+@endguest
+
 <div class="list-group my-4" id="comment">
 	<div class="list-group-item flex-column align-items-start">
 		@if ($comments->isNotEmpty())
 		@foreach ($comments as $cmt)
 		<div class="d-flex w-100 justify-content-between">
-			<h5 class="my-2 text-dark">{{ $cmt->user->name }}
+			<h5 class="my-2">{{ $cmt->user->name }}
 				<small class="text-muted pl-1">{{ $cmt->created_at->diffForHumans() }}</small>
 			</h5>
 		</div>
@@ -116,43 +145,20 @@
 	</div>
 </div>
 
-@guest
-<div class="alert alert-dismissible alert-dark">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>You are not logged in! </strong> <a href="{{ route('login') }}" class="alert-link">Login</a> and try review again.
-</div>
-@else
-<div class="list-group my-4">
-	<div class="list-group-item">
-		{{ Form::open(['route' => ['comment.store']]) }}
-		@csrf
-		{{ Form::hidden('product_id', $productSelected->id) }}
-		<div class="form-group">
-			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
-		</div>
-		{{ Form::submit('Review', ['class' => 'btn btn-dark btn-block']) }}
-		{{ Form::close() }}
-	</div>
-</div>
-@endguest
-
 <br>
 
 <!-- Category Description -->
-<div class="text-center my-4">
-	<h3 class="display-5 text-uppercase">{{ $categorySelected->name }}</h3>
-	<p class="lead">{{ $categorySelected->description }}</p>
-	<p class="lead">
-		@if ($productSelected->gender == 'male')
-		<a class="btn btn-link" href="{{ route('category.men', $productSelected->category_id) }}" role="button">See more</a>
-		@else 
-		<a class="btn btn-link" href="{{ route('category.women', $productSelected->category_id) }}" role="button">See more</a>
-		@endif 
-	</p>
+<div class="row">
+	<div class="col-md-12 text-center text-uppercase my-4">
+		<h3 class="display-5">{{ $categorySelected->name }}</h3>
+		<p class="lead">{{ $categorySelected->description }}</p>
+	</div>
 </div>
 
-<!-- Script -->
+<!-- Script add to cart and update cart quatity -->
 <script type="text/javascript">
+	var cart = {{ Cart::count()+1 }};
+	var text = '{{ trans('layout.cart') }}';
 	jQuery(document).ready(function() {
 		jQuery('#addToCart').click(function(e) {
 			e.preventDefault();
@@ -171,6 +177,7 @@
 					productId: jQuery('#productId').val(),
 				},
 			});
+			$("#cart-qty").html(text +  " " + cart++);
 		});
 	});
 </script>
