@@ -108,7 +108,7 @@ class ProductController extends Controller
         $products = $this->categoryRepository->findOrFail($productSelected->category_id)
         ->products()
         ->where('id', '!=', $productSelected['id'])
-        ->where('gender', $productSelected->gender)->get()->shuffle()->take(4);
+        ->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
 
         $categorySelected = $this->categoryRepository->find($productSelected->category_id);
 

@@ -2,7 +2,7 @@
 @section('title', 'Nike Fake Website')
 @section('content')
 
-<h3 class="text-center my-4">New arrivals</h3>
+<h3 class="text-center text-uppercase my-4">New arrivals</h3>
 
 <div class="row">
 	@if ($products->isEmpty())

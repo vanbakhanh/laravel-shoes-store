@@ -71,11 +71,17 @@
 </div>
 <div class="row">
 	@foreach ($products as $product)
-	<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-		<div class="card card-product h-100 text-left">
-			<a href="{{ route('product.show', $product->id) }}"><img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt=""></a>
+	<div class="col mb-4">
+		<div class="card card-product h-100 text-center">
+			<a href="{{ route('product.show', $product->id) }}">
+				<img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt="">
+			</a>
 			<div class="card-body">
-				<h5 class="card-title m-0 p-0"><small><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></small></h5>
+				<h5 class="card-title m-0 p-0">
+					<small>
+						<a class="text-dark" href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+					</small>
+				</h5>
 				<p class="card-text m-0 p-0">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>
 				<p class="card-text m-0 p-0">${{ $product->price }}</p>
 			</div>
@@ -93,26 +99,6 @@
 	</div>
 </div>
 
-@guest
-<div class="alert alert-dismissible alert-dark">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>You are not logged in! </strong> <a href="{{ route('login') }}" class="alert-link">Login</a> and try review again.
-</div>
-@else
-<div class="card">
-	<div class="card-body">
-		{{ Form::open(['route' => ['comment.store']]) }}
-		@csrf
-		{{ Form::hidden('product_id', $productSelected->id) }}
-		<div class="form-group">
-			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
-		</div>
-		{{ Form::submit('Review', ['class' => 'btn btn-dark float-right']) }}
-		{{ Form::close() }}
-	</div>
-</div>
-@endguest
-
 <div class="list-group my-4" id="comment">
 	<div class="list-group-item flex-column align-items-start">
 		@if ($comments->isNotEmpty())
@@ -129,6 +115,26 @@
 		@endif
 	</div>
 </div>
+
+@guest
+<div class="alert alert-dismissible alert-dark">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>You are not logged in! </strong> <a href="{{ route('login') }}" class="alert-link">Login</a> and try review again.
+</div>
+@else
+<div class="list-group my-4">
+	<div class="list-group-item">
+		{{ Form::open(['route' => ['comment.store']]) }}
+		@csrf
+		{{ Form::hidden('product_id', $productSelected->id) }}
+		<div class="form-group">
+			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
+		</div>
+		{{ Form::submit('Review', ['class' => 'btn btn-dark btn-block']) }}
+		{{ Form::close() }}
+	</div>
+</div>
+@endguest
 
 <br>
 
