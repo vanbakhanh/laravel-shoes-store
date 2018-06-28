@@ -31,22 +31,25 @@
             @endif
         </div>
     </div>
-    <div class="card border-warning text-warning">
-        <div class="card-body text-center">
+    <div class="card border-warning text-warning text-center">
+        <div class="card-body">
+            <h1 class="card-title">{{ $products }}</h1>
             <p class="card-text">Products</p>
-            <h1 class="text-warning">{{ $products }}</h1>
+            <a class="card-link text-warning" href="{{ route('product.index') }}">View</a>
         </div>
     </div>
-    <div class="card border-primary">
-        <div class="card-body text-center text-primary">
+    <div class="card border-primary text-primary text-center">
+        <div class="card-body">
+            <h1 class="card-title">{{ $users }}</h1>
             <p class="card-text">Users</p>
-            <h1 class="text-primary">{{ $users }}</h1>
+            <a class="card-link text-primary" href="{{ route('user.index') }}">View</a>
         </div>
     </div>
-    <div class="card border-danger">
-        <div class="card-body text-center text-danger">
+    <div class="card border-danger text-danger text-center">
+        <div class="card-body">
+            <h1 class="card-title">{{ $orders }}</h1>
             <p class="card-text">Orders</p>
-            <h1 class="text-danger">{{ $orders }}</h1>
+            <a class="card-link text-danger" href="{{ route('order.manager') }}">View</a>
         </div>
     </div> 
 </div>

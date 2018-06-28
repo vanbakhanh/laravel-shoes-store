@@ -29,22 +29,44 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="{{ route('admin.index') }}">{{ trans('layout.dashboard') }}</a></li>
-                <li><a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a></li>
-                <li><a href="{{ route('order.manager') }}">{{ trans('layout.order') }}</a></li>              
+                <li>
+                    <h5 class="my-4">Manager</h5>
+                </li>
+                <hr>
+                <li>
+                    <a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('order.manager') }}">{{ trans('layout.order') }}</a>
+                </li>              
                 <li>
                     <a href="#product" data-toggle="collapse" aria-expanded="false">{{ trans('layout.product') }}</a>
                     <ul class="collapse list-unstyled" id="product">
-                        <li><a href="{{ route('product.create') }}">{{ trans('layout.creat_product') }}</a></li>
-                        <li><a href="{{ route('product.index') }}">{{ trans('layout.list_product') }}</a></li>
+                        <li>
+                            <a href="{{ route('product.create') }}">{{ trans('layout.creat_product') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('product.index') }}">{{ trans('layout.list_product') }}</a>
+                        </li>
                     </ul>
                 </li>
-                <li><a href="{{ route('category.create') }}">{{ trans('layout.category') }}</a></li>
-                <li><a href="{{ route('color.create') }}">{{ trans('layout.color') }}</a></li>
-                <li><a href="{{ route('size.create') }}">{{ trans('layout.size') }}</a></li>
+                <li>
+                    <a href="{{ route('category.create') }}">{{ trans('layout.category') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('color.create') }}">{{ trans('layout.color') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('size.create') }}">{{ trans('layout.size') }}</a>
+                </li>
                 <hr>
-                <li><a href="{{ route('admin.password.edit') }}">{{ trans('layout.change_password') }}</a></li>
-                <li><a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layout.logout') }}</a><form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">@csrf</form></li>
+                <li>
+                    <a href="{{ route('admin.password.edit') }}">{{ trans('layout.change_password') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layout.logout') }}</a>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">@csrf</form>
+                </li>
             </ul>
         </div>
 
@@ -72,8 +94,11 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.index') }}">{{ trans('layout.dashboard') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{ trans('layout.language') }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
@@ -105,13 +130,13 @@
         window.onscroll = function() {
             var currentScrollPos = window.pageYOffset;
             if (prevScrollpos > currentScrollPos) {
-            document.getElementById("nav-hide").style.top = "0";
-        } else {
-            document.getElementById("nav-hide").style.top = "-65px";
+                document.getElementById("nav-hide").style.top = "0";
+            } else {
+                document.getElementById("nav-hide").style.top = "-65px";
+            }
+            prevScrollpos = currentScrollPos;
         }
-        prevScrollpos = currentScrollPos;
-    }
-</script>
+    </script>
 
 </body>
 </html>

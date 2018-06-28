@@ -4,22 +4,23 @@ html {
 }
 
 body {
-	margin-bottom: 60px;
+	margin-bottom: 100px;
 }
 
 .footer {
 	position: absolute;
 	bottom: 0;
-	background-color: #fbfbfb;
 }
 
 #nav-hide {
 	transition: all 0.3s ease;
 }
 
-.card-product:hover {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-	transition: all 0.3s ease;
+.card-product {
+	border: none !important;
+	box-shadow: none !important;
 }
+
+
 
 

@@ -15,7 +15,7 @@
                     <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ trans('layout.men') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -25,7 +25,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ trans('layout.women') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,13 +48,13 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ trans('layout.login') }}</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ trans('layout.login') }}</a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ trans('layout.language') }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -63,8 +63,11 @@
                         </div>
                     </li>
                 @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a>
+                    </li>
                     <li class="dropdown nav-item">
-                        <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">{{ trans('layout.profile') }}</a>
                             <a class="dropdown-item" href="{{ route('order') }}">{{ trans('layout.order') }}</a>
@@ -79,11 +82,8 @@
                             </form>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ trans('layout.language') }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

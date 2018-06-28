@@ -54,7 +54,7 @@
 						<td>
 							<div class="btn-group btn-group-toggle">
 								<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-warning btn-sm">Remove</a>
-								{{ Form::submit('Update', ['class'=>"btn btn-primary btn-sm"]) }}
+								{{ Form::submit('Update', ['class'=>"btn btn-dark btn-sm"]) }}
 							</div>
 						</td>
 					</tr>
@@ -97,7 +97,7 @@
 				</tbody>
 			</table>
 			<div class="text-right">
-				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-primary">Edit</a>
+				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-dark">Edit</a>
 			</div>
 			@endguest
 		</div>
@@ -128,7 +128,7 @@
 			<div class="text-right">
 				@if (Cart::count() == 0)
 				@else
-				<a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
+				<a href="{{ route('checkout') }}" class="btn btn-dark">Checkout</a>
 				@endif
 			</div>
 		</div>

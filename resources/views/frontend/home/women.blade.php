@@ -26,7 +26,7 @@
 			<div class="col-md-12">
 				<h3 class="float-left my-4">Women's {{ $categorySelected->name }} Shoes ({{ $products->count() }})</h3>
 				<div class="dropdown float-right my-4">
-					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Sort by
 					</button>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
@@ -45,10 +45,16 @@
 			@else
 			@foreach ($products as $product)
 			<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-				<div class="card card-product h-100 text-left">
-					<a href="{{ route('product.show', $product->id) }}"><img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt=""></a>
+				<div class="card card-product h-100 text-center">
+					<a href="{{ route('product.show', $product->id) }}">
+						<img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt="">
+					</a>
 					<div class="card-body">
-						<h5 class="card-title m-0 p-0"><small><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></small></h5>
+						<h5 class="card-title m-0 p-0">
+							<small>
+								<a class="text-dark" href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+							</small>
+						</h5>
 						<p class="card-text m-0 p-0">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>
 						<p class="card-text m-0 p-0">${{ $product->price }}</p>
 					</div>
