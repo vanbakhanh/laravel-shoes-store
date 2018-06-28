@@ -112,7 +112,7 @@ class OrderController extends Controller
         try {
             $this->orderRepository->update($id, ['status' => 'Verified']);
             
-            return redirect()->route('admin.order');
+            return redirect()->route('order.manager');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

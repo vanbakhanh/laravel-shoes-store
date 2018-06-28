@@ -20,7 +20,7 @@
 			<div class="card-body">
 				<h5 class="card-title m-0 p-0">
 					<small>
-						<a class="text-dark" href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+						<a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
 					</small>
 				</h5>
 				<p class="card-text m-0 p-0">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>

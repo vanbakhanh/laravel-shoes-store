@@ -38,11 +38,11 @@
             <a class="card-link text-warning" href="{{ route('product.index') }}">View</a>
         </div>
     </div>
-    <div class="card border-primary text-primary text-center">
+    <div class="card border-dark text-dark text-center">
         <div class="card-body">
             <h1 class="card-title">{{ $users }}</h1>
             <p class="card-text">Users</p>
-            <a class="card-link text-primary" href="{{ route('user.index') }}">View</a>
+            <a class="card-link text-dark" href="{{ route('user.index') }}">View</a>
         </div>
     </div>
     <div class="card border-danger text-danger text-center">

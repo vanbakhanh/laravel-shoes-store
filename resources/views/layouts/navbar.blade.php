@@ -48,7 +48,7 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a>
+                        <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} {{ Cart::count() }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ trans('layout.login') }}</a>
@@ -64,7 +64,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} ({{ Cart::count() }})</a>
+                        <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">{{ trans('layout.cart') }} {{ Cart::count() }}</a>
                     </li>
                     <li class="dropdown nav-item">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>{{ Auth::user()->name }}</a>

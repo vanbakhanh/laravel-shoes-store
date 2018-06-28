@@ -37,7 +37,7 @@
 									{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderPending->id]]) }}
 									@csrf
 									<div class="btn-group btn-group-toggle">
-										<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="btn btn-primary btn-sm">Detail</a>
+										<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="btn btn-dark btn-sm">Detail</a>
 										{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
 									</div>
 									{{ Form::close() }}
@@ -80,7 +80,7 @@
 										{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderVerified->id]]) }}
 										@csrf
 										<div class="btn-group btn-group-toggle">
-											<a href="{{ route('order.delete', $orderVerified->id) }}" class="btn btn-primary btn-sm">Detail</a>
+											<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="btn btn-dark btn-sm">Detail</a>
 											{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
 										</div>
 										{{ Form::close() }}

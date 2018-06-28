@@ -73,7 +73,7 @@
 			</tbody>
 		</table>
 		<div class="row mb-4">
-			<a href="{{ route('order.verify', $orderDetail->id) }}" class="btn btn-primary btn-block">Verify</a>
+			<a href="{{ route('order.verify', $orderDetail->id) }}" class="btn btn-dark btn-block">Verify</a>
 		</div>
 	</div>
 </div>
