@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         try {
-            $this->categoryRepository->create($request->only('name', 'description'));
+            $this->categoryRepository->store($request);
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -97,7 +97,7 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         try {
-            $this->categoryRepository->update($id, $request->only('name', 'description'));
+            $this->categoryRepository->update($request, $id);
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -114,9 +114,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $category = $this->categoryRepository->findOrFail($id);
-            $category->products()->delete();
-            $category->delete();
+            $this->categoryRepository->destroy($id);
             
             return back()->with('delete', 'Delete successful');
         } catch (\Exception $e) {

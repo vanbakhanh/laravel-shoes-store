@@ -2,28 +2,22 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
 
 class OrderController extends Controller
 {
     protected $orderRepository;
-    protected $userRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(
-        OrderRepositoryInterface $orderRepository,
-        UserRepositoryInterface $userRepository
-    ) {
+    public function __construct(OrderRepositoryInterface $orderRepository) 
+    {
         $this->orderRepository = $orderRepository;
-        $this->userRepository = $userRepository;
     }
 
     /**
@@ -31,11 +25,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-    	$orders = $this->userRepository->findOrFail(Auth::user()->id)
-        ->orders()
-        ->with('products')
-        ->get()
-        ->sortByDesc('created_at');
+    	$orders = $this->orderRepository->ordersWithProduct();
 
         return view('frontend.order.index', compact('orders'));
     }
@@ -45,12 +35,9 @@ class OrderController extends Controller
      */
     public function detail($id)
     {
-    	$orders = $this->userRepository->findOrFail(Auth::user()->id)
-        ->orders()
-        ->get()
-        ->sortByDesc('created_at');
+    	$orders = $this->orderRepository->ordersWithUser();
 
-        $orderDetail = $this->orderRepository->where('id', $id)->with('products')->first();
+        $orderDetail = $this->orderRepository->orderWithProduct($id);
 
         return view('frontend.order.detail', compact([
             'orderDetail', 'orders'
@@ -62,8 +49,9 @@ class OrderController extends Controller
      */
     public function manager()
     {
-        $ordersPending = $this->orderRepository->with('user')->where('status', 'Pending')->get();
-        $ordersVerified = $this->orderRepository->with('user')->where('status', 'Verified')->get();
+        $ordersPending = $this->orderRepository->ordersPending();
+
+        $ordersVerified = $this->orderRepository->ordersVerified();
 
         return view('backend.order.index', compact([
             'ordersVerified', 'ordersPending'
@@ -75,12 +63,9 @@ class OrderController extends Controller
      */
     public function managerDetailPending($id)
     {
-        $ordersPending = $this->orderRepository->where('status', 'Pending')
-        ->get()
-        ->take(15)
-        ->sortByDesc('created_at');
+        $ordersPending = $this->orderRepository->ordersPending();
 
-        $orderDetail = $this->orderRepository->where('id' ,$id)->with('products', 'user')->first();
+        $orderDetail = $this->orderRepository->orderWithProductUser($id);
 
         return view('backend.order.detail-pending', compact([
             'ordersPending', 'orderDetail'
@@ -92,12 +77,9 @@ class OrderController extends Controller
      */
     public function managerDetailVerified($id)
     {
-        $ordersVerified = $this->orderRepository->where('status', 'Verified')
-        ->get()
-        ->take(15)
-        ->sortByDesc('created_at');
+        $ordersVerified = $this->orderRepository->ordersVerified();
 
-        $orderDetail = $this->orderRepository->where('id' ,$id)->with('products', 'user')->first();
+        $orderDetail = $this->orderRepository->orderWithProductUser($id);
 
         return view('backend.order.detail-verified', compact([
             'ordersVerified', 'orderDetail'
@@ -110,7 +92,7 @@ class OrderController extends Controller
     public function verify($id)
     {
         try {
-            $this->orderRepository->update($id, ['status' => 'Verified']);
+            $this->orderRepository->verify($id);
             
             return redirect()->route('order.manager');
         } catch (\Exception $e) {
