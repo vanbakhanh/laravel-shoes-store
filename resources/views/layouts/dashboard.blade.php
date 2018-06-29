@@ -61,7 +61,7 @@
                 </li>
                 <hr>
                 <li>
-                    <a href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layout.change_password') }}</a>
+                    <a href="{{ route('admin.password.edit') }}">{{ trans('layout.change_password') }}</a>
                 </li>
                 <li>
                     <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layout.logout') }}</a>

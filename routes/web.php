@@ -46,8 +46,8 @@ Route::group(['middleware' => 'locale'], function() {
     Route::group(array('prefix' => 'admin', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
         // Admin
         Route::get('/index', 'AdminController@index')->name('admin.index');
-      	Route::get('/{admin}/password/edit', 'AdminController@showPasswordForm')->name('admin.password.edit');
-        Route::put('/{admin}/password', 'AdminController@changePassword')->name('admin.password.update');
+      	Route::get('/password/edit', 'AdminController@showPasswordForm')->name('admin.password.edit');
+        Route::put('/password', 'AdminController@changePassword')->name('admin.password.update');
 
         Route::resource('/category', 'CategoryController');
         Route::resource('/product', 'ProductController');

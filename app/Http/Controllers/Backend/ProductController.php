@@ -6,6 +6,7 @@ use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\ColorRepositoryInterface;
 use App\Repositories\Contracts\SizeRepositoryInterface;
+use App\Repositories\Contracts\CommentRepositoryInterface;
 use App\Http\Requests\Product\ProductStoreRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ class ProductController extends Controller
     protected $categoryRepository;
     protected $colorRepository;
     protected $sizeRepository;
+    protected $commentRepository;
 
     /**
      * Create a new controller instance.
@@ -27,12 +29,14 @@ class ProductController extends Controller
         ProductRepositoryInterface $productRepository,
         CategoryRepositoryInterface $categoryRepository,
         ColorRepositoryInterface $colorRepository,
-        SizeRepositoryInterface $sizeRepository
+        SizeRepositoryInterface $sizeRepository,
+        CommentRepositoryInterface $commentRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->colorRepository = $colorRepository;
         $this->sizeRepository = $sizeRepository;
+        $this->commentRepository = $commentRepository;
     }
 
     /**
@@ -72,7 +76,18 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
         try {
-            $this->productRepository->store($request);
+            $imageName = time() . '.' . $request['image']->getClientOriginalExtension();
+            $request['image']->move(public_path('images/product'), $imageName);
+
+            $category = $this->categoryRepository->findOrFail($request['category']);
+            if($category){
+                $data = $request->only('name', 'description', 'gender', 'price');
+                $data['image'] = $imageName;
+
+                $product = $category->products()->create($data);
+                $product->colors()->attach($request['color']);
+                $product->sizes()->attach($request['size']);
+            }
             
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -90,11 +105,17 @@ class ProductController extends Controller
     {
         $productSelected = $this->productRepository->findOrFail($id);
 
-        $products = $this->productRepository->productSuggestions($productSelected);
+        $products = $this->categoryRepository->findOrFail($productSelected->category_id)
+        ->products()
+        ->where('id', '!=', $productSelected['id'])
+        ->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
 
-        $categorySelected = $this->categoryRepository->findOrFail($productSelected->category_id);
+        $categorySelected = $this->categoryRepository->find($productSelected->category_id);
 
-        $comments = $this->productRepository->comments($id);
+        $comments = $this->commentRepository->where('product_id', $id)
+        ->with('user')
+        ->get()
+        ->sortByDesc('created_at');
 
         return view('frontend.product.show', compact([
             'productSelected', 'products', 'comments', 'categorySelected'
@@ -112,16 +133,16 @@ class ProductController extends Controller
         $product = $this->productRepository->findOrFail($id);
 
         $categories = $this->categoryRepository->all();
-        $selectedCategory = $this->categoryRepository->findOrFail($product->category_id)->id;
+        $selectedCategories = $this->categoryRepository->findOrFail($product->category_id)->id;
 
         $colors = $this->colorRepository->all();
-        $selectedColors = $this->productRepository->selectedColors($product);
+        $selectedColors = $product->colors->pluck('id')->toArray();
 
         $sizes = $this->sizeRepository->all();
-        $selectedSizes = $this->productRepository->selectedSizes($product);
+        $selectedSizes = $product->sizes->pluck('id')->toArray();
 
         return view('backend.product.edit', compact([
-            'product', 'colors', 'selectedColors', 'sizes','selectedSizes', 'categories', 'selectedCategory'
+            'product', 'colors', 'selectedColors', 'sizes','selectedSizes', 'categories', 'selectedCategories'
         ]));
     }
 
@@ -135,7 +156,23 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, $id)
     {
         try {
-            $this->productRepository->update($request, $id);
+            if ($request['image']) {
+                $imageName = time() . '.' . $request['image']->getClientOriginalExtension();
+                $request['image']->move(public_path('images/product'), $imageName);
+            }
+
+            $category = $this->categoryRepository->findOrFail($request['category_id']);
+            if ($category){
+                $data = $request->only('name', 'description', 'gender', 'price', 'category_id');
+                if ($request['image']) {
+                    $data['image'] = $imageName;
+                }
+
+                $product = $this->productRepository->update($id, $data);
+                
+                $product->colors()->sync($request['color']);
+                $product->sizes()->sync($request['size']);
+            }
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {

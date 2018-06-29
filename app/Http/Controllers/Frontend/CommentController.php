@@ -2,23 +2,28 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CommentRepositoryInterface;
 use App\Http\Requests\Comment\CommentStoreRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class CommentController extends Controller
 {
     protected $commentRepository;
+    protected $userRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CommentRepositoryInterface $commentRepository) 
-    {
+    public function __construct(
+        CommentRepositoryInterface $commentRepository, UserRepositoryInterface $userRepository
+    ) {
         $this->commentRepository = $commentRepository;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -50,8 +55,9 @@ class CommentController extends Controller
     public function store(CommentStoreRequest $request)
     {
         try {
-            $this->commentRepository->store($request);
-                        
+            $user = $this->userRepository->findOrFail(Auth::user()->id);
+            $user->comments()->create($request->only('content', 'product_id'));
+            
             return back();
         } catch (\Exception $e) {
             return $e->getMessage();

@@ -7,6 +7,7 @@ use App\Http\Requests\User\UserUpdateRequest;
 use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
@@ -94,7 +95,9 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         try {
-            $this->userRepository->update($request, $id);
+            $this->userRepository->update($id, $request->only(
+                'name', 'email', 'address', 'phone', 'birthday', 'gender'
+            ));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
@@ -111,7 +114,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            $this->userRepository->destroy($id);
+            $user = $this->userRepository->findOrFail($id);
+            $user->orders()->delete();
+            $user->comments()->delete();
+            $user->delete();
 
             return back()->with('status', 'Delete successful');
         } catch (Exception $e) {
@@ -138,7 +144,10 @@ class UserController extends Controller
     public function changePassword(ChangePasswordRequest $request, $id)
     {
         try {
-            $this->userRepository->changePassword($request, $id);
+            $user = $this->userRepository->update(
+                $id, 
+                ['password' => Hash::make($request['password'])
+            ]);
 
             return back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {

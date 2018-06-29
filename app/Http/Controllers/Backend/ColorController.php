@@ -55,7 +55,7 @@ class ColorController extends Controller
     public function store(ColorStoreRequest $request)
     {
         try {
-            $this->colorRepository->store($request);
+            $this->colorRepository->create($request->only('name'));
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -97,7 +97,7 @@ class ColorController extends Controller
     public function update(ColorUpdateRequest $request, $id)
     {
         try {
-            $this->colorRepository->update($request, $id);
+            $this->colorRepository->update($id, $request->only('name'));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {

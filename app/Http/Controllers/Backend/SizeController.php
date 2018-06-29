@@ -55,7 +55,7 @@ class SizeController extends Controller
     public function store(SizeStoreRequest $request)
     {
         try {
-            $this->sizeRepository->store($request);
+            $this->sizeRepository->create($request->only('name'));
 
             return back()->with('status', 'Create successful');
         } catch (\Exception $e) {
@@ -97,7 +97,7 @@ class SizeController extends Controller
     public function update(SizeUpdateRequest $request, $id)
     {
         try {
-            $this->sizeRepository->update($request, $id);
+            $this->sizeRepository->update($id, $request->only('name'));
 
             return back()->with('status', 'Update successful');
         } catch (\Exception $e) {
