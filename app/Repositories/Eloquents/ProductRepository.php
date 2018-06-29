@@ -64,17 +64,17 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 	public function productSuggestions($productSelected)
 	{
 		return Category::findOrFail($productSelected->category_id)
-        ->products()
-        ->where('id', '!=', $productSelected->id)
-        ->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
+		->products()
+		->where('id', '!=', $productSelected->id)
+		->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
 	}
 
 	public function comments($id)
 	{
 		return Comment::where('product_id', $id)
-        ->with('user')
-        ->get()
-        ->sortByDesc('created_at');
+		->with('user')
+		->get()
+		->sortByDesc('created_at');
 	}
 
 	public function selectedColors($product)

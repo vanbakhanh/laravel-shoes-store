@@ -26,7 +26,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 	public function destroy($id)
 	{
 		$category = $this->findOrFail($id);
-        $category->products()->delete();
-        $category->delete();
+		$category->products()->delete();
+		$category->delete();
 	}
 }
