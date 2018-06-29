@@ -41,8 +41,7 @@
           
             <ul class="navbar-nav ml-auto">
                 <!-- Search Form -->
-                {{ Form::open(['route' => 'search', 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) }}
-                    @csrf
+                {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) }}
                     {{ Form::text('keyword', '', ['class' => 'form-control form-control-sm mr-3', 'placeholder' => trans('layout.search')]) }}
                 {{ Form::close() }}
                 <!-- Authentication Links -->

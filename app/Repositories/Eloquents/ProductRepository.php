@@ -50,7 +50,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 				$data['image'] = $imageName;
 			}
 
-			$product = $this->update($id, $data);
+			$product = $this->findOrFail($id);
+			$product->update($data);
 
 			$product->colors()->sync($request['color']);
 			$product->sizes()->sync($request['size']);
@@ -85,5 +86,22 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 	public function selectedSizes($product)
 	{
 		return $product->sizes->pluck('id')->toArray();
+	}
+
+	public function searchProduct($keyword)
+	{
+		return $this->where('name', 'LIKE', '%' . $keyword . '%')
+		->orderBy('name')
+		->get()
+		->take(24);
+	}
+
+	public function productsFollowGenderAndCategory($id, $gender)
+	{
+		return Category::findOrFail($id)
+		->products()
+		->where('gender', $gender)
+		->orderBy('created_at', 'desc')
+		->paginate(24);
 	}
 }

@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = $this->productRepository->orderBy('created_at')->paginate(24);
+        $products = $this->productRepository->orderBy('created_at', 'desc')->paginate(24);
 
         return view('frontend.home.index', compact('products'));
     }
@@ -43,13 +43,11 @@ class HomeController extends Controller
      */
     public function men($id)
     {
+        $gender = 'male';
+
         $categorySelected = $this->categoryRepository->findOrFail($id);
-        $categories = $this->categoryRepository->all()->sortBy('name');
-        $products = $this->categoryRepository->findOrFail($id)
-        ->products()
-        ->where('gender', 'male')
-        ->orderBy('created_at')
-        ->paginate(24);
+        $categories = $this->categoryRepository->orderBy('name')->get();
+        $products = $this->productRepository->productsFollowGenderAndCategory($id, $gender);
 
         return view('frontend.home.men', compact(['products', 'categorySelected', 'categories']));
     }
@@ -59,13 +57,11 @@ class HomeController extends Controller
      */
     public function women($id)
     {
+        $gender = 'female';
+        
         $categorySelected = $this->categoryRepository->findOrFail($id);
-        $categories = $this->categoryRepository->all()->sortBy('name');
-        $products = $this->categoryRepository->findOrFail($id)
-        ->products()
-        ->where('gender', 'female')
-        ->orderBy('created_at')
-        ->paginate(24);
+        $categories = $this->categoryRepository->orderBy('name')->get();
+        $products = $this->productRepository->productsFollowGenderAndCategory($id, $gender);
 
         return view('frontend.home.women', compact(['products', 'categorySelected', 'categories']));
     }
@@ -73,14 +69,11 @@ class HomeController extends Controller
     /**
      * Search product follow to name.
      */
-    public function search(SearchRequest $request)
+    public function search()
     {
-        $results = $this->productRepository->where('name', 'LIKE', '%' . $request['keyword'] . '%')
-        ->orderBy('name')
-        ->get()
-        ->take(24);
-        
-        $keyword = $request['keyword'];
+        $keyword = $_GET['keyword'];
+
+        $results = $this->productRepository->searchProduct($keyword);
         
         return view('frontend.home.search', compact(['results', 'keyword']));
     }

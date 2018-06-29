@@ -19,16 +19,16 @@ Route::group(['middleware' => 'locale'], function() {
     | AUTH
     |--------------------------------------------------------------------------
     */
-  
+
     Auth::routes();
     Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
     Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
     Route::group(array('prefix' => 'admin', 'namespace' => 'Auth'), function() {
         // Admin Auth
-      	Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
-      	Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
-      	Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
+        Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
+        Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
+        Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
 
         // Password Reset
         Route::post('/password/email', 'AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
@@ -46,8 +46,8 @@ Route::group(['middleware' => 'locale'], function() {
     Route::group(array('prefix' => 'admin', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
         // Admin
         Route::get('/index', 'AdminController@index')->name('admin.index');
-      	Route::get('/{admin}/password/edit', 'AdminController@showPasswordForm')->name('admin.password.edit');
-        Route::put('/{admin}/password', 'AdminController@changePassword')->name('admin.password.update');
+        Route::get('/password/edit/{admin}', 'AdminController@showPasswordForm')->name('admin.password.edit');
+        Route::put('/password/{admin}', 'AdminController@changePassword')->name('admin.password.update');
 
         Route::resource('/category', 'CategoryController');
         Route::resource('/product', 'ProductController');
@@ -76,8 +76,8 @@ Route::group(['middleware' => 'locale'], function() {
     // User
     Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function(){
         Route::resource('/user', 'UserController', ['only' => ['edit', 'update']]);
-        Route::get('/user/{user}/password/edit', 'UserController@showPasswordForm')->name('user.password.edit');
-        Route::put('/user/{user}/password', 'UserController@changePassword')->name('user.password.update');
+        Route::get('/user/password/edit/{user}', 'UserController@showPasswordForm')->name('user.password.edit');
+        Route::put('/user/password/{user}', 'UserController@changePassword')->name('user.password.update');
         Route::resource('/comment', 'CommentController');
     });
 

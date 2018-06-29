@@ -44,11 +44,11 @@ class AdminLoginController extends Controller
 
           // If successful, then redirect to their intended location.
           return redirect()->route('admin.index');
-        }
+      }
 
         // If unsuccessful, then redirect back to the login with the form data.
-        return redirect()->back()->withInput($request->only('email', 'remember'));
-    }
+      return redirect()->back()->withInput($request->only('email', 'remember'));
+  }
 
     /**
      * Admin logout.
@@ -56,7 +56,7 @@ class AdminLoginController extends Controller
     public function logout()
     {
         Auth::guard('admin')->logout();
-          
+        
         return redirect('/');
     }
 }

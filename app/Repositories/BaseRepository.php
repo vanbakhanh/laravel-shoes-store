@@ -288,13 +288,13 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         switch ($option) {
             case 'leftJoin':
-                $this->model = $this->model->leftJoin($tableName, $tableColumn, $modelColumn);
-                break;
+            $this->model = $this->model->leftJoin($tableName, $tableColumn, $modelColumn);
+            break;
             case 'rightJoin':
-                $this->model = $this->model->rightJoin($tableName, $tableColumn, $modelColumn);
-                break;
+            $this->model = $this->model->rightJoin($tableName, $tableColumn, $modelColumn);
+            break;
             default:
-                $this->model = $this->model->join($tableName, $tableColumn, $modelColumn);
+            $this->model = $this->model->join($tableName, $tableColumn, $modelColumn);
         }
 
         return $this;
@@ -375,8 +375,8 @@ abstract class BaseRepository implements BaseRepositoryInterface
         $this->__call($method, []);
 
         return !$option
-            ? $this->model->create($inputs['attribute'])
-            : $this->model->createMany($inputs['attribute']);
+        ? $this->model->create($inputs['attribute'])
+        : $this->model->createMany($inputs['attribute']);
     }
 
     public function checkLike($model, $userId)

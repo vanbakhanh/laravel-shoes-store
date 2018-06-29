@@ -51,7 +51,7 @@ class CommentController extends Controller
     {
         try {
             $this->commentRepository->store($request);
-                        
+            
             return back();
         } catch (\Exception $e) {
             return $e->getMessage();
