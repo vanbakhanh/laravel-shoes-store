@@ -26,4 +26,5 @@ mix.copyDirectory(NODE_PATH + 'bootswatch/dist/materia/bootstrap.min.css', PUBLI
 	.scripts([
 		'resources/assets/js/jquery.dataTables.min.js',
 	    'resources/assets/js/dataTables.bootstrap4.min.js',
-	], 'public/js/dataTable.js');
+	], 'public/js/dataTable.js')
+	.version();

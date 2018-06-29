@@ -6,7 +6,6 @@ use App\Repositories\Contracts\AdminRepositoryInterface;
 use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\Models\User;
@@ -47,12 +46,12 @@ class AdminController extends Controller
     /**
      * Show password form.
      */
-    public function showPasswordForm()
+    public function showPasswordForm($id)
     {
-        if (Auth::check()) {
-            $admin = $this->adminRepository->findOrFail(Auth::user()->id);
+        if (Auth::check() && Auth::user()->id == $id) {
+            $admin = $this->adminRepository->findOrFail($id);
 
-            return view('backend.admin.password',compact('admin'));
+            return view('backend.admin.password', compact('admin'));
         }
         
         return back();
@@ -61,12 +60,10 @@ class AdminController extends Controller
     /**
      * Change password.
      */
-    public function changePassword(ChangePasswordRequest $request)
+    public function changePassword(ChangePasswordRequest $request, $id)
     {
         try {
-            $admin = $this->adminRepository->findOrFail(Auth::user()->id);
-            $admin->password = Hash::make($request['password']);
-            $admin->save();
+            $this->adminRepository->changePassword($request, $id);
 
             return back()->with('status', 'Password has been changed');
         } catch (\Exception $e) {
