@@ -19,9 +19,9 @@
 							<tr>
 								<th scope="col">ID</th>
 								<th scope="col">User</th>
+								<th scope="col">Quantity</th>
 								<th scope="col">Total</th>
 								<th scope="col">Created at</th>
-								<th scope="col">Updated at</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
@@ -30,9 +30,9 @@
 							<tr>
 								<th scope="row">{{ $orderPending->id }}</th>
 								<td>{{ $orderPending->user->name }}</td>
+								<td>{{ $orderPending->products->count() }}</td>
 								<td>${{ $orderPending->total }}</td>
 								<td>{{ $orderPending->created_at }}</td>
-								<td>{{ $orderPending->updated_at }}</td>
 								<td>
 									{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderPending->id]]) }}
 									@csrf
@@ -62,9 +62,9 @@
 								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">User</th>
+									<th scope="col">Quantity</th>
 									<th scope="col">Total</th>
 									<th scope="col">Created at</th>
-									<th scope="col">Updated at</th>
 									<th scope="col">Action</th>
 								</tr>
 							</thead>
@@ -73,9 +73,9 @@
 								<tr>
 									<th scope="row">{{ $orderVerified->id }}</th>
 									<td>{{ $orderVerified->user->name }}</td>
+									<td>{{ $orderVerified->products->count() }}</td>
 									<td>${{ $orderVerified->total }}</td>
 									<td>{{ $orderVerified->created_at }}</td>
-									<td>{{ $orderVerified->updated_at }}</td>
 									<td>
 										{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderVerified->id]]) }}
 										@csrf
