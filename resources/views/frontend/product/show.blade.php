@@ -176,8 +176,10 @@
 					qty: jQuery('#qty').val(),
 					productId: jQuery('#productId').val(),
 				},
+				success: function() {
+					$("#cart-qty").html(text +  " " + cart++);
+				},
 			});
-			$("#cart-qty").html(text +  " " + cart++);
 		});
 	});
 </script>
