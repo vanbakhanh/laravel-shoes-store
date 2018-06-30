@@ -36,11 +36,6 @@
 <div class="card-deck my-4">
     <div class="card">
         <div class="card-body text-center text-success">
-            @if (session('status'))
-            <p class="card-text">
-                {{ session('status') }}
-            </p>
-            @endif
             @if (Auth::guard('web')->check())
             <p class="text-success">
                 You are Logged In as a <strong>USER</strong>

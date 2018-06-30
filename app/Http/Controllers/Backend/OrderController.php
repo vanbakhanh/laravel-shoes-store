@@ -63,7 +63,7 @@ class OrderController extends Controller
      */
     public function managerDetailPending($id)
     {
-        $ordersPending = $this->orderRepository->ordersPending();
+        $ordersPending = $this->orderRepository->ordersPending()->take(15);
 
         $orderDetail = $this->orderRepository->orderWithProductUser($id);
 
@@ -77,7 +77,7 @@ class OrderController extends Controller
      */
     public function managerDetailVerified($id)
     {
-        $ordersVerified = $this->orderRepository->ordersVerified();
+        $ordersVerified = $this->orderRepository->ordersVerified()->take(15);
 
         $orderDetail = $this->orderRepository->orderWithProductUser($id);
 
