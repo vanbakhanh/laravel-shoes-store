@@ -3,28 +3,38 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Repositories\Contracts\AdminRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Http\Requests\User\ChangePasswordRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Auth;
-use App\Models\User;
-use App\Models\Product;
-use App\Models\Order;
 
 class AdminController extends Controller
 {
     protected $adminRepository;
+    protected $userRepository;
+    protected $productRepository;
+    protected $orderRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(AdminRepositoryInterface $adminRepository)
-    {
+    public function __construct(
+        AdminRepositoryInterface $adminRepository,
+        UserRepositoryInterface $userRepository,
+        ProductRepositoryInterface $productRepository,
+        OrderRepositoryInterface $orderRepository
+    ) {
         $this->middleware('auth:admin');
         $this->adminRepository = $adminRepository;
+        $this->userRepository = $userRepository;
+        $this->productRepository = $productRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     /**
@@ -34,9 +44,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::count();
-        $orders = Order::count();
-        $products = Product::count();
+        $users = $this->userRepository->count();
+        $orders = $this->orderRepository->count();
+        $products = $this->productRepository->count();
         
         return view('backend/admin/index', compact([
             'users', 'orders', 'products'

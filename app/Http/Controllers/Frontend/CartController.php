@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Contracts\CartRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mail\OrderShipped;
-use Auth;
-use Cart;
-use Mail;
 
 class CartController extends Controller
 {
+    protected $cartRepository;
     protected $productRepository;
 
     /**
@@ -19,8 +17,11 @@ class CartController extends Controller
      *
      * @return void
      */
-    public function __construct(ProductRepositoryInterface $productRepository)
-    {
+    public function __construct(
+        CartRepositoryInterface $cartRepository,
+        ProductRepositoryInterface $productRepository
+    ) {
+        $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
     }
 
@@ -29,7 +30,7 @@ class CartController extends Controller
      */
     public function index()
     {
-    	$items = Cart::content();
+    	$items = $this->cartRepository->cartContent();
 
     	return view('frontend.cart.index', compact('items'));
     }
@@ -40,19 +41,9 @@ class CartController extends Controller
     public function addItem(Request $request)
     {
     	$product = $this->productRepository->findOrFail($request->productId);
-    	Cart::add([
-    		'id' => $product->id,
-    		'name' => $product->name,
-    		'price' => $product->price,
-    		'qty' => $request->qty,
-    		'options' => [
-                'size' => $request->size, 
-                'color' => $request->color,
-                'image' => $product->image,
-            ],
-        ]);
+        $this->cartRepository->addToCart($request, $product);
 
-    	return back();
+        return back();
     }
 
     /**
@@ -60,7 +51,7 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        Cart::update($request->rowId, $request->qty);
+        $this->cartRepository->updateItem($request);
 
         return back();
     }
@@ -70,7 +61,7 @@ class CartController extends Controller
      */
     public function removeItem($rowId)
     {
-    	Cart::remove($rowId);
+    	$this->cartRepository->removeItem($rowId);
 
     	return back();
     }
@@ -80,25 +71,7 @@ class CartController extends Controller
      */
     public function checkout()
     {
-        $user = Auth::user();
-        
-        $order = $user->orders()->create([
-            'total' => Cart::total(),
-            'status' => 'Pending',
-        ]);
-
-        foreach (Cart::content() as $data) {
-            $order->products()->attach($data->id, [
-                'qty' => $data->qty,
-                'total' => $data->price * $data->qty,
-                'size' => $data->options->size,
-                'color' => $data->options->color,
-            ]);
-        }
-        Cart::destroy();
-
-        $orderProducts = $order->products()->get();
-        Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user));
+        $this->cartRepository->checkout();
 
         return back()->with('status', 'Thank you for shopping at Nike! Your order has been received and is going through verification process.');
     }
