@@ -34,6 +34,9 @@
                 </li>
                 <hr>
                 <li>
+                    <a href="{{ route('admin.index') }}">{{ trans('layout.admin') }}</a>
+                </li>
+                <li>
                     <a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a>
                 </li>
                 <li>
@@ -95,7 +98,7 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.index') }}">{{ trans('layout.dashboard') }}</a>
+                                <a class="nav-link" href="{{ route('dashboard.index') }}">{{ trans('layout.dashboard') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

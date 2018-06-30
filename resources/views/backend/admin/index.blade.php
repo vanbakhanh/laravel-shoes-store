@@ -1,57 +1,54 @@
 @extends('layouts.dashboard')
-@section('title', 'Admin')
+@section('title', 'User Manager')
 @section('content')
 
-<div class="card-deck">
-    <div class="card border-success">
-        <div class="card-body text-center text-success">
-            <p class="card-text">Status</p>
-            @if (session('status'))
-            <p class="card-text">
-                {{ session('status') }}
-            </p>
-            @endif
-            @if (Auth::guard('web')->check())
-            <p class="text-success">
-                You are Logged In as a <strong>USER</strong>
-            </p>
-            @else
-            <p class="text-danger">
-                You are Logged Out as a <strong>USER</strong>
-            </p>
-            @endif
-            @if (Auth::guard('admin')->check())
-            <p class="text-success">
-                You are Logged In as a <strong>ADMIN</strong>
-            </p>
-            @else
-            <p class="text-danger">
-                You are Logged Out as a <strong>ADMIN</strong>
-            </p>
-            @endif
+<div class="row justify-content-center">
+    <div class="col-md-12">
+        <h3 class="card-title my-4">List of admins</h3>
+        <div class="card">
+            <div class="card-body table-responsive">
+                @if (session('status'))
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ session('status') }}
+                </div>
+                @endif
+                @if ($admins->isEmpty())
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p class="mb-0">There is no admin!</p>
+                </div>
+                @else
+                <table id="table" class="table table-hover table-md table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($admins as $admin)
+                        <tr>
+                            <th scope="row">{{ $admin->id }}</th>
+                            <td>{{ $admin->name }}</td>
+                            <td>{{ $admin->email }}</td>
+                            <td>{{ $admin->created_at }}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+            </div>
         </div>
     </div>
-    <div class="card border-warning text-warning text-center">
-        <div class="card-body">
-            <h1 class="card-title">{{ $products }}</h1>
-            <p class="card-text">Products</p>
-            <a class="card-link text-warning" href="{{ route('product.index') }}">View</a>
-        </div>
-    </div>
-    <div class="card border-dark text-dark text-center">
-        <div class="card-body">
-            <h1 class="card-title">{{ $users }}</h1>
-            <p class="card-text">Users</p>
-            <a class="card-link text-dark" href="{{ route('user.index') }}">View</a>
-        </div>
-    </div>
-    <div class="card border-danger text-danger text-center">
-        <div class="card-body">
-            <h1 class="card-title">{{ $orders }}</h1>
-            <p class="card-text">Orders</p>
-            <a class="card-link text-danger" href="{{ route('order.manager') }}">View</a>
-        </div>
-    </div> 
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#table').DataTable();
+    } );
+</script>
 
 @endsection

@@ -42,7 +42,7 @@ class AdminLoginController extends Controller
             ['email' => $request->email, 'password' => $request->password], $request->remember
         )) {
             // If successful, then redirect to their intended location.
-            return redirect()->route('admin.index');
+            return redirect()->route('dashboard.index');
         }
 
         // If unsuccessful, then redirect back to the login with the form data.

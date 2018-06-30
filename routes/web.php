@@ -24,17 +24,17 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
     Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
-    Route::group(array('prefix' => 'admin', 'namespace' => 'Auth'), function() {
+    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Auth'), function() {
         // Admin Auth
         Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
         Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
         Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
 
         // Password Reset
-        Route::post('/password/email', 'AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-        Route::get('/password/reset', 'AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-        Route::post('/password/reset', 'AdminResetPasswordController@reset');
-        Route::get('/password/reset/{token}', 'AdminResetPasswordController@showResetForm')->name('admin.password.reset');
+        Route::post('/admin/password/email', 'AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+        Route::get('/admin/password/reset', 'AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+        Route::post('/admin/password/reset', 'AdminResetPasswordController@reset');
+        Route::get('/admin/password/reset/{token}', 'AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     });
 
     /*
@@ -43,11 +43,14 @@ Route::group(['middleware' => 'locale'], function() {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(array('prefix' => 'admin', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
+    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
+        // Dashboard
+        Route::get('/index', 'DashboardController@index')->name('dashboard.index');
+
         // Admin
-        Route::get('/index', 'AdminController@index')->name('admin.index');
-        Route::get('/password/edit/{admin}', 'AdminController@showPasswordForm')->name('admin.password.edit');
-        Route::put('/password/{admin}', 'AdminController@changePassword')->name('admin.password.update');
+        Route::get('/admin/index', 'AdminController@index')->name('admin.index');
+        Route::get('/admin/password/edit/{admin}', 'AdminController@showPasswordForm')->name('admin.password.edit');
+        Route::put('/admin/password/{admin}', 'AdminController@changePassword')->name('admin.password.update');
 
         Route::resource('/category', 'CategoryController');
         Route::resource('/product', 'ProductController');
@@ -63,7 +66,7 @@ Route::group(['middleware' => 'locale'], function() {
     });
 
     // User
-    Route::group(array('prefix' => 'admin', 'namespace' => 'Frontend', 'middleware' => 'auth:admin'), function(){
+    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Frontend', 'middleware' => 'auth:admin'), function(){
         Route::resource('/user', 'UserController', ['only' => ['index', 'destroy']]);
     });
 
