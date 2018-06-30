@@ -28,5 +28,7 @@ return [
     'language' => 'Language',
     'english' => 'English',
     'vietnamese' => 'Vietnamese',
+    'admin' => 'Administrator',
+    'manager' => 'Manager',
     
 ];

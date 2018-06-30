@@ -28,5 +28,7 @@ return [
     'language' => 'Ngôn ngữ',
     'english' => 'Tiếng anh',
     'vietnamese' => 'Tiếng việt',
+    'admin' => 'Người quản lý',
+    'manager' => 'Quản lý',
 
 ];

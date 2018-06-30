@@ -19,7 +19,7 @@
 
 	<!-- Title -->
 	<title>@yield('title')</title>
-	<link rel="icon" href="{{ asset('images/logo_site.png') }}"/>
+	<link rel="icon" href="{{ asset('images/logo-site.png') }}"/>
 </head>
 <body>
 

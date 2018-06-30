@@ -21,7 +21,7 @@
 
     <!-- Title -->
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ asset('images/logo_site.png') }}"/>
+    <link rel="icon" href="{{ asset('images/logo-site.png') }}"/>
 </head>
 <body>	
 
@@ -30,7 +30,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                    <h5 class="my-4">Manager</h5>
+                    <h5 class="my-4">{{ trans('layout.manager') }}</h5>
                 </li>
                 <hr>
                 <li>

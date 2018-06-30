@@ -6,10 +6,6 @@ body {
     transition: all 0.3s ease;
 }
 
-a {
-    color: #222;
-}
-
 #toggler .navbar-toggler {
     display: initial !important;
 }
