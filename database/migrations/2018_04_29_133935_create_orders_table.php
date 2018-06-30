@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->double('total');
             $table->string('status')->default('Pending');
+            $table->integer('quantity');
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });

@@ -30,7 +30,7 @@
 							<tr>
 								<th scope="row">{{ $orderPending->id }}</th>
 								<td>{{ $orderPending->user->name }}</td>
-								<td>{{ $orderPending->products->count() }}</td>
+								<td>{{ $orderPending->quantity }}</td>
 								<td>${{ $orderPending->total }}</td>
 								<td>{{ $orderPending->created_at }}</td>
 								<td>
@@ -73,7 +73,7 @@
 								<tr>
 									<th scope="row">{{ $orderVerified->id }}</th>
 									<td>{{ $orderVerified->user->name }}</td>
-									<td>{{ $orderVerified->products->count() }}</td>
+									<td>{{ $orderVerified->quantity }}</td>
 									<td>${{ $orderVerified->total }}</td>
 									<td>{{ $orderVerified->created_at }}</td>
 									<td>

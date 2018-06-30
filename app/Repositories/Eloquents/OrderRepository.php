@@ -44,12 +44,12 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
 	public function ordersPending()
 	{
-		return $this->with('user', 'products')->where('status', 'Pending')->get()->sortByDesc('created_at');
+		return $this->with('user')->where('status', 'Pending')->get()->sortByDesc('created_at');
 	}
 
 	public function ordersVerified()
 	{
-		return $this->with('user', 'products')->where('status', 'Verified')->get()->sortByDesc('created_at');
+		return $this->with('user')->where('status', 'Verified')->get()->sortByDesc('created_at');
 	}
 
 	public function verify($id)
