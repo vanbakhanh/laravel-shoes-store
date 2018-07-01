@@ -11,6 +11,6 @@ class SizesTableSeeder extends Seeder
      */
     public function run()
     {
-        $sizes = factory(App\Models\Size::class, 10)->create();
+    	$sizes = factory(App\Models\Size::class, 10)->create();
     }
 }

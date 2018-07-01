@@ -12,10 +12,10 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         $products = factory(App\Models\Product::class, 40)
-            ->create()
-            ->each(function ($u) {
-                $u->colors()->attach(App\Models\Color::pluck('id')->take(rand(1, 10)));
-                $u->sizes()->attach(App\Models\Size::pluck('id')->take(rand(1, 10)));
-            });
+        ->create()
+        ->each(function ($u) {
+            $u->colors()->attach(App\Models\Color::pluck('id')->take(rand(1, 10)));
+            $u->sizes()->attach(App\Models\Size::pluck('id')->take(rand(1, 10)));
+        });
     }
 }
