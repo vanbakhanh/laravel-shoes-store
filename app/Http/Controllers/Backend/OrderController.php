@@ -25,7 +25,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-    	$orders = $this->orderRepository->ordersWithProduct();
+    	$orders = $this->orderRepository->ordersWithProductFollowUser();
 
         return view('frontend.order.index', compact('orders'));
     }
@@ -35,9 +35,9 @@ class OrderController extends Controller
      */
     public function detail($id)
     {
-    	$orders = $this->orderRepository->ordersWithUser();
+    	$orders = $this->orderRepository->ordersFollowUser();
 
-        $orderDetail = $this->orderRepository->orderWithProduct($id);
+        $orderDetail = $this->orderRepository->orderWithProductUser($id);
 
         return view('frontend.order.detail', compact([
             'orderDetail', 'orders'

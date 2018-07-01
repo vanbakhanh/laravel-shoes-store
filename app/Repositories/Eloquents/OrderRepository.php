@@ -15,16 +15,16 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		return Order::class;
 	}
 
-	public function ordersWithProduct()
+	public function ordersWithProductFollowUser()
 	{
-		return $this->findOrFail(Auth::user()->id)
+		return User::findOrFail(Auth::user()->id)
 		->orders()
 		->with('products')
 		->get()
 		->sortByDesc('created_at');
 	}
 
-	public function ordersWithUser()
+	public function ordersFollowUser()
 	{
 		return User::findOrFail(Auth::user()->id)
 		->orders()

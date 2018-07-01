@@ -66,6 +66,30 @@
 				@endforeach
 			</tbody>
 		</table>
+		<table class="table table-light">
+			<tbody>
+				<tr>
+					<th scope="row">User ID</th>
+					<td class="text-right">{{ $orderDetail->user->id }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Name</th>
+					<td class="text-right">{{ $orderDetail->user->name }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Email</th>
+					<td class="text-right">{{ $orderDetail->user->email }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Phone</th>
+					<td class="text-right">{{ $orderDetail->user->phone }}</td>
+				</tr>
+				<tr>
+					<th scope="row">Address</th>
+					<td class="text-right">{{ $orderDetail->user->address }}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 
