@@ -40,7 +40,7 @@
 			</div>
 			@endif
 		</div>
-		<table class="table table-hover table-md table-bordered table-light">
+		<table class="table table-md table-bordered text-center">
 			<thead>
 				<tr>
 					<th scope="col">Item</th>
@@ -56,7 +56,8 @@
 					<td class="text-left">
 						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50" alt="image" class="mr-2">
 						<a href="{!! route('product.show', $orderProduct->pivot->product_id) !!}">
-						{{ $orderProduct->name }}</a>
+							{{ $orderProduct->name }}
+						</a>
 					</td>
 					<td>{{ $orderProduct->pivot->size }}</td>
 					<td>{{ $orderProduct->pivot->color }}</td>
@@ -66,7 +67,7 @@
 				@endforeach
 			</tbody>
 		</table>
-		<table class="table table-light">
+		<table class="table">
 			<tbody>
 				<tr>
 					<th scope="row">User ID</th>

@@ -15,7 +15,12 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		return Order::class;
 	}
 
-	public function ordersWithProductFollowUser()
+	public function findOrder($id)
+	{
+		return $this->where('id', $id)->first();
+	}
+
+	public function ordersFollowUserWithProduct()
 	{
 		return User::findOrFail(Auth::user()->id)
 		->orders()
@@ -52,7 +57,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		return $this->with('user')->where('status', 'Verified')->get()->sortByDesc('created_at');
 	}
 
-	public function verify($id)
+	public function verifyOrder($id)
 	{
 		return $this->update($id, ['status' => 'Verified']);
 	}

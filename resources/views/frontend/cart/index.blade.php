@@ -24,7 +24,7 @@
 		<p class="card-text">There are no items in this cart. <a href="{{ route('home') }}" class="card-link">Continue Shopping now!</a></p>
 		@else
 		<div class="table-responsive">
-			<table class="table table-hover table-md table-bordered">
+			<table class="table table-md table-bordered text-center">
 				<thead>
 					<tr>
 						<th scope="col">Item</th>
@@ -37,7 +37,7 @@
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
-					{{ Form::open(['route' => ['cart.update'], 'method' => 'PUT','class' => 'form-horizontal']) }}
+					{{ Form::open(['route' => ['cart.update'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
 					@csrf
 					<tr>
 						<td class="text-left">

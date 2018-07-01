@@ -169,7 +169,7 @@
 				}
 			});
 			jQuery.ajax({
-				url: "{{ url('/cart/add') }}",
+				url: "{{ route('cart.add') }}",
 				method: 'POST',
 				data: {
 					color: jQuery('#color').val(),

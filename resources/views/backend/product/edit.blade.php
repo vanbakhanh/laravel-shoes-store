@@ -25,6 +25,9 @@
 				@endif
 				
 				<div class="form-group">
+					<img class="img-thumbnail" src="{{ asset('images/product/' . $product->image) }}">
+				</div>
+				<div class="form-group">
 					<label>Name</label>
 					{{ Form::text('name', $product->name, ['class' => 'form-control']) }}	
 				</div>

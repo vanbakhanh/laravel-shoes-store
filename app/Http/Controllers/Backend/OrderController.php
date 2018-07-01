@@ -25,9 +25,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-    	$orders = $this->orderRepository->ordersWithProductFollowUser();
+        $orders = $this->orderRepository->ordersFollowUser();
 
-        return view('frontend.order.index', compact('orders'));
+        $orderDetail = $orders->first();
+
+        return view('frontend.order.index', compact([
+            'orderDetail', 'orders'
+        ]));
     }
 
     /**
@@ -37,7 +41,7 @@ class OrderController extends Controller
     {
     	$orders = $this->orderRepository->ordersFollowUser();
 
-        $orderDetail = $this->orderRepository->orderWithProductUser($id);
+        $orderDetail = $this->orderRepository->findOrder($id);
 
         return view('frontend.order.detail', compact([
             'orderDetail', 'orders'
@@ -65,7 +69,7 @@ class OrderController extends Controller
     {
         $ordersPending = $this->orderRepository->ordersPending()->take(15);
 
-        $orderDetail = $this->orderRepository->orderWithProductUser($id);
+        $orderDetail = $this->orderRepository->findOrder($id);
 
         return view('backend.order.detail-pending', compact([
             'ordersPending', 'orderDetail'
@@ -79,7 +83,7 @@ class OrderController extends Controller
     {
         $ordersVerified = $this->orderRepository->ordersVerified()->take(15);
 
-        $orderDetail = $this->orderRepository->orderWithProductUser($id);
+        $orderDetail = $this->orderRepository->findOrder($id);
 
         return view('backend.order.detail-verified', compact([
             'ordersVerified', 'orderDetail'
@@ -92,7 +96,7 @@ class OrderController extends Controller
     public function verify($id)
     {
         try {
-            $this->orderRepository->verify($id);
+            $this->orderRepository->verifyOrder($id);
             
             return redirect()->route('order.manager');
         } catch (\Exception $e) {

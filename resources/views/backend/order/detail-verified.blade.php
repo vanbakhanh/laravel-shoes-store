@@ -26,7 +26,7 @@
 				<p class="float-right">Updated at {{ $orderDetail->updated_at }}</p>
 			</div>
 		</div>
-		<table class="table table-hover table-bordered table-light">
+		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
 					<th scope="col">Items</th>
@@ -48,7 +48,7 @@
 				@endforeach
 			</tbody>
 		</table>
-		<table class="table table-light">
+		<table class="table">
 			<tbody>
 				<tr>
 					<th scope="row">User ID</th>

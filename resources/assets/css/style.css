@@ -21,6 +21,11 @@ body {
 	box-shadow: none !important;
 }
 
+.card-product img:hover {
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	transition: all 0.3s ease;
+}
+
 a {
 	color: #222;
 }

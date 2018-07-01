@@ -31,7 +31,7 @@
                     <p class="float-left">Created at {{ $orderDetail->created_at }}</p>
                 </div>
             </div>
-            <table class="table table-bordered text-center table-light">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th scope="col">Items</th>
@@ -54,7 +54,7 @@
                 </tbody>
             </table>
             <br>
-            <table class="table table-light">
+            <table class="table">
                 <tbody>
                     <tr>
                         <th scope="row">Name</th>
