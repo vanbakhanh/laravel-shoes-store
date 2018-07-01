@@ -43,7 +43,7 @@ Route::group(['middleware' => 'locale'], function() {
     |--------------------------------------------------------------------------
     */
 
-    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function(){
+    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Backend', 'middleware' => 'auth:admin'), function() {
         // Dashboard
         Route::get('/index', 'DashboardController@index')->name('dashboard.index');
 
@@ -66,7 +66,7 @@ Route::group(['middleware' => 'locale'], function() {
     });
 
     // User
-    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Frontend', 'middleware' => 'auth:admin'), function(){
+    Route::group(array('prefix' => 'dashboard', 'namespace' => 'Frontend', 'middleware' => 'auth:admin'), function() {
         Route::resource('/user', 'UserController', ['only' => ['index', 'destroy']]);
     });
 
@@ -77,7 +77,7 @@ Route::group(['middleware' => 'locale'], function() {
     */
 
     // User
-    Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function(){
+    Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function() {
         Route::resource('/user', 'UserController', ['only' => ['edit', 'update']]);
         Route::get('/user/password/edit/{user}', 'UserController@showPasswordForm')->name('user.password.edit');
         Route::put('/user/password/{user}', 'UserController@changePassword')->name('user.password.update');
@@ -85,13 +85,13 @@ Route::group(['middleware' => 'locale'], function() {
     });
 
     // Order
-    Route::group(array('namespace' => 'Backend', 'middleware' => 'auth'), function(){
+    Route::group(array('namespace' => 'Backend', 'middleware' => 'auth'), function() {
         Route::get('/order', 'OrderController@index')->name('order');
         Route::get('/order/detail/{id}', 'OrderController@detail')->name('order.detail');
     });
 
     // Home
-    Route::group(array('namespace' => 'Frontend'), function(){
+    Route::group(array('namespace' => 'Frontend'), function() {
         Route::get('/', 'HomeController@index')->name('home');
         Route::get('/category/men/{id}', 'HomeController@men')->name('category.men');
         Route::get('/category/women/{id}', 'HomeController@women')->name('category.women');
@@ -102,13 +102,11 @@ Route::group(['middleware' => 'locale'], function() {
     Route::resource('/product', 'Backend\ProductController', ['only' => 'show']);
 
     // Cart
-    Route::group(array('namespace' => 'Frontend'), function(){
+    Route::group(array('namespace' => 'Frontend'), function() {
         Route::get('/cart', 'CartController@index')->name('cart.index');
         Route::post('/cart/add', 'CartController@addItem')->name('cart.add');
         Route::get('/cart/remove/{rowId}', 'CartController@removeItem')->name('cart.remove');
         Route::put('/cart/update', 'CartController@update')->name('cart.update');
-    });
-    Route::group(array('namespace' => 'Frontend', 'middleware' => 'auth'), function(){
         Route::get('/checkout', 'CartController@checkout')->name('checkout');
     });
 

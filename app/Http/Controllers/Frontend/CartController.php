@@ -21,6 +21,7 @@ class CartController extends Controller
         CartRepositoryInterface $cartRepository,
         ProductRepositoryInterface $productRepository
     ) {
+        $this->middleware('auth', ['only' => ['checkout']]);
         $this->cartRepository = $cartRepository;
         $this->productRepository = $productRepository;
     }

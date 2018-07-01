@@ -20,9 +20,9 @@
 		<div class="form-group row">
 			<label class="col-md-6 col-form-label text-uppercase"><b>COLOR</b></label>
 			<div class="col-md-6">
-				<select class="form-control" name="color">
+				<select class="form-control" name="color" id="color">
 					@foreach ($productSelected->colors()->pluck('name')->sort() as $color)
-					<option value="{{ $color }}" id="color">
+					<option value="{{ $color }}">
 						{{ $color }}
 					</option>
 					@endforeach
@@ -32,9 +32,9 @@
 		<div class="form-group row">
 			<label class="col-md-6 col-form-label text-uppercase"><b>SIZE</b></label>
 			<div class="col-md-6">
-				<select class="form-control" name="size">
+				<select class="form-control" name="size" id="size">
 					@foreach ($productSelected->sizes()->pluck('name')->sort() as $size)
-					<option value="{{ $size }}" id="size">
+					<option value="{{ $size }}">
 						{{ $size }}
 					</option>
 					@endforeach
