@@ -157,10 +157,11 @@
 
 <!-- Script add to cart and update cart quatity -->
 <script type="text/javascript">
-	var cart = {{ Cart::count()+1 }};
+	var cart = {{ Cart::count() }};
 	var text = '{{ trans('layout.cart') }}';
 	jQuery(document).ready(function() {
 		jQuery('#addToCart').click(function(e) {
+			var qty = parseInt(jQuery('#qty').val());
 			e.preventDefault();
 			$.ajaxSetup({
 				headers: {
@@ -177,7 +178,7 @@
 					productId: jQuery('#productId').val(),
 				},
 				success: function() {
-					$("#cart-qty").html(text +  " " + cart++);
+					$("#cart-qty").html(text +  " " + (cart += qty));
 				},
 			});
 		});
