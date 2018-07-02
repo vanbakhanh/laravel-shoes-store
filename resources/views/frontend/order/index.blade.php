@@ -18,9 +18,15 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h3 class="float-left my-4">Recent Orders</h3>
+				@if ($orderDetail == null)
+				@else
 				<h3 class="float-right my-4">{{ $orderDetail->status }}</h3>
+				@endif
 			</div>
 		</div>
+		@if ($orderDetail == null)
+		<p>There are no orders.</p>
+		@else
 		<table class="table table-md table-bordered text-center">
 			<thead>
 				<tr>
@@ -31,9 +37,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@if ($orderDetail->isEmpty())
-				<div class="col-md-12 text-center"><p>There are no order.</p></div>
-				@else
+				
 				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
 					<td class="text-left">
@@ -50,10 +54,10 @@
 						</a>
 					</td>
 				</tr>
-				@endforeach
-				@endif
 			</tbody>
 		</table>
+		@endforeach
+		@endif
 	</div>
 </div>
 
