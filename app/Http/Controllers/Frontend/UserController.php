@@ -145,4 +145,20 @@ class UserController extends Controller
             return $e->getMessage();
         }
     }
+
+    /**
+     * Verify user when click the link sent via email.
+     */
+    protected function verify($token)
+    {
+        try {
+            $user = $this->userRepository->verifyUser($token);
+
+            return redirect()->route('login')
+            ->with('status', trans('auth.verified_email'))
+            ->withInput($user->only('email'));
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

@@ -21,7 +21,7 @@ Route::group(['middleware' => 'locale'], function() {
     */
 
     Auth::routes();
-    Route::get('/verify/{token}', 'Auth\RegisterController@verify')->name('verify');
+    Route::get('/user/verify/{token}', 'Frontend\UserController@verify')->name('user.verify');
     Route::post('/user/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
     Route::group(array('prefix' => 'dashboard', 'namespace' => 'Auth'), function() {

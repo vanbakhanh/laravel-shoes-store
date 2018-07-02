@@ -33,4 +33,13 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 	{
 		$this->findOrFail($id)->update(['password' => Hash::make($request['password'])]);
 	}
+
+	public function verifyUser($token)
+	{
+		$user = $this->where('token', $token)->first();
+		$user->status = '1';
+		$user->save();
+
+		return $user;
+	}
 }

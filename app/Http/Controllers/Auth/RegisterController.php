@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Models\User;
-use Auth;
 use Mail;
 use App\Mail\VerifyUser;
 
@@ -99,25 +98,5 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         return back()->with('status', trans('auth.verify_email'));
-    }
-
-    /**
-     * Verify user when click the link sent via email.
-     */
-    protected function verify($token)
-    {
-        try {
-            $user = User::where('token', $token)->first();
-            $user->status = '1';
-            $user->save();
-            
-            if ($user->save()){
-                return redirect()->route('login')
-                ->with('status', trans('auth.verified_email'))
-                ->withInput($user->only('email'));
-            }
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
     }
 }

@@ -12,7 +12,7 @@
         <div class="col-md-8 bg-secondary rounded shadow-sm py-4">
             <p>Hi {{ $user->name }},</p>
             <p>Thanks for registering for an account on Nike! Before we get started, we just need to confirm that this is you. Click below to verify your email address:</p>
-            <a class="btn btn-primary mb-4" href="{{ route('verify', $user->token) }}" target="_blank">Verify Email</a>
+            <a class="btn btn-primary mb-4" href="{{ route('user.verify', $user->token) }}" target="_blank">Verify Email</a>
             <p>Good luck! Hope it works.</p>
             <p>Van Ba Khanh</p>
             <p>Thanks,</p>
