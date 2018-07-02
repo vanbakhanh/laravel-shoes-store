@@ -37,7 +37,6 @@
 				</tr>
 			</thead>
 			<tbody>
-				
 				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
 					<td class="text-left">
@@ -54,9 +53,9 @@
 						</a>
 					</td>
 				</tr>
+				@endforeach
 			</tbody>
 		</table>
-		@endforeach
 		@endif
 	</div>
 </div>
