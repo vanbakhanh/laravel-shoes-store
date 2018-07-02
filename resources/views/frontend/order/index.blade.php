@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('title', 'Your Order')
-
 @section('content')
 
 <div class="row">

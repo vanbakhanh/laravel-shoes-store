@@ -67,8 +67,8 @@
 					<td class="text-right">{{ $orderDetail->user->phone }}</td>
 				</tr>
 				<tr>
-					<th scope="row">Address</th>
-					<td class="text-right">{{ $orderDetail->user->address }}</td>
+					<th scope="row">Address shipping</th>
+					<td class="text-right">{{ $orderDetail->address }}</td>
 				</tr>
 			</tbody>
 		</table>

@@ -48,6 +48,7 @@ class CartRepository implements CartRepositoryInterface
 			'total' => Cart::total(),
 			'status' => 'Pending',
 			'quantity' => Cart::count(),
+			'address' => $user->address,
 		]);
 
 		foreach (Cart::content() as $data) {
