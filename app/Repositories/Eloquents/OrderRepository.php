@@ -20,31 +20,12 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		return $this->where('id', $id)->first();
 	}
 
-	public function ordersFollowUserWithProduct()
-	{
-		return User::findOrFail(Auth::user()->id)
-		->orders()
-		->with('products')
-		->get()
-		->sortByDesc('created_at');
-	}
-
 	public function ordersFollowUser()
 	{
 		return User::findOrFail(Auth::user()->id)
 		->orders()
 		->get()
 		->sortByDesc('created_at');
-	}
-
-	public function orderWithProduct($id)
-	{
-		return $this->where('id', $id)->with('products')->first();
-	}
-
-	public function orderWithProductUser($id)
-	{
-		return $this->where('id' ,$id)->with('products', 'user')->first();
 	}
 
 	public function ordersPending()
