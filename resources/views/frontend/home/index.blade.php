@@ -6,7 +6,7 @@
 
 <div class="row">
 	@if ($products->isEmpty())
-		<div class="col-md-12 text-center"><p>There are no items.</p></div>
+		<div class="col-md-12 text-center"><p>There are no item.</p></div>
 	@else
 	@foreach ($products as $product)
 	<div class="col-lg-3 col-md-3 col-sm-4 col-6 mb-4">

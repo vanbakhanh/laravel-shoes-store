@@ -31,7 +31,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				@if ($orders->count() > 0)
+				@if ($orderDetail->isEmpty())
+				<div class="col-md-12 text-center"><p>There are no order.</p></div>
+				@else
 				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
 					<td class="text-left">
@@ -49,7 +51,6 @@
 					</td>
 				</tr>
 				@endforeach
-				@else
 				@endif
 			</tbody>
 		</table>
