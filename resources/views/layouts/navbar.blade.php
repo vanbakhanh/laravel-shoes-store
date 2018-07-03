@@ -13,12 +13,12 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
-                        {{ trans('layout.home') }}
+                        {{ trans('layouts.home') }}
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layout.men') }}
+                        {{ trans('layouts.men') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach (App\Models\Category::all()->sortBy('name') as $category)
@@ -30,7 +30,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layout.women') }}
+                        {{ trans('layouts.women') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach (App\Models\Category::all()->sortBy('name') as $category)
@@ -42,7 +42,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.login') }}">
-                        {{ trans('layout.dashboard') }}
+                        {{ trans('layouts.dashboard') }}
                     </a>
                 </li>
             </ul>
@@ -50,7 +50,7 @@
             <ul class="navbar-nav mr-auto">
                 <!-- Search Form -->
                 {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) }}
-                {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm', 'placeholder' => trans('layout.search')]) }}
+                {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm', 'placeholder' => trans('layouts.search')]) }}
                 {{ Form::close() }}
             </ul>
 
@@ -59,31 +59,31 @@
                 @guest
                 <li class="nav-item">
                     <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
-                        {{ trans('layout.cart') }} {{ Cart::count() }}
+                        {{ trans('layouts.cart') }} {{ Cart::count() }}
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">
-                        {{ trans('layout.login') }}
+                        {{ trans('layouts.login') }}
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layout.language') }}
+                        {{ trans('layouts.language') }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
-                            {{ trans('layout.english') }}
+                            {{ trans('layouts.english') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
-                            {{ trans('layout.vietnamese') }}
+                            {{ trans('layouts.vietnamese') }}
                         </a>
                     </div>
                 </li>
                 @else
                 <li class="nav-item">
                     <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
-                        {{ trans('layout.cart') }} {{ Cart::count() }}
+                        {{ trans('layouts.cart') }} {{ Cart::count() }}
                     </a>
                 </li>
                 <li class="dropdown nav-item">
@@ -92,16 +92,16 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">
-                            {{ trans('layout.profile') }}
+                            {{ trans('layouts.profile') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('order') }}">
-                            {{ trans('layout.order') }}
+                            {{ trans('layouts.order') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('user.password.edit', Auth::user()->id) }}">
-                            {{ trans('layout.change_password') }}
+                            {{ trans('layouts.change_password') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            {{ trans('layout.logout') }}
+                            {{ trans('layouts.logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -110,14 +110,14 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layout.language') }}
+                        {{ trans('layouts.language') }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
-                            {{ trans('layout.english') }}
+                            {{ trans('layouts.english') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
-                            {{ trans('layout.vietnamese') }}
+                            {{ trans('layouts.vietnamese') }}
                         </a>
                     </div>
                 </li>

@@ -13,7 +13,6 @@ return [
     'logout' => 'Đăng xuất',
     'search' => 'Tìm kiếm',
     'copyright' => 'Bản quyền thuộc về',
-    'notify' => 'Miễn phí vẫn chuyển tất cả đơn hàng lớn hơn 100$',
     'dashboard' => 'Bảng điều khiển',
     'user' => 'Người dùng',
     'order' => 'Đơn hàng',

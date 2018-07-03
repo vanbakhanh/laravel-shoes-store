@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Create Size')
+@section('title', trans('size.new_title'))
 @section('content')
 
 {{ Form::open(['route' => ['size.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
@@ -8,7 +8,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body col-md-8 offset-md-2">
-				<h3 class="card-title my-4">New size</h3>
+				<h3 class="card-title my-4">{{ trans('size.new_title') }}</h3>
 				@if (session('status'))
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -24,11 +24,11 @@
 				@endforeach
 				@endif
 				<div class="form-group">
-					<label>Name</label>
+					<label>{{ trans('size.name') }}</label>
 					{{ Form::text('name', '', ['class' => 'form-control']) }}	
 				</div>
 				<div class="form-group">
-					{{ Form::submit('Create' , ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('size.create') , ['class' => 'btn btn-dark']) }}
 				</div>
 			</div>
 		</div>
@@ -49,16 +49,15 @@
 				@if ($sizes->isEmpty())
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4 class="alert-heading">Warning!</h4>
-					<p class="mb-0">There is no size.</p>
+					<p class="mb-0">{{ trans('size.empty') }}</p>
 				</div>
 				@else
 				<table id="table" class="table table-hover table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Name</th>
-							<th scope="col">Action</th>
+							<th scope="col">{{ trans('size.id') }}</th>
+							<th scope="col">{{ trans('size.name') }}</th>
+							<th scope="col">{{ trans('size.action') }}</th>
 						</tr>
 					</thead>
 					<tbody id="myTable">
@@ -70,8 +69,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['size.destroy', $size->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('size.edit', $size->id) }}">Edit</a>
-									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+									<a class="btn btn-warning btn-sm" href="{{ route('size.edit', $size->id) }}">
+										{{ trans('size.edit') }}
+									</a>
+									{{ Form::submit(trans('size.delete'), ['class' => 'btn btn-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>

@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Edit Product')
+@section('title', trans('product.edit_title'))
 @section('content')
 
 {{ Form::open(['route' => ['product.update', $product->id], 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) }}
@@ -8,7 +8,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body col-md-8 offset-md-2">
-				<h3 class="card-title my-4">Edit product</h3>
+				<h3 class="card-title my-4">{{ trans('product.edit_title') }}</h3>
 				@if (session('status'))
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -28,26 +28,26 @@
 					<img class="img-thumbnail" src="{{ asset('images/product/' . $product->image) }}">
 				</div>
 				<div class="form-group">
-					<label>Name</label>
+					<label>{{ trans('product.name') }}</label>
 					{{ Form::text('name', $product->name, ['class' => 'form-control']) }}	
 				</div>
 				<div class="form-group">
-					<label>Description</label>
+					<label>{{ trans('product.description') }}</label>
 					{{ Form::textarea('description', $product->description, ['class' => 'form-control', 'maxlength' => '255', 'rows' => '1']) }}
 				</div>
 				<div class="form-group">
-					<label>Gender</label>
+					<label>{{ trans('product.gender') }}</label>
 					<select class="form-control" id="gender" name="gender" value="{{ $product->gender }}">
-						<option @if ($product->gender == 'male') selected="selected" @endif value="male">Male</option>
-						<option @if ($product->gender == 'female') selected="selected" @endif value="female">Female</option>
+						<option @if ($product->gender == 'male') selected="selected" @endif value="male">{{ trans('product.male') }}</option>
+						<option @if ($product->gender == 'female') selected="selected" @endif value="female">{{ trans('product.female') }}</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Price</label>
+					<label>{{ trans('product.price') }}</label>
 					{{ Form::number('price', $product->price, ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
-					<label>Color</label>
+					<label>{{ trans('product.color') }}</label>
 					<select class="form-control" id="color" name="color[]" multiple>
 						@foreach ($colors as $color)
 						<option value="{{ $color->id }}" @if(in_array($color->id, $selectedColors)) selected="selected" @endif>
@@ -57,7 +57,7 @@
 					</select>	
 				</div>
 				<div class="form-group">
-					<label>Size</label>
+					<label>{{ trans('product.size') }}</label>
 					<select id="size" class="form-control" name="size[]" multiple>
 						@foreach ($sizes as $size)
 						<option value="{{ $size->id }}" @if(in_array($size->id, $selectedSizes)) selected="selected" @endif>
@@ -67,7 +67,7 @@
 					</select>	
 				</div>
 				<div class="form-group">
-					<label>Category</label>
+					<label>{{ trans('product.category') }}</label>
 					<select id="categoryId" class="form-control" name="category_id">
 						@foreach ($categories as $category)
 						<option value="{{ $category->id }}" @if ($category->id == $selectedCategory)) selected="selected" @endif>
@@ -77,11 +77,11 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Image</label>
+					<label>{{ trans('product.image') }}</label>
 					{{ Form::file('image', ['class' => 'form-control-file']) }}
 				</div>
 				<div class="form-group">
-					{{ Form::submit('Update', ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('product.update'), ['class' => 'btn btn-dark']) }}
 				</div>
 			</div>
 		</div>

@@ -1,10 +1,10 @@
 @extends('layouts.dashboard')
-@section('title', 'Admin Manager')
+@section('title', trans('admin.title'))
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <h3 class="card-title my-4">List of admins</h3>
+        <h3 class="card-title my-4">{{ trans('admin.title') }}</h3>
         <div class="card">
             <div class="card-body table-responsive">
                 @if (session('status'))
@@ -16,17 +16,16 @@
                 @if ($admins->isEmpty())
                 <div class="alert alert-dismissible alert-warning">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4 class="alert-heading">Warning!</h4>
-                    <p class="mb-0">There is no admin.</p>
+                    <p class="mb-0">{{ trans('admin.empty') }}</p>
                 </div>
                 @else
                 <table id="table" class="table table-hover table-bordered text-center">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Joined</th>
+                            <th scope="col">{{ trans('admin.id') }}</th>
+                            <th scope="col">{{ trans('admin.name') }}</th>
+                            <th scope="col">{{ trans('admin.email') }}</th>
+                            <th scope="col">{{ trans('admin.joined') }}</th>
                         </tr>
                     </thead>
                     <tbody>

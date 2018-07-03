@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title','Create Color')
+@section('title', trans('color.new_title'))
 @section('content')
 
 {{ Form::open(['route' => ['color.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
@@ -8,7 +8,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body col-md-8 offset-md-2">
-				<h3 class="card-title my-4">New color</h3>
+				<h3 class="card-title my-4">{{ trans('color.new_title') }}</h3>
 				@if (session('status'))
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -24,11 +24,11 @@
 				@endforeach
 				@endif
 				<div class="form-group">
-					<label>Name</label>
+					<label>{{ trans('color.name') }}</label>
 					{{ Form::text('name', '', ['class' => 'form-control']) }}	
 				</div>
 				<div class="form-group">
-					{{ Form::submit('Create', ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('color.create'), ['class' => 'btn btn-dark']) }}
 				</div>
 			</div>
 		</div>
@@ -49,16 +49,15 @@
 				@if ($colors->isEmpty())
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4 class="alert-heading">Warning!</h4>
-					<p class="mb-0">There is no color.</p>
+					<p class="mb-0">{{ trans('color.empty') }}</p>
 				</div>
 				@else
 				<table id="table" class="table table-hover table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Name</th>
-							<th scope="col">Action</th>
+							<th scope="col">{{ trans('color.id') }}</th>
+							<th scope="col">{{ trans('color.name') }}</th>
+							<th scope="col">{{ trans('color.action') }}</th>
 						</tr>
 					</thead>
 					<tbody id="myTable">
@@ -70,8 +69,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['color.destroy', $color->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('color.edit', $color->id) }}">Edit</a>
-									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+									<a class="btn btn-warning btn-sm" href="{{ route('color.edit', $color->id) }}">
+										{{ trans('color.edit') }}
+									</a>
+									{{ Form::submit(trans('color.delete'), ['class' => 'btn btn-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>

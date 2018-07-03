@@ -1,18 +1,18 @@
 @extends('layouts.master')
-@section('title', 'Profile')
+@section('title', trans('user.profile', ['name' => $user->name]))
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-4 mb-4">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title my-4">Status</h3>
+                <h3 class="card-title my-4">{{ trans('user.status') }}</h3>
                 <dl class="row">
-                    <dt class="col-sm-4">Joined</dt>
+                    <dt class="col-sm-4">{{ trans('user.joined') }}</dt>
                     <dd class="col-sm-8">{{ $user->created_at }}</dd>
-                    <dt class="col-sm-4">Comment</dt>
+                    <dt class="col-sm-4">{{ trans('user.comment') }}</dt>
                     <dd class="col-sm-8">{{ $user->comments->count() }}</dd>
-                    <dt class="col-sm-4">Order</dt>
+                    <dt class="col-sm-4">{{ trans('user.order') }}</dt>
                     <dd class="col-sm-8">{{ $user->orders->count() }}</dd>
                 </dl>
             </div>
@@ -21,7 +21,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title my-4">Profile</h3>
+                <h3 class="card-title my-4">{{ trans('user.profile', ['name' => $user->name]) }}</h3>
                 @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
@@ -38,7 +38,7 @@
                 {{ Form::open(['route' => ['user.update', $user->id], 'method' => 'PUT']) }}
                 @csrf
                 <div class="form-group">
-                    <label>{{ __('Name') }}</label>
+                    <label>{{ trans('user.name') }}</label>
 
                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
 
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>{{ __('E-Mail Address') }}</label>
+                    <label>{{ trans('user.email') }}</label>
 
                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
 
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>{{ __('Address') }}</label>
+                    <label>{{ trans('user.address') }}</label>
 
                     <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ $user->address }}" required autofocus>
 
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>{{ __('Phone') }}</label>
+                    <label>{{ trans('user.phone') }}</label>
 
                     <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ $user->phone }}" required autofocus>
 
@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>{{ __('Birthday') }}</label>
+                    <label>{{ trans('user.birthday') }}</label>
 
                     <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ $user->birthday }}" required autofocus>
 
@@ -98,11 +98,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label>{{ __('Gender') }}</label>
+                    <label>{{ trans('user.gender') }}</label>
 
                     <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ $user->gender }}" required autofocus>
-                        <option @if($user->gender == 'male') selected="selected" @endif value="male">Male</option>
-                        <option @if($user->gender == 'female') selected="selected" @endif value="female">Female</option>
+                        <option @if($user->gender == 'male') selected="selected" @endif value="male">
+                            {{ trans('user.male') }}
+                        </option>
+                        <option @if($user->gender == 'female') selected="selected" @endif value="female">
+                            {{ trans('user.female') }}
+                        </option>
                     </select>
 
                     @if ($errors->has('gender'))
@@ -113,7 +117,7 @@
                 </div>
 
                 <div class="form-group">
-                    {{ Form::submit('Update', ['class' => 'btn btn-dark']) }}
+                    {{ Form::submit(trans('user.update'), ['class' => 'btn btn-dark']) }}
                 </div>
                 {{ Form::close() }}
             </div>

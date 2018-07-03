@@ -1,10 +1,10 @@
 @extends('layouts.dashboard')
-@section('title', 'Product Manager')
+@section('title', trans('product.list_title'))
 @section('content')
 
 <div class="row justify-content-center">
 	<div class="col-md-12">
-		<h3 class="card-title my-4">List of products</h3>
+		<h3 class="card-title my-4">{{ trans('product.list_title') }}</h3>
 		<div class="card">
 			<div class="card-body table-responsive">
 				@if (session('delete'))
@@ -16,20 +16,19 @@
 				@if ($products->isEmpty())
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<h4 class="alert-heading">Warning!</h4>
-					<p class="mb-0">There is no product.</p>
+					<p class="mb-0">{{ trans('product.empty') }}</p>
 				</div>
 				@else
 				<table id="table" class="table table-hover table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Name</th>
-							<th scope="col">Description</th>
-							<th scope="col">Gender</th>
-							<th scope="col">Price</th>
-							<th scope="col">Image</th>
-							<th scope="col">Action</th>
+							<th scope="col">{{ trans('product.id') }}</th>
+							<th scope="col">{{ trans('product.name') }}</th>
+							<th scope="col">{{ trans('product.description') }}</th>
+							<th scope="col">{{ trans('product.gender') }}</th>
+							<th scope="col">{{ trans('product.price') }}</th>
+							<th scope="col">{{ trans('product.image') }}</th>
+							<th scope="col">{{ trans('product.action') }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -45,8 +44,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['product.destroy', $product->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('product.edit', $product->id) }}">Edit</a>
-									{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+									<a class="btn btn-warning btn-sm" href="{{ route('product.edit', $product->id) }}">
+										{{ trans('product.edit') }}
+									</a>
+									{{ Form::submit(trans('product.delete'), ['class' => 'btn btn-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>

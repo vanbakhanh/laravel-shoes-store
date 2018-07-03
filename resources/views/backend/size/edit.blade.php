@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Edit Size')
+@section('title', trans('size.edit_title'))
 @section('content')
 
 {{ Form::open(['route' => ['size.update', $size->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
@@ -8,7 +8,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-body col-md-8 offset-md-2">
-				<h3 class="card-title my-4">Edit size</h3>
+				<h3 class="card-title my-4">{{ trans('size.edit_title') }}</h3>
 				@if (session('status'))
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -24,11 +24,11 @@
 				@endforeach
 				@endif
 				<div class="form-group">
-					<label>Name</label>
+					<label>{{ trans('size.name') }}</label>
 					{{ Form::text('name', $size->name, ['class' => 'form-control']) }}	
 				</div>
 				<div class="form-group">
-					{{ Form::submit('Update', ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('size.update'), ['class' => 'btn btn-dark']) }}
 				</div>
 			</div>
 		</div>

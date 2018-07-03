@@ -9,15 +9,20 @@
 	</div>
 	<div class="col-md-6 text-center">
 		<p class="mt-2 mb-4">
-			@if ($productSelected->gender == 'male') Men's @else Women's @endif 
-			{{ $categorySelected->name }} Shoes
+			@if ($productSelected->gender == 'male') 
+			{{ trans('product.category_men', ['category' => $categorySelected->name]) }} 
+			@else
+			{{ trans('product.category_women', ['category' => $categorySelected->name]) }} 
+			@endif 
 		</p>
 		<h3 class="my-2 text-uppercase">{{ $productSelected->name }}</h3>
 		<h3 class="my-4">$<b>{{ $productSelected->price }}</b></h3>
 		{{ Form::open(['class' => 'form-horizontal']) }}
 		@csrf
 		<div class="form-group row">
-			<label class="col-md-6 col-form-label text-uppercase"><b>COLOR</b></label>
+			<label class="col-md-6 col-form-label text-uppercase">
+				<b>{{ trans('product.color') }}</b>
+			</label>
 			<div class="col-md-6">
 				<select class="form-control" name="color" id="color">
 					@foreach ($productSelected->colors()->pluck('name')->sort() as $color)
@@ -29,7 +34,9 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-md-6 col-form-label text-uppercase"><b>SIZE</b></label>
+			<label class="col-md-6 col-form-label text-uppercase">
+				<b>{{ trans('product.size') }}</b>
+			</label>
 			<div class="col-md-6">
 				<select class="form-control" name="size" id="size">
 					@foreach ($productSelected->sizes()->pluck('name')->sort() as $size)
@@ -41,7 +48,9 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-md-6 col-form-label text-uppercase"><b>QUANTITY</b></label>
+			<label class="col-md-6 col-form-label text-uppercase">
+				<b>{{ trans('product.quantity') }}</b>
+			</label>
 			<div class="col-md-6">
 				{{ Form::number('qty', 1, ['id' => 'qty', 'class' => 'form-control', 'min' => '1', 'max' => '10']) }}
 			</div>
@@ -50,14 +59,16 @@
 			<div class="col-md-12">
 				{{ Form::hidden('productId', $productSelected->id, ['id' => 'productId']) }}
 				<button type="button" class="btn btn-dark btn-block" id="addToCart">
-					Add
+					{{ trans('product.add') }}
 				</button>
 			</div>
 		</div>
 		{{ Form::close() }}
 		<div class="my-4">
 			<p>{{ $productSelected->description }}</p>
-			<a class="text-uppercase" href="#comment">Read {{ $comments->count() }} reviews</a>
+			<a class="text-uppercase" href="#comment">
+				{{ trans('product.read_comment', ['comments' => $comments->count()]) }}
+			</a>
 		</div>
 	</div>
 </div>
@@ -67,7 +78,7 @@
 <!-- Related Projects Row -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
-		<h3 class="text-uppercase">You might also like</h3>
+		<h3 class="text-uppercase">{{ trans('product.recommend_title') }}</h3>
 	</div>
 </div>
 <div class="row">
@@ -93,9 +104,9 @@
 <div class="row">
 	<p class="col-md-12 text-center text-uppercase my-4">
 		@if ($productSelected->gender == 'male')
-		<a href="{{ route('category.men', $productSelected->category_id) }}">See more</a>
+		<a href="{{ route('category.men', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
 		@else 
-		<a href="{{ route('category.women', $productSelected->category_id) }}">See more</a>
+		<a href="{{ route('category.women', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
 		@endif 
 	</p>
 </div>
@@ -105,14 +116,14 @@
 <!-- Comments -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
-		<h3 class="text-uppercase">Customer reviews</h3>
+		<h3 class="text-uppercase">{{ trans('product.review_title') }}</h3>
 	</div>
 </div>
 
 @guest
 <div class="alert alert-dismissible alert-dark">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<strong>You are not logged in! </strong> <a href="{{ route('login') }}" class="alert-link">Login</a> and try review again.
+	<a href="{{ route('login') }}" class="alert-link">{{ trans('product.login') }}</a>
 </div>
 @else
 <div class="list-group">
@@ -121,10 +132,10 @@
 		@csrf
 		{{ Form::hidden('product_id', $productSelected->id, ['id' => 'product_id']) }}
 		<div class="form-group">
-			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows' => '2', 'maxlength' => '255', 'id' => 'content']) }}
+			{{ Form::textarea('content', '', ['placeholder' => trans('product.write_preview'), 'class' => 'form-control', 'rows' => '2', 'maxlength' => '255', 'id' => 'content']) }}
 		</div>
 		<button type="button" class="btn btn-dark float-right" id="comment">
-			Review
+			{{ trans('product.review') }}
 		</button>
 		{{ Form::close() }}
 	</div>
@@ -143,7 +154,7 @@
 		<p class="mb-2">{{ $cmt->content }}</p>
 		@endforeach
 		@else
-		<p class="text-center p-0 m-0">No review</p>
+		<p class="text-center p-0 m-0">{{ trans('product.no_review') }}</p>
 		@endif
 	</div>
 </div>

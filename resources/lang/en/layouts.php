@@ -13,7 +13,6 @@ return [
     'logout' => 'Logout',
     'search' => 'Search',
     'copyright' => 'Made with ♥ by',
-    'notify' => 'FREE SHIPPING ALL ORDERS OF 100$ OR MORE',
     'dashboard' => 'Dashboard',
     'user' => 'User',
     'order' => 'Order',

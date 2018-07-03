@@ -1,10 +1,10 @@
 @extends('layouts.dashboard')
-@section('title', 'User Manager')
+@section('title', trans('user.list_title'))
 @section('content')
 
 <div class="row justify-content-center">
     <div class="col-md-12">
-        <h3 class="card-title my-4">List of users</h3>
+        <h3 class="card-title my-4">{{ trans('user.list_title') }}</h3>
         <div class="card">
             <div class="card-body table-responsive">
                 @if (session('status'))
@@ -16,21 +16,20 @@
                 @if ($users->isEmpty())
                 <div class="alert alert-dismissible alert-warning">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4 class="alert-heading">Warning!</h4>
-                    <p class="mb-0">There is no user.</p>
+                    <p class="mb-0">{{ trans('user.empty') }}</p>
                 </div>
                 @else
                 <table id="table" class="table table-hover table-bordered text-center">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Birthday</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">{{ trans('user.id') }}</th>
+                            <th scope="col">{{ trans('user.name') }}</th>
+                            <th scope="col">{{ trans('user.gender') }}</th>
+                            <th scope="col">{{ trans('user.email') }}</th>
+                            <th scope="col">{{ trans('user.phone') }}</th>
+                            <th scope="col">{{ trans('user.birthday') }}</th>
+                            <th scope="col">{{ trans('user.address') }}</th>
+                            <th scope="col">{{ trans('user.action') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,7 +45,7 @@
                             <td>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
                                 @csrf
-                                {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+                                {{ Form::submit(trans('user.delete'), ['class' => 'btn btn-danger btn-sm']) }}
                                 {{ Form::close() }}
                             </td>
                         </tr>

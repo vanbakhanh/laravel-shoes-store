@@ -30,51 +30,51 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                    <h5 class="my-4">{{ trans('layout.manager') }}</h5>
+                    <h5 class="my-4">{{ trans('layouts.manager') }}</h5>
                 </li>
                 <hr>
                 <li>
-                    <a href="{{ route('admin.index') }}">{{ trans('layout.admin') }}</a>
+                    <a href="{{ route('admin.index') }}">{{ trans('layouts.admin') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('user.index') }}">{{ trans('layout.user') }}</a>
+                    <a href="{{ route('user.index') }}">{{ trans('layouts.user') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('order.manager') }}">{{ trans('layout.order') }}</a>
+                    <a href="{{ route('order.manager') }}">{{ trans('layouts.order') }}</a>
                 </li>              
                 <li>
-                    <a href="#product" data-toggle="collapse" aria-expanded="false">{{ trans('layout.product') }}</a>
+                    <a href="#product" data-toggle="collapse" aria-expanded="false">{{ trans('layouts.product') }}</a>
                     <ul class="collapse list-unstyled" id="product">
                         <li>
-                            <a href="{{ route('product.create') }}">{{ trans('layout.creat_product') }}</a>
+                            <a href="{{ route('product.create') }}">{{ trans('layouts.creat_product') }}</a>
                         </li>
                         <li>
-                            <a href="{{ route('product.index') }}">{{ trans('layout.list_product') }}</a>
+                            <a href="{{ route('product.index') }}">{{ trans('layouts.list_product') }}</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('category.create') }}">{{ trans('layout.category') }}</a>
+                    <a href="{{ route('category.create') }}">{{ trans('layouts.category') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('color.create') }}">{{ trans('layout.color') }}</a>
+                    <a href="{{ route('color.create') }}">{{ trans('layouts.color') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('size.create') }}">{{ trans('layout.size') }}</a>
+                    <a href="{{ route('size.create') }}">{{ trans('layouts.size') }}</a>
                 </li>
                 <hr>
                 <li>
-                    <a href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layout.change_password') }}</a>
+                    <a href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layouts.change_password') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layout.logout') }}</a>
+                    <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layouts.logout') }}</a>
                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">@csrf</form>
                 </li>
             </ul>
         </div>
 
         <div id="page-content-wrapper">
-            <div class="container">
+            <div class="container-fluid">
                 <!-- Navbar -->
                 <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded py-2 mb-4">
                     <div id="toggler">
@@ -84,7 +84,7 @@
                     </div>
                     <ul class="navbar-nav">
                         <li class="nav-item disabled">
-                            {{ trans('layout.welcome', ['name' => Auth::user()->name]) }}
+                            {{ trans('layouts.welcome', ['name' => Auth::user()->name]) }}
                         </li>
                     </ul>
 
@@ -95,18 +95,18 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto text-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ trans('layout.home') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ trans('layouts.home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard.index') }}">{{ trans('layout.dashboard') }}</a>
+                                <a class="nav-link" href="{{ route('dashboard.index') }}">{{ trans('layouts.dashboard') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{ trans('layout.language') }}
+                                    {{ trans('layouts.language') }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">{{ trans('layout.english') }}</a>
-                                    <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">{{ trans('layout.vietnamese') }}</a>
+                                    <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">{{ trans('layouts.english') }}</a>
+                                    <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">{{ trans('layouts.vietnamese') }}</a>
                                 </div>
                             </li>
                         </ul>
