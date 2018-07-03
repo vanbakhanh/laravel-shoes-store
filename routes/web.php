@@ -106,7 +106,7 @@ Route::group(['middleware' => 'locale'], function() {
         Route::get('/cart', 'CartController@index')->name('cart.index');
         Route::post('/cart/add', 'CartController@addItem')->name('cart.add');
         Route::get('/cart/remove/{rowId}', 'CartController@removeItem')->name('cart.remove');
-        Route::put('/cart/update', 'CartController@update')->name('cart.update');
+        Route::post('/cart/update', 'CartController@update')->name('cart.update');
         Route::get('/checkout', 'CartController@checkout')->name('checkout');
     });
 

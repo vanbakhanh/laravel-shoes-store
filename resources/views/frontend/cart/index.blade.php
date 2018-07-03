@@ -37,7 +37,7 @@
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
-					{{ Form::open(['route' => ['cart.update'], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
+					{{ Form::open(['class' => 'form-horizontal']) }}
 					@csrf
 					<tr>
 						<td class="text-left">
@@ -48,14 +48,11 @@
 						<td>{{ $item->options->color }}</td>
 						<td>${{ ($item->price) * ($item->qty) }}</td>
 						<td>
-							{{ Form::hidden('rowId', $item->rowId) }}
-							{{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center', 'min' => '1', 'max' => '10']) }}
+							{{ Form::hidden('rowId', $item->rowId, ['id' => 'rowId' . $item->id]) }}
+							{{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center', 'min' => '1', 'max' => '10', 'id' => 'qty' . $item->id]) }}
 						</td>
 						<td>
-							<div class="btn-group btn-group-toggle">
-								<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-warning btn-sm">Remove</a>
-								{{ Form::submit('Update', ['class'=>"btn btn-dark btn-sm"]) }}
-							</div>
+							<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-warning btn-sm">Remove</a>
 						</td>
 					</tr>
 					{{ Form::close() }}
@@ -134,5 +131,30 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		@foreach ($items as $item)
+		jQuery('#qty{{$item->id}}').change(function(e) {
+			e.preventDefault();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			jQuery.ajax({
+				url: "{{ route('cart.update') }}",
+				method: 'POST',
+				data: {
+					rowId: jQuery('#rowId{{$item->id}}').val(),
+					qty: jQuery('#qty{{$item->id}}').val(),
+				},
+				success: function() {
+				},
+			});
+		});
+		@endforeach
+	});
+</script>
 
 @endsection
