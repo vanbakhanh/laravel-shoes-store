@@ -16,10 +16,11 @@
                 @if ($users->isEmpty())
                 <div class="alert alert-dismissible alert-warning">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <p class="mb-0">There is no user!</p>
+                    <h4 class="alert-heading">Warning!</h4>
+                    <p class="mb-0">There is no user.</p>
                 </div>
                 @else
-                <table id="table" class="table table-hover table-md table-bordered">
+                <table id="table" class="table table-hover table-bordered text-center">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -43,16 +44,10 @@
                             <td>{{ $user->birthday }}</td>
                             <td>{{ $user->address }}</td>
                             <td>
-<<<<<<< HEAD
-                                <button type="button" class="close float-none" aria-label="Close" id="delete{{ $user->id }}">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-=======
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
                                 @csrf
                                 {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
                                 {{ Form::close() }}
->>>>>>> parent of e2276e8... Delete user using ajax
                             </td>
                         </tr>
                         @endforeach
@@ -70,31 +65,4 @@
     } );
 </script>
 
-<<<<<<< HEAD
-<!-- Delete user using Ajax -->
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        @foreach ($users as $user)
-        jQuery('#delete{{ $user->id }}').click(function(e) {
-            e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            jQuery.ajax({
-                url: "{{ route('user.destroy', $user->id) }}",
-                method: 'POST',
-                data: { _method: 'DELETE' },
-                success: function() {
-                    location.reload();
-                },
-            });
-        });
-        @endforeach
-    });
-</script>
-
-=======
->>>>>>> parent of e2276e8... Delete user using ajax
 @endsection
