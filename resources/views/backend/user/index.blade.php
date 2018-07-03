@@ -16,11 +16,10 @@
                 @if ($users->isEmpty())
                 <div class="alert alert-dismissible alert-warning">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4 class="alert-heading">Warning!</h4>
-                    <p class="mb-0">There is no user.</p>
+                    <p class="mb-0">There is no user!</p>
                 </div>
                 @else
-                <table id="table" class="table table-hover table-bordered text-center">
+                <table id="table" class="table table-hover table-md table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -44,9 +43,16 @@
                             <td>{{ $user->birthday }}</td>
                             <td>{{ $user->address }}</td>
                             <td>
+<<<<<<< HEAD
                                 <button type="button" class="close float-none" aria-label="Close" id="delete{{ $user->id }}">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
+=======
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
+                                @csrf
+                                {{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+                                {{ Form::close() }}
+>>>>>>> parent of e2276e8... Delete user using ajax
                             </td>
                         </tr>
                         @endforeach
@@ -64,6 +70,7 @@
     } );
 </script>
 
+<<<<<<< HEAD
 <!-- Delete user using Ajax -->
 <script type="text/javascript">
     jQuery(document).ready(function() {
@@ -88,4 +95,6 @@
     });
 </script>
 
+=======
+>>>>>>> parent of e2276e8... Delete user using ajax
 @endsection
