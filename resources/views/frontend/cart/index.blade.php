@@ -24,7 +24,7 @@
 		<p class="card-text">There are no items in this cart. <a href="{{ route('home') }}" class="card-link">Continue Shopping now!</a></p>
 		@else
 		<div class="table-responsive">
-			<table class="table table-md table-bordered text-center">
+			<table class="table table-bordered text-center">
 				<thead>
 					<tr>
 						<th scope="col">Item</th>

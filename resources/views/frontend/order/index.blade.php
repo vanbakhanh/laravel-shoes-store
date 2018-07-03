@@ -26,7 +26,7 @@
 		@if ($orderDetail == null)
 		<p>There are no orders.</p>
 		@else
-		<table class="table table-md table-bordered text-center">
+		<table class="table table-bordered text-center">
 			<thead>
 				<tr>
 					<th scope="col">Item</th>
