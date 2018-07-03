@@ -52,7 +52,9 @@
 							{{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center', 'min' => '1', 'max' => '10', 'id' => 'qty' . $item->id]) }}
 						</td>
 						<td>
-							<a href="{{ route('cart.remove', $item->rowId) }}" class="btn btn-warning btn-sm">Remove</a>
+							<button type="button" class="close float-none" aria-label="Close" id="remove{{$item->id}}">
+								<span aria-hidden="true">&times;</span>
+							</button>
 						</td>
 					</tr>
 					{{ Form::close() }}
@@ -132,6 +134,30 @@
 	</div>
 </div>
 
+<!-- Remove item using Ajax -->
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		@foreach ($items as $item)
+		jQuery('#remove{{$item->id}}').click(function(e) {
+			e.preventDefault();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			jQuery.ajax({
+				url: "{{ route('cart.remove', $item->rowId) }}",
+				method: 'GET',
+				success: function() {
+					location.reload();
+				},
+			});
+		});
+		@endforeach
+	});
+</script>
+
+<!-- Update item using Ajax -->
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		@foreach ($items as $item)
@@ -150,6 +176,7 @@
 					qty: jQuery('#qty{{$item->id}}').val(),
 				},
 				success: function() {
+					location.reload();
 				},
 			});
 		});
