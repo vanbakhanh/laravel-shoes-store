@@ -26,7 +26,7 @@
 				<p class="float-right">Updated at {{ $orderDetail->updated_at }}</p>
 			</div>
 		</div>
-		<table class="table table-hover table-bordered">
+		<table class="table table-hover table-bordered text-center">
 			<thead>
 				<tr>
 					<th scope="col">Items</th>

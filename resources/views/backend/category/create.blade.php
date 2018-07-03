@@ -57,7 +57,7 @@
 					<p class="mb-0">There is no category.</p>
 				</div>
 				@else
-				<table id="table" class="table table-hover table-bordered">
+				<table id="table" class="table table-hover table-bordered text-center">
 					<thead>
 						<tr>
 							<th scope="col">ID</th>
