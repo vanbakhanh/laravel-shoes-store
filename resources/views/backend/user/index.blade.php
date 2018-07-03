@@ -44,7 +44,7 @@
                             <td>{{ $user->birthday }}</td>
                             <td>{{ $user->address }}</td>
                             <td>
-                                <button type="button" class="close float-none" aria-label="Close" id="delete{{$user->id}}">
+                                <button type="button" class="close float-none" aria-label="Close" id="delete{{ $user->id }}">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </td>
@@ -68,7 +68,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         @foreach ($users as $user)
-        jQuery('#delete{{$user->id}}').click(function(e) {
+        jQuery('#delete{{ $user->id }}').click(function(e) {
             e.preventDefault();
             $.ajaxSetup({
                 headers: {

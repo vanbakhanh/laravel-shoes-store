@@ -52,7 +52,7 @@
 							{{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center', 'min' => '1', 'max' => '10', 'id' => 'qty' . $item->id]) }}
 						</td>
 						<td>
-							<button type="button" class="close float-none" aria-label="Close" id="remove{{$item->id}}">
+							<button type="button" class="close float-none" aria-label="Close" id="remove{{ $item->id }}">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</td>
@@ -138,7 +138,7 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		@foreach ($items as $item)
-		jQuery('#remove{{$item->id}}').click(function(e) {
+		jQuery('#remove{{ $item->id }}').click(function(e) {
 			e.preventDefault();
 			$.ajaxSetup({
 				headers: {
@@ -162,7 +162,7 @@
 <script type="text/javascript">
 	jQuery(document).ready(function() {
 		@foreach ($items as $item)
-		jQuery('#qty{{$item->id}}').change(function(e) {
+		jQuery('#qty{{ $item->id }}').change(function(e) {
 			e.preventDefault();
 			$.ajaxSetup({
 				headers: {
@@ -174,8 +174,8 @@
 				method: 'POST',
 				data: {
 					_method: 'PUT',
-					rowId: jQuery('#rowId{{$item->id}}').val(),
-					qty: jQuery('#qty{{$item->id}}').val(),
+					rowId: jQuery('#rowId{{ $item->id }}').val(),
+					qty: jQuery('#qty{{ $item->id }}').val(),
 				},
 				success: function() {
 					location.reload();

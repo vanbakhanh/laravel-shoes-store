@@ -119,11 +119,13 @@
 	<div class="list-group-item">
 		{{ Form::open(['route' => ['comment.store']]) }}
 		@csrf
-		{{ Form::hidden('product_id', $productSelected->id) }}
+		{{ Form::hidden('product_id', $productSelected->id, ['id' => 'product_id']) }}
 		<div class="form-group">
-			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows'=>'1', 'cols'=>'1', 'maxlength' => '255']) }}
+			{{ Form::textarea('content', '', ['placeholder' => 'Write a review...', 'class' => 'form-control', 'rows' => '2', 'maxlength' => '255', 'id' => 'content']) }}
 		</div>
-		{{ Form::submit('Review', ['class' => 'btn btn-dark float-right']) }}
+		<button type="button" class="btn btn-dark float-right" id="comment">
+			Review
+		</button>
 		{{ Form::close() }}
 	</div>
 </div>
@@ -156,7 +158,7 @@
 	</div>
 </div>
 
-<!-- Script add to cart and update cart quatity -->
+<!-- Add to cart and update cart quatity using ajax -->
 <script type="text/javascript">
 	var cart = {{ Cart::count() }};
 	var text = '{{ trans('layout.cart') }}';
@@ -181,6 +183,32 @@
 				},
 				success: function() {
 					$("#cart-qty").html(text +  " " + (cart += qty));
+				},
+			});
+		});
+	});
+</script>
+
+<!-- Comment using ajax -->
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('#comment').click(function(e) {
+			e.preventDefault();
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				}
+			});
+			jQuery.ajax({
+				url: "{{ route('comment.store') }}",
+				method: 'POST',
+				data: {
+					_method: 'POST',
+					content: jQuery('#content').val(),
+					product_id: jQuery('#product_id').val(),
+				},
+				success: function() {
+					location.reload();
 				},
 			});
 		});
