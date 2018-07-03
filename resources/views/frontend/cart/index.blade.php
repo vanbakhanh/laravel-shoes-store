@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Your Cart')
+@section('title', trans('cart.cart'))
 @section('content')
 
 @if (session('status'))
@@ -19,20 +19,20 @@
 
 <div class="card">
 	<div class="card-body">
-		<h3 class="card-title my-4">Order Details</h3>
+		<h3 class="card-title my-4">{{ trans('cart.detail') }}</h3>
 		@if (Cart::count() == 0)
-		<p class="card-text">There are no items in this cart. <a href="{{ route('home') }}" class="card-link">Continue Shopping now!</a></p>
+		<p class="card-text">{{ trans('cart.empty') }} <a href="{{ route('home') }}" class="card-link">{{ trans('cart.shopping') }}</a></p>
 		@else
 		<div class="table-responsive">
 			<table class="table table-bordered text-center">
 				<thead>
 					<tr>
-						<th scope="col">Item</th>
-						<th scope="col">Size</th>
-						<th scope="col">Color</th>
-						<th scope="col">Price</th>
-						<th scope="col">Quantity</th>
-						<th scope="col">Action</th>
+						<th scope="col">{{ trans('cart.item') }}</th>
+						<th scope="col">{{ trans('cart.size') }}</th>
+						<th scope="col">{{ trans('cart.color') }}</th>
+						<th scope="col">{{ trans('cart.price') }}</th>
+						<th scope="col">{{ trans('cart.quantity') }}</th>
+						<th scope="col">{{ trans('cart.action') }}</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -71,55 +71,55 @@
 <div class="card-deck">
 	<div class="card">
 		<div class="card-body table-responsive">
-			<h3 class="card-title my-4">Shipping Addresss</h3>
+			<h3 class="card-title my-4">{{ trans('cart.ship_address') }}</h3>
 			@guest
-			<p class="card-text">You are not logged in. <a href="{{ route('login') }}" class="card-link">Login to checkout now!</a></p>
+			<p class="card-text">{{ trans('cart.logged_in') }} <a href="{{ route('login') }}" class="card-link">{{ trans('cart.login') }}</a></p>
 			@else
 			<table class="table">
 				<tbody>
 					<tr>
-						<th scope="row">Name</th>
+						<th scope="row">{{ trans('cart.name') }}</th>
 						<td class="text-right">{{ Auth::user()->name }}</td>
 					</tr>
 					<tr>
-						<th scope="row">Email</th>
+						<th scope="row">{{ trans('cart.email') }}</th>
 						<td class="text-right">{{ Auth::user()->email }}</td>
 					</tr>
 					<tr>
-						<th scope="row">Phone</th>
+						<th scope="row">{{ trans('cart.phone') }}</th>
 						<td class="text-right">{{ Auth::user()->phone }}</td>
 					</tr>
 					<tr>
-						<th scope="row">Address</th>
+						<th scope="row">{{ trans('cart.address') }}</th>
 						<td class="text-right">{{ Auth::user()->address }}</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="text-right">
-				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-dark">Edit</a>
+				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-dark">{{ trans('cart.edit') }}</a>
 			</div>
 			@endguest
 		</div>
 	</div>
 	<div class="card">
 		<div class="card-body table-responsive">
-			<h3 class="card-title my-4">Total Summary</h3>
+			<h3 class="card-title my-4">{{ trans('cart.payment') }}</h3>
 			<table class="table">
 				<tbody>
 					<tr>
-						<th scope="row">Items on Cart</th>
+						<th scope="row">{{ trans('cart.items_on_cart') }}</th>
 						<td class="text-right">{{ Cart::count() }}</td>
 					</tr>
 					<tr>
-						<th scope="row">Sub Total</th>
+						<th scope="row">{{ trans('cart.sub_total') }}</th>
 						<td class="text-right">${{ Cart::subTotal() }}</td>
 					</tr>
 					<tr>
-						<th scope="row">Tax</th>
+						<th scope="row">{{ trans('cart.tax') }}</th>
 						<td class="text-right">${{ Cart::Tax() }}</td>
 					</tr>
 					<tr>
-						<th scope="row">Total</th>
+						<th scope="row">{{ trans('cart.total') }}</th>
 						<td class="text-right">${{ Cart::total() }}</td>
 					</tr>
 				</tbody>
@@ -127,7 +127,7 @@
 			<div class="text-right">
 				@if (Cart::count() == 0)
 				@else
-				<a href="{{ route('checkout') }}" class="btn btn-dark">Checkout</a>
+				<a href="{{ route('checkout') }}" class="btn btn-dark">{{ trans('cart.checkout') }}</a>
 				@endif
 			</div>
 		</div>

@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title', 'Order Manager')
+@section('title', trans('order.manager'))
 @section('content')
 
 <div class="row justify-content-center">
@@ -10,19 +10,19 @@
 			{{ session('status') }}
 		</div>
 		@endif
-		<h3 class="card-title my-4">Pending ({{ $ordersPending->count() }})</h3>
+		<h3 class="card-title my-4">{{ trans('order.pending') }} ({{ $ordersPending->count() }})</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
 					<table id="table1" class="table table-hover table-bordered text-center">
 						<thead>
 							<tr>
-								<th scope="col">ID</th>
-								<th scope="col">User</th>
-								<th scope="col">Quantity</th>
-								<th scope="col">Total</th>
-								<th scope="col">Created at</th>
-								<th scope="col">Action</th>
+								<th scope="col">{{ trans('order.id') }}</th>
+								<th scope="col">{{ trans('order.user') }}</th>
+								<th scope="col">{{ trans('order.quantity') }}</th>
+								<th scope="col">{{ trans('order.total') }}</th>
+								<th scope="col">{{ trans('order.created') }}</th>
+								<th scope="col">{{ trans('order.action') }}</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -37,8 +37,8 @@
 									{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderPending->id]]) }}
 									@csrf
 									<div class="btn-group btn-group-toggle">
-										<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="btn btn-dark btn-sm">Detail</a>
-										{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+										<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="btn btn-dark btn-sm">{{ trans('order.detail') }}</a>
+										{{ Form::submit(trans('order.delete'), ['class' => 'btn btn-danger btn-sm']) }}
 									</div>
 									{{ Form::close() }}
 								</td>
@@ -52,7 +52,7 @@
 	</div>
 
 	<div class="col-md-12 my-4">
-		<h3 class="card-title my-4">Verified ({{ $ordersVerified->count() }})</h3>
+		<h3 class="card-title my-4">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
 		<div class="card">
 			<div class="card-body">
 				<div class="table-responsive">
@@ -60,12 +60,12 @@
 						<table id="table2" class="table table-hover table-bordered text-center">
 							<thead>
 								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">User</th>
-									<th scope="col">Quantity</th>
-									<th scope="col">Total</th>
-									<th scope="col">Created at</th>
-									<th scope="col">Action</th>
+									<th scope="col">{{ trans('order.id') }}</th>
+									<th scope="col">{{ trans('order.user') }}</th>
+									<th scope="col">{{ trans('order.quantity') }}</th>
+									<th scope="col">{{ trans('order.total') }}</th>
+									<th scope="col">{{ trans('order.created') }}</th>
+									<th scope="col">{{ trans('order.action') }}</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -80,8 +80,8 @@
 										{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderVerified->id]]) }}
 										@csrf
 										<div class="btn-group btn-group-toggle">
-											<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="btn btn-dark btn-sm">Detail</a>
-											{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
+											<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="btn btn-dark btn-sm">{{ trans('order.detail') }}</a>
+											{{ Form::submit(trans('order.delete'), ['class' => 'btn btn-danger btn-sm']) }}
 										</div>
 										{{ Form::close() }}
 									</td>

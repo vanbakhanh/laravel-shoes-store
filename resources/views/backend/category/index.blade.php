@@ -6,7 +6,7 @@
 	<div class="col-md-12">
 		<div class="card">
 			<div class="card-header">
-				{{ trans(category.list_title) }}
+				{{ trans('category.list_title') }}
 			</div>
 			<div class="card-body table-responsive">
 				@if (session('delete'))
@@ -18,16 +18,16 @@
 				@if ($categories->isEmpty())
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<p class="mb-0">{{ trans(category.empty) }}</p>
+					<p class="mb-0">{{ trans('category.empty') }}</p>
 				</div>
 				@else
 				<table id="table" class="table table-hover table-bordered text-center">
 					<thead>
 						<tr>
-							<th scope="col">{{ trans(category.id) }}</th>
-							<th scope="col">{{ trans(category.name) }}</th>
-							<th scope="col">{{ trans(category.description) }}</th>
-							<th scope="col">{{ trans(category.action) }}</th>
+							<th scope="col">{{ trans('category.id') }}</th>
+							<th scope="col">{{ trans('category.name') }}</th>
+							<th scope="col">{{ trans('category.description') }}</th>
+							<th scope="col">{{ trans('category.action') }}</th>
 						</tr>
 					</thead>
 					<tbody id="myTable">
@@ -40,7 +40,9 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('category.edit', $category->id) }}">{{ trans(category.edit) }}</a>
+									<a class="btn btn-warning btn-sm" href="{{ route('category.edit', $category->id) }}">
+										{{ trans('category.edit') }}
+									</a>
 									{{ Form::submit(trans('category.delete'), ['class'=>"btn btn-danger btn-sm"]) }}
 								</div>
 								{{ Form::close() }}

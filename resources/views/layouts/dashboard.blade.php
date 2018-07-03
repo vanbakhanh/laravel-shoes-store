@@ -74,7 +74,7 @@
         </div>
 
         <div id="page-content-wrapper">
-            <div class="container-fluid">
+            <div class="container">
                 <!-- Navbar -->
                 <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded py-2 mb-4">
                     <div id="toggler">

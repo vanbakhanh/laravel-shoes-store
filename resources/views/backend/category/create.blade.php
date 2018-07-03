@@ -70,14 +70,14 @@
 						<tr>
 							<th scope="row">{{ $category->id }}</th>
 							<td>{{ $category->name }}</td>
-							<td>{{ $category->description }}</td>
+							<td class="text-left">{{ $category->description }}</td>
 							<td>
 								{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-warning btn-sm" href="{{ route('category.edit',$category->id) }}">
-									{{ trans('category.edit') }}
-								</a>
+										{{ trans('category.edit') }}
+									</a>
 									{{ Form::submit(trans('category.delete'), ['class' => 'btn btn-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}

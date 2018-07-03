@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
-@section('title', 'Order Manager')
+@section('title', trans('order.manager'))
 @section('content')
 
 <div class="row">
 	<div class="col-md-3">
-		<h3 class="my-4">Verified ({{ $ordersVerified->count() }})</h3>
+		<h3 class="my-4">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
 		<div class="list-group list-group-flush">
 			@foreach ($ordersVerified as $orderVerified)
 			<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="list-group-item list-group-item-action">
-				{{ $orderVerified->created_at }} - Order {{ $orderVerified->id }}
+				{{ $orderVerified->created_at }} - {{ trans('order.order') }} {{ $orderVerified->id }}
 			</a>
 			@endforeach
 		</div>
@@ -16,24 +16,24 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="float-left my-4">Order #{{ $orderDetail->id }}</h3>
-				<h3 class="float-right my-4">Total ${{ $orderDetail->total }}</h3>
+				<h3 class="float-left my-4">{{ trans('order.order') }} #{{ $orderDetail->id }}</h3>
+				<h3 class="float-right my-4">{{ trans('order.total') }} ${{ $orderDetail->total }}</h3>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<p class="float-left">Created at {{ $orderDetail->created_at }}</p>
-				<p class="float-right">Updated at {{ $orderDetail->updated_at }}</p>
+				<p class="float-left">{{ trans('order.created') }} {{ $orderDetail->created_at }}</p>
+				<p class="float-right">{{ trans('order.updated') }} {{ $orderDetail->updated_at }}</p>
 			</div>
 		</div>
 		<table class="table table-hover table-bordered text-center">
 			<thead>
 				<tr>
-					<th scope="col">Items</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Size</th>
-					<th scope="col">Color</th>
-					<th scope="col">Total</th>
+					<th scope="col">{{ trans('order.item') }}</th>
+					<th scope="col">{{ trans('order.quantity') }}</th>
+					<th scope="col">{{ trans('order.size') }}</th>
+					<th scope="col">{{ trans('order.color') }}</th>
+					<th scope="col">{{ trans('order.total') }}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -51,23 +51,23 @@
 		<table class="table">
 			<tbody>
 				<tr>
-					<th scope="row">User ID</th>
+					<th scope="row">{{ trans('order.user_id') }}</th>
 					<td class="text-right">{{ $orderDetail->user->id }}</td>
 				</tr>
 				<tr>
-					<th scope="row">Name</th>
+					<th scope="row">{{ trans('order.name') }}</th>
 					<td class="text-right">{{ $orderDetail->user->name }}</td>
 				</tr>
 				<tr>
-					<th scope="row">Email</th>
+					<th scope="row">{{ trans('order.email') }}</th>
 					<td class="text-right">{{ $orderDetail->user->email }}</td>
 				</tr>
 				<tr>
-					<th scope="row">Phone</th>
+					<th scope="row">{{ trans('order.phone') }}</th>
 					<td class="text-right">{{ $orderDetail->user->phone }}</td>
 				</tr>
 				<tr>
-					<th scope="row">Address shipping</th>
+					<th scope="row">{{ trans('order.address') }}</th>
 					<td class="text-right">{{ $orderDetail->address }}</td>
 				</tr>
 			</tbody>

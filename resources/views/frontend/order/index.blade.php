@@ -1,14 +1,14 @@
 @extends('layouts.master')
-@section('title', 'Your Order')
+@section('title', trans('order.my_order'))
 @section('content')
 
 <div class="row">
 	<div class="col-md-3">
-		<h3 class="my-4">My Orders ({{ $orders->count() }})</h3>
+		<h3 class="my-4">{{ trans('order.my_order') }} ({{ $orders->count() }})</h3>
 		<div class="list-group list-group-flush">
-			@foreach($orders as $order)
+			@foreach ($orders as $order)
 			<a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
-				{{ $order->created_at }} - Order {{ $order->id }}
+				{{ $order->created_at }} - {{ trans('order.order') }} {{ $order->id }}
 			</a>
 			@endforeach
 		</div>	
@@ -16,23 +16,28 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="float-left my-4">Recent Orders</h3>
+				<h3 class="float-left my-4">{{ trans('order.recent') }}</h3>
 				@if ($orderDetail == null)
 				@else
-				<h3 class="float-right my-4">{{ $orderDetail->status }}</h3>
+				@if ($orderDetail->status == 'Pending')
+				<h3 class="float-right my-4">{{ trans('order.pending') }}</h3>
+				@endif
+				@if ($orderDetail->status == 'Verified')
+				<h3 class="float-right my-4">{{ trans('order.verified') }}</h3>
+				@endif
 				@endif
 			</div>
 		</div>
 		@if ($orderDetail == null)
-		<p>There are no orders.</p>
+		<p>{{ trans('order.empty') }}</p>
 		@else
 		<table class="table table-bordered text-center">
 			<thead>
 				<tr>
-					<th scope="col">Item</th>
-					<th scope="col">Total</th>
-					<th scope="col">Quantity</th>
-					<th scope="col">Order#</th>
+					<th scope="col">{{ trans('order.item') }}</th>
+					<th scope="col">{{ trans('order.total') }}</th>
+					<th scope="col">{{ trans('order.quantity') }}</th>
+					<th scope="col">{{ trans('order.order') }}</th>
 				</tr>
 			</thead>
 			<tbody>

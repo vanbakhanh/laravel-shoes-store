@@ -172,7 +172,7 @@
 <!-- Add to cart and update cart quatity using ajax -->
 <script type="text/javascript">
 	var cart = {{ Cart::count() }};
-	var text = '{{ trans('layout.cart') }}';
+	var text = '{{ trans('layouts.cart') }}';
 	jQuery(document).ready(function() {
 		jQuery('#addToCart').click(function(e) {
 			var qty = parseInt(jQuery('#qty').val());

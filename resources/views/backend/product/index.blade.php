@@ -36,7 +36,7 @@
 						<tr>
 							<th scope="row">{{ $product->id }}</th>
 							<td><a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></td>
-							<td>{{ $product->description }}</td>
+							<td class="text-left">{{ $product->description }}</td>
 							<td>{{ $product->gender }}</td>
 							<td>${{ $product->price }}</td>
 							<td>{{ $product->image }}</td>
