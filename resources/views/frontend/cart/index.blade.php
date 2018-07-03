@@ -173,6 +173,7 @@
 				url: "{{ route('cart.update') }}",
 				method: 'POST',
 				data: {
+					_method: 'PUT',
 					rowId: jQuery('#rowId{{$item->id}}').val(),
 					qty: jQuery('#qty{{$item->id}}').val(),
 				},

@@ -14,7 +14,6 @@
 		</p>
 		<h3 class="my-2 text-uppercase">{{ $productSelected->name }}</h3>
 		<h3 class="my-4">$<b>{{ $productSelected->price }}</b></h3>
-
 		{{ Form::open(['class' => 'form-horizontal']) }}
 		@csrf
 		<div class="form-group row">
@@ -50,7 +49,9 @@
 		<div class="form-group row mb-0">
 			<div class="col-md-12">
 				{{ Form::hidden('productId', $productSelected->id, ['id' => 'productId']) }}
-				{{ Form::submit('Add', ['class' => 'btn btn-dark btn-block', 'id' => 'addToCart']) }}
+				<button type="button" class="btn btn-dark btn-block" id="addToCart">
+					Add
+				</button>
 			</div>
 		</div>
 		{{ Form::close() }}
@@ -172,6 +173,7 @@
 				url: "{{ route('cart.add') }}",
 				method: 'POST',
 				data: {
+					_method: 'POST',
 					color: jQuery('#color').val(),
 					size: jQuery('#size').val(),
 					qty: jQuery('#qty').val(),
