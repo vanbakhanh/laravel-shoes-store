@@ -96,7 +96,7 @@ class UserController extends Controller
         try {
             $this->userRepository->update($request, $id);
 
-            return back()->with('status', 'Update successful');
+            return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -113,7 +113,7 @@ class UserController extends Controller
         try {
             $this->userRepository->destroy($id);
 
-            return back()->with('status', 'Delete successful');
+            return back()->with('status', trans('messages.deleted_success'));
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -140,7 +140,7 @@ class UserController extends Controller
         try {
             $this->userRepository->changePassword($request, $id);
 
-            return back()->with('status', 'Password has been changed');
+            return back()->with('status', trans('messages.changed_password'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -155,7 +155,7 @@ class UserController extends Controller
             $user = $this->userRepository->verifyUser($token);
 
             return redirect()->route('login')
-            ->with('status', trans('auth.verified_email'))
+            ->with('status', trans('messages.verified_email'))
             ->withInput($user->only('email'));
         } catch (Exception $e) {
             return $e->getMessage();

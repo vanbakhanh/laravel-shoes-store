@@ -58,7 +58,7 @@ class AdminController extends Controller
         try {
             $this->adminRepository->changePassword($request, $id);
 
-            return back()->with('status', 'Password has been changed');
+            return back()->with('status', trans('messages.changed_password'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }

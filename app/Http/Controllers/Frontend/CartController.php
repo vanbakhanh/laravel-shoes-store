@@ -74,6 +74,6 @@ class CartController extends Controller
     {
         $this->cartRepository->checkout();
 
-        return back()->with('status', 'Thank you for shopping at Nike! Your order has been received and is going through verification process.');
+        return back()->with('status', trans('messages.paymented'));
     }
 }

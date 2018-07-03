@@ -97,6 +97,6 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return back()->with('status', trans('auth.verify_email'));
+        return back()->with('status', trans('messages.verify_email'));
     }
 }

@@ -57,7 +57,7 @@ class ColorController extends Controller
         try {
             $this->colorRepository->store($request);
 
-            return back()->with('status', 'Create successful');
+            return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -99,7 +99,7 @@ class ColorController extends Controller
         try {
             $this->colorRepository->update($request, $id);
 
-            return back()->with('status', 'Update successful');
+            return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -116,7 +116,7 @@ class ColorController extends Controller
         try {
             $this->colorRepository->delete($id);
             
-            return back()->with('delete', 'Delete successful');
+            return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }

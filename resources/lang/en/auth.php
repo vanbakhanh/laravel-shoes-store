@@ -43,7 +43,5 @@ return [
     'female' => 'Female',
     'reset_password' => 'Reset password',
     'confirm' => 'Confirm',
-    'verify_email' => 'Check the verify email link that we sent to your email.',
-    'verified_email' => 'Your email has been verifed.',
 
 ];

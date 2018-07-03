@@ -112,7 +112,7 @@ class OrderController extends Controller
         try {
             $this->orderRepository->delete($id);
 
-            return back()->with('status', 'Delete successful');
+            return back()->with('status', trans('messages.deleted_success'));
         } catch (Exception $e) {
             return $e->getMessage();
         }
