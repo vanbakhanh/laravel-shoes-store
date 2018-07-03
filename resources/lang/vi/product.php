@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Product View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder product.
+    |
+    */
+
     'new_title' => 'Sản phẩm mới',
     'edit_title' => 'Chỉnh sửa sản phẩm',
     'list_title' => 'Danh sách sản phẩm',
@@ -34,5 +43,7 @@ return [
     'review' => 'Đánh giá',
     'no_review' => 'Không có đánh giá',
     'write_preview' => 'Viết một đánh giá ...',
+    'colors' => 'Màu sắc',
+    'sizes' => 'Kích thước', 
 
 ];

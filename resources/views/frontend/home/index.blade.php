@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', 'Nike Fake Website')
+@section('title', trans('home.branch'))
 @section('content')
 
-<h3 class="text-center text-uppercase my-4">New arrivals</h3>
+<h3 class="text-center text-uppercase my-4">{{ trans('home.new') }}</h3>
 
 <div class="row">
 	@if ($products->isEmpty())
-		<div class="col-md-12 text-center"><p>There are no items.</p></div>
+	<div class="col-md-12 text-center"><p>{{ trans('home.empty') }}</p></div>
 	@else
 	@foreach ($products as $product)
 	<div class="col-lg-3 col-md-3 col-sm-4 col-6 mb-4">
@@ -20,7 +20,9 @@
 						<a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
 					</small>
 				</h5>
-				<p class="card-text m-0 p-0">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>
+				<p class="card-text m-0 p-0">
+					{{ $product->colors()->count() }} {{ trans('home.colors') }} | {{ $product->sizes()->count() }} {{ trans('home.sizes') }}
+				</p>
 				<p class="card-text m-0 p-0">${{ $product->price }}</p>
 			</div>
 		</div>

@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder dashboard.
+    |
+    */
+
     'dashboard' => 'Bảng điều khiển',
     'admin' => 'Người quản lý',
     'view' => 'Xem',

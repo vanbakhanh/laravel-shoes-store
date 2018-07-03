@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Product View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder product.
+    |
+    */
+
     'new_title' => 'New product',
     'edit_title' => 'Edit product',
     'list_title' => 'List product',
@@ -34,5 +43,7 @@ return [
     'review' => 'Review',
     'no_review' => 'No review',
     'write_preview' => 'Write a review ...',
+    'colors' => 'Colors',
+    'sizes' => 'Sizes', 
 
 ];

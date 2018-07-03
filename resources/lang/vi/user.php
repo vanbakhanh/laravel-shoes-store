@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | User View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder user.
+    |
+    */
+
     'list_title' => 'Danh sách người dùng',
     'empty' => 'Không có danh sách nào',
     'name' => 'Tên',

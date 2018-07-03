@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Category View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder category.
+    |
+    */
+
     'new_title' => 'New category',
     'edit_title' => 'Edit category',
     'list_title' => 'List category',

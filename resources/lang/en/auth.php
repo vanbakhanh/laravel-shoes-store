@@ -16,6 +16,15 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Auth View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder auth.
+    |
+    */
+
     'login' => 'Login',
     'email' => 'Email',
     'password' => 'Password',

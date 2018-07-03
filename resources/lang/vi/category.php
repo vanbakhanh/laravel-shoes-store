@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Category View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder category.
+    |
+    */
+
     'new_title' => 'Danh mục mới',
     'edit_title' => 'Chỉnh sửa danh mục',
     'list_title' => 'Danh sách danh mục',

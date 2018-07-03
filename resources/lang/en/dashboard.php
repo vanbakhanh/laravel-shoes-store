@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder dashboard.
+    |
+    */
+
     'dashboard' => 'Dashboard',
     'admin' => 'Administrator',
     'view' => 'View',

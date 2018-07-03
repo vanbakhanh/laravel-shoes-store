@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Size View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder size.
+    |
+    */
+
     'new_title' => 'Kích thước mới',
     'edit_title' => 'Chỉnh sửa kích thước',
     'list_title' => 'Danh sách kích thước',

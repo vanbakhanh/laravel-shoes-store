@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Color View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder color.
+    |
+    */
+
     'new_title' => 'Màu sắc mới',
     'edit_title' => 'Chỉnh sửa màu sắc',
     'list_title' => 'Danh sách màu sắc',

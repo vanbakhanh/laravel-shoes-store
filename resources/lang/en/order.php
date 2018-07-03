@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Order View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder order.
+    |
+    */
+
     'manager' => 'Order manager',
     'pending' => 'Pending',
     'id' => 'ID',

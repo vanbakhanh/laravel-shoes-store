@@ -16,6 +16,15 @@ return [
     'failed' => 'Các thông tin đăng nhập này không khớp với hồ sơ của chúng tôi.',
     'throttle' => 'Quá nhiều lần đăng nhập. Vui lòng thử lại sau :seconds giây.',
 
+    /*
+    |--------------------------------------------------------------------------
+    | Auth View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder auth.
+    |
+    */
+
     'login' => 'Đăng nhập',
     'email' => 'Email',
     'password' => 'Mật khẩu',

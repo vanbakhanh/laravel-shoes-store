@@ -94,7 +94,9 @@
 						<a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
 					</small>
 				</h5>
-				<p class="card-text m-0 p-0">{{ $product->colors()->count() }} Colors | {{ $product->sizes()->count() }} Sizes</p>
+				<p class="card-text m-0 p-0">
+					{{ $product->colors()->count() }} {{ trans('product.colors') }} | {{ $product->sizes()->count() }} {{ trans('product.sizes') }}
+				</p>
 				<p class="card-text m-0 p-0">${{ $product->price }}</p>
 			</div>
 		</div>

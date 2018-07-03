@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder admin.
+    |
+    */
+
     'title' => 'List administrator',
     'empty' => 'There is no admin',
     'name' => 'Name',

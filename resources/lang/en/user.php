@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | User View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder user.
+    |
+    */
+
     'list_title' => 'List user',
     'empty' => 'There is no user',
     'name' => 'Name',

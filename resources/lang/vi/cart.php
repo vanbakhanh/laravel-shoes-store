@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Cart View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder cart.
+    |
+    */
+
     'cart' => 'Giỏ hàng',
     'detail' => 'Chi tiết đơn hàng',
     'empty' => 'Không có sản phẩm nào trong giỏ hàng.',

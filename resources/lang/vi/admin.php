@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder admin.
+    |
+    */
+
     'title' => 'Danh sách quản trị viên',
     'empty' => 'Không có danh sách nào',
     'name' => 'Tên',

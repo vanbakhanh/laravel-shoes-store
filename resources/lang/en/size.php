@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Size View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder size.
+    |
+    */
+
     'new_title' => 'New size',
     'edit_title' => 'Edit size',
     'list_title' => 'List size',

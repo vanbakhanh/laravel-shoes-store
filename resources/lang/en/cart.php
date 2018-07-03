@@ -2,6 +2,15 @@
 
 return [
 
+    /*
+    |--------------------------------------------------------------------------
+    | Cart View Language Lines
+    |--------------------------------------------------------------------------
+    |
+    | Include all view in folder cart.
+    |
+    */
+
     'cart' => 'Cart',
     'detail' => 'Order detail',
     'empty' => 'There is no item in cart.',
