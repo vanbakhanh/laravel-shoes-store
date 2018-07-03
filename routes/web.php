@@ -105,7 +105,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::group(array('namespace' => 'Frontend'), function() {
         Route::get('/cart', 'CartController@index')->name('cart.index');
         Route::post('/cart/add', 'CartController@addItem')->name('cart.add');
-        Route::get('/cart/remove/{rowId}', 'CartController@removeItem')->name('cart.remove');
+        Route::delete('/cart/remove/{rowId}', 'CartController@removeItem')->name('cart.remove');
         Route::post('/cart/update', 'CartController@update')->name('cart.update');
         Route::get('/checkout', 'CartController@checkout')->name('checkout');
     });

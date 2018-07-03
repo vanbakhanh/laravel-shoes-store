@@ -147,7 +147,8 @@
 			});
 			jQuery.ajax({
 				url: "{{ route('cart.remove', $item->rowId) }}",
-				method: 'GET',
+				method: 'POST',
+				data: { _method: 'DELETE' },
 				success: function() {
 					location.reload();
 				},

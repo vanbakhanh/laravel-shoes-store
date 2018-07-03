@@ -54,7 +54,7 @@
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
 					<h4 class="alert-heading">Warning!</h4>
-					<p class="mb-0">There is no category! <a href="{{ route('category.create') }}" class="alert-link">Click here to create new</a>.</p>
+					<p class="mb-0">There is no category.</p>
 				</div>
 				@else
 				<table id="table" class="table table-hover table-bordered">
