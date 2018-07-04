@@ -45,7 +45,7 @@ class CartRepository implements CartRepositoryInterface
 		$user = Auth::user();
 		
 		$order = $user->orders()->create([
-			'total' => Cart::total(),
+			'total' => Cart::total(2, '.', ''),
 			'status' => 'Pending',
 			'quantity' => Cart::count(),
 			'address' => $user->address,

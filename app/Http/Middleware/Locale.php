@@ -15,11 +15,11 @@ class Locale
      */
     public function handle($request, Closure $next)
     {
-        $language = \Session::get('website_language', config('app.locale'));
         // Get data in Session, if null return default
-
-        config(['app.locale' => $language]);
+        $language = \Session::get('website_language', config('app.locale'));
+        
         // Transfer the app to the selected language
+        config(['app.locale' => $language]);
 
         return $next($request);
     }
