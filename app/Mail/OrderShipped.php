@@ -12,7 +12,7 @@ class OrderShipped extends Mailable
     use Queueable, SerializesModels;
 
     public $orderProducts;
-    public $orderDetail;
+    public $order;
     public $user;
 
     /**
@@ -20,10 +20,10 @@ class OrderShipped extends Mailable
      *
      * @return void
      */
-    public function __construct($orderProducts, $orderDetail, $user)
+    public function __construct($orderProducts, $order, $user)
     {
         $this->orderProducts = $orderProducts;
-        $this->orderDetail = $orderDetail;
+        $this->order = $order;
         $this->user = $user;
     }
 

@@ -22,13 +22,13 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="float-left">Order #{{ $orderDetail->id }}</h4>
-                    <h4 class="float-right">Total ${{ $orderDetail->total }}</h4>
+                    <h4 class="float-left">Order #{{ $order->id }}</h4>
+                    <h4 class="float-right">Total ${{ $order->total }}</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <p class="float-left">Created at {{ $orderDetail->created_at }}</p>
+                    <p class="float-left">Created at {{ $order->created_at }}</p>
                 </div>
             </div>
             <table class="table table-bordered text-center">
