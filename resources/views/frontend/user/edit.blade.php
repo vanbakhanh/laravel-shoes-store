@@ -6,7 +6,7 @@
     <div class="col-md-4 mb-4">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title my-4">{{ trans('user.status') }}</h3>
+                <h3 class="card-title">{{ trans('user.status') }}</h3>
                 <dl class="row">
                     <dt class="col-sm-4">{{ trans('user.joined') }}</dt>
                     <dd class="col-sm-8">{{ $user->created_at }}</dd>
@@ -21,7 +21,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body">
-                <h3 class="card-title my-4">{{ trans('user.profile', ['name' => $user->name]) }}</h3>
+                <h3 class="card-title">{{ trans('user.profile', ['name' => $user->name]) }}</h3>
                 @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}

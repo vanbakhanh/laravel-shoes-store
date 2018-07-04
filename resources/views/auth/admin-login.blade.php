@@ -6,7 +6,7 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body col-md-8 offset-md-2">
-                <h3 class="card-title my-4">{{ trans('auth.login') }}</h3>
+                <h3 class="card-title">{{ trans('auth.login') }}</h3>
                 <form method="POST" action="{{ route('admin.login.submit') }}">
                     @csrf
                     <div class="form-group">

@@ -4,9 +4,9 @@
 
 <div class="row justify-content-center">
 	<div class="col-md-12">
-		<h3 class="card-title my-4">{{ trans('product.list_title') }}</h3>
 		<div class="card">
 			<div class="card-body table-responsive">
+				<h3 class="card-title">{{ trans('product.list_title') }}</h3>
 				@if (session('delete'))
 				<div class="alert alert-dismissible alert-success">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>

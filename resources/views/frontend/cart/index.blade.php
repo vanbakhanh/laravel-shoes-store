@@ -19,7 +19,7 @@
 
 <div class="card">
 	<div class="card-body">
-		<h3 class="card-title my-4">{{ trans('cart.detail') }}</h3>
+		<h3 class="card-title">{{ trans('cart.detail') }}</h3>
 		@if (Cart::count() == 0)
 		<p class="card-text">{{ trans('cart.empty') }} <a href="{{ route('home') }}" class="card-link">{{ trans('cart.shopping') }}</a></p>
 		@else
@@ -71,7 +71,7 @@
 <div class="card-deck">
 	<div class="card">
 		<div class="card-body table-responsive">
-			<h3 class="card-title my-4">{{ trans('cart.ship_address') }}</h3>
+			<h3 class="card-title">{{ trans('cart.ship_address') }}</h3>
 			@guest
 			<p class="card-text">{{ trans('cart.logged_in') }} <a href="{{ route('login') }}" class="card-link">{{ trans('cart.login') }}</a></p>
 			@else
@@ -103,7 +103,7 @@
 	</div>
 	<div class="card">
 		<div class="card-body table-responsive">
-			<h3 class="card-title my-4">{{ trans('cart.payment') }}</h3>
+			<h3 class="card-title">{{ trans('cart.payment') }}</h3>
 			<table class="table">
 				<tbody>
 					<tr>

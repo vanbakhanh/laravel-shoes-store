@@ -81,9 +81,9 @@
 		<h3 class="text-uppercase">{{ trans('product.recommend_title') }}</h3>
 	</div>
 </div>
-<div class="row">
+<div class="row justify-content-center">
 	@foreach ($products as $product)
-	<div class="col">
+	<div class="col-lg-2 col-md-4 col-sm-4 col-6">
 		<div class="card card-product h-100 text-center">
 			<a href="{{ route('product.show', $product->id) }}">
 				<img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt="">
