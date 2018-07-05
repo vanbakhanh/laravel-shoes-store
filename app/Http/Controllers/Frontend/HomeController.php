@@ -6,7 +6,6 @@ use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Home\SearchRequest;
 
 class HomeController extends Controller
 {
