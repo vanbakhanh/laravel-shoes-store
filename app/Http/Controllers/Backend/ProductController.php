@@ -152,7 +152,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         try {
-            $this->productRepository->delete($id);
+            $this->productRepository->deleteProduct($id);
 
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {

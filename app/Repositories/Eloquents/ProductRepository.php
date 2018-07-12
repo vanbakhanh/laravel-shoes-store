@@ -38,7 +38,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function update($request, $id)
 	{
-		if ($request['image']) {
+		if ($request['image']){
 			$imageName = time() . '.' . $request['image']->getClientOriginalExtension();
 			$request['image']->move(public_path('images/product'), $imageName);
 		}
@@ -103,5 +103,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		->where('gender', $gender)
 		->orderBy('created_at', 'desc')
 		->paginate(24);
+	}
+
+	public function deleteProduct($id)
+	{
+		$productImage = $this->find($id)->image;
+		unlink('images/product/' . $productImage);
+		
+		$this->delete($id);
 	}
 }
