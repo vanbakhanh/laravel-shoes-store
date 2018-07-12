@@ -171,7 +171,7 @@
 	</div>
 </div>
 
-<!-- Add to cart and update cart quatity using ajax -->
+<!-- Add to cart using ajax -->
 <script type="text/javascript">
 	var cart = {{ Cart::count() }};
 	var text = '{{ trans('layouts.cart') }}';
