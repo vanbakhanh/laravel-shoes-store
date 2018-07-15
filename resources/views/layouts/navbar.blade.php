@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light py-2 mb-4">
+<nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light mb-4">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('images/logo-black.png') }}" width="60" height="20" alt="logo">
