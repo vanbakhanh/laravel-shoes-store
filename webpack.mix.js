@@ -16,7 +16,7 @@ const SCSS_PATH = 'resources/assets/sass/';
  |
  */
 
-mix.copyDirectory(NODE_PATH + 'bootstrap/dist/css/bootstrap.min.css', PUBLIC_PATH + 'css')
+mix.copyDirectory(NODE_PATH + 'bootswatch/dist/materia/bootstrap.min.css', PUBLIC_PATH + 'css')
 	.copyDirectory(ASSETS_PATH + 'css/dataTables.bootstrap4.min.css', PUBLIC_PATH + 'css')
 	.copyDirectory(ASSETS_PATH + 'css/dashboard.css', PUBLIC_PATH + 'css')
 	.copyDirectory(ASSETS_PATH + 'css/style.css', PUBLIC_PATH + 'css')

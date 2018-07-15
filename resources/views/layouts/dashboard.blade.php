@@ -76,7 +76,7 @@
         <div id="page-content-wrapper">
             <div class="container">
                 <!-- Navbar -->
-                <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-white rounded border mb-4">
+                <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded mb-4">
                     <div id="toggler">
                         <button id="menu-toggle" class="navbar-toggler" type="button">
                             <span class="navbar-toggler-icon"></span>
@@ -135,7 +135,7 @@
             if (prevScrollpos > currentScrollPos) {
                 document.getElementById("nav-hide").style.top = "0";
             } else {
-                document.getElementById("nav-hide").style.top = "-65px";
+                document.getElementById("nav-hide").style.top = "-100px";
             }
             prevScrollpos = currentScrollPos;
         }

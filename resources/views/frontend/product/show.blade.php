@@ -52,13 +52,19 @@
 				<b>{{ trans('product.quantity') }}</b>
 			</label>
 			<div class="col-md-6">
-				{{ Form::number('qty', 1, ['id' => 'qty', 'class' => 'form-control', 'min' => '1', 'max' => '10']) }}
+				<select class="form-control" name="qty" id="qty">
+					@for ($i = 1; $i<=10; $i++)
+					<option value="{{ $i }}">
+						{{ $i }}
+					</option>
+					@endfor
+				</select>
 			</div>
 		</div>
 		<div class="form-group row mb-0">
 			<div class="col-md-12">
 				{{ Form::hidden('productId', $productSelected->id, ['id' => 'productId']) }}
-				<button type="button" class="btn btn-dark btn-block" id="addToCart">
+				<button type="button" class="btn btn-dark btn-block text-uppercase" id="addToCart">
 					{{ trans('product.add') }}
 				</button>
 			</div>

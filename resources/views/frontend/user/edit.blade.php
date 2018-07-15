@@ -27,7 +27,6 @@
                 </dl>
             </div>
         </div>
-
         <div class="card mb-4">
             <div class="card-body">
                 <h3 class="card-title">{{ trans('user.change_password') }}</h3>

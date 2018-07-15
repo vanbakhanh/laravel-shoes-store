@@ -25,11 +25,13 @@
 
 	@include('layouts.navbar')
 
-	<div class="container">
+	<div class="container" id="content">
 		@yield('content')
 	</div>
 
-	@include('layouts.footer')
-	
+	<div class="container">
+		@include('layouts.footer')
+	</div>
+
 </body>
 </html>
