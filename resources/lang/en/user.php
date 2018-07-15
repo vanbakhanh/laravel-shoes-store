@@ -36,5 +36,6 @@ return [
     'confirm_password' => 'Confirm password',
     'male' => 'Male',
     'female' => 'Female',
+    'total' => 'Total',
 
 ];

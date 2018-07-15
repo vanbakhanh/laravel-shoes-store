@@ -3,8 +3,16 @@
 @section('content')
 
 <div class="row justify-content-center">
-    <div class="col-md-4 mb-4">
-        <div class="card">
+    <div class="col-md-12">
+        @if (session('status'))
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('status') }}
+        </div>
+        @endif
+    </div>
+    <div class="col-md-4">
+        <div class="card mb-4">
             <div class="card-body">
                 <h3 class="card-title">{{ trans('user.status') }}</h3>
                 <dl class="row">
@@ -14,7 +22,38 @@
                     <dd class="col-sm-8">{{ $user->comments->count() }}</dd>
                     <dt class="col-sm-4">{{ trans('user.order') }}</dt>
                     <dd class="col-sm-8">{{ $user->orders->count() }}</dd>
+                    <dt class="col-sm-4">{{ trans('user.total') }}</dt>
+                    <dd class="col-sm-8">${{ $user->orders->sum('total') }}</dd>
                 </dl>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ trans('user.change_password') }}</h3>
+                {{ Form::open(['route' => ['user.password.update', $user->id], 'method' => 'PUT']) }}
+                @csrf
+
+                <div class="form-group">
+                    <label>{{ trans('user.new_password') }}</label>
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                    @if ($errors->has('password'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label>{{ trans('user.confirm_password') }}</label>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                </div>
+
+                <div class="form-group">
+                    {{ Form::submit(trans('user.update'),['class'=>'btn btn-dark']) }}
+                </div>
+                {{ Form::close() }}
             </div>
         </div>
     </div>
@@ -22,11 +61,6 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">{{ trans('user.profile', ['name' => $user->name]) }}</h3>
-                @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-                @endif
                 @if ($errors->any())
                 @foreach ($errors->all() as $err)
                 <p class="alert alert-dismissible alert-danger">

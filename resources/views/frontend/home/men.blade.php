@@ -5,7 +5,7 @@
 <div class="row">
 
 	<div class="col-lg-3">
-		<h3 class="text-uppercase my-4">{{ trans('home.men') }}</h3>
+		<h3 class="text-uppercase mb-4">{{ trans('home.men') }}</h3>
 		<div class="list-group list-group-flush">
 			@foreach ($categories as $category)
 			<a href="{{ route('category.men', $category->id) }}" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
@@ -19,8 +19,8 @@
 	<div class="col-lg-9 tab-content">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-uppercase float-left my-4">{{ trans('home.men_shoes', ['name' => $categorySelected->name]) }} ({{ $products->count() }})</h3>
-				<div class="dropdown float-right my-4">
+				<h3 class="text-uppercase float-left mb-4">{{ trans('home.men_shoes', ['name' => $categorySelected->name]) }} ({{ $products->count() }})</h3>
+				<div class="dropdown float-right mb-4">
 					<button class="btn btn-sm btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ trans('home.sort') }}
 					</button>
@@ -58,7 +58,7 @@
 			@endforeach
 			@endif
 		</div>
-		<div class="d-flex justify-content-center my-4">{{ $products->links() }}</div>
+		<div class="d-flex justify-content-center">{{ $products->links() }}</div>
 	</div>
 
 </div>

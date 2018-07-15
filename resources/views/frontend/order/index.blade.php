@@ -4,8 +4,8 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h3 class="my-4">{{ trans('order.my_order') }} ({{ $orders->count() }})</h3>
-		<div class="list-group list-group-flush">
+		<h3 class="mb-4">{{ trans('order.my_order') }} ({{ $orders->count() }})</h3>
+		<div class="list-group list-group-flush mb-4">
 			@foreach ($orders as $order)
 			<a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
 				{{ $order->created_at }} - {{ trans('order.order') }} {{ $order->id }}
@@ -16,14 +16,14 @@
 	<div class="col-md-9 table-responsive">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="float-left my-4">{{ trans('order.recent') }}</h3>
+				<h3 class="float-left mb-4">{{ trans('order.recent') }}</h3>
 				@if ($orderDetail == null)
 				@else
 				@if ($orderDetail->status == 'Pending')
-				<h3 class="float-right my-4">{{ trans('order.pending') }}</h3>
+				<h3 class="float-right mb-4">{{ trans('order.pending') }}</h3>
 				@endif
 				@if ($orderDetail->status == 'Verified')
-				<h3 class="float-right my-4">{{ trans('order.verified') }}</h3>
+				<h3 class="float-right mb-4">{{ trans('order.verified') }}</h3>
 				@endif
 				@endif
 			</div>

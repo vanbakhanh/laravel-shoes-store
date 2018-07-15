@@ -36,5 +36,6 @@ return [
     'confirm_password' => 'Xác nhận mật khẩu',
     'male' => 'Nam',
     'female' => 'Nữ',
+    'total' => 'Tổng tiền',
 
 ];

@@ -1,15 +1,11 @@
-html {
-	position: relative;
-	min-height: 100%;
-}
-
 body {
-	margin-bottom: 100px;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
 }
 
-.footer {
-	position: absolute;
-	bottom: 0;
+.container {
+	flex: 1;
 }
 
 #nav-hide {

@@ -2,7 +2,7 @@
 @section('title', trans('home.branch'))
 @section('content')
 
-<h3 class="text-center text-uppercase my-4">{{ trans('home.new') }}</h3>
+<h3 class="text-center text-uppercase mb-4">{{ trans('home.new') }}</h3>
 
 <div class="row">
 	@if ($products->isEmpty())
@@ -31,6 +31,6 @@
 	@endif
 </div>
 
-<div class="d-flex justify-content-center my-4">{{ $products->links() }}</div>
+<div class="d-flex justify-content-center">{{ $products->links() }}</div>
 
 @endsection
