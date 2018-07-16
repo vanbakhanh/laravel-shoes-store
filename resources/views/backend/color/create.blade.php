@@ -69,10 +69,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['color.destroy', $color->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('color.edit', $color->id) }}">
+									<a class="btn btn-outline-warning btn-sm" href="{{ route('color.edit', $color->id) }}">
 										{{ trans('color.edit') }}
 									</a>
-									{{ Form::submit(trans('color.delete'), ['class' => 'btn btn-danger btn-sm']) }}
+									{{ Form::submit(trans('color.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>

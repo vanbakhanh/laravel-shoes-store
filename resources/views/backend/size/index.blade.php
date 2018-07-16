@@ -38,10 +38,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['size.destroy', $size->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('size.edit', $size->id) }}">
+									<a class="btn btn-outline-warning btn-sm" href="{{ route('size.edit', $size->id) }}">
 										{{ trans('size.edit') }}
 									</a>
-									{{ Form::submit(trans('size.delete'), ['class' => 'btn btn-danger btn-sm']) }}
+									{{ Form::submit(trans('size.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>

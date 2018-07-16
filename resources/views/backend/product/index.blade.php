@@ -44,10 +44,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['product.destroy', $product->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('product.edit', $product->id) }}">
+									<a class="btn btn-outline-warning btn-sm" href="{{ route('product.edit', $product->id) }}">
 										{{ trans('product.edit') }}
 									</a>
-									{{ Form::submit(trans('product.delete'), ['class' => 'btn btn-danger btn-sm']) }}
+									{{ Form::submit(trans('product.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>

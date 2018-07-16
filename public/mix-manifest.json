@@ -1,10 +1,11 @@
 {
     "/css/bootstrap.min.css": "/css/bootstrap.min.css?id=846fef40664b497e6200",
-    "/css/dashboard.css": "/css/dashboard.css?id=4518e54be5c57ceeeb16",
+    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css?id=edf78b080b220a78a2e9",
+    "/css/dashboard.css": "/css/dashboard.css?id=2eb2fd972f4ec8eff199",
     "/css/style.css": "/css/style.css?id=ed97c813836cc6da959a",
-    "/css/dataTables.bootstrap4.min.css": "/css/dataTables.bootstrap4.min.css?id=3c3c160dc7db7a853dab",
     "/js/jquery.min.js": "/js/jquery.min.js?id=a09e13ee94d51c524b7e",
     "/js/popper.min.js": "/js/popper.min.js?id=83fb8c4d9199dce0224d",
     "/js/bootstrap.min.js": "/js/bootstrap.min.js?id=f92a3f337500984fbd20",
-    "/js/dataTable.js": "/js/dataTable.js?id=a472c29fbab64d4dba68"
+    "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js?id=97fd6a774fc6211e7619",
+    "/js/dataTables.bootstrap4.min.js": "/js/dataTables.bootstrap4.min.js?id=b63fdeeb4941fd4cab8a"
 }

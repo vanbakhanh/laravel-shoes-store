@@ -45,7 +45,7 @@
                             <td>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
                                 @csrf
-                                {{ Form::submit(trans('user.delete'), ['class' => 'btn btn-danger btn-sm']) }}
+                                {{ Form::submit(trans('user.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
                                 {{ Form::close() }}
                             </td>
                         </tr>

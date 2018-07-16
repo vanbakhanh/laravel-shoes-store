@@ -17,7 +17,8 @@
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dataTable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
 
     <!-- Title -->
     <title>@yield('title')</title>
@@ -118,9 +119,9 @@
                 <!-- Content -->
                 @yield('content')
             </div>
-            <div class="container">
-                @include('layouts.footer')
-            </div>
+            
+            <!-- Footer -->
+            @include('layouts.footer')
         </div>
     </div>
 

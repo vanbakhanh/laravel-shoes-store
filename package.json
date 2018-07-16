@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.1.0",
-        "bootswatch": "^4.1.2"
+        "bootswatch": "^4.1.2",
+        "datatables.net-bs4": "^1.10.19"
     }
 }

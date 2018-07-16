@@ -75,10 +75,10 @@
 								{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
 								@csrf
 								<div class="btn-group btn-group-toggle">
-									<a class="btn btn-warning btn-sm" href="{{ route('category.edit',$category->id) }}">
+									<a class="btn btn-outline-warning btn-sm" href="{{ route('category.edit',$category->id) }}">
 										{{ trans('category.edit') }}
 									</a>
-									{{ Form::submit(trans('category.delete'), ['class' => 'btn btn-danger btn-sm']) }}
+									{{ Form::submit(trans('category.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
 								</div>
 								{{ Form::close() }}
 							</td>
