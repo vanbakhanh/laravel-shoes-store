@@ -9,8 +9,8 @@
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -68,13 +68,15 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layouts.logout') }}</a>
-                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">@csrf</form>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>
 
         <div id="page-content-wrapper">
-            <div class="container">
+            <div class="container" id="content">
                 <!-- Navbar -->
                 <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded mb-4">
                     <div id="toggler">
@@ -115,6 +117,9 @@
 
                 <!-- Content -->
                 @yield('content')
+            </div>
+            <div class="container">
+                @include('layouts.footer')
             </div>
         </div>
     </div>

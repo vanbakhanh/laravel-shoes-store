@@ -32,8 +32,8 @@
         </div>
     </div>
 </div>
-
-<div class="card-deck text-center my-4">
+<br>
+<div class="card-deck text-center">
     <div class="card">
         <div class="card-body">
             @if (Auth::guard('web')->check())

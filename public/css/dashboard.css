@@ -1,13 +1,7 @@
+/* Wrapper Styles */
+
 body {
     overflow-x: hidden;
-}
-
-#nav-hide {
-    transition: all 0.3s ease;
-}
-
-#toggler .navbar-toggler {
-    display: initial !important;
 }
 
 #wrapper {
@@ -95,7 +89,6 @@ body {
         width: 250px;
     }
     #page-content-wrapper {
-        padding: 20px;
         position: relative;
     }
     #wrapper.toggled #page-content-wrapper {
@@ -105,4 +98,24 @@ body {
     #toggler {
         margin-right: 1rem;
     }
+}
+
+/* Custom Styles */
+
+#nav-hide {
+    transition: all 0.3s ease;
+}
+
+#toggler .navbar-toggler {
+    display: initial !important;
+}
+
+#page-content-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1;
 }
