@@ -32,7 +32,7 @@
 					{{ Form::textarea('description', $category->description, ['class' => 'form-control', 'maxlength' => '255', 'rows' => '3']) }}
 				</div>	
 				<div class="form-group">
-					{{ Form::submit(trans('category.update'), ['class' => 'btn btn-dark' ]) }}
+					{{ Form::submit(trans('category.update'), ['class' => 'btn btn-primary' ]) }}
 				</div>
 			</div>
 		</div>

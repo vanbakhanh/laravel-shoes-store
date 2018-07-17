@@ -28,7 +28,7 @@
 					{{ Form::text('name', '', ['class' => 'form-control']) }}	
 				</div>
 				<div class="form-group">
-					{{ Form::submit(trans('size.create') , ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('size.create') , ['class' => 'btn btn-primary']) }}
 				</div>
 			</div>
 		</div>

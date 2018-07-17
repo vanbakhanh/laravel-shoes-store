@@ -96,7 +96,7 @@
 				</tbody>
 			</table>
 			<div class="text-right">
-				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-dark">{{ trans('cart.edit') }}</a>
+				<a href="{{ route('user.edit', Auth::user()->id) }}" class="btn btn-primary">{{ trans('cart.edit') }}</a>
 			</div>
 			@endguest
 		</div>
@@ -127,7 +127,7 @@
 			<div class="text-right">
 				@if (Cart::count() == 0)
 				@else
-				<a href="{{ route('checkout') }}" class="btn btn-dark">{{ trans('cart.checkout') }}</a>
+				<a href="{{ route('checkout') }}" class="btn btn-primary">{{ trans('cart.checkout') }}</a>
 				@endif
 			</div>
 		</div>

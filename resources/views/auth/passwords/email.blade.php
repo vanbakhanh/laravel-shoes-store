@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-dark">
+                        <button type="submit" class="btn btn-primary">
                             {{ trans('auth.confirm') }}
                         </button>
                     </div>

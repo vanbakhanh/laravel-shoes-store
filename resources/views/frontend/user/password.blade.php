@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="form-group">
-                    {{ Form::submit(trans('user.update'),['class'=>'btn btn-dark']) }}
+                    {{ Form::submit(trans('user.update'),['class'=>'btn btn-primary']) }}
                 </div>
                 {{ Form::close() }}
             </div>

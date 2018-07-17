@@ -64,7 +64,7 @@
 		<div class="form-group row mb-0">
 			<div class="col-md-12">
 				{{ Form::hidden('productId', $productSelected->id, ['id' => 'productId']) }}
-				<button type="button" class="btn btn-dark btn-block text-uppercase" id="addToCart">
+				<button type="button" class="btn btn-primary btn-block text-uppercase" id="addToCart">
 					{{ trans('product.add') }}
 				</button>
 			</div>
@@ -129,7 +129,7 @@
 </div>
 
 @guest
-<div class="alert alert-dismissible alert-dark">
+<div class="alert alert-dismissible alert-primary">
 	<button type="button" class="close" data-dismiss="alert">&times;</button>
 	<a href="{{ route('login') }}" class="alert-link">{{ trans('product.login') }}</a>
 </div>
@@ -142,7 +142,7 @@
 		<div class="form-group">
 			{{ Form::textarea('content', '', ['placeholder' => trans('product.write_preview'), 'class' => 'form-control', 'rows' => '2', 'maxlength' => '255', 'id' => 'content']) }}
 		</div>
-		<button type="button" class="btn btn-dark float-right" id="comment">
+		<button type="button" class="btn btn-primary float-right" id="comment">
 			{{ trans('product.review') }}
 		</button>
 		{{ Form::close() }}

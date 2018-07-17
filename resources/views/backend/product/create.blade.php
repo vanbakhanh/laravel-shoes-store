@@ -66,7 +66,7 @@
 				</div>
 
 				<div class="form-group">
-					{{ Form::submit(trans('product.create'), ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('product.create'), ['class' => 'btn btn-primary']) }}
 				</div>
 			</div>
 		</div>

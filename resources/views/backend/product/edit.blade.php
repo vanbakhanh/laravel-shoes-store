@@ -81,7 +81,7 @@
 					{{ Form::file('image', ['class' => 'form-control-file']) }}
 				</div>
 				<div class="form-group">
-					{{ Form::submit(trans('product.update'), ['class' => 'btn btn-dark']) }}
+					{{ Form::submit(trans('product.update'), ['class' => 'btn btn-primary']) }}
 				</div>
 			</div>
 		</div>
