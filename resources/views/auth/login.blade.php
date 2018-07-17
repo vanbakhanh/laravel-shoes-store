@@ -16,7 +16,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                        <label>{{ trans('auth.email') }}</label>
+                        <label for="email">{{ trans('auth.email') }}</label>
 
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>{{ trans('auth.password') }}</label>
+                        <label for="password">{{ trans('auth.password') }}</label>
 
                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
@@ -47,14 +47,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group text-right">
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            {{ trans('auth.forgot') }}
-                        </a>
-                        
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">
                             {{ trans('auth.login') }}
                         </button>
+                        
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ trans('auth.forgot') }}
+                        </a>
                     </div>
                 </form>
             </div>

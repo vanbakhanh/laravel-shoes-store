@@ -149,6 +149,11 @@
                 <div class="tab-content">
                     <div id="login" class="tab-pane fade active show">
                         @if (session('status'))
+                        <script type="text/javascript">
+                            $(window).on('load', function() {
+                                $('#authModalCenter').modal('show');
+                            });
+                        </script>
                         <div class="alert alert-dismissible alert-success">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             {{ session('status') }}
@@ -164,9 +169,9 @@
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="form-group">
-                                <label>{{ trans('auth.email') }}</label>
+                                <label for="emailLogin">{{ trans('auth.email') }}</label>
 
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="emailLogin" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback">
@@ -175,9 +180,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>{{ trans('auth.password') }}</label>
+                                <label for="passwordLogin">{{ trans('auth.password') }}</label>
 
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="passwordLogin" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
                                 <span class="invalid-feedback">
@@ -192,21 +197,26 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group text-right">
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ trans('auth.forgot') }}
-                                </a>
-                                <button type="button" class="btn btn-link" data-dismiss="modal">
-                                    {{ trans('auth.cancel') }}
-                                </button>
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
                                     {{ trans('auth.login') }}
                                 </button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">
+                                    {{ trans('auth.cancel') }}
+                                </button>
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ trans('auth.forgot') }}
+                                </a>
                             </div>
                         </form>
                     </div>
                     <div id="register" class="tab-pane fade">
                         @if (session('status'))
+                        <script type="text/javascript">
+                            $(window).on('load', function() {
+                                $('#authModalCenter').modal('show');
+                            });
+                        </script>
                         <div class="alert alert-dismissible alert-success">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             {{ session('status') }}
@@ -233,9 +243,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="email">{{ trans('auth.email') }}</label>
+                                <label for="emailRegister">{{ trans('auth.email') }}</label>
 
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="emailRegister" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback">
@@ -244,9 +254,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="password">{{ trans('auth.password') }}</label>
+                                <label for="passwordRegister">{{ trans('auth.password') }}</label>
 
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="passwordRegister" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                 @if ($errors->has('password'))
                                 <span class="invalid-feedback">
@@ -306,12 +316,12 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="form-group text-right">
-                                <button type="button" class="btn btn-link" data-dismiss="modal">
-                                    {{ trans('auth.cancel') }}
-                                </button>
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
                                     {{ trans('auth.register') }}
+                                </button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">
+                                    {{ trans('auth.cancel') }}
                                 </button>
                             </div>
                         </form>

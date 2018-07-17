@@ -108,7 +108,7 @@
                         @endif
                     </div>
 
-                    <div class="form-group text-right">
+                    <div class="form-group">
                         <button type="submit" class="btn btn-primary">
                             {{ trans('auth.register') }}
                         </button>
