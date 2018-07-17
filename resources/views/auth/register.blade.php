@@ -97,30 +97,29 @@
                         <label for="gender">{{ trans('auth.gender') }}</label>
 
                         <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
-                          <option value="male">{{ trans('auth.male') }}</option>
-                          <option value="female">{{ trans('auth.female') }}</option>
-                      </select>
+                            <option value="male">{{ trans('auth.male') }}</option>
+                            <option value="female">{{ trans('auth.female') }}</option>
+                        </select>
 
-                      @if ($errors->has('gender'))
-                      <span class="invalid-feedback">
-                        <strong>{{ $errors->first('gender') }}</strong>
-                    </span>
-                    @endif
-                </div>
+                        @if ($errors->has('gender'))
+                        <span class="invalid-feedback">
+                            <strong>{{ $errors->first('gender') }}</strong>
+                        </span>
+                        @endif
+                    </div>
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-dark">
-                        {{ trans('auth.register') }}
-                    </button>
-                </div>
-            </form>
-        </div>
-
-        <div class="card-footer text-center">
-            {{ trans('auth.have_account') }} <a href="{{ route('login') }}">{{ trans('auth.login') }}</a>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">
+                            {{ trans('auth.register') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                {{ trans('auth.have_account') }} <a href="{{ route('login') }}">{{ trans('auth.login') }}</a>
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 @endsection

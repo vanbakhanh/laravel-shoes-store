@@ -62,9 +62,29 @@
                         {{ trans('layouts.cart') }} {{ Cart::count() }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{ trans('layouts.language') }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
+                            {{ trans('layouts.english') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
+                            {{ trans('layouts.vietnamese') }}
+                        </a>
+                    </div>
+                </li>
+                <form class="form-inline">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#authModalCenter">
                         {{ trans('layouts.login') }}
+                    </button>
+                </form>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
+                        {{ trans('layouts.cart') }} {{ Cart::count() }}
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -79,12 +99,6 @@
                             {{ trans('layouts.vietnamese') }}
                         </a>
                     </div>
-                </li>
-                @else
-                <li class="nav-item">
-                    <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
-                        {{ trans('layouts.cart') }} {{ Cart::count() }}
-                    </a>
                 </li>
                 <li class="dropdown nav-item">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -108,24 +122,205 @@
                         </form>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layouts.language') }}
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
-                            {{ trans('layouts.english') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
-                            {{ trans('layouts.vietnamese') }}
-                        </a>
-                    </div>
-                </li>
                 @endguest
             </ul>
         </div>
     </div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="authModalCenter" tabindex="-1" role="dialog" aria-labelledby="authModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <ul class="nav nav-tabs nav-fill">
+                    <li class="nav-item">
+                        <a data-toggle="tab" class="nav-link active show" href="#login">
+                            {{ trans('auth.login') }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a data-toggle="tab" class="nav-link" href="#register">
+                            {{ trans('auth.register') }}
+                        </a>
+                    </li>
+                </ul>
+                <br>
+                <div class="tab-content">
+                    <div id="login" class="tab-pane fade active show">
+                        @if (session('status'))
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session('status') }}
+                        </div>
+                        @endif
+                        @if ($errors->any())
+                        <script type="text/javascript">
+                            $(window).on('load', function() {
+                                $('#authModalCenter').modal('show');
+                            });
+                        </script>
+                        @endif
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label>{{ trans('auth.email') }}</label>
+
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+                                @if ($errors->has('email'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>{{ trans('auth.password') }}</label>
+
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ trans('auth.remember') }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group text-right">
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ trans('auth.forgot') }}
+                                </a>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">
+                                    {{ trans('auth.cancel') }}
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ trans('auth.login') }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="register" class="tab-pane fade">
+                        @if (session('status'))
+                        <div class="alert alert-dismissible alert-success">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            {{ session('status') }}
+                        </div>
+                        @endif
+                        @if ($errors->any())
+                        <script type="text/javascript">
+                            $(window).on('load', function() {
+                                $('#authModalCenter').modal('show');
+                            });
+                        </script>
+                        @endif
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="form-group">
+                                <label for="name">{{ trans('auth.name') }}</label>
+
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="email">{{ trans('auth.email') }}</label>
+
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="password">{{ trans('auth.password') }}</label>
+
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="password-confirm">{{ trans('auth.confirm_password') }}</label>
+
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">{{ trans('auth.address') }}</label>
+
+                                <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>
+
+                                @if ($errors->has('address'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('address') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="phone"">{{ trans('auth.phone') }}</label>
+
+                                <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
+
+                                @if ($errors->has('phone'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('phone') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">{{ trans('auth.birthday') }}</label>
+
+                                <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
+
+                                @if ($errors->has('birthday'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('birthday') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">{{ trans('auth.gender') }}</label>
+
+                                <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
+                                    <option value="male">{{ trans('auth.male') }}</option>
+                                    <option value="female">{{ trans('auth.female') }}</option>
+                                </select>
+
+                                @if ($errors->has('gender'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('gender') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group text-right">
+                                <button type="button" class="btn btn-link" data-dismiss="modal">
+                                    {{ trans('auth.cancel') }}
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ trans('auth.register') }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar -->
 <script type="text/javascript">

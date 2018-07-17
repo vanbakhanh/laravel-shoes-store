@@ -43,5 +43,6 @@ return [
     'female' => 'Female',
     'reset_password' => 'Reset password',
     'confirm' => 'Confirm',
+    'cancel' => 'Cancel',
 
 ];

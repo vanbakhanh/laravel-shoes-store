@@ -47,18 +47,17 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-dark">
-                            {{ trans('auth.login') }}
-                        </button>
-
+                    <div class="form-group text-right">
                         <a class="btn btn-link" href="{{ route('password.request') }}">
                             {{ trans('auth.forgot') }}
                         </a>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            {{ trans('auth.login') }}
+                        </button>
                     </div>
                 </form>
             </div>
-
             <div class="card-footer text-center">
                 {{ trans('auth.dont_have_account') }} <a href="{{ route('register') }}">{{ trans('auth.register') }}</a>
             </div>
