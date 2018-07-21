@@ -5,11 +5,11 @@
             <img src="{{ asset('images/logo-black.png') }}" width="60" height="20" alt="logo">
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarColor03">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
@@ -47,12 +47,10 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav mr-auto">
-                <!-- Search Form -->
-                {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0', 'role' => 'search']) }}
-                {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm', 'placeholder' => trans('layouts.search')]) }}
-                {{ Form::close() }}
-            </ul>
+            <!-- Search Form -->
+            {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0 mr-auto', 'role' => 'search']) }}
+            {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm', 'placeholder' => trans('layouts.search')]) }}
+            {{ Form::close() }}
 
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
@@ -64,7 +62,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layouts.language') }}
+                        @if ('vi' == session()->get('website_language', 'en'))
+                        {{ trans('layouts.vietnamese') }}
+                        @else
+                        {{ trans('layouts.english') }}
+                        @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
@@ -89,7 +91,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ trans('layouts.language') }}
+                        @if ('vi' == session()->get('website_language', 'en'))
+                        {{ trans('layouts.vietnamese') }}
+                        @else
+                        {{ trans('layouts.english') }}
+                        @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
@@ -232,9 +238,9 @@
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="name">{{ trans('auth.name') }}</label>
+                                <label for="nameRegister">{{ trans('auth.name') }}</label>
 
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="nameRegister" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback">
@@ -265,14 +271,14 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="password-confirm">{{ trans('auth.confirm_password') }}</label>
+                                <label for="password-confirmRegister">{{ trans('auth.confirm_password') }}</label>
 
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirmRegister" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                             <div class="form-group">
-                                <label for="address">{{ trans('auth.address') }}</label>
+                                <label for="addressRegister">{{ trans('auth.address') }}</label>
 
-                                <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>
+                                <input id="addressRegister" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus>
 
                                 @if ($errors->has('address'))
                                 <span class="invalid-feedback">
@@ -281,9 +287,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="phone"">{{ trans('auth.phone') }}</label>
+                                <label for="phoneRegister">{{ trans('auth.phone') }}</label>
 
-                                <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
+                                <input id="phoneRegister" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
 
                                 @if ($errors->has('phone'))
                                 <span class="invalid-feedback">
@@ -292,9 +298,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="birthday">{{ trans('auth.birthday') }}</label>
+                                <label for="birthdayRegister">{{ trans('auth.birthday') }}</label>
 
-                                <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
+                                <input id="birthdayRegister" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
 
                                 @if ($errors->has('birthday'))
                                 <span class="invalid-feedback">
@@ -303,9 +309,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="gender">{{ trans('auth.gender') }}</label>
+                                <label for="genderRegister">{{ trans('auth.gender') }}</label>
 
-                                <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
+                                <select id="genderRegister" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required autofocus>
                                     <option value="male">{{ trans('auth.male') }}</option>
                                     <option value="female">{{ trans('auth.female') }}</option>
                                 </select>

@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="phone"">{{ trans('auth.phone') }}</label>
+                        <label for="phone">{{ trans('auth.phone') }}</label>
 
                         <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required autofocus>
 
