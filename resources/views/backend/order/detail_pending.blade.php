@@ -4,11 +4,11 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h3 class="my-4">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
+		<h3 class="my-4">{{ trans('order.pending') }} ({{ $ordersPending->count() }})</h3>
 		<div class="list-group list-group-flush">
-			@foreach ($ordersVerified as $orderVerified)
-			<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="list-group-item list-group-item-action">
-				{{ $orderVerified->created_at }} - {{ trans('order.order') }} {{ $orderVerified->id }}
+			@foreach ($ordersPending as $orderPending)
+			<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="list-group-item list-group-item-action">
+				{{ $orderPending->created_at }} - {{ trans('order.order') }} {{ $orderPending->id }}
 			</a>
 			@endforeach
 		</div>
@@ -37,7 +37,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($orderDetail->products as $orderProduct)
+				@foreach ($orderDetail->product as $orderProduct)
 				<tr>
 					<td><a href="{{ route('product.show', $orderProduct->pivot->product_id) }}">{{ $orderProduct->name }}</a></td>
 					<td>{{ $orderProduct->pivot->qty }}</td>
@@ -72,6 +72,9 @@
 				</tr>
 			</tbody>
 		</table>
+		<div class="row mb-4">
+			<a href="{{ route('order.verify', $orderDetail->id) }}" class="btn btn-primary btn-block">{{ trans('order.verify') }}</a>
+		</div>
 	</div>
 </div>
 

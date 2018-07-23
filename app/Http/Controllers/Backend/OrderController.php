@@ -71,7 +71,7 @@ class OrderController extends Controller
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
-        return view('backend.order.detail-pending', compact([
+        return view('backend.order.detail_pending', compact([
             'ordersPending', 'orderDetail'
         ]));
     }
@@ -85,7 +85,7 @@ class OrderController extends Controller
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
-        return view('backend.order.detail-verified', compact([
+        return view('backend.order.detail_verified', compact([
             'ordersVerified', 'orderDetail'
         ]));
     }

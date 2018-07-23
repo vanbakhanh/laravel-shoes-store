@@ -27,8 +27,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 			$product = $category->products()->create($data);
 
-			$product->colors()->attach($request['color']);
-			$product->sizes()->attach($request['size']);
+			$product->color()->attach($request['color']);
+			$product->size()->attach($request['size']);
 
 			return true;
 		}
@@ -53,8 +53,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 			$product = $this->findOrFail($id);
 			$product->update($data);
 
-			$product->colors()->sync($request['color']);
-			$product->sizes()->sync($request['size']);
+			$product->color()->sync($request['color']);
+			$product->size()->sync($request['size']);
 
 			return true;
 		}
@@ -80,12 +80,12 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function selectedColors($product)
 	{
-		return $product->colors->pluck('id')->toArray();
+		return $product->color->pluck('id')->toArray();
 	}
 
 	public function selectedSizes($product)
 	{
-		return $product->sizes->pluck('id')->toArray();
+		return $product->size->pluck('id')->toArray();
 	}
 
 	public function searchProduct($keyword)

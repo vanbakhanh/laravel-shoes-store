@@ -51,7 +51,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($orderDetail->products as $orderProduct)
+				@foreach ($orderDetail->product as $orderProduct)
 				<tr>
 					<td class="text-left">
 						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50" alt="image" class="mr-2">

@@ -80,8 +80,8 @@
 										{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderVerified->id]]) }}
 										@csrf
 										<div class="btn-group btn-group-toggle">
-											<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="btn btn-primary btn-sm">{{ trans('order.detail') }}</a>
-											{{ Form::submit(trans('order.delete'), ['class' => 'btn btn-danger btn-sm']) }}
+											<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a>
+											{{ Form::submit(trans('order.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
 										</div>
 										{{ Form::close() }}
 									</td>

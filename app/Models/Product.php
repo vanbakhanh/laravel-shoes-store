@@ -15,12 +15,12 @@ class Product extends Model
     	return $this->belongsTo('App\Models\Category');
     }
 
-    public function colors()
+    public function color()
     {
     	return $this->belongsToMany('App\Models\Color')->withTimestamps();
     }
 
-    public function sizes()
+    public function size()
     {
     	return $this->belongsToMany('App\Models\Size')->withTimestamps();
     }
@@ -30,7 +30,7 @@ class Product extends Model
         return $this->hasMany('App\Models\Comment');
     }
 
-    public function orders()
+    public function order()
     {
         return $this->belongsToMany('App\Models\Order')->withTimestamps()->withPivot('qty', 'total', 'color', 'size');
     }

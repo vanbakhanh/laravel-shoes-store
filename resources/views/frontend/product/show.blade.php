@@ -25,7 +25,7 @@
 			</label>
 			<div class="col-md-6">
 				<select class="form-control" name="color" id="color">
-					@foreach ($productSelected->colors()->pluck('name')->sort() as $color)
+					@foreach ($productSelected->color()->pluck('name')->sort() as $color)
 					<option value="{{ $color }}">
 						{{ $color }}
 					</option>
@@ -39,7 +39,7 @@
 			</label>
 			<div class="col-md-6">
 				<select class="form-control" name="size" id="size">
-					@foreach ($productSelected->sizes()->pluck('name')->sort() as $size)
+					@foreach ($productSelected->size()->pluck('name')->sort() as $size)
 					<option value="{{ $size }}">
 						{{ $size }}
 					</option>
@@ -101,7 +101,7 @@
 					</small>
 				</h5>
 				<p class="card-text m-0 p-0">
-					{{ $product->colors()->count() }} {{ trans('product.colors') }} | {{ $product->sizes()->count() }} {{ trans('product.sizes') }}
+					{{ $product->color()->count() }} {{ trans('product.colors') }} | {{ $product->size()->count() }} {{ trans('product.sizes') }}
 				</p>
 				<p class="card-text m-0 p-0">${{ $product->price }}</p>
 			</div>

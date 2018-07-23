@@ -10,7 +10,7 @@ class Size extends Model
     	'name'
     ];
     
-   	public function products()
+   	public function product()
    	{
     	return $this->belongsToMany('App\Models\Product');
     }
