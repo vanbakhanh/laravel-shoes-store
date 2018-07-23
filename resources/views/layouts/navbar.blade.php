@@ -135,6 +135,7 @@
 </nav>
 
 <!-- Modal -->
+@guest
 <div class="modal fade" id="authModalCenter" tabindex="-1" role="dialog" aria-labelledby="authModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -337,6 +338,7 @@
         </div>
     </div>
 </div>
+@endguest
 
 <!-- When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar -->
 <script type="text/javascript">
