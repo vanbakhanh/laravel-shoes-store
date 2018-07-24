@@ -4,10 +4,10 @@
 
 <!-- Portfolio Item Row -->
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-lg-6 col-md-12">
 		<img class="img-fluid mw-100" src="{{ asset('images/product/' . $productSelected->image) }}">
 	</div>
-	<div class="col-md-6 text-center">
+	<div class="col-lg-6 col-md-12 text-center">
 		<p class="mt-2 mb-4">
 			@if ($productSelected->gender == 'male') 
 			{{ trans('product.category_men', ['category' => $categorySelected->name]) }} 

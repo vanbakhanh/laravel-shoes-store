@@ -20,7 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.1.1",
+        "@fortawesome/fontawesome-free": "^5.2.0",
         "bootswatch": "^4.1.2",
         "datatables.net-bs4": "^1.10.19"
     }
