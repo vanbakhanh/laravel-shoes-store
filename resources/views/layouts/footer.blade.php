@@ -1,5 +1,5 @@
 <div class="container">
-	<footer class="py-3 mt-4 bg-light border-top">
+	<footer class="py-4 mt-4 bg-light border-top">
 		<div class="row">
 			<div class="col text-left">
 				<p class="m-0">

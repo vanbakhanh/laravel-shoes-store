@@ -21,7 +21,7 @@
 			<div class="col-md-12">
 				<h3 class="text-uppercase float-left mb-4">{{ trans('home.women_shoes', ['name' => $categorySelected->name]) }} ({{ $products->count() }})</h3>
 				<div class="dropdown float-right mb-4">
-					<button class="btn btn-sm btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ trans('home.sort') }}
 					</button>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2">
