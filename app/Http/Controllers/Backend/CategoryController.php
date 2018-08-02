@@ -55,7 +55,7 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         try {
-            $this->categoryRepository->store($request);
+            $this->categoryRepository->createCategory($request);
 
             return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
@@ -97,7 +97,7 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         try {
-            $this->categoryRepository->update($request, $id);
+            $this->categoryRepository->updateCategory($request, $id);
 
             return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {
@@ -114,7 +114,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         try {
-            $this->categoryRepository->destroy($id);
+            $this->categoryRepository->deleteCategory($id);
             
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {

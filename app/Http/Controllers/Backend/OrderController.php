@@ -25,7 +25,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = $this->orderRepository->ordersFollowUser();
+        $orders = $this->orderRepository->getOrdersFollowUser();
 
         $orderDetail = $orders->first();
 
@@ -39,7 +39,7 @@ class OrderController extends Controller
      */
     public function detail($id)
     {
-    	$orders = $this->orderRepository->ordersFollowUser();
+    	$orders = $this->orderRepository->getOrdersFollowUser();
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -53,9 +53,9 @@ class OrderController extends Controller
      */
     public function manager()
     {
-        $ordersPending = $this->orderRepository->ordersPending();
+        $ordersPending = $this->orderRepository->getOrdersPending();
 
-        $ordersVerified = $this->orderRepository->ordersVerified();
+        $ordersVerified = $this->orderRepository->getOrdersVerified();
 
         return view('backend.order.index', compact([
             'ordersVerified', 'ordersPending'
@@ -67,7 +67,7 @@ class OrderController extends Controller
      */
     public function managerDetailPending($id)
     {
-        $ordersPending = $this->orderRepository->ordersPending()->take(15);
+        $ordersPending = $this->orderRepository->getOrdersPending()->take(15);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -81,7 +81,7 @@ class OrderController extends Controller
      */
     public function managerDetailVerified($id)
     {
-        $ordersVerified = $this->orderRepository->ordersVerified()->take(15);
+        $ordersVerified = $this->orderRepository->getOrdersVerified()->take(15);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 

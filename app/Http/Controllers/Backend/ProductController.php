@@ -72,7 +72,7 @@ class ProductController extends Controller
     public function store(ProductStoreRequest $request)
     {
         try {
-            $this->productRepository->store($request);
+            $this->productRepository->createProduct($request);
             
             return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
@@ -90,11 +90,11 @@ class ProductController extends Controller
     {
         $productSelected = $this->productRepository->findOrFail($id);
 
-        $products = $this->productRepository->productSuggestions($productSelected);
+        $products = $this->productRepository->getProductSuggestions($productSelected);
 
         $categorySelected = $this->categoryRepository->findOrFail($productSelected->category_id);
 
-        $comments = $this->productRepository->comments($id);
+        $comments = $this->productRepository->getComments($id);
 
         return view('frontend.product.show', compact([
             'productSelected', 'products', 'comments', 'categorySelected'
@@ -115,10 +115,10 @@ class ProductController extends Controller
         $selectedCategory = $this->categoryRepository->findOrFail($product->category_id)->id;
 
         $colors = $this->colorRepository->all();
-        $selectedColors = $this->productRepository->selectedColors($product);
+        $selectedColors = $this->productRepository->getSelectedColors($product);
 
         $sizes = $this->sizeRepository->all();
-        $selectedSizes = $this->productRepository->selectedSizes($product);
+        $selectedSizes = $this->productRepository->getSelectedSizes($product);
 
         return view('backend.product.edit', compact([
             'product', 'colors', 'selectedColors', 'sizes','selectedSizes', 'categories', 'selectedCategory'
@@ -135,7 +135,7 @@ class ProductController extends Controller
     public function update(ProductUpdateRequest $request, $id)
     {
         try {
-            $this->productRepository->update($request, $id);
+            $this->productRepository->updateProduct($request, $id);
 
             return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {

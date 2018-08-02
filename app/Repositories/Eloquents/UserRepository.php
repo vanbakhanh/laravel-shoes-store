@@ -14,14 +14,14 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 		return User::class;
 	}
 
-	public function update($request, $id)
+	public function updateUser($request, $id)
 	{
 		$this->findOrFail($id)->update($request->only(
 			'name', 'email', 'address', 'phone', 'birthday', 'gender'
 		));
 	}
 
-	public function destroy($id)
+	public function deleteUser($id)
 	{
 		$user = $this->findOrFail($id);
 		$user->orders()->delete();

@@ -15,7 +15,7 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
 		return Comment::class;
 	}
 
-	public function store($request)
+	public function createComment($request)
 	{
 		$user = User::findOrFail(Auth::user()->id);
 		$user->comments()->create($request->only('content', 'product_id'));

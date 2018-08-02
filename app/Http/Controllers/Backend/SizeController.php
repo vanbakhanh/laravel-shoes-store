@@ -55,7 +55,7 @@ class SizeController extends Controller
     public function store(SizeStoreRequest $request)
     {
         try {
-            $this->sizeRepository->store($request);
+            $this->sizeRepository->createSize($request);
 
             return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
@@ -97,7 +97,7 @@ class SizeController extends Controller
     public function update(SizeUpdateRequest $request, $id)
     {
         try {
-            $this->sizeRepository->update($request, $id);
+            $this->sizeRepository->updateSize($request, $id);
 
             return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {

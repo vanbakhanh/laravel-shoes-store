@@ -13,12 +13,12 @@ class ColorRepository extends BaseRepository implements ColorRepositoryInterface
 		return Color::class;
 	}
 	
-	public function store($request)
+	public function createColor($request)
 	{
 		$this->create($request->only('name'));
 	}
 
-	public function update($request, $id)
+	public function updateColor($request, $id)
 	{
 		$this->findOrFail($id)->update($request->only('name'));
 	}

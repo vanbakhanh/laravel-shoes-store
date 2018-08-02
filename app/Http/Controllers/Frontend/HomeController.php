@@ -46,7 +46,7 @@ class HomeController extends Controller
 
         $categorySelected = $this->categoryRepository->findOrFail($id);
         $categories = $this->categoryRepository->orderBy('name')->get();
-        $products = $this->productRepository->productsFollowGenderAndCategory($id, $gender);
+        $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
         return view('frontend.home.men', compact(['products', 'categorySelected', 'categories']));
     }
@@ -60,7 +60,7 @@ class HomeController extends Controller
         
         $categorySelected = $this->categoryRepository->findOrFail($id);
         $categories = $this->categoryRepository->orderBy('name')->get();
-        $products = $this->productRepository->productsFollowGenderAndCategory($id, $gender);
+        $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
         return view('frontend.home.women', compact(['products', 'categorySelected', 'categories']));
     }
@@ -72,7 +72,7 @@ class HomeController extends Controller
     {
         $keyword = $_GET['keyword'];
 
-        $results = $this->productRepository->searchProduct($keyword);
+        $results = $this->productRepository->getSearchProduct($keyword);
         
         return view('frontend.home.search', compact(['results', 'keyword']));
     }

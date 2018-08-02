@@ -94,7 +94,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         try {
-            $this->userRepository->update($request, $id);
+            $this->userRepository->updateUser($request, $id);
 
             return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {
@@ -111,7 +111,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            $this->userRepository->destroy($id);
+            $this->userRepository->deleteUser($id);
 
             return back()->with('status', trans('messages.deleted_success'));
         } catch (Exception $e) {

@@ -13,17 +13,17 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 		return Category::class;
 	}
 
-	public function store($request)
+	public function createCategory($request)
 	{
 		$this->create($request->only('name', 'description'));
 	}
 
-	public function update($request, $id)
+	public function updateCategory($request, $id)
 	{
-		$this->findOrFail($id)->update($request->only('name', 'description'));
+		$this->update($id, $request->only('name', 'description'));
 	}
 
-	public function destroy($id)
+	public function deleteCategory($id)
 	{
 		$category = $this->findOrFail($id);
 		$category->products()->delete();

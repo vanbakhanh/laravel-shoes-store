@@ -15,7 +15,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		return Product::class;
 	}
 
-	public function store($request)
+	public function createProduct($request)
 	{
 		$imageName = time() . '.' . $request['image']->getClientOriginalExtension();
 		$request['image']->move(public_path('images/product'), $imageName);
@@ -36,7 +36,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		return false;
 	}
 
-	public function update($request, $id)
+	public function updateProduct($request, $id)
 	{
 		if ($request['image']){
 			$imageName = time() . '.' . $request['image']->getClientOriginalExtension();
@@ -62,7 +62,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		return false;
 	}
 
-	public function productSuggestions($productSelected)
+	public function getProductSuggestions($productSelected)
 	{
 		return Category::findOrFail($productSelected->category_id)
 		->products()
@@ -70,7 +70,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
 	}
 
-	public function comments($id)
+	public function getComments($id)
 	{
 		return Comment::where('product_id', $id)
 		->with('user')
@@ -78,17 +78,17 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		->sortByDesc('created_at');
 	}
 
-	public function selectedColors($product)
+	public function getSelectedColors($product)
 	{
 		return $product->color->pluck('id')->toArray();
 	}
 
-	public function selectedSizes($product)
+	public function getSelectedSizes($product)
 	{
 		return $product->size->pluck('id')->toArray();
 	}
 
-	public function searchProduct($keyword)
+	public function getSearchProduct($keyword)
 	{
 		return $this->where('name', 'LIKE', '%' . $keyword . '%')
 		->orderBy('name')
@@ -96,7 +96,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		->take(24);
 	}
 
-	public function productsFollowGenderAndCategory($id, $gender)
+	public function getProductsFollowGenderAndCategory($id, $gender)
 	{
 		return Category::findOrFail($id)
 		->products()

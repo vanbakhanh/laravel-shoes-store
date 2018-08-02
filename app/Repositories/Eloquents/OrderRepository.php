@@ -20,7 +20,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		return $this->where('id', $id)->first();
 	}
 
-	public function ordersFollowUser()
+	public function getOrdersFollowUser()
 	{
 		return User::findOrFail(Auth::user()->id)
 		->orders()
@@ -28,12 +28,12 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 		->sortByDesc('created_at');
 	}
 
-	public function ordersPending()
+	public function getOrdersPending()
 	{
 		return $this->with('user')->where('status', 'Pending')->get()->sortByDesc('created_at');
 	}
 
-	public function ordersVerified()
+	public function getOrdersVerified()
 	{
 		return $this->with('user')->where('status', 'Verified')->get()->sortByDesc('created_at');
 	}

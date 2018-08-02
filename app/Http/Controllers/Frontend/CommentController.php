@@ -50,7 +50,7 @@ class CommentController extends Controller
     public function store(CommentStoreRequest $request)
     {
         try {
-            $this->commentRepository->store($request);
+            $this->commentRepository->createComment($request);
             
             return back();
         } catch (\Exception $e) {
