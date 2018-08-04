@@ -4,6 +4,8 @@ namespace App\Repositories\Contracts;
 
 interface ProductRepositoryInterface
 {
+	public function uploadImage($request, $data);
+
 	public function createProduct($request);
 
 	public function updateProduct($request, $id);

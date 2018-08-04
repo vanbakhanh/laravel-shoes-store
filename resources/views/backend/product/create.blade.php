@@ -48,7 +48,7 @@
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.size') }}</label>
-					{{ Form::select('size[]', $sizes, '', ['class' => 'form-control','multiple']) }}	
+					{{ Form::select('size[]', $sizes, '', ['class' => 'form-control', 'multiple']) }}	
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.category') }}</label>
@@ -62,9 +62,8 @@
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.image') }}</label>
-					{{ Form::file('image', ['class' => 'form-control-file']) }}
+					{{ Form::file('image[]', ['class' => 'form-control-file', 'multiple']) }}
 				</div>
-
 				<div class="form-group">
 					{{ Form::submit(trans('product.create'), ['class' => 'btn btn-primary']) }}
 				</div>
