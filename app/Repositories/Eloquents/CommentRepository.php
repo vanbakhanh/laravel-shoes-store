@@ -6,7 +6,6 @@ use App\Repositories\Contracts\CommentRepositoryInterface;
 use App\Repositories\BaseRepository;
 use App\Models\Comment;
 use App\Models\User;
-use Auth;
 
 class CommentRepository extends BaseRepository implements CommentRepositoryInterface
 {
@@ -17,7 +16,6 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
 
 	public function createComment($request)
 	{
-		$user = User::findOrFail(Auth::user()->id);
-		$user->comments()->create($request->only('content', 'product_id'));
+		$this->create($request->only('content', 'product_id', 'user_id'));
 	}
 }

@@ -29,7 +29,7 @@
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.description') }}</label>
-					{{ Form::textarea('description', '', ['class' => 'form-control', 'maxlength' => '255', 'rows' => '1']) }}
+					{{ Form::textarea('description', '', ['class' => 'form-control', 'rows' => '1']) }}
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.gender') }}</label>

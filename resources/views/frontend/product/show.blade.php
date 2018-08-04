@@ -136,16 +136,14 @@
 @else
 <div class="list-group">
 	<div class="list-group-item">
-		{{ Form::open(['route' => ['comment.store']]) }}
-		@csrf
-		{{ Form::hidden('product_id', $productSelected->id, ['id' => 'product_id']) }}
 		<div class="form-group">
-			{{ Form::textarea('content', '', ['placeholder' => trans('product.write_preview'), 'class' => 'form-control', 'rows' => '2', 'maxlength' => '255', 'id' => 'content']) }}
+			<textarea class="form-control" id="commentContent" rows="3"></textarea>
+			<input type="text" value="{{ $productSelected->id }}" id="product_id" hidden>
+			<input type="text" value="{{ Auth::user()->id }}" id="user_id" hidden>
 		</div>
-		<button type="button" class="btn btn-primary float-right" id="comment">
+		<button type="button" class="btn btn-primary float-right" id="commentSubmit">
 			{{ trans('product.review') }}
 		</button>
-		{{ Form::close() }}
 	</div>
 </div>
 @endguest
@@ -211,7 +209,7 @@
 <!-- Comment using ajax -->
 <script type="text/javascript">
 	jQuery(document).ready(function() {
-		jQuery('#comment').click(function(e) {
+		jQuery('#commentSubmit').click(function(e) {
 			e.preventDefault();
 			$.ajaxSetup({
 				headers: {
@@ -223,8 +221,9 @@
 				method: 'POST',
 				data: {
 					_method: 'POST',
-					content: jQuery('#content').val(),
+					content: jQuery('#commentContent').val(),
 					product_id: jQuery('#product_id').val(),
+					user_id: jQuery('#user_id').val(),
 				},
 				success: function() {
 					location.reload();
