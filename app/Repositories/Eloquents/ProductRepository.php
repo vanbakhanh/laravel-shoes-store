@@ -68,7 +68,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		return false;
 	}
 
-	public function getProductSuggestions($productSelected)
+	public function getProductsSuggestion($productSelected)
 	{
 		return Category::findOrFail($productSelected->category_id)
 		->products()

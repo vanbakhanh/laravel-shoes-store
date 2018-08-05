@@ -23,9 +23,12 @@
 				</p>
 				@endforeach
 				@endif
-				
-				<div class="form-group">
-					<img class="img-thumbnail" src="{{ asset('images/product/' . $product->image) }}">
+				<div class="row my-4">
+					@foreach (json_decode($product->image, true) as $image)
+					<div class="col">
+						<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Image">
+					</div>
+					@endforeach
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.name') }}</label>

@@ -41,7 +41,7 @@
 					@csrf
 					<tr>
 						<td class="text-left">
-							<img src="{{ asset("images/product/" . $item->options->image) }}" width="50" height="50" alt="image" class="mr-2">
+							<img src="{{ asset("images/product/" . json_decode($item->options->image, true)[0]) }}" width="50" height="50" alt="Image" class="mr-2">
 							<a href="{{ route('product.show', $item->id) }}">{{ $item->name }}</a>
 						</td>
 						<td>{{ $item->options->size }}</td>

@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="col-md-3">
-		<h3 class="mb-4">{{ trans('order.my_order') }} ({{ $orders->count() }})</h3>
+		<h3 class="mb-4">{{ trans('order.my_order') }} ({{ count($orders) }})</h3>
 		<div class="list-group list-group-flush mb-4">
 			@foreach ($orders as $order)
 			<a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
@@ -44,7 +44,7 @@
 				@foreach ($orderDetail->product as $orderProduct)
 				<tr>
 					<td class="text-left">
-						<img src="{{ asset("images/product/" . $orderProduct->image) }}" width="50" height="50" alt="image" class="mr-2">
+						<img src="{{ asset("images/product/" . json_decode($orderProduct->image, true)[0]) }}" width="50" height="50" alt="Image" class="mr-2">
 						<a href="{{ route('product.show',$orderProduct->pivot->product_id) }}">
 							{{$orderProduct->name }}
 						</a>

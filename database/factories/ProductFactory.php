@@ -8,7 +8,13 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
 		'price' => $faker->numberBetween($min = 10, $max = 200),
 		'gender' => $faker->randomElements(['male', 'female'])[0],
 		'description' => $faker->text($maxNbChars = 200),
-		'image' => 'product' . $faker->numberBetween($min = 1, $max = 15) . '.jpg',
+		'image' => json_encode([
+			'product' . $faker->numberBetween($min = 1, $max = 15) . '.jpg',
+			'product' . $faker->numberBetween($min = 1, $max = 15) . '.jpg',
+			'product' . $faker->numberBetween($min = 1, $max = 15) . '.jpg',
+			'product' . $faker->numberBetween($min = 1, $max = 15) . '.jpg',
+			'product' . $faker->numberBetween($min = 1, $max = 15) . '.jpg',
+		]),
 		'category_id' => App\Models\Category::all()->random()->id,
 	];
 });

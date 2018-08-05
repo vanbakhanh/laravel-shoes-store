@@ -19,9 +19,9 @@
                     <dt class="col-sm-4">{{ trans('user.joined') }}</dt>
                     <dd class="col-sm-8">{{ $user->created_at }}</dd>
                     <dt class="col-sm-4">{{ trans('user.comment') }}</dt>
-                    <dd class="col-sm-8">{{ $user->comments->count() }}</dd>
+                    <dd class="col-sm-8">{{ count($user->comments) }}</dd>
                     <dt class="col-sm-4">{{ trans('user.order') }}</dt>
-                    <dd class="col-sm-8">{{ $user->orders->count() }}</dd>
+                    <dd class="col-sm-8">{{ count($user->orders) }}</dd>
                     <dt class="col-sm-4">{{ trans('user.total') }}</dt>
                     <dd class="col-sm-8">${{ $user->orders->sum('total') }}</dd>
                 </dl>

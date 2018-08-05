@@ -26,7 +26,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">{{ $orders->count() }}</h3>
+            <h3 class="card-title">{{ count($orders) }}</h3>
             <p class="card-text">{{ trans('dashboard.order') }}</p>
             <a class="card-link" href="{{ route('order.manager') }}">{{ trans('dashboard.view') }}</a>
         </div>

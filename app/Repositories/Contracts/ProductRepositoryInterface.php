@@ -10,7 +10,7 @@ interface ProductRepositoryInterface
 
 	public function updateProduct($request, $id);
 
-	public function getProductSuggestions($productSelected);
+	public function getProductsSuggestion($productSelected);
 
 	public function getComments($id);
 

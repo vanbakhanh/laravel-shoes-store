@@ -90,14 +90,16 @@ class ProductController extends Controller
     {
         $productSelected = $this->productRepository->findOrFail($id);
 
-        $products = $this->productRepository->getProductSuggestions($productSelected);
+        $images = json_decode($productSelected->image, true);
+
+        $productsSuggestion = $this->productRepository->getProductsSuggestion($productSelected);
 
         $categorySelected = $this->categoryRepository->findOrFail($productSelected->category_id);
 
         $comments = $this->productRepository->getComments($id);
 
         return view('frontend.product.show', compact([
-            'productSelected', 'products', 'comments', 'categorySelected'
+            'productSelected', 'images', 'productsSuggestion', 'comments', 'categorySelected'
         ]));
     }
 
