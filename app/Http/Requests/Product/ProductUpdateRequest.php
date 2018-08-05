@@ -28,7 +28,8 @@ class ProductUpdateRequest extends FormRequest
             'description' => 'required',
             'gender' => 'required|max:6',
             'price' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'color' => 'required',
             'size' => 'required',
         ];

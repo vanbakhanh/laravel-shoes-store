@@ -23,9 +23,12 @@
 				</p>
 				@endforeach
 				@endif
-				
-				<div class="form-group">
-					<img class="img-thumbnail" src="{{ asset('images/product/' . $product->image) }}">
+				<div class="row my-4">
+					@foreach (json_decode($product->image, true) as $image)
+					<div class="col">
+						<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Image">
+					</div>
+					@endforeach
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.name') }}</label>
@@ -78,7 +81,7 @@
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.image') }}</label>
-					{{ Form::file('image', ['class' => 'form-control-file']) }}
+					{{ Form::file('image[]', ['class' => 'form-control-file', 'multiple']) }}
 				</div>
 				<div class="form-group">
 					{{ Form::submit(trans('product.update'), ['class' => 'btn btn-primary']) }}

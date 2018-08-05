@@ -5,7 +5,40 @@
 <!-- Portfolio Item Row -->
 <div class="row">
 	<div class="col-lg-6 col-md-12">
-		<img class="img-fluid mw-100" src="{{ asset('images/product/' . $productSelected->image) }}">
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators mb-4">
+				<li data-target="#carouselExampleIndicators" data-slide-to="{{ $i = 0 }}" class="active">
+					<img class="d-block w-100" src="{{ asset('images/product/' . $images[0]) }}" alt="Slide">
+				</li>
+				@if (count($images) > 1)
+				@foreach (array_slice($images, 1) as $image)
+				<li data-target="#carouselExampleIndicators" data-slide-to="{{ $i = $i + 1 }}">
+					<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Slide">
+				</li>
+				@endforeach
+				@endif
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="{{ asset('images/product/' . $images[0]) }}" alt="Slide">
+				</div>
+				@if (count($images) > 1)
+				@foreach (array_slice($images, 1) as $image)
+				<div class="carousel-item">
+					<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Slide">
+				</div>
+				@endforeach
+				@endif
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
 	</div>
 	<div class="col-lg-6 col-md-12 text-center">
 		<p class="mt-2 mb-4">
@@ -73,7 +106,7 @@
 		<div class="my-4">
 			<p>{{ $productSelected->description }}</p>
 			<a class="text-uppercase" href="#comment">
-				{{ trans('product.read_comment', ['comments' => $comments->count()]) }}
+				{{ trans('product.read_comment', ['comments' => count($comments)]) }}
 			</a>
 		</div>
 	</div>
@@ -81,18 +114,18 @@
 
 <br>
 
-<!-- Related Projects Row -->
+<!-- Products Suggestion Row -->
 <div class="row">
 	<div class="col-md-12 my-4 text-center">
 		<h3 class="text-uppercase">{{ trans('product.recommend_title') }}</h3>
 	</div>
 </div>
 <div class="row justify-content-center">
-	@foreach ($products as $product)
+	@foreach ($productsSuggestion as $product)
 	<div class="col-lg-2 col-md-4 col-sm-4 col-6">
 		<div class="card card-product h-100 text-center">
 			<a href="{{ route('product.show', $product->id) }}">
-				<img class="card-img-top" src="{{ asset('images/product/' . $product->image) }}" alt="">
+				<img class="card-img-top" src="{{ asset('images/product/' . json_decode($product->image, true)[0]) }}" alt="">
 			</a>
 			<div class="card-body">
 				<h5 class="card-title m-0 p-0">
@@ -137,7 +170,7 @@
 <div class="list-group">
 	<div class="list-group-item">
 		<div class="form-group">
-			<textarea class="form-control" id="commentContent" rows="3"></textarea>
+			<textarea class="form-control" id="commentContent" rows="1" placeholder="{{ trans('product.write_preview') }}"></textarea>
 			<input type="text" value="{{ $productSelected->id }}" id="product_id" hidden>
 			<input type="text" value="{{ Auth::user()->id }}" id="user_id" hidden>
 		</div>

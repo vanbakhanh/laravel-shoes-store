@@ -15,15 +15,27 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		return Product::class;
 	}
 
+	public function uploadImage($request, $data)
+	{
+		if ($request->hasFile('image')) {
+			foreach ($request->file('image') as $image) {
+				$imageName = $image->getClientOriginalName();
+				$image->move(public_path('images/product'), $imageName);
+				$images[] = $imageName;
+			}
+			$data['image'] = json_encode($images);
+		}
+
+		return $data;
+	}
+
 	public function createProduct($request)
 	{
-		$imageName = time() . '.' . $request['image']->getClientOriginalExtension();
-		$request['image']->move(public_path('images/product'), $imageName);
-
 		$category = Category::findOrFail($request['category']);
-		if($category){
+
+		if ($category) {
 			$data = $request->only('name', 'description', 'gender', 'price');
-			$data['image'] = $imageName;
+			$data = $this->uploadImage($request, $data);
 
 			$product = $category->products()->create($data);
 
@@ -38,17 +50,11 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function updateProduct($request, $id)
 	{
-		if ($request['image']){
-			$imageName = time() . '.' . $request['image']->getClientOriginalExtension();
-			$request['image']->move(public_path('images/product'), $imageName);
-		}
-
 		$category = Category::findOrFail($request['category_id']);
-		if ($category){
+
+		if ($category) {
 			$data = $request->only('name', 'description', 'gender', 'price', 'category_id');
-			if ($request['image']) {
-				$data['image'] = $imageName;
-			}
+			$data = $this->uploadImage($request, $data);
 
 			$product = $this->findOrFail($id);
 			$product->update($data);
@@ -62,7 +68,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 		return false;
 	}
 
-	public function getProductSuggestions($productSelected)
+	public function getProductsSuggestion($productSelected)
 	{
 		return Category::findOrFail($productSelected->category_id)
 		->products()
