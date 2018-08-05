@@ -23,13 +23,21 @@
 </head>
 <body>
 
+	@section('navbar')
 	@include('layouts.navbar')
+	@show
+
+	@section('modal')
+	@include('layouts.modal')
+	@show
 
 	<div class="container" id="content">
 		@yield('content')
 	</div>
 
+	@section('footer')
 	@include('layouts.footer')
+	@show
 
 </body>
 </html>

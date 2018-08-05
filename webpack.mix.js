@@ -18,8 +18,8 @@ const SCSS_PATH = 'resources/assets/sass/';
 
 mix.copyDirectory(NODE_PATH + 'bootswatch/dist/materia/bootstrap.min.css', PUBLIC_PATH + 'css')
 	.copyDirectory(NODE_PATH + 'datatables.net-bs4/css/dataTables.bootstrap4.min.css', PUBLIC_PATH + 'css')
-    .copyDirectory(ASSETS_PATH + 'css/dashboard.css', PUBLIC_PATH + 'css')
-    .copyDirectory(ASSETS_PATH + 'css/style.css', PUBLIC_PATH + 'css')
+	.copyDirectory(ASSETS_PATH + 'css/dashboard.css', PUBLIC_PATH + 'css')
+	.copyDirectory(ASSETS_PATH + 'css/style.css', PUBLIC_PATH + 'css')
 	.copyDirectory(ASSETS_PATH + 'img', PUBLIC_PATH + 'images')
 	.copyDirectory(NODE_PATH + 'jquery/dist/jquery.min.js', PUBLIC_PATH + 'js')
 	.copyDirectory(NODE_PATH + 'popper.js/dist/umd/popper.min.js', PUBLIC_PATH + 'js')

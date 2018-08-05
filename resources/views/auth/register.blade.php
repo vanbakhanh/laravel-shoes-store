@@ -1,5 +1,7 @@
 @extends('layouts.master')
 @section('title', trans('auth.register'))
+@section('modal')
+@endsection
 @section('content')
 
 <div class="row justify-content-center">
