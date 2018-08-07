@@ -14,21 +14,17 @@
                     {{ session('status') }}
                 </div>
                 @endif
-
                 <form method="POST" action="{{ route('admin.password.email') }}">
                     @csrf
                     <div class="form-group">
                         <label for="email">{{ trans('auth.email') }}</label>
-
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
                         @if ($errors->has('email'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                         @endif
                     </div>
-
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">
                             {{ trans('auth.confirm') }}

@@ -44,7 +44,6 @@
                             <td>{{ $user->address }}</td>
                             <td>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
-                                @csrf
                                 {{ Form::submit(trans('user.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
                                 {{ Form::close() }}
                             </td>
@@ -57,7 +56,6 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function() {
         $('#table').DataTable();

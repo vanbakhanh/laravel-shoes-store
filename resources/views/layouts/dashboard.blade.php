@@ -6,12 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
@@ -19,13 +17,11 @@
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
-
     <!-- Title -->
     <title>@yield('title')</title>
     <link rel="icon" href="{{ asset('images/logo-site.png') }}"/>
 </head>
 <body>	
-
     <!-- Wrapper -->
     <div id="wrapper">
         <div id="sidebar-wrapper">
@@ -75,7 +71,6 @@
                 </li>
             </ul>
         </div>
-
         <div id="page-content-wrapper">
             <div class="container" id="content">
                 <!-- Navbar -->
@@ -90,11 +85,9 @@
                             {{ trans('layouts.welcome', ['name' => Auth::user()->name]) }}
                         </li>
                     </ul>
-
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto text-center">
                             <li class="nav-item">
@@ -119,16 +112,13 @@
                         </ul>
                     </div>
                 </nav>
-
                 <!-- Content -->
                 @yield('content')
             </div>
-            
             <!-- Footer -->
             @include('layouts.footer')
         </div>
     </div>
-
     <!-- Toggle action -->
     <script type="text/javascript">
         $("#menu-toggle").click(function(e) {
@@ -136,7 +126,6 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
-
     <!-- When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar -->
     <script type="text/javascript">
         var prevScrollpos = window.pageYOffset;
@@ -150,6 +139,5 @@
             prevScrollpos = currentScrollPos;
         }
     </script>
-
 </body>
 </html>

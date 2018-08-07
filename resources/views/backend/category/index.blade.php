@@ -38,7 +38,6 @@
 							<td>{{ $category->description }}</td>
 							<td>
 								{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
-								@csrf
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-outline-warning btn-sm" href="{{ route('category.edit', $category->id) }}">
 										{{ trans('category.edit') }}
@@ -56,7 +55,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();

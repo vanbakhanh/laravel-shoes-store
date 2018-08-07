@@ -3,7 +3,6 @@
 @section('content')
 
 {{ Form::open(['route' => ['category.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
-@csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
 		<div class="card">
@@ -39,7 +38,6 @@
 	</div>
 </div>
 {{ Form::close() }}
-
 <div class="row justify-content-center">
 	<div class="col-md-12 mt-4">
 		<div class="card">
@@ -73,7 +71,6 @@
 							<td class="text-left">{{ $category->description }}</td>
 							<td>
 								{{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
-								@csrf
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-outline-warning btn-sm" href="{{ route('category.edit',$category->id) }}">
 										{{ trans('category.edit') }}
@@ -91,7 +88,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();

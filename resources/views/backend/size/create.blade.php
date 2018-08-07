@@ -3,7 +3,6 @@
 @section('content')
 
 {{ Form::open(['route' => ['size.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
-@csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
 		<div class="card">
@@ -67,7 +66,6 @@
 							<td>{{ $size->name }}</td>
 							<td>
 								{{ Form::open(['method' => 'DELETE', 'route' => ['size.destroy', $size->id]]) }}
-								@csrf
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-outline-warning btn-sm" href="{{ route('size.edit', $size->id) }}">
 										{{ trans('size.edit') }}
@@ -85,7 +83,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();

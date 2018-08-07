@@ -3,7 +3,6 @@
 @section('content')
 
 {{ Form::open(['route' => ['product.store'], 'files' => true, 'method' => 'POST', 'class' => 'form-horizontal']) }}
-@csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
 		<div class="card">

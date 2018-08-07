@@ -4,12 +4,11 @@
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('images/logo-black.png') }}" width="60" height="20" alt="logo">
         </a>
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">
@@ -46,14 +45,12 @@
                     </a>
                 </li>
             </ul>
-
             <!-- Search Form -->
             {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0 mr-auto', 'role' => 'search']) }}
             {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm', 'placeholder' => trans('layouts.search')]) }}
             {{ Form::close() }}
-
+            <!-- Right -->
             <ul class="navbar-nav ml-auto">
-                <!-- Authentication Links -->
                 @guest
                 <li class="nav-item">
                     <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
@@ -133,7 +130,6 @@
         </div>
     </div>
 </nav>
-
 <!-- When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar -->
 <script type="text/javascript">
     var prevScrollpos = window.pageYOffset;

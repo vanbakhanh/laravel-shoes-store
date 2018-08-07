@@ -6,7 +6,6 @@
 	<h3>{{ trans('home.search', ['keyword' => $keyword]) }}</h3>
 	<p>{{ trans('home.top_results', ['results' => $results->count()]) }}</p>
 </div>
-
 <div class="row">
 	@if ($results->isEmpty())
 	<div class="col-md-12 text-center"><p>{{ trans('home.empty') }}</p></div>

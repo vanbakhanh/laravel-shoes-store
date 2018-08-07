@@ -16,7 +16,6 @@
 </p>
 @endforeach
 @endif
-
 <div class="card">
 	<div class="card-body">
 		<h3 class="card-title">{{ trans('cart.detail') }}</h3>
@@ -38,7 +37,6 @@
 				<tbody>
 					@foreach ($items as $item)
 					{{ Form::open(['class' => 'form-horizontal']) }}
-					@csrf
 					<tr>
 						<td class="text-left">
 							<img src="{{ asset("images/product/" . json_decode($item->options->image, true)[0]) }}" width="50" height="50" alt="Image" class="mr-2">
@@ -65,9 +63,7 @@
 		@endif
 	</div>
 </div>
-
 <br>
-
 <div class="card-deck">
 	<div class="card">
 		<div class="card-body table-responsive">
@@ -133,7 +129,6 @@
 		</div>
 	</div>
 </div>
-
 <!-- Remove item using Ajax -->
 <script type="text/javascript">
 	jQuery(document).ready(function() {
@@ -157,7 +152,6 @@
 		@endforeach
 	});
 </script>
-
 <!-- Update item using Ajax -->
 <script type="text/javascript">
 	jQuery(document).ready(function() {

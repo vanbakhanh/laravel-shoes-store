@@ -3,7 +3,6 @@
 @section('content')
 
 <h3 class="text-center text-uppercase mb-4">{{ trans('home.new') }}</h3>
-
 <div class="row">
 	@if ($products->isEmpty())
 	<div class="col-md-12 text-center"><p>{{ trans('home.empty') }}</p></div>
@@ -30,7 +29,6 @@
 	@endforeach
 	@endif
 </div>
-
 <div class="d-flex justify-content-center">{{ $products->links() }}</div>
 
 @endsection

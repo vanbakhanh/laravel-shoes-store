@@ -35,7 +35,6 @@
 								<td>{{ $orderPending->created_at }}</td>
 								<td>
 									{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderPending->id]]) }}
-									@csrf
 									<div class="btn-group btn-group-toggle">
 										<a href="{{ route('order.detail.pending', $orderPending->id) }}" class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a>
 										{{ Form::submit(trans('order.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
@@ -50,7 +49,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div class="col-md-12 my-4">
 		<div class="card">
 			<div class="card-body">
@@ -78,7 +76,6 @@
 									<td>{{ $orderVerified->created_at }}</td>
 									<td>
 										{{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderVerified->id]]) }}
-										@csrf
 										<div class="btn-group btn-group-toggle">
 											<a href="{{ route('order.detail.verified', $orderVerified->id) }}" class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a>
 											{{ Form::submit(trans('order.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
@@ -95,7 +92,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	$(document).ready(function() {
 		$('#table1').DataTable();

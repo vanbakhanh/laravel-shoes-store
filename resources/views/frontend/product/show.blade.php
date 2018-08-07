@@ -5,14 +5,14 @@
 <!-- Portfolio Item Row -->
 <div class="row">
 	<div class="col-lg-6 col-md-12">
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<div id="carouselProductIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators mb-4">
-				<li data-target="#carouselExampleIndicators" data-slide-to="{{ $i = 0 }}" class="active">
+				<li data-target="#carouselProductIndicators" data-slide-to="{{ $i = 0 }}" class="active">
 					<img class="d-block w-100" src="{{ asset('images/product/' . $images[0]) }}" alt="Slide">
 				</li>
 				@if (count($images) > 1)
 				@foreach (array_slice($images, 1) as $image)
-				<li data-target="#carouselExampleIndicators" data-slide-to="{{ $i = $i + 1 }}">
+				<li data-target="#carouselProductIndicators" data-slide-to="{{ $i = $i + 1 }}">
 					<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Slide">
 				</li>
 				@endforeach
@@ -30,11 +30,11 @@
 				@endforeach
 				@endif
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<a class="carousel-control-prev" href="#carouselProductIndicators" role="button" data-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
 			</a>
-			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<a class="carousel-control-next" href="#carouselProductIndicators" role="button" data-slide="next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
@@ -51,7 +51,6 @@
 		<h3 class="my-2 text-uppercase">{{ $productSelected->name }}</h3>
 		<h3 class="my-4">$<b>{{ $productSelected->price }}</b></h3>
 		{{ Form::open(['class' => 'form-horizontal']) }}
-		@csrf
 		<div class="form-group row">
 			<label class="col-md-6 col-form-label text-uppercase">
 				<b>{{ trans('product.color') }}</b>
@@ -125,7 +124,7 @@
 	<div class="col-lg-2 col-md-4 col-sm-4 col-6">
 		<div class="card card-product h-100 text-center">
 			<a href="{{ route('product.show', $product->id) }}">
-				<img class="card-img-top" src="{{ asset('images/product/' . json_decode($product->image, true)[0]) }}" alt="">
+				<img class="card-img-top" src="{{ asset('images/product/' . json_decode($product->image, true)[0]) }}" alt="Image">
 			</a>
 			<div class="card-body">
 				<h5 class="card-title m-0 p-0">
@@ -169,14 +168,16 @@
 @else
 <div class="list-group">
 	<div class="list-group-item">
+		{{ Form::open() }}
 		<div class="form-group">
-			<textarea class="form-control" id="commentContent" rows="1" placeholder="{{ trans('product.write_preview') }}"></textarea>
-			<input type="text" value="{{ $productSelected->id }}" id="product_id" hidden>
-			<input type="text" value="{{ Auth::user()->id }}" id="user_id" hidden>
+			{{ Form::textarea('content', '', ['class' => 'form-control', 'id' => 'commentContent', 'rows' => '1', 'placeholder' => trans('product.write_preview')]) }}
+			{{ Form::hidden('product_id', $productSelected->id, ['id' => 'product_id']) }}
+			{{ Form::hidden('user_id', Auth::user()->id, ['id' => 'user_id']) }}
 		</div>
 		<button type="button" class="btn btn-primary float-right" id="commentSubmit">
 			{{ trans('product.review') }}
 		</button>
+		{{ Form::close() }}
 	</div>
 </div>
 @endguest

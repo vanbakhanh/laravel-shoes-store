@@ -3,7 +3,6 @@
 @section('content')
 
 {{ Form::open(['route' => ['category.update', $category->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
-@csrf
 <div class="row justify-content-center">
 	<div class="col-md-12">
 		<div class="card">

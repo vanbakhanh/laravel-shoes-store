@@ -31,24 +31,19 @@
             <div class="card-body">
                 <h3 class="card-title">{{ trans('user.change_password') }}</h3>
                 {{ Form::open(['route' => ['user.password.update', $user->id], 'method' => 'PUT']) }}
-                @csrf
-
                 <div class="form-group">
                     <label>{{ trans('user.new_password') }}</label>
                     <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
                     @if ($errors->has('password'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <label>{{ trans('user.confirm_password') }}</label>
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 </div>
-
                 <div class="form-group">
                     {{ Form::submit(trans('user.update'),['class'=>'btn btn-primary']) }}
                 </div>
@@ -69,70 +64,53 @@
                 @endforeach
                 @endif
                 {{ Form::open(['route' => ['user.update', $user->id], 'method' => 'PUT']) }}
-                @csrf
                 <div class="form-group">
                     <label>{{ trans('user.name') }}</label>
-
                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ $user->name }}" required autofocus>
-
                     @if ($errors->has('name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <label>{{ trans('user.email') }}</label>
-
                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $user->email }}" required>
-
                     @if ($errors->has('email'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <label>{{ trans('user.address') }}</label>
-
                     <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ $user->address }}" required autofocus>
-
                     @if ($errors->has('address'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('address') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <label>{{ trans('user.phone') }}</label>
-
                     <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ $user->phone }}" required autofocus>
-
                     @if ($errors->has('phone'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('phone') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <label>{{ trans('user.birthday') }}</label>
-
                     <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ $user->birthday }}" required autofocus>
-
                     @if ($errors->has('birthday'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('birthday') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     <label>{{ trans('user.gender') }}</label>
-
                     <select id="gender" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ $user->gender }}" required autofocus>
                         <option @if($user->gender == 'male') selected="selected" @endif value="male">
                             {{ trans('user.male') }}
@@ -141,14 +119,12 @@
                             {{ trans('user.female') }}
                         </option>
                     </select>
-
                     @if ($errors->has('gender'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('gender') }}</strong>
                     </span>
                     @endif
                 </div>
-
                 <div class="form-group">
                     {{ Form::submit(trans('user.update'), ['class' => 'btn btn-primary']) }}
                 </div>

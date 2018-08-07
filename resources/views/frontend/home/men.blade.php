@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="row">
-
 	<div class="col-lg-3">
 		<h3 class="text-uppercase mb-4">{{ trans('home.men') }}</h3>
 		<div class="list-group list-group-flush">
@@ -15,7 +14,6 @@
 			@endforeach
 		</div>
 	</div>
-
 	<div class="col-lg-9 tab-content">
 		<div class="row">
 			<div class="col-md-12">
@@ -31,7 +29,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="row results">
 			@if ($products->isEmpty())
 			<div class="col-md-12 text-center"><p>{{ trans('home.empty') }}</p></div>
@@ -60,18 +57,15 @@
 		</div>
 		<div class="d-flex justify-content-center">{{ $products->links() }}</div>
 	</div>
-
 </div>
-
+<!-- Sort -->
 <script type="text/javascript">
 	var ascending = false;
 	var decrease = true;
-
 	// Convert $ to string ''
 	var convertToNumber = function(value) {
 		return parseFloat(value.replace('$', ''));
 	}
-
 	// Sort the price is ascending
 	$('.tab-content').on('click', '.priceAscending', function() {
 		var sorted = $('.results-row').sort(function(a, b) {
@@ -79,10 +73,8 @@
 				(convertToNumber($(a).find('.price').html()) < 
 					convertToNumber($(b).find('.price').html()))) ? 1 : -1;
 		});
-
 		$('.results').html(sorted);
 	});
-
 	// Sort the price is decrease
 	$('.tab-content').on('click', '.decreaseAscending', function() {
 		var sorted = $('.results-row').sort(function(a, b) {
@@ -90,7 +82,6 @@
 				(convertToNumber($(a).find('.price').html()) < 
 					convertToNumber($(b).find('.price').html()))) ? 1 : -1;
 		});
-
 		$('.results').html(sorted);
 	});
 </script>

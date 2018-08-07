@@ -36,7 +36,6 @@
 							<td>{{ $color->name }}</td>
 							<td>
 								{{ Form::open(['method' => 'DELETE', 'route' => ['color.destroy', $color->id]]) }}
-								@csrf
 								<div class="btn-group btn-group-toggle">
 									<a class="btn btn-outline-warning btn-sm" href="{{ route('color.edit', $color->id) }}">
 										{{ trans('color.edit') }}
@@ -54,7 +53,6 @@
 		</div>
 	</div>
 </div>
-
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();

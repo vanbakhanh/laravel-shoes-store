@@ -23,9 +23,7 @@
                 </p>
                 @endforeach
                 @endif
-
                 {{ Form::open(['route' => ['admin.password.update', $admin->id], 'method' => 'PUT']) }}
-                @csrf
                 <div class="form-group">
                     <label>{{ trans('admin.new_password') }}</label>
                     {{ Form::password('password', ['class' => 'form-control']) }}
