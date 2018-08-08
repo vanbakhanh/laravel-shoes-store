@@ -5,8 +5,8 @@ A simple project in my free time and the first project I worked on Laravel Frame
 ## Setup
 
 - Install node modules: `npm install`
-- Run webpack `npm run watch`
-- Seeding database `php artisan migrate --seed`
+- Run webpack: `npm run watch`
+- Seeding database: `php artisan migrate --seed`
 
 ## License
 
