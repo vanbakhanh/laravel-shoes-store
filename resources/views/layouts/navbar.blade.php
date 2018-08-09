@@ -20,7 +20,7 @@
                         {{ trans('layouts.men') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach (App\Models\Category::all()->sortBy('name') as $category)
+                        @foreach ($categories = App\Models\Category::all()->sortBy('name') as $category)
                         <a class="dropdown-item" href="{{ route('category.men', $category->id) }}">
                             {{ $category->name }}
                         </a>
@@ -32,7 +32,7 @@
                         {{ trans('layouts.women') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach (App\Models\Category::all()->sortBy('name') as $category)
+                        @foreach ($categories as $category)
                         <a class="dropdown-item" href="{{ route('category.women', $category->id) }}">
                             {{ $category->name }}
                         </a>

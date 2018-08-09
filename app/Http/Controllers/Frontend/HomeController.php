@@ -32,7 +32,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = $this->productRepository->orderBy('created_at', 'desc')->paginate(24);
+        $products = $this->productRepository->with(['color', 'size'])->orderBy('created_at', 'desc')->paginate(24);
 
         return view('frontend.home.index', compact('products'));
     }
@@ -44,11 +44,11 @@ class HomeController extends Controller
     {
         $gender = 'male';
 
-        $categorySelected = $this->categoryRepository->findOrFail($id);
+        $categoryName = $this->categoryRepository->findOrFail($id)->name;
         $categories = $this->categoryRepository->orderBy('name')->get();
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
-        return view('frontend.home.men', compact(['products', 'categorySelected', 'categories']));
+        return view('frontend.home.men', compact(['products', 'categoryName', 'categories']));
     }
 
     /**
@@ -58,11 +58,11 @@ class HomeController extends Controller
     {
         $gender = 'female';
         
-        $categorySelected = $this->categoryRepository->findOrFail($id);
+        $categoryName = $this->categoryRepository->findOrFail($id)->name;
         $categories = $this->categoryRepository->orderBy('name')->get();
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
-        return view('frontend.home.women', compact(['products', 'categorySelected', 'categories']));
+        return view('frontend.home.women', compact(['products', 'categoryName', 'categories']));
     }
 
     /**

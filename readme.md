@@ -6,7 +6,8 @@ A simple project in my free time and the first project I worked on Laravel Frame
 
 - `composer install`
 - `php artisan key:generate`
-- `php artisan migrate --seed`
+- `php artisan migrate`
+- `php artisan db:seed`
 
 ## License
 

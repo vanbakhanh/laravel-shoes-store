@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', trans('home.men_shoes', ['name' => $categorySelected->name]))
+@section('title', trans('home.men_shoes', ['name' => $categoryName]))
 @section('content')
 
 <div class="row">
@@ -9,7 +9,6 @@
 			@foreach ($categories as $category)
 			<a href="{{ route('category.men', $category->id) }}" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
 				{{ $category->name }}
-				<span class="badge">{{ App\Models\Product::where('category_id', $category->id)->where('gender', 'male')->count() }}</span>
 			</a>
 			@endforeach
 		</div>
@@ -17,7 +16,7 @@
 	<div class="col-lg-9 tab-content">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-uppercase float-left mb-4">{{ trans('home.men_shoes', ['name' => $categorySelected->name]) }} ({{ $products->count() }})</h3>
+				<h3 class="text-uppercase float-left mb-4">{{ trans('home.men_shoes', ['name' => $categoryName]) }} ({{ count($products) }})</h3>
 				<div class="dropdown float-right mb-4">
 					<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ trans('home.sort') }}
@@ -46,7 +45,7 @@
 							</small>
 						</h5>
 						<p class="card-text m-0 p-0">
-							{{ $product->color()->count() }} {{ trans('home.colors') }} | {{ $product->size()->count() }} {{ trans('home.sizes') }}
+							{{ count($product->color) }} {{ trans('home.colors') }} | {{ count($product->size) }} {{ trans('home.sizes') }}
 						</p>
 						<p class="card-text m-0 p-0 price">${{ $product->price }}</p>
 					</div>

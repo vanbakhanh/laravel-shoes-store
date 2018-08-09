@@ -70,8 +70,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function getProductsSuggestion($productSelected)
 	{
-		return Category::findOrFail($productSelected->category_id)
-		->products()
+		return $this
+		->with(['color', 'size'])
+		->where('category_id', $productSelected->category_id)
 		->where('id', '!=', $productSelected->id)
 		->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
 	}
@@ -96,7 +97,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function getSearchProduct($keyword)
 	{
-		return $this->where('name', 'LIKE', '%' . $keyword . '%')
+		return $this
+		->where('name', 'LIKE', '%' . $keyword . '%')
+		->with(['color', 'size'])
 		->orderBy('name')
 		->get()
 		->take(24);
@@ -104,9 +107,10 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function getProductsFollowGenderAndCategory($id, $gender)
 	{
-		return Category::findOrFail($id)
-		->products()
+		return $this
+		->where('category_id', $id)
 		->where('gender', $gender)
+		->with(['color', 'size'])
 		->orderBy('created_at', 'desc')
 		->paginate(24);
 	}
