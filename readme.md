@@ -1,13 +1,18 @@
-## Shoes Store Laravel 5.6
+## Shoes Store Laravel
 
 A simple project in my free time and the first project I worked on Laravel Framework.
+
+Based on Laravel Framework 5.6.
 
 ## Setup
 
 - `composer install`
+- `cp .env.example .env`
 - `php artisan key:generate`
 - `php artisan migrate`
 - `php artisan db:seed`
+- `npm install`
+- `npm run dev`
 
 ## License
 
