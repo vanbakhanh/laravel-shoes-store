@@ -10,7 +10,7 @@ class Color extends Model
     	'name'
     ];
 
-    public function product()
+    public function products()
     {
     	return $this->belongsToMany('App\Models\Product');
     }

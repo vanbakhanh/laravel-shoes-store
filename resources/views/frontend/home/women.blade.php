@@ -45,7 +45,7 @@
 							</small>
 						</h5>
 						<p class="card-text m-0 p-0">
-							{{ count($product->color) }} {{ trans('home.colors') }} | {{ count($product->size) }} {{ trans('home.sizes') }}
+							{{ count($product->colors) }} {{ trans('home.colors') }} | {{ count($product->sizes) }} {{ trans('home.sizes') }}
 						</p>
 						<p class="card-text m-0 p-0 price">${{ $product->price }}</p>
 					</div>

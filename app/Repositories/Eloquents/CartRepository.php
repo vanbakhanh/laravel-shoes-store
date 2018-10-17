@@ -52,7 +52,7 @@ class CartRepository implements CartRepositoryInterface
 		]);
 
 		foreach (Cart::content() as $data) {
-			$order->product()->attach($data->id, [
+			$order->products()->attach($data->id, [
 				'qty' => $data->qty,
 				'total' => $data->price * $data->qty,
 				'size' => $data->options->size,
@@ -61,7 +61,7 @@ class CartRepository implements CartRepositoryInterface
 		}
 		Cart::destroy();
 
-		$orderProducts = $order->product()->get();
+		$orderProducts = $order->products()->get();
 
 		Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user));
 	}

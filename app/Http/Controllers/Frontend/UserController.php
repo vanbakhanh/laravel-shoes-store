@@ -81,6 +81,7 @@ class UserController extends Controller
 
             return view('frontend.user.edit', compact('user'));
         }
+        
         return back();
     }
 
@@ -129,6 +130,7 @@ class UserController extends Controller
 
             return view('frontend.user.password', compact('user'));
         }
+
         return redirect()->back();
     }
     

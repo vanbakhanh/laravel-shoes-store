@@ -37,7 +37,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach ($orderDetail->product as $orderProduct)
+				@foreach ($orderDetail->products as $orderProduct)
 				<tr>
 					<td><a href="{{ route('product.show', $orderProduct->pivot->product_id) }}">{{ $orderProduct->name }}</a></td>
 					<td>{{ $orderProduct->pivot->qty }}</td>

@@ -23,6 +23,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 				$image->move(public_path('images/product'), $imageName);
 				$images[] = $imageName;
 			}
+
 			$data['image'] = json_encode($images);
 		}
 
@@ -39,8 +40,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 			$product = $category->products()->create($data);
 
-			$product->color()->attach($request['color']);
-			$product->size()->attach($request['size']);
+			$product->colors()->attach($request['color']);
+			$product->sizes()->attach($request['size']);
 
 			return true;
 		}
@@ -59,8 +60,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 			$product = $this->findOrFail($id);
 			$product->update($data);
 
-			$product->color()->sync($request['color']);
-			$product->size()->sync($request['size']);
+			$product->colors()->sync($request['color']);
+			$product->sizes()->sync($request['size']);
 
 			return true;
 		}
@@ -70,8 +71,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function getProductsSuggestion($productSelected)
 	{
-		return $this
-		->with(['color', 'size'])
+		return $this->with(['colors', 'sizes'])
 		->where('category_id', $productSelected->category_id)
 		->where('id', '!=', $productSelected->id)
 		->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
@@ -87,19 +87,18 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function getSelectedColors($product)
 	{
-		return $product->color->pluck('id')->toArray();
+		return $product->colors->pluck('id')->toArray();
 	}
 
 	public function getSelectedSizes($product)
 	{
-		return $product->size->pluck('id')->toArray();
+		return $product->sizes->pluck('id')->toArray();
 	}
 
 	public function getSearchProduct($keyword)
 	{
-		return $this
-		->where('name', 'LIKE', '%' . $keyword . '%')
-		->with(['color', 'size'])
+		return $this->where('name', 'LIKE', '%' . $keyword . '%')
+		->with(['colors', 'sizes'])
 		->orderBy('name')
 		->get()
 		->take(24);
@@ -107,18 +106,22 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
 	public function getProductsFollowGenderAndCategory($id, $gender)
 	{
-		return $this
-		->where('category_id', $id)
+		return $this->where('category_id', $id)
 		->where('gender', $gender)
-		->with(['color', 'size'])
+		->with(['colors', 'sizes'])
 		->orderBy('created_at', 'desc')
 		->paginate(24);
 	}
 
 	public function deleteProduct($id)
 	{
-		$productImage = $this->find($id)->image;
-		unlink('images/product/' . $productImage);
+		$product = $this->find($id);
+
+		$images = json_decode($product->image, true);
+		
+		foreach ($images as $image) {
+			unlink('images/product/' . $image);
+		}
 		
 		$this->delete($id);
 	}

@@ -15,7 +15,7 @@ class Order extends Model
     	return $this->belongsTo('App\Models\User');
     }
 
-    public function product()
+    public function products()
     {
     	return $this->belongsToMany('App\Models\Product')->withPivot('qty', 'total', 'color', 'size')->withTimestamps();
     }
