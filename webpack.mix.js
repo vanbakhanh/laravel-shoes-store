@@ -1,9 +1,12 @@
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 
-const ASSETS_PATH = 'resources/assets/';
-const PUBLIC_PATH = 'public/';
-const NODE_PATH = 'node_modules/';
+const PUBLIC_JS_PATH = 'public/js';
+
+const PUBLIC_CSS_PATH = 'public/css';
+
 const SCSS_PATH = 'resources/assets/sass/';
+
+const JS_PATH = 'resources/assets/js/';
 
 /*
  |--------------------------------------------------------------------------
@@ -16,14 +19,9 @@ const SCSS_PATH = 'resources/assets/sass/';
  |
  */
 
-mix.copyDirectory(NODE_PATH + 'bootswatch/dist/materia/bootstrap.min.css', PUBLIC_PATH + 'css')
-	.copyDirectory(NODE_PATH + 'datatables.net-bs4/css/dataTables.bootstrap4.min.css', PUBLIC_PATH + 'css')
-	.copyDirectory(ASSETS_PATH + 'css/dashboard.css', PUBLIC_PATH + 'css')
-	.copyDirectory(ASSETS_PATH + 'css/style.css', PUBLIC_PATH + 'css')
-	.copyDirectory(ASSETS_PATH + 'img', PUBLIC_PATH + 'images')
-	.copyDirectory(NODE_PATH + 'jquery/dist/jquery.min.js', PUBLIC_PATH + 'js')
-	.copyDirectory(NODE_PATH + 'popper.js/dist/umd/popper.min.js', PUBLIC_PATH + 'js')
-	.copyDirectory(NODE_PATH + 'bootstrap/dist/js/bootstrap.min.js', PUBLIC_PATH + 'js')
-	.copyDirectory(NODE_PATH + 'datatables.net/js/jquery.dataTables.min.js', PUBLIC_PATH + 'js')
-	.copyDirectory(NODE_PATH + 'datatables.net-bs4/js/dataTables.bootstrap4.min.js', PUBLIC_PATH + 'js')
-	.version();
+mix.js(JS_PATH + 'app.js', PUBLIC_JS_PATH)
+	.sass(SCSS_PATH + 'app.scss', PUBLIC_CSS_PATH)
+	.sass(SCSS_PATH + 'user.scss', PUBLIC_CSS_PATH)
+	.sass(SCSS_PATH + 'admin.scss', PUBLIC_CSS_PATH)
+	.version()
+	.disableNotifications();

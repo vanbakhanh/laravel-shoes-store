@@ -8,14 +8,11 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('css/user.css') }}">
 
 	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 	<!-- Title -->
 	<title>@yield('title')</title>

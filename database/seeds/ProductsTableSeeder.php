@@ -14,8 +14,8 @@ class ProductsTableSeeder extends Seeder
         $products = factory(App\Models\Product::class, 100)
         ->create()
         ->each(function ($u) {
-            $u->color()->attach(App\Models\Color::pluck('id')->take(rand(1, 10)));
-            $u->size()->attach(App\Models\Size::pluck('id')->take(rand(1, 10)));
+            $u->colors()->attach(App\Models\Color::pluck('id')->take(rand(1, 10)));
+            $u->sizes()->attach(App\Models\Size::pluck('id')->take(rand(1, 10)));
         });
     }
 }
