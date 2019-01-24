@@ -131,7 +131,7 @@ class UserController extends Controller
             return view('frontend.user.password', compact('user'));
         }
 
-        return redirect()->back();
+        return back();
     }
     
     /**
@@ -157,8 +157,8 @@ class UserController extends Controller
             $user = $this->userRepository->verifyUser($token);
 
             return redirect()->route('login')
-            ->with('status', trans('messages.verified_email'))
-            ->withInput($user->only('email'));
+                ->with('status', trans('messages.verified_email'))
+                ->withInput($user->only('email'));
         } catch (Exception $e) {
             return $e->getMessage();
         }

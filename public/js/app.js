@@ -51857,7 +51857,22 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js"); //
 
 __webpack_require__(/*! datatables.net/js/jquery.dataTables */ "./node_modules/datatables.net/js/jquery.dataTables.js");
 
-__webpack_require__(/*! datatables.net-bs4/js/dataTables.bootstrap4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
+__webpack_require__(/*! datatables.net-bs4/js/dataTables.bootstrap4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js"); // Hide the navbar when scrolls down
+
+
+var prevScrollpos = window.pageYOffset;
+
+window.onscroll = function () {
+  var currentScrollPos = window.pageYOffset;
+
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("nav-hide").style.top = "0";
+  } else {
+    document.getElementById("nav-hide").style.top = "-100px";
+  }
+
+  prevScrollpos = currentScrollPos;
+};
 
 /***/ }),
 
