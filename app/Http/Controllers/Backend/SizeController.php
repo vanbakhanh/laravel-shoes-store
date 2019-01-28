@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\SizeRepositoryInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Size\SizeStoreRequest;
 use App\Http\Requests\Size\SizeUpdateRequest;
+use App\Repositories\Contracts\SizeRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class SizeController extends Controller
 {
@@ -71,7 +71,7 @@ class SizeController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -115,7 +115,7 @@ class SizeController extends Controller
     {
         try {
             $this->sizeRepository->delete($id);
-            
+
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {
             return $e->getMessage();

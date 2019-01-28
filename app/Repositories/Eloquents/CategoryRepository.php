@@ -2,31 +2,31 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Repositories\Contracts\CategoryRepositoryInterface;
-use App\Repositories\BaseRepository;
 use App\Models\Category;
+use App\Repositories\BaseRepository;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
-	public function model()
-	{
-		return Category::class;
-	}
+    public function model()
+    {
+        return Category::class;
+    }
 
-	public function createCategory($request)
-	{
-		$this->create($request->only('name', 'description'));
-	}
+    public function createCategory($request)
+    {
+        $this->create($request->only('name', 'description'));
+    }
 
-	public function updateCategory($request, $id)
-	{
-		$this->update($id, $request->only('name', 'description'));
-	}
+    public function updateCategory($request, $id)
+    {
+        $this->update($id, $request->only('name', 'description'));
+    }
 
-	public function deleteCategory($id)
-	{
-		$category = $this->findOrFail($id);
-		$category->products()->delete();
-		$category->delete();
-	}
+    public function deleteCategory($id)
+    {
+        $category = $this->findOrFail($id);
+        $category->products()->delete();
+        $category->delete();
+    }
 }

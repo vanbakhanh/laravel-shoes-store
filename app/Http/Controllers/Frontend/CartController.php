@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Repositories\Contracts\ProductRepositoryInterface;
-use App\Repositories\Contracts\CartRepositoryInterface;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\CartRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -31,9 +31,9 @@ class CartController extends Controller
      */
     public function index()
     {
-    	$items = $this->cartRepository->cartContent();
+        $items = $this->cartRepository->cartContent();
 
-    	return view('frontend.cart.index', compact('items'));
+        return view('frontend.cart.index', compact('items'));
     }
 
     /**
@@ -41,7 +41,7 @@ class CartController extends Controller
      */
     public function addItem(Request $request)
     {
-    	$product = $this->productRepository->findOrFail($request->productId);
+        $product = $this->productRepository->findOrFail($request->productId);
         $this->cartRepository->addToCart($request, $product);
 
         return back();
@@ -62,9 +62,9 @@ class CartController extends Controller
      */
     public function removeItem($rowId)
     {
-    	$this->cartRepository->removeItem($rowId);
+        $this->cartRepository->removeItem($rowId);
 
-    	return back();
+        return back();
     }
 
     /**

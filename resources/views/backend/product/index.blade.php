@@ -27,7 +27,6 @@
 							<th scope="col">{{ trans('product.description') }}</th>
 							<th scope="col">{{ trans('product.gender') }}</th>
 							<th scope="col">{{ trans('product.price') }}</th>
-							<th scope="col">{{ trans('product.image') }}</th>
 							<th scope="col">{{ trans('product.action') }}</th>
 						</tr>
 					</thead>
@@ -39,7 +38,6 @@
 							<td class="text-left">{{ $product->description }}</td>
 							<td>{{ $product->gender }}</td>
 							<td>${{ $product->price }}</td>
-							<td>{{ $product->image }}</td>
 							<td>
 								{{ Form::open(['method' => 'DELETE', 'route' => ['product.destroy', $product->id]]) }}
 								<div class="btn-group btn-group-toggle">

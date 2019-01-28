@@ -8,24 +8,24 @@
 		<div id="carouselProductIndicators" class="carousel slide" data-ride="carousel">
 			<ol class="carousel-indicators mb-4">
 				<li data-target="#carouselProductIndicators" data-slide-to="{{ $i = 0 }}" class="active">
-					<img class="d-block w-100" src="{{ asset('images/product/' . $images[0]) }}" alt="Slide">
+					<img class="d-block w-100" src="{{ asset($productSelected->image[0]) }}" alt="Slide">
 				</li>
-				@if (count($images) > 1)
-				@foreach (array_slice($images, 1) as $image)
+				@if (count($productSelected->image) > 1)
+				@foreach (array_slice($productSelected->image, 1) as $image)
 				<li data-target="#carouselProductIndicators" data-slide-to="{{ $i = $i + 1 }}">
-					<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Slide">
+					<img class="d-block w-100" src="{{ asset($image) }}" alt="Slide">
 				</li>
 				@endforeach
 				@endif
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img class="d-block w-100" src="{{ asset('images/product/' . $images[0]) }}" alt="Slide">
+					<img class="d-block w-100" src="{{ asset($productSelected->image[0]) }}" alt="Slide">
 				</div>
-				@if (count($images) > 1)
-				@foreach (array_slice($images, 1) as $image)
+				@if (count($productSelected->image) > 1)
+				@foreach (array_slice($productSelected->image, 1) as $image)
 				<div class="carousel-item">
-					<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Slide">
+					<img class="d-block w-100" src="{{ asset($image) }}" alt="Slide">
 				</div>
 				@endforeach
 				@endif
@@ -42,11 +42,11 @@
 	</div>
 	<div class="col-lg-6 col-md-12 text-center">
 		<p class="mt-2 mb-4">
-			@if ($productSelected->gender == 'male') 
-			{{ trans('product.category_men', ['category' => $categorySelected->name]) }} 
+			@if ($productSelected->gender == 'male')
+			{{ trans('product.category_men', ['category' => $categorySelected->name]) }}
 			@else
-			{{ trans('product.category_women', ['category' => $categorySelected->name]) }} 
-			@endif 
+			{{ trans('product.category_women', ['category' => $categorySelected->name]) }}
+			@endif
 		</p>
 		<h3 class="my-2 text-uppercase">{{ $productSelected->name }}</h3>
 		<h3 class="my-4">$<b>{{ $productSelected->price }}</b></h3>
@@ -124,7 +124,7 @@
 	<div class="col-lg-2 col-md-4 col-sm-4 col-6">
 		<div class="card card-product h-100 text-center">
 			<a href="{{ route('product.show', $product->id) }}">
-				<img class="card-img-top" src="{{ asset('images/product/' . json_decode($product->image, true)[0]) }}" alt="Image">
+				<img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="Image">
 			</a>
 			<div class="card-body">
 				<h5 class="card-title m-0 p-0">
@@ -145,9 +145,9 @@
 	<p class="col-md-12 text-center text-uppercase my-4">
 		@if ($productSelected->gender == 'male')
 		<a href="{{ route('category.men', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
-		@else 
+		@else
 		<a href="{{ route('category.women', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
-		@endif 
+		@endif
 	</p>
 </div>
 

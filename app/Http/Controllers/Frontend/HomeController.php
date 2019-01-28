@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Repositories\Contracts\ProductRepositoryInterface;
-use App\Repositories\Contracts\CategoryRepositoryInterface;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
 
 class HomeController extends Controller
 {
@@ -57,7 +56,7 @@ class HomeController extends Controller
     public function women($id)
     {
         $gender = 'female';
-        
+
         $categoryName = $this->categoryRepository->findOrFail($id)->name;
         $categories = $this->categoryRepository->orderBy('name')->get();
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
@@ -73,7 +72,7 @@ class HomeController extends Controller
         $keyword = $_GET['keyword'];
 
         $results = $this->productRepository->getSearchProduct($keyword);
-        
+
         return view('frontend.home.search', compact(['results', 'keyword']));
     }
 
@@ -83,7 +82,7 @@ class HomeController extends Controller
     public function changeLanguage($language)
     {
         \Session::put('website_language', $language);
-        
+
         return back();
     }
 }

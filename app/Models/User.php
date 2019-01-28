@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -15,9 +15,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'phone', 'birthday', 'gender', 'status', 'token'
+        'name',
+        'email',
+        'password',
+        'address',
+        'phone',
+        'birthday',
+        'gender',
+        'status',
+        'token',
     ];
-    
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -31,9 +39,16 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order');
     }
-    
+
     public function comments()
     {
         return $this->hasMany('App\Models\Comment');
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        if ($value) {
+            $this->attributes['password'] = bcrypt($value);
+        }
     }
 }

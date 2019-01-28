@@ -23,15 +23,15 @@
 				@endforeach
 				@endif
 				<div class="row my-4">
-					@foreach (json_decode($product->image, true) as $image)
+					@foreach ($product->image as $image)
 					<div class="col">
-						<img class="d-block w-100" src="{{ asset('images/product/' . $image) }}" alt="Image">
+						<img class="d-block w-100" src="{{ asset($image) }}" alt="Image">
 					</div>
 					@endforeach
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.name') }}</label>
-					{{ Form::text('name', $product->name, ['class' => 'form-control']) }}	
+					{{ Form::text('name', $product->name, ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.description') }}</label>
@@ -56,7 +56,7 @@
 							{{ $color->name }}
 						</option>
 						@endforeach
-					</select>	
+					</select>
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.size') }}</label>
@@ -66,7 +66,7 @@
 							{{ $size->name }}
 						</option>
 						@endforeach
-					</select>	
+					</select>
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.category') }}</label>

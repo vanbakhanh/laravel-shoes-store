@@ -81,6 +81,6 @@ interface BaseRepositoryInterface
     public function take($limit);
 
     public function inRandomOrder();
-    
+
     public function pluck($column, $key = null);
 }

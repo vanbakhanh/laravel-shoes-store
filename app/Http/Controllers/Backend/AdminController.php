@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\AdminRepositoryInterface;
-use App\Http\Requests\User\ChangePasswordRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\User\ChangePasswordRequest;
+use App\Repositories\Contracts\AdminRepositoryInterface;
 use Auth;
 
 class AdminController extends Controller
@@ -18,7 +16,7 @@ class AdminController extends Controller
      *
      * @return void
      */
-    public function __construct(AdminRepositoryInterface $adminRepository) 
+    public function __construct(AdminRepositoryInterface $adminRepository)
     {
         $this->middleware('auth:admin');
         $this->adminRepository = $adminRepository;
@@ -46,7 +44,7 @@ class AdminController extends Controller
 
             return view('backend.admin.password', compact('admin'));
         }
-        
+
         return back();
     }
 

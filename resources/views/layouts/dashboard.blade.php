@@ -18,9 +18,9 @@
     <title>@yield('title')</title>
 
     <!-- Logo -->
-    <link rel="icon" href="{{ asset('images/logo-site.png') }}"/>
+    <link rel="icon" href="{{ asset('storage/logo/logo-site.png') }}"/>
 </head>
-<body>	
+<body>
     <!-- Wrapper -->
     <div id="wrapper">
         <div id="sidebar-wrapper">
@@ -37,7 +37,7 @@
                 </li>
                 <li>
                     <a href="{{ route('order.manager') }}">{{ trans('layouts.order') }}</a>
-                </li>              
+                </li>
                 <li>
                     <a href="#product" data-toggle="collapse" aria-expanded="false">{{ trans('layouts.product') }}</a>
                     <ul class="collapse list-unstyled" id="product">

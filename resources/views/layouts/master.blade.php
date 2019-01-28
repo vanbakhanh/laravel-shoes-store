@@ -18,7 +18,7 @@
 	<title>@yield('title')</title>
 
 	<!-- Logo -->
-	<link rel="icon" href="{{ asset('images/logo-site.png') }}"/>
+	<link rel="icon" href="{{ asset('storage/logo/logo-site.png') }}"/>
 </head>
 <body>
 	@section('navbar')

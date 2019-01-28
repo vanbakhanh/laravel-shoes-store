@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\OrderRepositoryInterface;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\Contracts\OrderRepositoryInterface;
 
 class OrderController extends Controller
 {
@@ -15,7 +14,7 @@ class OrderController extends Controller
      *
      * @return void
      */
-    public function __construct(OrderRepositoryInterface $orderRepository) 
+    public function __construct(OrderRepositoryInterface $orderRepository)
     {
         $this->orderRepository = $orderRepository;
     }
@@ -30,7 +29,7 @@ class OrderController extends Controller
         $orderDetail = $orders->first();
 
         return view('frontend.order.index', compact([
-            'orderDetail', 'orders'
+            'orderDetail', 'orders',
         ]));
     }
 
@@ -39,12 +38,12 @@ class OrderController extends Controller
      */
     public function detail($id)
     {
-    	$orders = $this->orderRepository->getOrdersFollowUser();
+        $orders = $this->orderRepository->getOrdersFollowUser();
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
         return view('frontend.order.detail', compact([
-            'orderDetail', 'orders'
+            'orderDetail', 'orders',
         ]));
     }
 
@@ -58,7 +57,7 @@ class OrderController extends Controller
         $ordersVerified = $this->orderRepository->getOrdersVerified();
 
         return view('backend.order.index', compact([
-            'ordersVerified', 'ordersPending'
+            'ordersVerified', 'ordersPending',
         ]));
     }
 
@@ -72,7 +71,7 @@ class OrderController extends Controller
         $orderDetail = $this->orderRepository->findOrder($id);
 
         return view('backend.order.detail_pending', compact([
-            'ordersPending', 'orderDetail'
+            'ordersPending', 'orderDetail',
         ]));
     }
 
@@ -86,10 +85,10 @@ class OrderController extends Controller
         $orderDetail = $this->orderRepository->findOrder($id);
 
         return view('backend.order.detail_verified', compact([
-            'ordersVerified', 'orderDetail'
+            'ordersVerified', 'orderDetail',
         ]));
     }
-    
+
     /**
      * Verify orders are pending - admin.
      */
@@ -97,7 +96,7 @@ class OrderController extends Controller
     {
         try {
             $this->orderRepository->verifyOrder($id);
-            
+
             return redirect()->route('order.manager');
         } catch (\Exception $e) {
             return $e->getMessage();

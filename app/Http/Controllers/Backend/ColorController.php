@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\ColorRepositoryInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Color\ColorStoreRequest;
 use App\Http\Requests\Color\ColorUpdateRequest;
+use App\Repositories\Contracts\ColorRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ColorController extends Controller
 {
@@ -71,7 +71,7 @@ class ColorController extends Controller
      */
     public function show($id)
     {
-        
+
     }
 
     /**
@@ -115,7 +115,7 @@ class ColorController extends Controller
     {
         try {
             $this->colorRepository->delete($id);
-            
+
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {
             return $e->getMessage();

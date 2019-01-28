@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Http\Requests\Category\CategoryUpdateRequest;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -115,7 +115,7 @@ class CategoryController extends Controller
     {
         try {
             $this->categoryRepository->deleteCategory($id);
-            
+
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {
             return $e->getMessage();

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Repositories\Contracts\CommentRepositoryInterface;
-use App\Http\Requests\Comment\CommentStoreRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Comment\CommentStoreRequest;
+use App\Repositories\Contracts\CommentRepositoryInterface;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -16,7 +16,7 @@ class CommentController extends Controller
      *
      * @return void
      */
-    public function __construct(CommentRepositoryInterface $commentRepository) 
+    public function __construct(CommentRepositoryInterface $commentRepository)
     {
         $this->commentRepository = $commentRepository;
     }
@@ -51,7 +51,7 @@ class CommentController extends Controller
     {
         try {
             $this->commentRepository->createComment($request);
-            
+
             return back();
         } catch (\Exception $e) {
             return $e->getMessage();

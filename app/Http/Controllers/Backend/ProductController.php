@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Repositories\Contracts\ProductRepositoryInterface;
-use App\Repositories\Contracts\CategoryRepositoryInterface;
-use App\Repositories\Contracts\ColorRepositoryInterface;
-use App\Repositories\Contracts\SizeRepositoryInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductStoreRequest;
 use App\Http\Requests\Product\ProductUpdateRequest;
+use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\ColorRepositoryInterface;
+use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Contracts\SizeRepositoryInterface;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -59,7 +59,7 @@ class ProductController extends Controller
         $sizes = $this->sizeRepository->pluck('name', 'id');
 
         return view('backend.product.create', compact([
-            'categories', 'colors', 'sizes'
+            'categories', 'colors', 'sizes',
         ]));
     }
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
     {
         try {
             $this->productRepository->createProduct($request);
-            
+
             return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -90,8 +90,6 @@ class ProductController extends Controller
     {
         $productSelected = $this->productRepository->findOrFail($id);
 
-        $images = json_decode($productSelected->image, true);
-
         $productsSuggestion = $this->productRepository->getProductsSuggestion($productSelected);
 
         $categorySelected = $this->categoryRepository->findOrFail($productSelected->category_id);
@@ -99,7 +97,7 @@ class ProductController extends Controller
         $comments = $this->productRepository->getComments($id);
 
         return view('frontend.product.show', compact([
-            'productSelected', 'images', 'productsSuggestion', 'comments', 'categorySelected'
+            'productSelected', 'productsSuggestion', 'comments', 'categorySelected',
         ]));
     }
 
@@ -123,7 +121,7 @@ class ProductController extends Controller
         $selectedSizes = $this->productRepository->getSelectedSizes($product);
 
         return view('backend.product.edit', compact([
-            'product', 'colors', 'selectedColors', 'sizes','selectedSizes', 'categories', 'selectedCategory'
+            'product', 'colors', 'selectedColors', 'sizes', 'selectedSizes', 'categories', 'selectedCategory',
         ]));
     }
 

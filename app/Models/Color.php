@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Color extends Model
 {
     protected $fillable = [
-    	'name'
+        'name',
     ];
 
     public function products()
     {
-    	return $this->belongsToMany('App\Models\Product');
+        return $this->belongsToMany('App\Models\Product');
     }
 }

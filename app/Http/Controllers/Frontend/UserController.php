@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
-use App\Http\Requests\User\UserUpdateRequest;
-use App\Http\Requests\User\ChangePasswordRequest;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\User\ChangePasswordRequest;
+use App\Http\Requests\User\UserUpdateRequest;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -81,7 +80,7 @@ class UserController extends Controller
 
             return view('frontend.user.edit', compact('user'));
         }
-        
+
         return back();
     }
 
@@ -133,7 +132,7 @@ class UserController extends Controller
 
         return back();
     }
-    
+
     /**
      * Change password.
      */

@@ -4,13 +4,13 @@ namespace App\Repositories\Contracts;
 
 interface CartRepositoryInterface
 {
-	public function cartContent();
+    public function cartContent();
 
-	public function addToCart($request, $product);
+    public function addToCart($request, $product);
 
-	public function updateItem($request);
+    public function updateItem($request);
 
-	public function removeItem($rowId);
+    public function removeItem($rowId);
 
-	public function checkout();
+    public function checkout();
 }

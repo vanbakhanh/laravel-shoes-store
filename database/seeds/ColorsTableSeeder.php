@@ -11,6 +11,6 @@ class ColorsTableSeeder extends Seeder
      */
     public function run()
     {
-    	$colors = factory(App\Models\Color::class, 10)->create();
+        $colors = factory(App\Models\Color::class, 10)->create();
     }
 }

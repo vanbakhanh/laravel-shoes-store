@@ -11,18 +11,17 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-    	$users = factory(App\Models\User::class, 3)->create();
+        $users = factory(App\Models\User::class, 3)->create();
 
-    	$userDefault = App\Models\User::create([
-    		'name' => 'User',
-    		'email' => 'user@laravel.com',
-    		'password' => bcrypt('secret'),
-    		'address' => '2xx Ho Tung Mau, Lien Chieu, Da Nang',
-    		'phone' => '09357548xx',
-    		'birthday' => '1997/10/06',
-    		'gender' => 'male',
-    		'status' => '1',
-    		'token' => str_random(60),
-    	]);
+        App\Models\User::find(1)->update([
+            'name' => 'User',
+            'email' => 'user@laravel.com',
+            'password' => 'secret',
+            'address' => '2xx Ho Tung Mau, Lien Chieu, Da Nang',
+            'phone' => '09357548xx',
+            'birthday' => '1997/10/06',
+            'gender' => 'male',
+            'status' => '1',
+        ]);
     }
 }

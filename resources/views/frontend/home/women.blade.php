@@ -36,7 +36,7 @@
 			<div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4 results-row">
 				<div class="card card-product h-100 text-center">
 					<a href="{{ route('product.show', $product->id) }}">
-						<img class="card-img-top" src="{{ asset('images/product/' . json_decode($product->image, true)[0]) }}" alt="{{ $product->name }}">
+						<img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
 					</a>
 					<div class="card-body">
 						<h5 class="card-title m-0 p-0">
@@ -69,7 +69,7 @@
 	$('.tab-content').on('click', '.priceAscending', function() {
 		var sorted = $('.results-row').sort(function(a, b) {
 			return (ascending ==
-				(convertToNumber($(a).find('.price').html()) < 
+				(convertToNumber($(a).find('.price').html()) <
 					convertToNumber($(b).find('.price').html()))) ? 1 : -1;
 		});
 		$('.results').html(sorted);
@@ -78,7 +78,7 @@
 	$('.tab-content').on('click', '.decreaseAscending', function() {
 		var sorted = $('.results-row').sort(function(a, b) {
 			return (decrease ==
-				(convertToNumber($(a).find('.price').html()) < 
+				(convertToNumber($(a).find('.price').html()) <
 					convertToNumber($(b).find('.price').html()))) ? 1 : -1;
 		});
 		$('.results').html(sorted);
