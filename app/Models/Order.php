@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    const PENDING = 0;
+
+    const VERIFIED = 1;
+
+    const TEXT = [
+        self::PENDING => 'Pending',
+        self::VERIFIED => 'Verified',
+    ];
+
     protected $fillable = [
         'total',
         'status',
@@ -22,5 +31,10 @@ class Order extends Model
     public function products()
     {
         return $this->belongsToMany('App\Models\Product')->withPivot('qty', 'total', 'color', 'size')->withTimestamps();
+    }
+
+    public function getStatusAttribute($value)
+    {
+        return self::TEXT[$value];
     }
 }

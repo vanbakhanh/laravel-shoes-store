@@ -10,16 +10,16 @@ class SizeRepository extends BaseRepository implements SizeRepositoryInterface
 {
     public function model()
     {
-        return Size::class;
+        return app(Size::class);
     }
 
     public function createSize($request)
     {
-        $this->create($request->only('name'));
+        return $this->model()->create($request->only('name'));
     }
 
     public function updateSize($request, $id)
     {
-        $this->findOrFail($id)->update($request->only('name'));
+        return $this->model()->findOrFail($id)->update($request->only('name'));
     }
 }

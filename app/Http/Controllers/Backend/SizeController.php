@@ -114,7 +114,7 @@ class SizeController extends Controller
     public function destroy($id)
     {
         try {
-            $this->sizeRepository->delete($id);
+            $this->sizeRepository->findOrFail($id)->delete();
 
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {

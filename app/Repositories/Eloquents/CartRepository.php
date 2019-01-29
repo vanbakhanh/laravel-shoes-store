@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Mail\OrderShipped;
+use App\Models\Order;
 use App\Repositories\Contracts\CartRepositoryInterface;
 use Auth;
 use Cart;
@@ -17,7 +18,7 @@ class CartRepository implements CartRepositoryInterface
 
     public function addToCart($request, $product)
     {
-        Cart::add([
+        return Cart::add([
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
@@ -32,12 +33,12 @@ class CartRepository implements CartRepositoryInterface
 
     public function updateItem($request)
     {
-        Cart::update($request->rowId, $request->qty);
+        return Cart::update($request->rowId, $request->qty);
     }
 
     public function removeItem($rowId)
     {
-        Cart::remove($rowId);
+        return Cart::remove($rowId);
     }
 
     public function checkout()
@@ -46,7 +47,7 @@ class CartRepository implements CartRepositoryInterface
 
         $order = $user->orders()->create([
             'total' => Cart::total(2, '.', ''),
-            'status' => 'Pending',
+            'status' => Order::PENDING,
             'quantity' => Cart::count(),
             'address' => $user->address,
         ]);
@@ -64,5 +65,7 @@ class CartRepository implements CartRepositoryInterface
         $orderProducts = $order->products()->get();
 
         Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user));
+
+        return true;
     }
 }

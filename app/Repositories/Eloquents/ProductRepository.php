@@ -11,9 +11,11 @@ use Storage;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
+    const PAGINATE = 24;
+
     public function model()
     {
-        return Product::class;
+        return app(Product::class);
     }
 
     public function uploadImage($request, $data)
@@ -39,7 +41,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         if ($category) {
             $data = $request->only('name', 'description', 'gender', 'price');
-            $data = $this->uploadImage($request, $data);
+            $data = $this->model()->uploadImage($request, $data);
 
             $product = $category->products()->create($data);
 
@@ -58,9 +60,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
         if ($category) {
             $data = $request->only('name', 'description', 'gender', 'price', 'category_id');
-            $data = $this->uploadImage($request, $data);
+            $data = $this->model()->uploadImage($request, $data);
 
-            $product = $this->findOrFail($id);
+            $product = $this->model()->findOrFail($id);
             $product->update($data);
 
             $product->colors()->sync($request['color']);
@@ -74,10 +76,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function getProductsSuggestion($productSelected)
     {
-        return $this->with(['colors', 'sizes'])
+        return $this->model()->with(['colors', 'sizes'])
             ->where('category_id', $productSelected->category_id)
             ->where('id', '!=', $productSelected->id)
-            ->where('gender', $productSelected->gender)->get()->shuffle()->take(6);
+            ->where('gender', $productSelected->gender)
+            ->get()
+            ->shuffle()
+            ->take(6);
     }
 
     public function getComments($id)
@@ -100,24 +105,24 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function getSearchProduct($keyword)
     {
-        return $this->where('name', 'LIKE', '%' . $keyword . '%')
+        return $this->model()->where('name', 'LIKE', '%' . $keyword . '%')
             ->with(['colors', 'sizes'])
             ->orderBy('name')
             ->get()
-            ->take(24);
+            ->take(self::PAGINATE);
     }
 
     public function getProductsFollowGenderAndCategory($id, $gender)
     {
-        return $this->where('category_id', $id)
+        return $this->model()->where('category_id', $id)
             ->where('gender', $gender)
-            ->with(['colors', 'sizes'])
+            ->with(['colors', 'sizes', 'category'])
             ->orderBy('created_at', 'desc')
-            ->paginate(24);
+            ->paginate(self::PAGINATE);
     }
 
     public function deleteProduct($id)
     {
-        $this->delete($id);
+        return $this->model()->findOrFail($id)->delete();
     }
 }

@@ -12,12 +12,12 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 {
     public function model()
     {
-        return Order::class;
+        return app(Order::class);
     }
 
     public function findOrder($id)
     {
-        return $this->where('id', $id)->first();
+        return $this->model()->where('id', $id)->first();
     }
 
     public function getOrdersFollowUser()
@@ -30,16 +30,22 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
     public function getOrdersPending()
     {
-        return $this->with('user')->where('status', 'Pending')->get()->sortByDesc('created_at');
+        return $this->model()->with('user')
+            ->where('status', Order::PENDING)
+            ->get()
+            ->sortByDesc('created_at');
     }
 
     public function getOrdersVerified()
     {
-        return $this->with('user')->where('status', 'Verified')->get()->sortByDesc('created_at');
+        return $this->model()->with('user')
+            ->where('status', Order::VERIFIED)
+            ->get()
+            ->sortByDesc('created_at');
     }
 
     public function verifyOrder($id)
     {
-        return $this->update($id, ['status' => 'Verified']);
+        return $this->model()->update($id, ['status' => Order::VERIFIED]);
     }
 }

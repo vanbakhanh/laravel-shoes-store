@@ -114,7 +114,7 @@ class ColorController extends Controller
     public function destroy($id)
     {
         try {
-            $this->colorRepository->delete($id);
+            $this->colorRepository->findOrFail($id)->delete();
 
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {

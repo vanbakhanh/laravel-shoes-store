@@ -23,6 +23,5 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'birthday' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'gender' => $faker->randomElements(['male', 'female'])[0],
         'status' => '1',
-        'token' => str_random(60),
     ];
 });

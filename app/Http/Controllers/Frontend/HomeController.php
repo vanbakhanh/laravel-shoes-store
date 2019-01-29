@@ -43,11 +43,10 @@ class HomeController extends Controller
     {
         $gender = 'male';
 
-        $categoryName = $this->categoryRepository->findOrFail($id)->name;
         $categories = $this->categoryRepository->orderBy('name')->get();
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
-        return view('frontend.home.men', compact(['products', 'categoryName', 'categories']));
+        return view('frontend.home.men', compact(['products', 'categories']));
     }
 
     /**
@@ -57,11 +56,10 @@ class HomeController extends Controller
     {
         $gender = 'female';
 
-        $categoryName = $this->categoryRepository->findOrFail($id)->name;
         $categories = $this->categoryRepository->orderBy('name')->get();
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
-        return view('frontend.home.women', compact(['products', 'categoryName', 'categories']));
+        return view('frontend.home.women', compact(['products', 'categories']));
     }
 
     /**

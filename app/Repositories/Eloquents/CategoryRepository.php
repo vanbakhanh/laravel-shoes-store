@@ -10,23 +10,25 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 {
     public function model()
     {
-        return Category::class;
+        return app(Category::class);
     }
 
     public function createCategory($request)
     {
-        $this->create($request->only('name', 'description'));
+        return $this->model()->create($request->only('name', 'description'));
     }
 
     public function updateCategory($request, $id)
     {
-        $this->update($id, $request->only('name', 'description'));
+        return $this->model()->update($id, $request->only('name', 'description'));
     }
 
     public function deleteCategory($id)
     {
-        $category = $this->findOrFail($id);
+        $category = $this->model()->findOrFail($id);
         $category->products()->delete();
         $category->delete();
+
+        return true;
     }
 }

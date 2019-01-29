@@ -10,11 +10,11 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
 {
     public function model()
     {
-        return Comment::class;
+        return app(Comment::class);
     }
 
     public function createComment($request)
     {
-        $this->create($request->only('content', 'product_id', 'user_id'));
+        return $this->model()->create($request->only('content', 'product_id', 'user_id'));
     }
 }

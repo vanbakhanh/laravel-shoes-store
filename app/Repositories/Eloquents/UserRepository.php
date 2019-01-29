@@ -10,33 +10,36 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     public function model()
     {
-        return User::class;
+        return app(User::class);
     }
 
     public function updateUser($request, $id)
     {
-        $this->findOrFail($id)->update($request->only(
+        return $this->model()->findOrFail($id)->update($request->only(
             'name', 'email', 'address', 'phone', 'birthday', 'gender'
         ));
     }
 
     public function deleteUser($id)
     {
-        $user = $this->findOrFail($id);
+        $user = $this->model()->findOrFail($id);
         $user->orders()->delete();
         $user->comments()->delete();
         $user->delete();
+
+        return true;
     }
 
     public function changePassword($request, $id)
     {
-        $this->findOrFail($id)->update(['password' => $request['password']]);
+        return $this->model()->findOrFail($id)->update(['password' => $request['password']]);
     }
 
     public function verifyUser($token)
     {
-        $user = $this->where('token', $token)->first();
-        $user->status = '1';
+        $user = $this->model()->where('token', $token)->first();
+        $user->status = User::ACTIVE;
+        $user->token = null;
         $user->save();
 
         return $user;

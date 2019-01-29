@@ -48,7 +48,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the view to manager orders - admin.
+     * Display the view of manager orders - admin.
      */
     public function manager()
     {
@@ -62,7 +62,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the view to manager pending orders - admin.
+     * Display the view of manager pending orders - admin.
      */
     public function managerDetailPending($id)
     {
@@ -76,7 +76,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the view to manager verified orders - admin.
+     * Display the view of manager verified orders - admin.
      */
     public function managerDetailVerified($id)
     {
@@ -109,7 +109,7 @@ class OrderController extends Controller
     public function destroy($id)
     {
         try {
-            $this->orderRepository->delete($id);
+            $this->orderRepository->findOrFail($id)->delete();
 
             return back()->with('status', trans('messages.deleted_success'));
         } catch (Exception $e) {

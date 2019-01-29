@@ -10,12 +10,12 @@ class AdminRepository extends BaseRepository implements AdminRepositoryInterface
 {
     public function model()
     {
-        return Admin::class;
+        return app(Admin::class);
     }
 
     public function changePassword($request, $id)
     {
-        $this->update(
+        return $this->model()->update(
             $id,
             ['password' => $request['password']]
         );
