@@ -4,7 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Order;
 use App\Models\User;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 use Auth;
 
@@ -47,5 +47,10 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     public function verifyOrder($id)
     {
         return $this->model()->update($id, ['status' => Order::VERIFIED]);
+    }
+
+    public function deleteOrder($id)
+    {
+        return $this->model()->findOrFail($id)->delete();
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class Size extends Model
+class Size extends AbstractModel
 {
     protected $fillable = [
         'name',

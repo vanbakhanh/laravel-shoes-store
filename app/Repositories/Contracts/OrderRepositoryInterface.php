@@ -13,4 +13,6 @@ interface OrderRepositoryInterface
     public function getOrdersVerified();
 
     public function verifyOrder($id);
+
+    public function deleteOrder($id);
 }

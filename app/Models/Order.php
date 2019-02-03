@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 
-class Order extends Model
+class Order extends AbstractModel
 {
     const PENDING = 0;
 

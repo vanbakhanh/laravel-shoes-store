@@ -15,9 +15,16 @@ class CreateColorProductTable extends Migration
     {
         Schema::create('color_product', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->unsigned()->index();
-            $table->integer('color_id')->unsigned()->index();
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')->on('products')
+                ->onDelete('cascade');
+            $table->unsignedInteger('color_id');
+            $table->foreign('color_id')
+                ->references('id')->on('colors')
+                ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

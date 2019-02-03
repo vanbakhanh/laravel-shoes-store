@@ -19,8 +19,12 @@ class CreateOrdersTable extends Migration
             $table->integer('status');
             $table->integer('quantity');
             $table->string('address');
-            $table->integer('user_id')->unsigned()->index();
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

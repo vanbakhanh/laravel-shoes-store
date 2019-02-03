@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Color;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\ColorRepositoryInterface;
 
 class ColorRepository extends BaseRepository implements ColorRepositoryInterface

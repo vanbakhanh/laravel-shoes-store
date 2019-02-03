@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Category;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
@@ -25,10 +25,6 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function deleteCategory($id)
     {
-        $category = $this->model()->findOrFail($id);
-        $category->products()->delete();
-        $category->delete();
-
-        return true;
+        return $this->model()->findOrFail($id)->delete();
     }
 }

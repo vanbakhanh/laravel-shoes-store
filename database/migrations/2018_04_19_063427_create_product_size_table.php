@@ -15,9 +15,16 @@ class CreateProductSizeTable extends Migration
     {
         Schema::create('product_size', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id')->unsigned()->index();
-            $table->integer('size_id')->unsigned()->index();
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')->on('products')
+                ->onDelete('cascade');
+            $table->unsignedInteger('size_id');
+            $table->foreign('size_id')
+                ->references('id')->on('sizes')
+                ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

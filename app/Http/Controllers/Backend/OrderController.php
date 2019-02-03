@@ -109,7 +109,7 @@ class OrderController extends Controller
     public function destroy($id)
     {
         try {
-            $this->orderRepository->findOrFail($id)->delete();
+            $this->orderRepository->deleteOrder($id);
 
             return back()->with('status', trans('messages.deleted_success'));
         } catch (Exception $e) {

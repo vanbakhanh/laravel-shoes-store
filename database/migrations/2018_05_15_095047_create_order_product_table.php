@@ -19,9 +19,16 @@ class CreateOrderProductTable extends Migration
             $table->double('total');
             $table->string('color');
             $table->integer('size');
-            $table->integer('order_id')->unsigned()->index();
-            $table->integer('product_id')->unsigned()->index();
+            $table->unsignedInteger('order_id');
+            $table->foreign('order_id')
+                ->references('id')->on('orders')
+                ->onDelete('cascade');
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')
+                ->references('id')->on('products')
+                ->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Size;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\SizeRepositoryInterface;
 
 class SizeRepository extends BaseRepository implements SizeRepositoryInterface

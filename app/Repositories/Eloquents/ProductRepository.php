@@ -5,7 +5,7 @@ namespace App\Repositories\Eloquents;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use Storage;
 

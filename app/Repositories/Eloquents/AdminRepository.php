@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Admin;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\AdminRepositoryInterface;
 
 class AdminRepository extends BaseRepository implements AdminRepositoryInterface

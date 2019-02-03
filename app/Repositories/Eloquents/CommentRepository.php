@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Comment;
-use App\Repositories\BaseRepository;
+use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\CommentRepositoryInterface;
 
 class CommentRepository extends BaseRepository implements CommentRepositoryInterface
