@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', trans('order.my_order'))
+
 @section('content')
 
 <div class="row">

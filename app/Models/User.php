@@ -20,13 +20,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
-        'address',
-        'phone',
-        'birthday',
-        'gender',
         'status',
         'token',
     ];
@@ -62,5 +57,10 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany('App\Models\Review');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Models\Profile');
     }
 }

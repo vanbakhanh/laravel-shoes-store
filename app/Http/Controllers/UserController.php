@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->userRepository->all();
+        $users = $this->userRepository->with('profile')->get();
 
         return view('backend.user.index', compact('users'));
     }
@@ -76,7 +76,7 @@ class UserController extends Controller
     public function edit($id)
     {
         if (Auth::check() && Auth::user()->id == $id) {
-            $user = $this->userRepository->findOrFail($id);
+            $user = $this->userRepository->findOrFail($id)->with('profile')->first();
 
             return view('frontend.user.edit', compact('user'));
         }
@@ -148,7 +148,7 @@ class UserController extends Controller
     }
 
     /**
-     * Verify user when click the link sent via email.
+     * Verify user.
      */
     protected function verify($token)
     {

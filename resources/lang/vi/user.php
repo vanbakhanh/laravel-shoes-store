@@ -37,5 +37,7 @@ return [
     'male' => 'Nam',
     'female' => 'Nữ',
     'total' => 'Tổng tiền',
+    'first_name' => 'Họ',
+    'last_name' => 'Tên',
 
 ];

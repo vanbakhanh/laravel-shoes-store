@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', trans('home.men_shoes', ['name' => $products[0]->category->name]))
+
 @section('content')
 
 <div class="row">

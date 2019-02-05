@@ -93,6 +93,9 @@ Route::group(['middleware' => 'locale'], function () {
             Route::put('/password/{user}', 'UserController@changePassword')->name('user.password.update');
         });
 
+        // Profile
+        Route::resource('profile', 'ProfileController', ['only' => ['update']]);
+
         // Comment
         Route::resource('/comment', 'CommentController');
 

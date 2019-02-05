@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', 'Nike ' . $productSelected->name)
+
 @section('content')
 
 <!-- Portfolio Item Row -->
@@ -171,10 +173,8 @@
 		{{ Form::open() }}
 		<div class="form-group">
 			{{ Form::textarea('content', '', ['class' => 'form-control', 'id' => 'commentContent', 'rows' => '1', 'placeholder' => trans('product.write_preview')]) }}
-			{{ Form::hidden('product_id', $productSelected->id, ['id' => 'product_id']) }}
-			{{ Form::hidden('user_id', Auth::user()->id, ['id' => 'user_id']) }}
 		</div>
-		<button type="button" class="btn btn-primary float-right" id="commentSubmit">
+		<button type="submit" class="btn btn-primary float-right" id="commentSubmit">
 			{{ trans('product.review') }}
 		</button>
 		{{ Form::close() }}
@@ -187,7 +187,7 @@
 		@if ($comments->isNotEmpty())
 		@foreach ($comments as $cmt)
 		<div class="d-flex w-100 justify-content-between">
-			<h5 class="my-2">{{ $cmt->user->name }}
+			<h5 class="my-2">{{ $cmt->user->profile->full_name }}
 				<small class="text-muted pl-1">{{ $cmt->created_at->diffForHumans() }}</small>
 			</h5>
 		</div>
@@ -215,8 +215,8 @@
 	var text = '{{ trans('layouts.cart') }}';
 	jQuery(document).ready(function() {
 		jQuery('#addToCart').click(function(e) {
-			var qty = parseInt(jQuery('#qty').val());
 			e.preventDefault();
+			var qty = parseInt(jQuery('#qty').val());
 			$.ajaxSetup({
 				headers: {
 					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -226,14 +226,13 @@
 				url: "{{ route('cart.add') }}",
 				method: 'POST',
 				data: {
-					_method: 'POST',
 					color: jQuery('#color').val(),
 					size: jQuery('#size').val(),
 					qty: jQuery('#qty').val(),
 					productId: jQuery('#productId').val(),
 				},
 				success: function() {
-					$("#cart-qty").html(text +  " " + (cart += qty));
+					$("#cart-qty").html(text +  ' ' + (cart += qty));
 				},
 			});
 		});
@@ -254,10 +253,8 @@
 				url: "{{ route('comment.store') }}",
 				method: 'POST',
 				data: {
-					_method: 'POST',
 					content: jQuery('#commentContent').val(),
-					product_id: jQuery('#product_id').val(),
-					user_id: jQuery('#user_id').val(),
+					product_id: jQuery('#productId').val(),
 				},
 				success: function() {
 					location.reload();

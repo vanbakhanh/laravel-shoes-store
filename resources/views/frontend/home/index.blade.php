@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', trans('home.branch'))
+
 @section('content')
 
 <h3 class="text-center text-uppercase mb-4">{{ trans('home.new') }}</h3>

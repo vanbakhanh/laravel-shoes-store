@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', trans('home.branch'))
+
 @section('content')
 
 <div class="col-md-12 text-uppercase text-center mb-4">

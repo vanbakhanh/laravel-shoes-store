@@ -1,7 +1,10 @@
 @extends('layouts.master')
+
 @section('title', trans('auth.reset_password'))
+
 @section('modal')
 @endsection
+
 @section('content')
 
 <div class="row justify-content-center">
@@ -18,7 +21,8 @@
                     @csrf
                     <div class="form-group">
                         <label for="email">{{ trans('auth.email') }}</label>
-                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                        <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                            name="email" value="{{ old('email') }}" required>
                         @if ($errors->has('email'))
                         <span class="invalid-feedback">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -26,7 +30,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-block">
                             {{ trans('auth.confirm') }}
                         </button>
                     </div>

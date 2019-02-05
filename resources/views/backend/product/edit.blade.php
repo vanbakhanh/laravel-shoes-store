@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('product.edit_title'))
+
 @section('content')
 
 {{ Form::open(['route' => ['product.update', $product->id], 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) }}

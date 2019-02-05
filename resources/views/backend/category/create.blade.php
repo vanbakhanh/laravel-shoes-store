@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('category.new_title'))
+
 @section('content')
 
 {{ Form::open(['route' => ['category.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}

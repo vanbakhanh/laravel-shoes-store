@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('product.list_title'))
+
 @section('content')
 
 <div class="row justify-content-center">

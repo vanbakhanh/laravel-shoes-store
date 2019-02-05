@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', trans('cart.cart'))
+
 @section('content')
 
 @if (session('status'))

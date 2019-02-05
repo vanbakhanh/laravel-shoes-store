@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('admin.change_password'))
+
 @section('content')
 
 <div class="row justify-content-center">

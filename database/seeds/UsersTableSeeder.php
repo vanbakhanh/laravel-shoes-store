@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,17 +12,14 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\User::class, 3)->create();
+        factory(User::class, 3)->create()->each(function ($u) {
+            $u->profile()->save(factory(App\Models\Profile::class)->make());
+        });
 
-        App\Models\User::find(1)->update([
-            'name' => 'User',
+        User::find(1)->update([
             'email' => 'user@laravel.com',
             'password' => 'secret',
-            'address' => '2xx Ho Tung Mau, Lien Chieu, Da Nang',
-            'phone' => '09357548xx',
-            'birthday' => '1997/10/06',
-            'gender' => 'male',
-            'status' => '1',
+            'status' => User::ACTIVE,
         ]);
     }
 }

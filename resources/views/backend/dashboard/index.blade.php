@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('dashboard.dashboard'))
+
 @section('content')
 
 <div class="card-deck text-center">

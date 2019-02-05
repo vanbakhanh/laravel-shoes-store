@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyUser;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,13 +53,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'birthday' => 'required|date',
-            'gender' => 'required|string|max:6',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
         ]);
     }
 
@@ -71,16 +69,19 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'address' => $data['address'],
-            'phone' => $data['phone'],
-            'birthday' => $data['birthday'],
-            'gender' => $data['gender'],
             'status' => User::INACTIVE,
             'token' => str_random(60),
         ]);
+
+        $profile = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'avatar' => Profile::AVATAR_DEFAULT,
+        ];
+
+        $user->profile()->create($profile);
 
         Mail::to($user)->send(new VerifyUser($user));
 

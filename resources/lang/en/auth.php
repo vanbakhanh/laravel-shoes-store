@@ -11,7 +11,7 @@ return [
     | messages that we need to display to the user. You are free to modify
     | these language lines according to your application's requirements.
     |
-    */
+     */
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
@@ -23,7 +23,7 @@ return [
     |
     | Include all view in folder auth.
     |
-    */
+     */
 
     'login' => 'Login',
     'email' => 'Email',
@@ -44,5 +44,7 @@ return [
     'reset_password' => 'Reset password',
     'confirm' => 'Confirm',
     'cancel' => 'Cancel',
+    'first_name' => 'First name',
+    'last_name' => 'Last name',
 
 ];

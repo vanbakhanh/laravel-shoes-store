@@ -51,6 +51,10 @@ class RepositoryServiceProvider extends ServiceProvider
             self::CONTRACT_PATH . '\ReviewRepositoryInterface',
             self::ELOQUENT_PATH . '\ReviewRepository',
         ],
+        'profile' => [
+            self::CONTRACT_PATH . '\ProfileRepositoryInterface',
+            self::ELOQUENT_PATH . '\ProfileRepository',
+        ],
     ];
 
     /**

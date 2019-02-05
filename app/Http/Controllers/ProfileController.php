@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Comment\CommentStoreRequest;
-use App\Repositories\Contracts\CommentRepositoryInterface;
-use Auth;
+use App\Http\Requests\Profile\ProfileUpdateRequest;
+use App\Repositories\Contracts\ProfileRepositoryInterface;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class ProfileController extends Controller
 {
-    protected $commentRepository;
+    protected $profileRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CommentRepositoryInterface $commentRepository)
+    public function __construct(ProfileRepositoryInterface $profileRepository)
     {
-        $this->commentRepository = $commentRepository;
+        $this->profileRepository = $profileRepository;
     }
 
     /**
@@ -48,17 +46,9 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentStoreRequest $request)
+    public function store(Request $request)
     {
-        try {
-            $comment = $request->only('content', 'product_id');
-            $comment['user_id'] = Auth::user()->id;
-            $this->commentRepository->createComment($comment);
-
-            return back();
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        //
     }
 
     /**
@@ -69,7 +59,7 @@ class CommentController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -90,9 +80,15 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfileUpdateRequest $request, $id)
     {
-        //
+        $profile = $request->only(
+            'first_name', 'last_name', 'avatar', 'gender', 'phone', 'birthday', 'address'
+        );
+
+        $this->profileRepository->updateProfile($profile, $id);
+
+        return back()->with('status', trans('messages.updated_success'));
     }
 
     /**

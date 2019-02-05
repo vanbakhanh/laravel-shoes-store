@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('color.new_title'))
+
 @section('content')
 
 {{ Form::open(['route' => ['color.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}

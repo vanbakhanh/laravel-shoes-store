@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('user.list_title'))
+
 @section('content')
 
 <div class="row justify-content-center">
@@ -23,9 +25,9 @@
                     <thead>
                         <tr>
                             <th scope="col">{{ trans('user.id') }}</th>
+                            <th scope="col">{{ trans('user.email') }}</th>
                             <th scope="col">{{ trans('user.name') }}</th>
                             <th scope="col">{{ trans('user.gender') }}</th>
-                            <th scope="col">{{ trans('user.email') }}</th>
                             <th scope="col">{{ trans('user.phone') }}</th>
                             <th scope="col">{{ trans('user.birthday') }}</th>
                             <th scope="col">{{ trans('user.address') }}</th>
@@ -36,12 +38,12 @@
                         @foreach ($users as $user)
                         <tr>
                             <th scope="row">{{ $user->id }}</th>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->gender }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->phone }}</td>
-                            <td>{{ $user->birthday }}</td>
-                            <td>{{ $user->address }}</td>
+                            <td>{{ $user->profile->full_name }}</td>
+                            <td>{{ $user->profile->gender }}</td>
+                            <td>{{ $user->profile->phone }}</td>
+                            <td>{{ $user->profile->birthday }}</td>
+                            <td>{{ $user->profile->address }}</td>
                             <td>
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $user->id]]) }}
                                 {{ Form::submit(trans('user.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}

@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('color.edit_title'))
+
 @section('content')
 
 {{ Form::open(['route' => ['color.update', $color->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}

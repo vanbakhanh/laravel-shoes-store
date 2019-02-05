@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
+
 @section('title', trans('size.edit_title'))
+
 @section('content')
 
 {{ Form::open(['route' => ['size.update', $size->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}

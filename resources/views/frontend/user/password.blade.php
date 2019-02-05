@@ -1,5 +1,7 @@
 @extends('layouts.master')
+
 @section('title', trans('user.change_password'))
+
 @section('content')
 
 <div class="row justify-content-center">
@@ -16,7 +18,8 @@
                 {{ Form::open(['route' => ['user.password.update', $user->id], 'method' => 'PUT']) }}
                 <div class="form-group">
                     <label>{{ trans('user.new_password') }}</label>
-                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                        name="password" required>
                     @if ($errors->has('password'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password') }}</strong>

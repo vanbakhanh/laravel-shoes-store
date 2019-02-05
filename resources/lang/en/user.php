@@ -37,5 +37,7 @@ return [
     'male' => 'Male',
     'female' => 'Female',
     'total' => 'Total',
+    'first_name' => 'First name',
+    'last_name' => 'Last name',
 
 ];
