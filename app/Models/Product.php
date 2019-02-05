@@ -50,4 +50,9 @@ class Product extends AbstractModel
 
         return $images;
     }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review');
+    }
 }

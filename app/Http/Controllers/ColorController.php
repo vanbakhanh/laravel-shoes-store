@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Size\SizeStoreRequest;
-use App\Http\Requests\Size\SizeUpdateRequest;
-use App\Repositories\Contracts\SizeRepositoryInterface;
+use App\Http\Requests\Color\ColorStoreRequest;
+use App\Http\Requests\Color\ColorUpdateRequest;
+use App\Repositories\Contracts\ColorRepositoryInterface;
 use Illuminate\Http\Request;
 
-class SizeController extends Controller
+class ColorController extends Controller
 {
-    protected $sizeRepository;
+    protected $colorRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(SizeRepositoryInterface $sizeRepository)
+    public function __construct(ColorRepositoryInterface $colorRepository)
     {
-        $this->sizeRepository = $sizeRepository;
+        $this->colorRepository = $colorRepository;
     }
 
     /**
@@ -29,9 +29,9 @@ class SizeController extends Controller
      */
     public function index()
     {
-        $sizes = $this->sizeRepository->all();
+        $colors = $this->colorRepository->all();
 
-        return view('backend.size.index', compact('sizes'));
+        return view('backend.color.index', compact('colors'));
     }
 
     /**
@@ -41,9 +41,9 @@ class SizeController extends Controller
      */
     public function create()
     {
-        $sizes = $this->sizeRepository->all();
+        $colors = $this->colorRepository->all();
 
-        return view('backend.size.create', compact('sizes'));
+        return view('backend.color.create', compact('colors'));
     }
 
     /**
@@ -52,10 +52,10 @@ class SizeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SizeStoreRequest $request)
+    public function store(ColorStoreRequest $request)
     {
         try {
-            $this->sizeRepository->createSize($request);
+            $this->colorRepository->createColor($request);
 
             return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
@@ -82,9 +82,9 @@ class SizeController extends Controller
      */
     public function edit($id)
     {
-        $size = $this->sizeRepository->findOrFail($id);
+        $color = $this->colorRepository->findOrFail($id);
 
-        return view('backend.size.edit', compact('size'));
+        return view('backend.color.edit', compact('color'));
     }
 
     /**
@@ -94,10 +94,10 @@ class SizeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SizeUpdateRequest $request, $id)
+    public function update(ColorUpdateRequest $request, $id)
     {
         try {
-            $this->sizeRepository->updateSize($request, $id);
+            $this->colorRepository->updateColor($request, $id);
 
             return back()->with('status', trans('messages.updated_success'));
         } catch (\Exception $e) {
@@ -114,7 +114,7 @@ class SizeController extends Controller
     public function destroy($id)
     {
         try {
-            $this->sizeRepository->findOrFail($id)->delete();
+            $this->colorRepository->findOrFail($id)->delete();
 
             return back()->with('delete', trans('messages.deleted_success'));
         } catch (\Exception $e) {

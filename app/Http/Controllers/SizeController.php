@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Comment\CommentStoreRequest;
-use App\Repositories\Contracts\CommentRepositoryInterface;
+use App\Http\Requests\Size\SizeStoreRequest;
+use App\Http\Requests\Size\SizeUpdateRequest;
+use App\Repositories\Contracts\SizeRepositoryInterface;
 use Illuminate\Http\Request;
 
-class CommentController extends Controller
+class SizeController extends Controller
 {
-    protected $commentRepository;
+    protected $sizeRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(CommentRepositoryInterface $commentRepository)
+    public function __construct(SizeRepositoryInterface $sizeRepository)
     {
-        $this->commentRepository = $commentRepository;
+        $this->sizeRepository = $sizeRepository;
     }
 
     /**
@@ -28,7 +29,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $sizes = $this->sizeRepository->all();
+
+        return view('backend.size.index', compact('sizes'));
     }
 
     /**
@@ -38,7 +41,9 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        $sizes = $this->sizeRepository->all();
+
+        return view('backend.size.create', compact('sizes'));
     }
 
     /**
@@ -47,12 +52,12 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentStoreRequest $request)
+    public function store(SizeStoreRequest $request)
     {
         try {
-            $this->commentRepository->createComment($request);
+            $this->sizeRepository->createSize($request);
 
-            return back();
+            return back()->with('status', trans('messages.created_success'));
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -77,7 +82,9 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $size = $this->sizeRepository->findOrFail($id);
+
+        return view('backend.size.edit', compact('size'));
     }
 
     /**
@@ -87,9 +94,15 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SizeUpdateRequest $request, $id)
     {
-        //
+        try {
+            $this->sizeRepository->updateSize($request, $id);
+
+            return back()->with('status', trans('messages.updated_success'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -100,6 +113,12 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->sizeRepository->findOrFail($id)->delete();
+
+            return back()->with('delete', trans('messages.deleted_success'));
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 }
