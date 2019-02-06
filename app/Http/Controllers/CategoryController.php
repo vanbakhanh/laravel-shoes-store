@@ -54,13 +54,11 @@ class CategoryController extends Controller
      */
     public function store(CategoryStoreRequest $request)
     {
-        try {
-            $this->categoryRepository->createCategory($request);
+        $category = $request->only('name', 'description');
+        $this->categoryRepository->createCategory($category);
 
-            return back()->with('status', trans('messages.created_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.created_success'));
+
     }
 
     /**
@@ -96,13 +94,10 @@ class CategoryController extends Controller
      */
     public function update(CategoryUpdateRequest $request, $id)
     {
-        try {
-            $this->categoryRepository->updateCategory($request, $id);
+        $category = $request->only('name', 'description');
+        $this->categoryRepository->updateCategory($category, $id);
 
-            return back()->with('status', trans('messages.updated_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.updated_success'));
     }
 
     /**
@@ -113,12 +108,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $this->categoryRepository->deleteCategory($id);
+        $this->categoryRepository->deleteCategory($id);
 
-            return back()->with('delete', trans('messages.deleted_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('delete', trans('messages.deleted_success'));
     }
 }

@@ -54,13 +54,10 @@ class ColorController extends Controller
      */
     public function store(ColorStoreRequest $request)
     {
-        try {
-            $this->colorRepository->createColor($request);
+        $color = $request->only('name');
+        $this->colorRepository->createColor($color);
 
-            return back()->with('status', trans('messages.created_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.created_success'));
     }
 
     /**
@@ -96,13 +93,10 @@ class ColorController extends Controller
      */
     public function update(ColorUpdateRequest $request, $id)
     {
-        try {
-            $this->colorRepository->updateColor($request, $id);
+        $color = $request->only('name');
+        $this->colorRepository->updateColor($color, $id);
 
-            return back()->with('status', trans('messages.updated_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.updated_success'));
     }
 
     /**
@@ -113,12 +107,8 @@ class ColorController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $this->colorRepository->findOrFail($id)->delete();
+        $this->colorRepository->findOrFail($id)->delete();
 
-            return back()->with('delete', trans('messages.deleted_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('delete', trans('messages.deleted_success'));
     }
 }

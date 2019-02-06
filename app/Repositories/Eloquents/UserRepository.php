@@ -13,24 +13,19 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
         return app(User::class);
     }
 
-    public function updateUser($request, $id)
+    public function updateUser($user, $id)
     {
-        return $this->model()->findOrFail($id)->update($request->only('email'));
+        return $this->model()->findOrFail($id)->update($user);
     }
 
     public function deleteUser($id)
     {
-        $user = $this->model()->findOrFail($id);
-        $user->orders()->delete();
-        $user->comments()->delete();
-        $user->delete();
-
-        return true;
+        return $this->model()->findOrFail($id)->delete();
     }
 
-    public function changePassword($request, $id)
+    public function changePassword($password, $id)
     {
-        return $this->model()->findOrFail($id)->update(['password' => $request['password']]);
+        return $this->model()->findOrFail($id)->update($password);
     }
 
     public function verifyUser($token)

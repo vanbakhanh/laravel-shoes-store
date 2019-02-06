@@ -26,7 +26,7 @@
 				@endif
 				<div class="form-group">
 					<label>{{ trans('product.name') }}</label>
-					{{ Form::text('name', '', ['class' => 'form-control']) }}	
+					{{ Form::text('name', '', ['class' => 'form-control']) }}
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.description') }}</label>
@@ -45,15 +45,15 @@
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.color') }}</label>
-					{{ Form::select('color[]', $colors, '', ['class' => 'form-control', 'multiple']) }}	
+					{{ Form::select('color[]', $colors, '', ['class' => 'form-control', 'multiple']) }}
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.size') }}</label>
-					{{ Form::select('size[]', $sizes, '', ['class' => 'form-control', 'multiple']) }}	
+					{{ Form::select('size[]', $sizes, '', ['class' => 'form-control', 'multiple']) }}
 				</div>
 				<div class="form-group">
 					<label>{{ trans('product.category') }}</label>
-					<select class="form-control" id="category" name="category">
+					<select class="form-control" id="category" name="category_id">
 						@foreach ($categories as $category)
 						<option value="{{ $category->id }}">
 							{{ $category->name }}

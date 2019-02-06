@@ -53,12 +53,9 @@ class AdminController extends Controller
      */
     public function changePassword(ChangePasswordRequest $request, $id)
     {
-        try {
-            $this->adminRepository->changePassword($request, $id);
+        $password = ['password' => $request->password];
+        $this->adminRepository->changePassword($password, $id);
 
-            return back()->with('status', trans('messages.changed_password'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.changed_password'));
     }
 }

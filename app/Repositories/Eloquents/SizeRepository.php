@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Size;
-use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\SizeRepositoryInterface;
+use App\Repositories\Eloquents\BaseRepository;
 
 class SizeRepository extends BaseRepository implements SizeRepositoryInterface
 {
@@ -13,13 +13,13 @@ class SizeRepository extends BaseRepository implements SizeRepositoryInterface
         return app(Size::class);
     }
 
-    public function createSize($request)
+    public function createSize($size)
     {
-        return $this->model()->create($request->only('name'));
+        return $this->model()->create($size);
     }
 
-    public function updateSize($request, $id)
+    public function updateSize($size, $id)
     {
-        return $this->model()->findOrFail($id)->update($request->only('name'));
+        return $this->model()->findOrFail($id)->update($size);
     }
 }

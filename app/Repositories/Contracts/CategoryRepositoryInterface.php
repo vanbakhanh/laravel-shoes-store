@@ -4,9 +4,9 @@ namespace App\Repositories\Contracts;
 
 interface CategoryRepositoryInterface
 {
-    public function createCategory($request);
+    public function createCategory($category);
 
-    public function updateCategory($request, $id);
+    public function updateCategory($category, $id);
 
     public function deleteCategory($id);
 }

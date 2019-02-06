@@ -4,7 +4,7 @@ namespace App\Repositories\Contracts;
 
 interface ColorRepositoryInterface
 {
-    public function createColor($request);
+    public function createColor($color);
 
-    public function updateColor($request, $id);
+    public function updateColor($color, $id);
 }

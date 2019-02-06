@@ -94,13 +94,9 @@ class OrderController extends Controller
      */
     public function verify($id)
     {
-        try {
-            $this->orderRepository->verifyOrder($id);
+        $this->orderRepository->verifyOrder($id);
 
-            return redirect()->route('order.manager');
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return redirect()->route('order.manager');
     }
 
     /**
@@ -108,12 +104,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $this->orderRepository->deleteOrder($id);
+        $this->orderRepository->deleteOrder($id);
 
-            return back()->with('status', trans('messages.deleted_success'));
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.deleted_success'));
     }
 }

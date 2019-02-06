@@ -4,5 +4,5 @@ namespace App\Repositories\Contracts;
 
 interface AdminRepositoryInterface
 {
-    public function changePassword($request, $id);
+    public function changePassword($password, $id);
 }

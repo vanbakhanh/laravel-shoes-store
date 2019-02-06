@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Admin;
-use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\AdminRepositoryInterface;
+use App\Repositories\Eloquents\BaseRepository;
 
 class AdminRepository extends BaseRepository implements AdminRepositoryInterface
 {
@@ -13,11 +13,8 @@ class AdminRepository extends BaseRepository implements AdminRepositoryInterface
         return app(Admin::class);
     }
 
-    public function changePassword($request, $id)
+    public function changePassword($password, $id)
     {
-        return $this->model()->update(
-            $id,
-            ['password' => $request['password']]
-        );
+        return $this->model()->findOrFail($id)->update($password);
     }
 }

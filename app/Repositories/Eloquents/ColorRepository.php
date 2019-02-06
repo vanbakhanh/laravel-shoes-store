@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Color;
-use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\ColorRepositoryInterface;
+use App\Repositories\Eloquents\BaseRepository;
 
 class ColorRepository extends BaseRepository implements ColorRepositoryInterface
 {
@@ -13,13 +13,13 @@ class ColorRepository extends BaseRepository implements ColorRepositoryInterface
         return app(Color::class);
     }
 
-    public function createColor($request)
+    public function createColor($color)
     {
-        return $this->model()->create($request->only('name'));
+        return $this->model()->create($color);
     }
 
-    public function updateColor($request, $id)
+    public function updateColor($color, $id)
     {
-        return $this->model()->findOrFail($id)->update($request->only('name'));
+        return $this->model()->findOrFail($id)->update($color);
     }
 }

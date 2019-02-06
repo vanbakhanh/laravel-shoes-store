@@ -2,11 +2,10 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Product;
-use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Eloquents\BaseRepository;
 use Storage;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
@@ -18,7 +17,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
         return app(Product::class);
     }
 
-    public function uploadImage($request, $data)
+    public function uploadImage($request, $product)
     {
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $file) {
@@ -29,49 +28,31 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
                 $images[] = $imageName;
             }
 
-            $data['image'] = json_encode($images);
+            $product['image'] = json_encode($images);
         }
 
-        return $data;
+        return $product;
     }
 
-    public function createProduct($request)
+    public function createProduct($product, $color, $size)
     {
-        $category = Category::findOrFail($request['category']);
+        $product = $this->model()->create($product);
 
-        if ($category) {
-            $data = $request->only('name', 'description', 'gender', 'price');
-            $data = $this->model()->uploadImage($request, $data);
+        $product->colors()->attach($color);
+        $product->sizes()->attach($size);
 
-            $product = $category->products()->create($data);
-
-            $product->colors()->attach($request['color']);
-            $product->sizes()->attach($request['size']);
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
-    public function updateProduct($request, $id)
+    public function updateProduct($product, $color, $size, $id)
     {
-        $category = Category::findOrFail($request['category_id']);
+        $oldProduct = $this->model()->findOrFail($id);
+        $oldProduct->update($product);
 
-        if ($category) {
-            $data = $request->only('name', 'description', 'gender', 'price', 'category_id');
-            $data = $this->model()->uploadImage($request, $data);
+        $oldProduct->colors()->sync($color);
+        $oldProduct->sizes()->sync($size);
 
-            $product = $this->model()->findOrFail($id);
-            $product->update($data);
-
-            $product->colors()->sync($request['color']);
-            $product->sizes()->sync($request['size']);
-
-            return true;
-        }
-
-        return false;
+        return true;
     }
 
     public function getProductsSuggestion($productSelected)

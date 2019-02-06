@@ -54,13 +54,10 @@ class SizeController extends Controller
      */
     public function store(SizeStoreRequest $request)
     {
-        try {
-            $this->sizeRepository->createSize($request);
+        $size = $request->only('name');
+        $this->sizeRepository->createSize($size);
 
-            return back()->with('status', trans('messages.created_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.created_success'));
     }
 
     /**
@@ -96,13 +93,10 @@ class SizeController extends Controller
      */
     public function update(SizeUpdateRequest $request, $id)
     {
-        try {
-            $this->sizeRepository->updateSize($request, $id);
+        $size = $request->only('name');
+        $this->sizeRepository->updateSize($size, $id);
 
-            return back()->with('status', trans('messages.updated_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.updated_success'));
     }
 
     /**
@@ -113,12 +107,8 @@ class SizeController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $this->sizeRepository->findOrFail($id)->delete();
+        $this->sizeRepository->findOrFail($id)->delete();
 
-            return back()->with('delete', trans('messages.deleted_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('delete', trans('messages.deleted_success'));
     }
 }

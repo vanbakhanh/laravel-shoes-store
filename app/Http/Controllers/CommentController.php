@@ -50,15 +50,12 @@ class CommentController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
-        try {
-            $comment = $request->only('content', 'product_id');
-            $comment['user_id'] = Auth::user()->id;
-            $this->commentRepository->createComment($comment);
+        $comment = $request->only('content', 'product_id');
+        $comment['user_id'] = Auth::user()->id;
 
-            return back();
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        $this->commentRepository->createComment($comment);
+
+        return back();
     }
 
     /**

@@ -3,8 +3,8 @@
 namespace App\Repositories\Eloquents;
 
 use App\Models\Category;
-use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Eloquents\BaseRepository;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
@@ -13,14 +13,14 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
         return app(Category::class);
     }
 
-    public function createCategory($request)
+    public function createCategory($category)
     {
-        return $this->model()->create($request->only('name', 'description'));
+        return $this->model()->create($category);
     }
 
-    public function updateCategory($request, $id)
+    public function updateCategory($category, $id)
     {
-        return $this->model()->update($id, $request->only('name', 'description'));
+        return $this->model()->update($id, $category);
     }
 
     public function deleteCategory($id)

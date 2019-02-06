@@ -71,13 +71,15 @@ class ProductController extends Controller
      */
     public function store(ProductStoreRequest $request)
     {
-        try {
-            $this->productRepository->createProduct($request);
+        $product = $request->only('name', 'description', 'gender', 'price', 'category_id');
+        $product = $this->productRepository->uploadImage($request, $product);
 
-            return back()->with('status', trans('messages.created_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        $color = $request->color;
+        $size = $request->size;
+
+        $this->productRepository->createProduct($product, $color, $size);
+
+        return back()->with('status', trans('messages.created_success'));
     }
 
     /**
@@ -134,13 +136,15 @@ class ProductController extends Controller
      */
     public function update(ProductUpdateRequest $request, $id)
     {
-        try {
-            $this->productRepository->updateProduct($request, $id);
+        $product = $request->only('name', 'description', 'gender', 'price', 'category_id');
+        $product = $this->productRepository->uploadImage($request, $product);
 
-            return back()->with('status', trans('messages.updated_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        $color = $request->color;
+        $size = $request->size;
+
+        $this->productRepository->updateProduct($product, $color, $size, $id);
+
+        return back()->with('status', trans('messages.updated_success'));
     }
 
     /**
@@ -151,12 +155,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $this->productRepository->deleteProduct($id);
+        $this->productRepository->deleteProduct($id);
 
-            return back()->with('delete', trans('messages.deleted_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('delete', trans('messages.deleted_success'));
     }
 }

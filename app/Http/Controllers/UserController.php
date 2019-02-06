@@ -93,13 +93,10 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        try {
-            $this->userRepository->updateUser($request, $id);
+        $user = $request->only('email');
+        $this->userRepository->updateUser($user, $id);
 
-            return back()->with('status', trans('messages.updated_success'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.updated_success'));
     }
 
     /**
@@ -110,13 +107,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        try {
-            $this->userRepository->deleteUser($id);
+        $this->userRepository->deleteUser($id);
 
-            return back()->with('status', trans('messages.deleted_success'));
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.deleted_success'));
     }
 
     /**
@@ -138,13 +131,10 @@ class UserController extends Controller
      */
     public function changePassword(ChangePasswordRequest $request, $id)
     {
-        try {
-            $this->userRepository->changePassword($request, $id);
+        $password = ['password' => $request->password];
+        $this->userRepository->changePassword($password, $id);
 
-            return back()->with('status', trans('messages.changed_password'));
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
+        return back()->with('status', trans('messages.changed_password'));
     }
 
     /**
@@ -152,14 +142,10 @@ class UserController extends Controller
      */
     protected function verify($token)
     {
-        try {
-            $user = $this->userRepository->verifyUser($token);
+        $user = $this->userRepository->verifyUser($token);
 
-            return redirect()->route('login')
-                ->with('status', trans('messages.verified_email'))
-                ->withInput($user->only('email'));
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
+        return redirect()->route('login')
+            ->with('status', trans('messages.verified_email'))
+            ->withInput($user->only('email'));
     }
 }
