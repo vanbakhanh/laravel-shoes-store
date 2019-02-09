@@ -28,8 +28,8 @@
 				<div class="form-group">
 					<label>{{ trans('product.gender') }}</label>
 					<select class="form-control" id="gender" name="gender" value="{{ $product->gender }}">
-						<option @if ($product->gender == 'male') selected="selected" @endif value="male">{{ trans('product.male') }}</option>
-						<option @if ($product->gender == 'female') selected="selected" @endif value="female">{{ trans('product.female') }}</option>
+						<option @if ($product->gender == 0) selected="selected" @endif value="0">{{ trans('product.male') }}</option>
+						<option @if ($product->gender == 1) selected="selected" @endif value="1">{{ trans('product.female') }}</option>
 					</select>
 				</div>
 				<div class="form-group">

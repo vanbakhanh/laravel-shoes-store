@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', trans('home.men_shoes', ['name' => $products[0]->category->name]))
+@section('title', trans('home.men_shoes', ['name' => $categorySelected->name]))
 
 @section('content')
 
@@ -18,7 +18,7 @@
 	<div class="col-lg-9 tab-content">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-uppercase float-left mb-4">{{ trans('home.men_shoes', ['name' => $products[0]->category->name]) }} ({{ count($products) }})</h3>
+				<h3 class="text-uppercase float-left mb-4">{{ trans('home.men_shoes', ['name' => $categorySelected->name]) }} ({{ count($products) }})</h3>
 				<div class="dropdown float-right mb-4">
 					<button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						{{ trans('home.sort') }}

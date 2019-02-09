@@ -21,8 +21,8 @@
 				<div class="form-group">
 					<label>{{ trans('product.gender') }}</label>
 					<select class="form-control" name="gender">
-						<option value="male">{{ trans('product.male') }}</option>
-						<option value="female">{{ trans('product.female') }}</option>
+						<option value="0">{{ trans('product.male') }}</option>
+						<option value="1">{{ trans('product.female') }}</option>
 					</select>
 				</div>
 				<div class="form-group">

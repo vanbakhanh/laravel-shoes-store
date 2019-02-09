@@ -15,4 +15,9 @@ class Category extends AbstractModel
     {
         return $this->hasMany('App\Models\Product');
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }

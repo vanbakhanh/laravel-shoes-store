@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 
@@ -37,16 +38,27 @@ class HomeController extends Controller
     }
 
     /**
+     * Display products of gender follow to category.
+     */
+    protected function getProductsFollowGender($id, $gender)
+    {
+        $categories = $this->categoryRepository->orderBy('name')->get();
+        $categorySelected = $this->categoryRepository->findOrFail($id);
+        $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
+
+        if ($gender == Product::MALE) {
+            return view('frontend.home.men', compact(['products', 'categories', 'categorySelected']));
+        } else if ($gender == Product::FEMALE) {
+            return view('frontend.home.women', compact(['products', 'categories', 'categorySelected']));
+        }
+    }
+
+    /**
      * Display products of men follow to category.
      */
     public function men($id)
     {
-        $gender = 'male';
-
-        $categories = $this->categoryRepository->orderBy('name')->get();
-        $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
-
-        return view('frontend.home.men', compact(['products', 'categories']));
+        return $this->getProductsFollowGender($id, Product::MALE);
     }
 
     /**
@@ -54,12 +66,7 @@ class HomeController extends Controller
      */
     public function women($id)
     {
-        $gender = 'female';
-
-        $categories = $this->categoryRepository->orderBy('name')->get();
-        $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
-
-        return view('frontend.home.women', compact(['products', 'categories']));
+        return $this->getProductsFollowGender($id, Product::FEMALE);
     }
 
     /**

@@ -6,6 +6,10 @@ use App\Models\AbstractModel;
 
 class Product extends AbstractModel
 {
+    const MALE = 0;
+
+    const FEMALE = 1;
+
     protected $fillable = [
         'name',
         'description',
