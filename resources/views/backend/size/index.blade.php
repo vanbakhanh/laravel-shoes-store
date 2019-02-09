@@ -17,7 +17,7 @@
 					<p class="mb-0">{{ trans('size.empty') }}</p>
 				</div>
 				@else
-				<table id="table" class="table table-hover table-bordered text-center">
+				<table id="table" class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">{{ trans('size.id') }}</th>

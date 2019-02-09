@@ -11,7 +11,7 @@
 		<p class="card-text">{{ trans('cart.empty') }} <a href="{{ route('home') }}" class="card-link">{{ trans('cart.shopping') }}</a></p>
 		@else
 		<div class="table-responsive">
-			<table class="table table-bordered text-center">
+			<table class="table">
 				<thead>
 					<tr>
 						<th scope="col">{{ trans('cart.item') }}</th>
@@ -26,8 +26,7 @@
 					@foreach ($items as $item)
 					{{ Form::open(['class' => 'form-horizontal']) }}
 					<tr>
-						<td class="text-left">
-							<img src="{{ asset($item->options->image[0]) }}" width="50" height="50" alt="Image" class="mr-2">
+						<td>
 							<a href="{{ route('product.show', $item->id) }}">{{ $item->name }}</a>
 						</td>
 						<td>{{ $item->options->size }}</td>
@@ -38,7 +37,7 @@
 							{{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center', 'min' => '1', 'max' => '10', 'id' => 'qty' . $item->id]) }}
 						</td>
 						<td>
-							<button type="button" class="close float-none" aria-label="Close" id="remove{{ $item->id }}">
+							<button type="button" class="close float-none" id="remove{{ $item->id }}">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</td>
@@ -117,6 +116,7 @@
 		</div>
 	</div>
 </div>
+
 <!-- Remove item using Ajax -->
 <script type="text/javascript">
 	jQuery(document).ready(function() {
@@ -140,6 +140,7 @@
 		@endforeach
 	});
 </script>
+
 <!-- Update item using Ajax -->
 <script type="text/javascript">
 	jQuery(document).ready(function() {

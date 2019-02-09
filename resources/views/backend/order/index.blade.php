@@ -51,7 +51,7 @@
 				<h3 class="card-title">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
 				<div class="table-responsive">
 					<div class="table-responsive">
-						<table id="table2" class="table table-hover table-bordered text-center">
+						<table id="table2" class="table table-hover table-bordered">
 							<thead>
 								<tr>
 									<th scope="col">{{ trans('order.id') }}</th>

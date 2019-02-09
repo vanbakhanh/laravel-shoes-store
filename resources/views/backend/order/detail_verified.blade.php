@@ -28,7 +28,7 @@
 				<p class="float-right">{{ trans('order.updated') }} {{ $orderDetail->updated_at }}</p>
 			</div>
 		</div>
-		<table class="table table-hover table-bordered text-center">
+		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
 					<th scope="col">{{ trans('order.item') }}</th>

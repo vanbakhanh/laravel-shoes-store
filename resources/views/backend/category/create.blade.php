@@ -36,7 +36,7 @@
 					<p class="mb-0">{{ trans('category.empty') }}</p>
 				</div>
 				@else
-				<table id="table" class="table table-hover table-bordered text-center">
+				<table id="table" class="table table-hover table-bordered">
 					<thead>
 						<tr>
 							<th scope="col">{{ trans('category.id') }}</th>
@@ -70,6 +70,7 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();
