@@ -9,12 +9,6 @@
         <div class="card">
             <div class="card-body col-md-8 offset-md-2">
                 <h3 class="card-title">{{ trans('user.change_password') }}</h3>
-                @if (session('status'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ session('status') }}
-                </div>
-                @endif
                 {{ Form::open(['route' => ['user.password.update', $user->id], 'method' => 'PUT']) }}
                 <div class="form-group">
                     <label>{{ trans('user.new_password') }}</label>

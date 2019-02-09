@@ -157,6 +157,6 @@ class ProductController extends Controller
     {
         $this->productRepository->deleteProduct($id);
 
-        return back()->with('delete', trans('messages.deleted_success'));
+        return back()->with('status', trans('messages.deleted_success'));
     }
 }

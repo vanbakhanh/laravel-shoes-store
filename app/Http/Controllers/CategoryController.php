@@ -110,6 +110,6 @@ class CategoryController extends Controller
     {
         $this->categoryRepository->deleteCategory($id);
 
-        return back()->with('delete', trans('messages.deleted_success'));
+        return back()->with('status', trans('messages.deleted_success'));
     }
 }

@@ -11,20 +11,6 @@
                 <h3 class="card-title">
                     {{ trans('admin.change_password') }}
                 </h3>
-                @if (session('status'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ session('status') }}
-                </div>
-                @endif
-                @if ($errors->any())
-                @foreach ($errors->all() as $err)
-                <p class="alert alert-dismissible alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ $err }}
-                </p>
-                @endforeach
-                @endif
                 {{ Form::open(['route' => ['admin.password.update', $admin->id], 'method' => 'PUT']) }}
                 <div class="form-group">
                     <label>{{ trans('admin.new_password') }}</label>

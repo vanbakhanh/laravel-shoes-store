@@ -21,20 +21,18 @@
 	<link rel="icon" href="{{ asset('storage/logo/logo-site.png') }}"/>
 </head>
 <body>
-	@section('navbar')
 	@include('layouts.navbar')
-	@show
 
 	@section('modal')
 	@include('layouts.modal')
 	@show
 
 	<div class="container" id="content">
+		@include('layouts.notification')
+
 		@yield('content')
 	</div>
-	
-	@section('footer')
+
 	@include('layouts.footer')
-	@show
 </body>
 </html>

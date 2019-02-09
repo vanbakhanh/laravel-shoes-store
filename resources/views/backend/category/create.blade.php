@@ -10,20 +10,6 @@
 		<div class="card">
 			<div class="card-body col-md-8 offset-md-2">
 				<h3 class="card-title">{{ trans('category.new_title') }}</h3>
-				@if (session('status'))
-				<div class="alert alert-dismissible alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					{{ session('status') }}
-				</div>
-				@endif
-				@if ($errors->any())
-				@foreach ($errors->all() as $err)
-				<p class="alert alert-dismissible alert-danger">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					{{ $err }}
-				</p>
-				@endforeach
-				@endif
 				<div class="form-group">
 					<label>{{ trans('category.name') }}</label>
 					{{ Form::text('name', '', ['class' => 'form-control']) }}
@@ -44,12 +30,6 @@
 	<div class="col-md-12 mt-4">
 		<div class="card">
 			<div class="card-body table-responsive">
-				@if (session('delete'))
-				<div class="alert alert-dismissible alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					{{ session('delete') }}
-				</div>
-				@endif
 				@if ($categories->isEmpty())
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -93,7 +73,7 @@
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();
-	} );
+	});
 </script>
 
 @endsection

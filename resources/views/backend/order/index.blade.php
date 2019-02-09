@@ -6,12 +6,6 @@
 
 <div class="row justify-content-center">
 	<div class="col-md-12">
-		@if (session('status'))
-		<div class="alert alert-dismissible alert-success">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			{{ session('status') }}
-		</div>
-		@endif
 		<div class="card">
 			<div class="card-body">
 				<h3 class="card-title">{{ trans('order.pending') }} ({{ $ordersPending->count() }})</h3>
@@ -94,13 +88,12 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	$(document).ready(function() {
 		$('#table1').DataTable();
-	} );
-	$(document).ready(function() {
 		$('#table2').DataTable();
-	} );
+	});
 </script>
 
 @endsection

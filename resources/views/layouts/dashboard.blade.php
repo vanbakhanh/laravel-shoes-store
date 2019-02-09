@@ -111,6 +111,9 @@
                         </ul>
                     </div>
                 </nav>
+                <!-- Notification -->
+                @include('layouts.notification')
+
                 <!-- Content -->
                 @yield('content')
             </div>
@@ -118,6 +121,7 @@
             @include('layouts.footer')
         </div>
     </div>
+
     <!-- Toggle action -->
     <script type="text/javascript">
         $("#menu-toggle").click(function(e) {

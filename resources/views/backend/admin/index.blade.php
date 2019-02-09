@@ -9,12 +9,6 @@
         <div class="card">
             <div class="card-body table-responsive">
                 <h3 class="card-title">{{ trans('admin.title') }}</h3>
-                @if (session('status'))
-                <div class="alert alert-dismissible alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ session('status') }}
-                </div>
-                @endif
                 @if ($admins->isEmpty())
                 <div class="alert alert-dismissible alert-warning">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -46,6 +40,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         $('#table').DataTable();

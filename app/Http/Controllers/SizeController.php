@@ -109,6 +109,6 @@ class SizeController extends Controller
     {
         $this->sizeRepository->findOrFail($id)->delete();
 
-        return back()->with('delete', trans('messages.deleted_success'));
+        return back()->with('status', trans('messages.deleted_success'));
     }
 }

@@ -12,11 +12,6 @@
         <div class="card">
             <div class="card-body col-md-8 offset-md-2">
                 <h3 class="card-title">{{ trans('auth.reset_password') }}</h3>
-                @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-                @endif
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <div class="form-group">

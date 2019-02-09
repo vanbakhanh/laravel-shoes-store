@@ -11,12 +11,6 @@
 				{{ trans('size.list_title') }}
 			</div>
 			<div class="card-body table-responsive">
-				@if (session('delete'))
-				<div class="alert alert-dismissible alert-success">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					{{ session('delete') }}
-				</div>
-				@endif
 				@if ($sizes->isEmpty())
 				<div class="alert alert-dismissible alert-warning">
 					<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -55,10 +49,11 @@
 		</div>
 	</div>
 </div>
+
 <script>
 	$(document).ready(function() {
 		$('#table').DataTable();
-	} );
+	});
 </script>
 
 @endsection
