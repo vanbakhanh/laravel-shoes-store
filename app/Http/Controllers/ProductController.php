@@ -98,8 +98,10 @@ class ProductController extends Controller
 
         $comments = $this->productRepository->getComments($id);
 
+        $reviews = $this->productRepository->getReviews($id);
+
         return view('frontend.product.show', compact([
-            'productSelected', 'productsSuggestion', 'comments', 'categorySelected',
+            'productSelected', 'productsSuggestion', 'comments', 'categorySelected', 'reviews',
         ]));
     }
 

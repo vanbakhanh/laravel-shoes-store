@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Comment;
 use App\Models\Product;
+use App\Models\Review;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Eloquents\BaseRepository;
 use Storage;
@@ -70,6 +71,14 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return Comment::where('product_id', $id)
             ->with('user')
+            ->get()
+            ->sortByDesc('created_at');
+    }
+
+    public function getReviews($id)
+    {
+        return Review::where('product_id', $id)
+            ->with('user.profile')
             ->get()
             ->sortByDesc('created_at');
     }

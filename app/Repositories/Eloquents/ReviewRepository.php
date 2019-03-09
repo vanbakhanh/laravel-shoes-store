@@ -12,4 +12,9 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
     {
         return app(Review::class);
     }
+
+    public function createReview($review)
+    {
+        $this->model()->create($review);
+    }
 }

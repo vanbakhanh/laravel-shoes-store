@@ -23,4 +23,6 @@ interface ProductRepositoryInterface
     public function getProductsFollowGenderAndCategory($id, $gender);
 
     public function deleteProduct($id);
+
+    public function getReviews($id);
 }

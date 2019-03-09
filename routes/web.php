@@ -99,6 +99,9 @@ Route::group(['middleware' => 'locale'], function () {
         // Comment
         Route::resource('/comment', 'CommentController');
 
+        // Review
+        Route::resource('/review', 'ReviewController');
+
         // Order
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', 'OrderController@index')->name('order');
