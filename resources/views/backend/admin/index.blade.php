@@ -42,9 +42,9 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#table').DataTable();
-    } );
+    });
 </script>
 
 @endsection

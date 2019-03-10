@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,8 +19,9 @@
     <title>@yield('title')</title>
 
     <!-- Logo -->
-    <link rel="icon" href="{{ asset('storage/logo/logo-site.png') }}"/>
+    <link rel="icon" href="{{ asset('storage/logo/logo-site.png') }}" />
 </head>
+
 <body>
     <!-- Wrapper -->
     <div id="wrapper">
@@ -60,10 +62,12 @@
                 </li>
                 <hr>
                 <li>
-                    <a href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layouts.change_password') }}</a>
+                    <a
+                        href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layouts.change_password') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layouts.logout') }}</a>
+                    <a href="{{ route('admin.logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layouts.logout') }}</a>
                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -84,7 +88,9 @@
                             {{ trans('layouts.welcome', ['name' => Auth::user()->name]) }}
                         </li>
                     </ul>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -93,19 +99,24 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ trans('layouts.home') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard.index') }}">{{ trans('layouts.dashboard') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('dashboard.index') }}">{{ trans('layouts.dashboard') }}</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     @if ('vi' == session()->get('website_language', 'en'))
                                     {{ trans('layouts.vietnamese') }}
                                     @else
                                     {{ trans('layouts.english') }}
                                     @endif
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">{{ trans('layouts.english') }}</a>
-                                    <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">{{ trans('layouts.vietnamese') }}</a>
+                                <div class="dropdown-menu dropdown-menu-right text-center"
+                                    aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item"
+                                        href="{{ route('user.language', ['en']) }}">{{ trans('layouts.english') }}</a>
+                                    <a class="dropdown-item"
+                                        href="{{ route('user.language', ['vi']) }}">{{ trans('layouts.vietnamese') }}</a>
                                 </div>
                             </li>
                         </ul>
@@ -124,10 +135,11 @@
 
     <!-- Toggle action -->
     <script type="text/javascript">
-        $("#menu-toggle").click(function(e) {
+        $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
     </script>
 </body>
+
 </html>

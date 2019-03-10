@@ -100,8 +100,10 @@ class ProductController extends Controller
 
         $reviews = $this->productRepository->getReviews($id);
 
+        $averageRating = $this->productRepository->getAverageRating($id);
+
         return view('frontend.product.show', compact([
-            'productSelected', 'productsSuggestion', 'comments', 'categorySelected', 'reviews',
+            'productSelected', 'productsSuggestion', 'categorySelected', 'comments', 'reviews', 'averageRating',
         ]));
     }
 

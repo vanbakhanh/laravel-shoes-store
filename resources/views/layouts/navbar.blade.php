@@ -4,7 +4,8 @@
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('storage/logo/logo-black.png') }}" width="60" height="20" alt="logo">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -16,7 +17,8 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ trans('layouts.men') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,7 +30,8 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{ trans('layouts.women') }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,7 +61,8 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if ('vi' == session()->get('website_language', 'en'))
                         {{ trans('layouts.vietnamese') }}
                         @else
@@ -76,7 +80,8 @@
                 </li>
                 <form class="form-inline">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#authModalCenter">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                        data-target="#authModalCenter">
                         {{ trans('layouts.login') }}
                     </button>
                 </form>
@@ -87,7 +92,8 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if ('vi' == session()->get('website_language', 'en'))
                         {{ trans('layouts.vietnamese') }}
                         @else
@@ -104,7 +110,8 @@
                     </div>
                 </li>
                 <li class="dropdown nav-item">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->email }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -117,7 +124,8 @@
                         <a class="dropdown-item" href="{{ route('user.password.edit', Auth::user()->id) }}">
                             {{ trans('layouts.change_password') }}
                         </a>
-                        <a class="dropdown-item" href="{{ route('user.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item" href="{{ route('user.logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             {{ trans('layouts.logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">

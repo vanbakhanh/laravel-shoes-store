@@ -58,8 +58,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     public function getProductsSuggestion($productSelected)
     {
-        return $this->model()->with(['colors', 'sizes'])
-            ->where('category_id', $productSelected->category_id)
+        return $this->model()->where('category_id', $productSelected->category_id)
             ->where('id', '!=', $productSelected->id)
             ->where('gender', $productSelected->gender)
             ->get()
@@ -81,6 +80,11 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             ->with('user.profile')
             ->get()
             ->sortByDesc('created_at');
+    }
+
+    public function getAverageRating($id)
+    {
+        return number_format(Review::where('product_id', $id)->avg('rating'), 1);
     }
 
     public function getSelectedColors($product)

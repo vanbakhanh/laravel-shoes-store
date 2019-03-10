@@ -27,8 +27,9 @@
                 {{ Form::open(['route' => ['user.password.update', $user->id], 'method' => 'PUT']) }}
                 <div class="form-group">
                     <label>{{ trans('user.new_password') }}</label>
-                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                        name="password" required>
+                    <input id="password" type="password"
+                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
+                        required>
                     @if ($errors->has('password'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('password') }}</strong>
@@ -37,7 +38,8 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('user.confirm_password') }}</label>
-                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
+                        required>
                 </div>
                 <div class="form-group">
                     {{ Form::submit(trans('user.update'),['class'=>'btn btn-primary']) }}
@@ -63,8 +65,9 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('user.first_name') }}</label>
-                    <input id="firstname" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
-                        name="first_name" value="{{ $user->profile->first_name }}" required autofocus>
+                    <input id="firstname" type="text"
+                        class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name"
+                        value="{{ $user->profile->first_name }}" required autofocus>
                     @if ($errors->has('first_name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('first_name') }}</strong>
@@ -73,8 +76,9 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('user.last_name') }}</label>
-                    <input id="lastname" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                        name="last_name" value="{{ $user->profile->last_name }}" required autofocus>
+                    <input id="lastname" type="text"
+                        class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name"
+                        value="{{ $user->profile->last_name }}" required autofocus>
                     @if ($errors->has('last_name'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('last_name') }}</strong>
@@ -83,8 +87,9 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('user.address') }}</label>
-                    <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
-                        name="address" value="{{ $user->profile->address }}" required autofocus>
+                    <input id="address" type="text"
+                        class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address"
+                        value="{{ $user->profile->address }}" required autofocus>
                     @if ($errors->has('address'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('address') }}</strong>
@@ -103,8 +108,9 @@
                 </div>
                 <div class="form-group">
                     <label>{{ trans('user.birthday') }}</label>
-                    <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}"
-                        name="birthday" value="{{ $user->profile->birthday }}" required autofocus>
+                    <input id="birthday" type="date"
+                        class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday"
+                        value="{{ $user->profile->birthday }}" required autofocus>
                     @if ($errors->has('birthday'))
                     <span class="invalid-feedback">
                         <strong>{{ $errors->first('birthday') }}</strong>

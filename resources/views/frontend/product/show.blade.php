@@ -128,16 +128,12 @@
                 <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="Image">
             </a>
             <div class="card-body">
-                <h5 class="card-title m-0 p-0">
+                <h5 class="card-title text-capitalize">
                     <small>
                         <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
                     </small>
                 </h5>
-                <p class="card-text m-0 p-0">
-                    {{ count($product->colors) }} {{ trans('home.colors') }} | {{ count($product->sizes) }}
-                    {{ trans('home.sizes') }}
-                </p>
-                <p class="card-text m-0 p-0">${{ $product->price }}</p>
+                <p class="card-text">${{ $product->price }}</p>
             </div>
         </div>
     </div>
@@ -210,9 +206,10 @@
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star"></span>
-        <p>4.1 average based on 254 reviews</p>
+        <p>{{ $averageRating }} average based on {{ count($reviews) }} reviews</p>
     </div>
 </div>
+
 <div class="list-group">
     @if ($reviews->isNotEmpty())
     @foreach($reviews as $review)
@@ -240,57 +237,57 @@
 
 <!-- Add to cart using ajax -->
 <script type="text/javascript">
-	var cart = {{ Cart::count() }};
-	var text = '{{ trans('layouts.cart') }}';
-	jQuery(document).ready(function() {
-		jQuery('#addToCart').click(function(e) {
-			e.preventDefault();
-			var qty = parseInt(jQuery('#qty').val());
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-			jQuery.ajax({
-				url: "{{ route('cart.add') }}",
-				method: 'POST',
-				data: {
-					color: jQuery('#color').val(),
-					size: jQuery('#size').val(),
-					qty: jQuery('#qty').val(),
-					productId: jQuery('#productId').val(),
-				},
-				success: function() {
-					$("#cart-qty").html(text +  ' ' + (cart += qty));
-				},
-			});
-		});
-	});
+    var cart = {{ Cart::count() }};
+    var text = '{{ trans('layouts.cart') }}';
+    jQuery(document).ready(function () {
+        jQuery('#addToCart').click(function (e) {
+            e.preventDefault();
+            var qty = parseInt(jQuery('#qty').val());
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ route('cart.add') }}",
+                method: 'POST',
+                data: {
+                    color: jQuery('#color').val(),
+                    size: jQuery('#size').val(),
+                    qty: jQuery('#qty').val(),
+                    productId: jQuery('#productId').val(),
+                },
+                success: function () {
+                    $("#cart-qty").html(text + ' ' + (cart += qty));
+                },
+            });
+        });
+    });
 </script>
 
 <!-- Comment using ajax -->
 <script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery('#commentSubmit').click(function(e) {
-			e.preventDefault();
-			$.ajaxSetup({
-				headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-				}
-			});
-			jQuery.ajax({
-				url: "{{ route('comment.store') }}",
-				method: 'POST',
-				data: {
-					content: jQuery('#commentContent').val(),
-					product_id: jQuery('#productId').val(),
-				},
-				success: function() {
-					location.reload();
-				},
-			});
-		});
-	});
+    jQuery(document).ready(function () {
+        jQuery('#commentSubmit').click(function (e) {
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ route('comment.store') }}",
+                method: 'POST',
+                data: {
+                    content: jQuery('#commentContent').val(),
+                    product_id: jQuery('#productId').val(),
+                },
+                success: function () {
+                    location.reload();
+                },
+            });
+        });
+    });
 </script>
 
 @endsection
