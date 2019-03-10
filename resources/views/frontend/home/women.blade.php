@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="row results">
-            @include('frontend.home.common')
+            @include('frontend.home.common.item')
         </div>
         <div class="d-flex justify-content-center">{{ $products->links() }}</div>
     </div>

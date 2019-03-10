@@ -10,16 +10,16 @@
             <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
         </a>
         <div class="card-body">
-            <h5 class="card-title text-capitalize m-0 p-0">
+            <h5 class="card-title text-capitalize">
                 <small>
                     <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
                 </small>
             </h5>
-            <p class="card-text m-0 p-0">
+            <p class="card-text">
                 {{ count($product->colors) }} {{ trans('home.colors') }} | {{ count($product->sizes) }}
                 {{ trans('home.sizes') }}
             </p>
-            <p class="card-text m-0 p-0 price">${{ $product->price }}</p>
+            <p class="card-text price">${{ $product->price }}</p>
         </div>
     </div>
 </div>

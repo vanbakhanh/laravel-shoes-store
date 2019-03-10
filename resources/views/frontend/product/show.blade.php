@@ -112,8 +112,6 @@
     </div>
 </div>
 
-<br>
-
 <!-- Products Suggestion Row -->
 <div class="row">
     <div class="col-md-12 my-4 text-center">
@@ -140,7 +138,7 @@
     @endforeach
 </div>
 <div class="row">
-    <p class="col-md-12 text-center text-uppercase my-4">
+    <p class="col-md-12 text-center text-uppercase my-2">
         @if ($productSelected->gender == 'male')
         <a href="{{ route('category.men', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
         @else
@@ -148,8 +146,6 @@
         @endif
     </p>
 </div>
-
-<br>
 
 <!-- Comments -->
 <div class="row">
@@ -195,8 +191,6 @@
     </div>
 </div>
 
-<br>
-
 <!-- Reviews -->
 <div class="row">
     <div class="col-md-12 my-4 text-center">
@@ -225,8 +219,6 @@
     @endforeach
     @endif
 </div>
-
-<br>
 
 <!-- Category Description -->
 <div class="row">

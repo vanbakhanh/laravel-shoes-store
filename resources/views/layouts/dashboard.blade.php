@@ -10,6 +10,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
 
     <!-- Optional JavaScript -->
@@ -30,7 +31,6 @@
                 <li>
                     <h5 class="my-4">{{ trans('layouts.manager') }}</h5>
                 </li>
-                <hr>
                 <li>
                     <a href="{{ route('admin.index') }}">{{ trans('layouts.admin') }}</a>
                 </li>
@@ -60,7 +60,7 @@
                 <li>
                     <a href="{{ route('size.create') }}">{{ trans('layouts.size') }}</a>
                 </li>
-                <hr>
+                <br>
                 <li>
                     <a
                         href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layouts.change_password') }}</a>

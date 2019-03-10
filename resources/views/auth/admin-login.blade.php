@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <a href="{{ route('password.request') }}">
+                        <a href="{{ route('admin.password.request') }}">
                             {{ trans('auth.forgot') }}
                         </a>
                     </div>
