@@ -8,6 +8,8 @@ const SCSS_PATH = 'resources/assets/sass/';
 
 const JS_PATH = 'resources/assets/js/';
 
+const CSS_PATH = 'resources/assets/css/';
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -21,7 +23,6 @@ const JS_PATH = 'resources/assets/js/';
 
 mix.js(JS_PATH + 'app.js', PUBLIC_JS_PATH)
 	.sass(SCSS_PATH + 'app.scss', PUBLIC_CSS_PATH)
-	.sass(SCSS_PATH + 'user.scss', PUBLIC_CSS_PATH)
-	.sass(SCSS_PATH + 'admin.scss', PUBLIC_CSS_PATH)
+	.copyDirectory(CSS_PATH, PUBLIC_CSS_PATH)
 	.version()
 	.disableNotifications();

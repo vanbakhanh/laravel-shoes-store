@@ -201,11 +201,9 @@
 <div class="row">
     <div class="col-md-12 my-4 text-center">
         <h3 class="text-uppercase">Customer Rating</h3>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
+        <div class="stars-outer">
+            <div class="stars-inner" style="width: {{ $averageRating/5*100 }}%"></div>
+        </div>
         <p>{{ $averageRating }} average based on {{ count($reviews) }} reviews</p>
     </div>
 </div>
@@ -218,6 +216,9 @@
             <h5>{{ $review->title }}</h5>
             <p class="text-muted">by <b>{{ $review->user->profile->full_name }}</b>
                 {{ $review->created_at->diffForHumans() }}</p>
+        </div>
+        <div class="stars-outer mb-1">
+            <div class="stars-inner" style="width: {{ $review->rating/5*100 }}%"></div>
         </div>
         <p class="mb-0">{{ $review->body }}</p>
     </div>
