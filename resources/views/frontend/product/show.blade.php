@@ -199,6 +199,9 @@
             <div class="stars-inner" style="width: {{ $averageRating/5*100 }}%"></div>
         </div>
         <p>{{ $averageRating }} average based on {{ count($reviews) }} reviews</p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+            Write review
+        </button>
     </div>
 </div>
 
@@ -218,6 +221,55 @@
     </div>
     @endforeach
     @endif
+</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalTitle">Add your review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('review.store') }}">
+                    @csrf
+                    <div class="rating-stars text-center">
+                        <ul id="stars">
+                            <li class="star" title="Poor" data-value="1">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="Fair" data-value="2">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="Good" data-value="3">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="Excellent" data-value="4">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                            <li class="star" title="WOW!!!" data-value="5">
+                                <i class="fa fa-star fa-fw"></i>
+                            </li>
+                        </ul>
+                        <small class="text-muted text-message"></small>
+                    </div>
+                    <input type="hidden" value="0" id="ratingInput" name="rating">
+                    <input type="hidden" value="{{ $productSelected->id }}" name="product_id">
+                    <div class="form-group">
+                        <input type="text" name="title" class="form-control" placeholder="Enter title">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="body" rows="3" placeholder="Enter your review"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Category Description -->
@@ -280,6 +332,58 @@
                 },
             });
         });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('#stars li').on('mouseover', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
+        }).on('mouseout', function () {
+            $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+        /* 2. Action to perform on click */
+        $('#stars li').on('click', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            // JUST RESPONSE (Not needed)
+            var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
+            var msg = "";
+            if (ratingValue > 1) {
+                msg = "Thanks! You rated this " + ratingValue + " stars.";
+            }
+            else {
+                msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+            }
+            responseMessage(msg);
+            document.getElementById('ratingInput').value = ratingValue;
+        });
+        function responseMessage(msg) {
+            $('.text-message').html("<span>" + msg + "</span>");
+        }
     });
 </script>
 

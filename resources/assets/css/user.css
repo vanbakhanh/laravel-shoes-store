@@ -27,6 +27,8 @@ body {
   display: inline-block;
 }
 
+/* Rating Star */
+
 .stars-inner {
   position: absolute;
   top: 0;
@@ -47,5 +49,31 @@ body {
   content: "\f005 \f005 \f005 \f005 \f005";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
-  color: #f8ce0b;
+  color: #FFCC36;
+}
+
+/* Rating Star Form */
+
+.rating-stars ul {
+  list-style-type: none;
+  padding: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.rating-stars ul>li.star {
+  display: inline-block;
+}
+
+.rating-stars ul>li.star>i.fa {
+  font-size: 2.5em;
+  color: #ccc;
+}
+
+.rating-stars ul>li.star.hover>i.fa {
+  color: #FFCC36;
+}
+
+.rating-stars ul>li.star.selected>i.fa {
+  color: #FF912C;
 }
