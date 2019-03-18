@@ -19,8 +19,9 @@ return [
     'order' => 'Đơn hàng',
     'logged_in' => 'Bạn đã đăng nhập như một',
     'logged_out' => 'Bạn đã đăng xuất như một',
-    'profit' => 'Thu nhập',
+    'profit' => 'Lợi nhuận',
     'comment' => 'Đánh giá',
     'sold' => 'Đã bán',
+    'review' => 'Đánh giá',
 
 ];

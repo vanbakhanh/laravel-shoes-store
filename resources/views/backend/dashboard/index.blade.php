@@ -66,8 +66,8 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <h3 class="card-title">{{ $comments }}</h3>
-            <p class="card-text">{{ trans('dashboard.comment') }}</p>
+            <h3 class="card-title">{{ $reviews }}</h3>
+            <p class="card-text">{{ trans('dashboard.review') }}</p>
         </div>
     </div>
     <div class="card">

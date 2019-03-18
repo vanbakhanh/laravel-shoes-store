@@ -119,7 +119,7 @@
                             {{ trans('layouts.profile') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('order') }}">
-                            {{ trans('layouts.order') }}
+                            {{ trans('layouts.my_order') }}
                         </a>
                         <a class="dropdown-item" href="{{ route('user.password.edit', Auth::user()->id) }}">
                             {{ trans('layouts.change_password') }}

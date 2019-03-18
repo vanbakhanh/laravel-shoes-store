@@ -64,7 +64,7 @@
                 <tbody>
                     <tr>
                         <th scope="row">{{ trans('cart.name') }}</th>
-                        <td class="text-right">{{ Auth::user()->name }}</td>
+                        <td class="text-right">{{ Auth::user()->profile->full_name }}</td>
                     </tr>
                     <tr>
                         <th scope="row">{{ trans('cart.email') }}</th>
@@ -72,11 +72,11 @@
                     </tr>
                     <tr>
                         <th scope="row">{{ trans('cart.phone') }}</th>
-                        <td class="text-right">{{ Auth::user()->phone }}</td>
+                        <td class="text-right">{{ Auth::user()->profile->phone }}</td>
                     </tr>
                     <tr>
                         <th scope="row">{{ trans('cart.address') }}</th>
-                        <td class="text-right">{{ Auth::user()->address }}</td>
+                        <td class="text-right">{{ Auth::user()->profile->address }}</td>
                     </tr>
                 </tbody>
             </table>

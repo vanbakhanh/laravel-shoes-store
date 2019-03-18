@@ -74,12 +74,23 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             ->sortByDesc('created_at');
     }
 
-    public function getReviews($id)
+    public function getAllReviews($id)
     {
         return Review::where('product_id', $id)
             ->with('user.profile')
-            ->get()
-            ->sortByDesc('created_at');
+            ->latest()
+            ->paginate(self::PAGINATE);
+    }
+
+    public function getUserReview($id)
+    {
+        $userId = auth()->user()->id;
+
+        return Review::where('product_id', $id)
+            ->where('user_id', $userId)
+            ->with('user.profile')
+            ->latest()
+            ->first();
     }
 
     public function getAverageRating($id)

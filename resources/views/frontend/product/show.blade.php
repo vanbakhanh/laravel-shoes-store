@@ -105,15 +105,15 @@
         {{ Form::close() }}
         <div class="my-4">
             <p>{{ $productSelected->description }}</p>
-            <a class="text-uppercase" href="#comment">
-                {{ trans('product.read_comment', ['comments' => count($comments)]) }}
+            <a class="text-uppercase" href="#review">
+                {{ trans('product.read_review', ['reviews' => count($reviews)]) }}
             </a>
         </div>
     </div>
 </div>
 
 <!-- Products Suggestion Row -->
-<div class="row">
+<div class="row mt-5">
     <div class="col-md-12 my-4 text-center">
         <h3 class="text-uppercase">{{ trans('product.recommend_title') }}</h3>
     </div>
@@ -147,66 +147,33 @@
     </p>
 </div>
 
-<!-- Comments -->
-<div class="row">
+<!-- Reviews -->
+<div class="row mt-5" id="review">
     <div class="col-md-12 my-4 text-center">
         <h3 class="text-uppercase">{{ trans('product.review_title') }}</h3>
     </div>
 </div>
 
-@guest
-<div class="alert alert-dismissible alert-primary">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <a href="{{ route('login') }}" class="alert-link">{{ trans('product.login') }}</a>
-</div>
-@else
-<div class="list-group">
-    <div class="list-group-item">
-        {{ Form::open() }}
-        <div class="form-group">
-            {{ Form::textarea('content', '', ['class' => 'form-control', 'id' => 'commentContent', 'rows' => '1', 'placeholder' => trans('product.write_preview')]) }}
-        </div>
-        <button type="submit" class="btn btn-primary float-right" id="commentSubmit">
-            {{ trans('product.review') }}
-        </button>
-        {{ Form::close() }}
-    </div>
-</div>
-@endguest
-
-<div class="list-group my-4" id="comment">
-    <div class="list-group-item flex-column align-items-start">
-        @if ($comments->isNotEmpty())
-        @foreach ($comments as $cmt)
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="my-2">{{ $cmt->user->profile->full_name }}
-                <small class="text-muted pl-1">{{ $cmt->created_at->diffForHumans() }}</small>
-            </h5>
-        </div>
-        <p class="mb-2">{{ $cmt->content }}</p>
-        @endforeach
-        @else
-        <p class="text-center p-0 m-0">{{ trans('product.no_review') }}</p>
-        @endif
-    </div>
-</div>
-
-<!-- Reviews -->
 <div class="row">
-    <div class="col-md-12 my-4 text-center">
-        <h3 class="text-uppercase">Customer Rating</h3>
-        <div class="stars-outer">
-            <div class="stars-inner" style="width: {{ $averageRating/5*100 }}%"></div>
+    <div class="col">
+        <div class="float-left">
+            <div class="stars-outer">
+                <div class="stars-inner" style="width: {{ $averageRating/5*100 }}%"></div>
+            </div>
+            <p class="text-lowercase">{{ $averageRating }} {{ trans('product.average_based_on') }} {{ count($reviews) }} {{ trans('product.review') }}</p>
         </div>
-        <p>{{ $averageRating }} average based on {{ count($reviews) }} reviews</p>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-            Write review
+    </div>
+    <div class="col">
+        <div class="float-right">
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#reviewModal">
+            {{ trans('product.leave_review') }}
         </button>
+        </div>
     </div>
 </div>
 
-<div class="list-group">
-    @if ($reviews->isNotEmpty())
+@if (count($reviews))
+<div class="list-group my-3">
     @foreach($reviews as $review)
     <div class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
@@ -220,15 +187,17 @@
         <p class="mb-0">{{ $review->body }}</p>
     </div>
     @endforeach
-    @endif
 </div>
+
+<div class="d-flex justify-content-center">{{ $reviews->links() }}</div>
+@endif
 
 <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="reviewModalTitle">Add your review</h5>
+                <h5 class="modal-title" id="reviewModalTitle">{{ trans('product.leave_review') }}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -259,13 +228,14 @@
                     <input type="hidden" value="0" id="ratingInput" name="rating">
                     <input type="hidden" value="{{ $productSelected->id }}" name="product_id">
                     <div class="form-group">
-                        <input type="text" name="title" class="form-control" placeholder="Enter title">
+                        <input type="text" name="title" class="form-control" placeholder="Enter title" required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" name="body" rows="3" placeholder="Enter your review"></textarea>
+                        <textarea class="form-control" name="body" rows="3" placeholder="Enter your review" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <div class="float-right">
+                        <button type="submit" class="btn btn-primary">{{ trans('user.update') }}</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -273,7 +243,7 @@
 </div>
 
 <!-- Category Description -->
-<div class="row">
+<div class="row mt-5">
     <div class="col-md-12 text-center text-uppercase my-4">
         <h3 class="display-5">{{ $categorySelected->name }}</h3>
         <p class="lead">{{ $categorySelected->description }}</p>
@@ -304,31 +274,6 @@
                 },
                 success: function () {
                     $("#cart-qty").html(text + ' ' + (cart += qty));
-                },
-            });
-        });
-    });
-</script>
-
-<!-- Comment using ajax -->
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-        jQuery('#commentSubmit').click(function (e) {
-            e.preventDefault();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            jQuery.ajax({
-                url: "{{ route('comment.store') }}",
-                method: 'POST',
-                data: {
-                    content: jQuery('#commentContent').val(),
-                    product_id: jQuery('#productId').val(),
-                },
-                success: function () {
-                    location.reload();
                 },
             });
         });

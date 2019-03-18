@@ -17,14 +17,13 @@ return [
     'login' => 'Login',
     'cart' => 'Cart',
     'profile' => 'My profile',
-    'order' => 'My order',
+    'order' => 'Order',
     'change_password' => 'Change password',
     'logout' => 'Logout',
     'search' => 'Search',
     'copyright' => 'Made with ♥ by',
     'dashboard' => 'Dashboard',
     'user' => 'User',
-    'order' => 'Order',
     'product' => 'Product',
     'creat_product' => 'Create product',
     'list_product' => 'List product',
@@ -38,5 +37,6 @@ return [
     'vietnamese' => 'Vietnamese',
     'admin' => 'Administrator',
     'manager' => 'Manager',
+    'my_order' => 'My order',
     
 ];

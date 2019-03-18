@@ -17,14 +17,13 @@ return [
     'login' => 'Đăng nhập',
     'cart' => 'Giỏ hàng',
     'profile' => 'Tài khoản của tôi',
-    'order' => 'Đơn hàng của tôi',
+    'order' => 'Đơn hàng',
     'change_password' => 'Đổi mật khẩu',
     'logout' => 'Đăng xuất',
     'search' => 'Tìm kiếm',
     'copyright' => 'Bản quyền thuộc về',
     'dashboard' => 'Bảng điều khiển',
     'user' => 'Người dùng',
-    'order' => 'Đơn hàng',
     'product' => 'Sản phẩm',
     'creat_product' => 'Tạo sản phẩm',
     'list_product' => 'Danh sách sản phẩm',
@@ -38,5 +37,6 @@ return [
     'vietnamese' => 'Tiếng việt',
     'admin' => 'Người quản lý',
     'manager' => 'Quản lý',
+    'my_order' => 'Đơn hàng của tôi',
 
 ];

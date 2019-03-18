@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             ColorsTableSeeder::class,
             SizesTableSeeder::class,
             ProductsTableSeeder::class,
-            CommentsTableSeeder::class,
             ReviewsTableSeeder::class,
         ]);
     }

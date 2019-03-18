@@ -22,5 +22,6 @@ return [
     'profit' => 'Profit',
     'comment' => 'Comment',
     'sold' => 'Sold',
+    'review' => 'Review',
 
 ];

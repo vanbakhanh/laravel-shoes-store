@@ -23,7 +23,7 @@ return [
     'gender' => 'Giới tính',
     'email' => 'Email',
     'phone' => 'Điện thoại',
-    'birthday' => 'Sinh nhật',
+    'birthday' => 'Ngày sinh',
     'address' => 'Địa chỉ',
     'status' => 'Trạng thái',
     'joined' => 'Đã tham gia',

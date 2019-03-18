@@ -24,7 +24,9 @@ interface ProductRepositoryInterface
 
     public function deleteProduct($id);
 
-    public function getReviews($id);
+    public function getAllReviews($id);
+
+    public function getUserReview($id);
 
     public function getAverageRating($id);
 }

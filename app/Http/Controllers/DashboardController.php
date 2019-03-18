@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\AdminRepositoryInterface;
-use App\Repositories\Contracts\CommentRepositoryInterface;
+use App\Repositories\Contracts\ReviewRepositoryInterface;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
 use App\Repositories\Contracts\UserRepositoryInterface;
@@ -15,7 +15,7 @@ class DashboardController extends Controller
     protected $userRepository;
     protected $productRepository;
     protected $orderRepository;
-    protected $commentRepository;
+    protected $reviewRepository;
 
     /**
      * Create a new controller instance.
@@ -27,14 +27,14 @@ class DashboardController extends Controller
         UserRepositoryInterface $userRepository,
         ProductRepositoryInterface $productRepository,
         OrderRepositoryInterface $orderRepository,
-        CommentRepositoryInterface $commentRepository
+        ReviewRepositoryInterface $reviewRepository
     ) {
         $this->middleware('auth:admin');
         $this->adminRepository = $adminRepository;
         $this->userRepository = $userRepository;
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
-        $this->commentRepository = $commentRepository;
+        $this->reviewRepository = $reviewRepository;
     }
 
     public function index()
@@ -43,10 +43,10 @@ class DashboardController extends Controller
         $users = $this->userRepository->count();
         $orders = $this->orderRepository->all();
         $products = $this->productRepository->count();
-        $comments = $this->commentRepository->count();
+        $reviews = $this->reviewRepository->count();
 
         return view('backend/dashboard/index', compact([
-            'admins', 'users', 'orders', 'products', 'comments',
+            'admins', 'users', 'orders', 'products', 'reviews',
         ]));
     }
 }

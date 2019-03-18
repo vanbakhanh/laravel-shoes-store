@@ -15,6 +15,6 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
 
     public function createReview($review)
     {
-        $this->model()->create($review);
+        $this->model()->updateOrCreate($review);
     }
 }

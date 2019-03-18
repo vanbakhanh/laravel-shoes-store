@@ -41,7 +41,7 @@
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"
                         required>
                 </div>
-                <div class="form-group">
+                <div class="form-group float-right">
                     {{ Form::submit(trans('user.update'),['class'=>'btn btn-primary']) }}
                 </div>
                 {{ Form::close() }}
@@ -141,7 +141,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group float-right">
                     {{ Form::submit(trans('user.update'), ['class' => 'btn btn-primary']) }}
                 </div>
                 {{ Form::close() }}

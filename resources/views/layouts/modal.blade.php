@@ -71,16 +71,13 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ trans('auth.login') }}
-                                </button>
-                                <button type="button" class="btn btn-link" data-dismiss="modal">
-                                    {{ trans('auth.cancel') }}
-                                </button>
+                            <div class="form-group float-right">
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ trans('auth.forgot') }}
                                 </a>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ trans('auth.login') }}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -138,12 +135,12 @@
                                     name="password_confirmation" placeholder="{{ trans('auth.confirm_password') }}"
                                     required>
                             </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ trans('auth.register') }}
-                                </button>
+                            <div class="form-group float-right">
                                 <button type="button" class="btn btn-link" data-dismiss="modal">
                                     {{ trans('auth.cancel') }}
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ trans('auth.register') }}
                                 </button>
                             </div>
                         </form>
