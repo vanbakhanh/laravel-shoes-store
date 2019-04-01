@@ -76,9 +76,9 @@ class HomeController extends Controller
     {
         $keyword = $_GET['keyword'];
 
-        $results = $this->productRepository->getSearchProduct($keyword);
+        $products = $this->productRepository->getSearchProduct($keyword);
 
-        return view('frontend.home.search', compact(['results', 'keyword']));
+        return view('frontend.home.search', compact(['products', 'keyword']));
     }
 
     /**

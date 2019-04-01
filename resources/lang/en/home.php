@@ -22,7 +22,7 @@ return [
     'price' => 'Price',
     'results' => 'Results',
     'search' => "Seach for ':keyword'",
-    'top_results' => "Top :results results",
+    'top_results' => "Top :products results",
     'colors' => 'Colors',
     'sizes' => 'Sizes', 
 

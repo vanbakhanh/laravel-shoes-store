@@ -44,12 +44,13 @@ class CartRepository implements CartRepositoryInterface
     public function checkout()
     {
         $user = Auth::user();
+        $profile = $user->profile;
 
         $order = $user->orders()->create([
             'total' => Cart::total(2, '.', ''),
             'status' => Order::PENDING,
             'quantity' => Cart::count(),
-            'address' => $user->address,
+            'address' => $profile->address,
         ]);
 
         foreach (Cart::content() as $data) {
@@ -64,7 +65,7 @@ class CartRepository implements CartRepositoryInterface
 
         $orderProducts = $order->products()->get();
 
-        Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user));
+        Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user, $profile));
 
         return true;
     }

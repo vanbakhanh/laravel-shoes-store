@@ -22,7 +22,7 @@ return [
     'price' => 'Giá',
     'results' => 'Kết quả',
     'search' => "Tìm kiếm cho ':keyword'",
-    'top_results' => "Tìm kiếm hàng đầu :results kết quả",
+    'top_results' => "Tìm kiếm hàng đầu :products kết quả",
     'colors' => 'Màu sắc',
     'sizes' => 'Kích thước', 
 

@@ -14,16 +14,16 @@
         "bootstrap": "^4.3.1",
         "cross-env": "^5.2.0",
         "jquery": "^3.2",
-        "laravel-mix": "^4.0.14",
+        "laravel-mix": "^4.0.15",
         "lodash": "^4.17.11",
         "popper.js": "^1.14.7",
         "resolve-url-loader": "2.3.1",
-        "sass": "^1.17.2",
+        "sass": "^1.17.3",
         "sass-loader": "7.*",
-        "vue-template-compiler": "^2.6.8"
+        "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.7.1",
+        "@fortawesome/fontawesome-free": "^5.8.1",
         "bootswatch": "^4.2.1",
         "datatables.net-bs4": "^1.10.19"
     }
