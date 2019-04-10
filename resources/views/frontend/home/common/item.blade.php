@@ -5,21 +5,24 @@
 @else
 @foreach ($products as $product)
 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4 results-row">
-    <div class="card card-product h-100 text-center">
+    <div class="card card-product h-100">
         <a href="{{ route('product.show', $product->id) }}">
             <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
         </a>
-        <div class="card-body">
-            <h5 class="card-title text-capitalize">
-                <small>
-                    <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
-                </small>
-            </h5>
-            <p class="card-text">
-                {{ count($product->colors) }} {{ trans('home.colors') }} | {{ count($product->sizes) }}
-                {{ trans('home.sizes') }}
-            </p>
-            <p class="card-text price">${{ $product->price }}</p>
+        <div class="card-body px-0">
+            <div class="mb-1">
+                @if ($product->gender == 'male')
+                <span><a href="{{ route('category.men', $product->category_id) }}">{{ $product->category->name }}</a></span>
+                @else
+                <span><a href="{{ route('category.women', $product->category_id) }}">{{ $product->category->name }}</a></span>
+                @endif
+                <span class="stars-outer float-right">
+                    <div class="stars-inner" style="width: {{ $product->reviews->avg('rating')/5*100 }}%"></div>
+                </span>
+            </div>
+            <h5 class="card-title text-capitalize"> <a
+                    href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h5>
+            <h5 class="card-text price">${{ $product->price }}</h5>
         </div>
     </div>
 </div>

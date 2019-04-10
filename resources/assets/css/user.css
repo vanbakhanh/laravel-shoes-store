@@ -8,9 +8,13 @@ body {
   flex: 1;
 }
 
+/* Navbar */
+
 #nav-hide {
   transition: all 0.3s ease;
 }
+
+/* Card Product */
 
 .card-product {
   border: none !important;
@@ -19,15 +23,15 @@ body {
 
 .card-product img:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  transition: all 0.3s ease;
+  transition: all 1s ease-out;
 }
+
+/* Rating Star */
 
 .stars-outer {
   position: relative;
   display: inline-block;
 }
-
-/* Rating Star */
 
 .stars-inner {
   position: absolute;
@@ -76,4 +80,10 @@ body {
 
 .rating-stars ul>li.star.selected>i.fa {
   color: #FF912C;
+}
+
+/* Footer */
+
+.footer-social a {
+  font-size: 20px;
 }

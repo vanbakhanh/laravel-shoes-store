@@ -121,7 +121,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     {
         return $this->model()->where('category_id', $id)
             ->where('gender', $gender)
-            ->with(['colors', 'sizes', 'category'])
+            ->with(['reviews', 'category'])
             ->orderBy('created_at', 'desc')
             ->paginate(self::PAGINATE);
     }

@@ -46,7 +46,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
     public function verifyOrder($id)
     {
-        return $this->model()->update($id, ['status' => Order::VERIFIED]);
+        return $this->model()->findOrFail($id)->update(['status' => Order::VERIFIED]);
     }
 
     public function deleteOrder($id)

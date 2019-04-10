@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                     <th scope="row">{{ trans('order.name') }}</th>
-                    <td class="text-right">{{ $orderDetail->user->name }}</td>
+                    <td class="text-right">{{ $orderDetail->user->profile->full_name }}</td>
                 </tr>
                 <tr>
                     <th scope="row">{{ trans('order.email') }}</th>
@@ -69,7 +69,7 @@
                 </tr>
                 <tr>
                     <th scope="row">{{ trans('order.phone') }}</th>
-                    <td class="text-right">{{ $orderDetail->user->phone }}</td>
+                    <td class="text-right">{{ $orderDetail->user->profile->phone }}</td>
                 </tr>
                 <tr>
                     <th scope="row">{{ trans('order.address') }}</th>

@@ -123,15 +123,12 @@
     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
         <div class="card card-product h-100 text-center">
             <a href="{{ route('product.show', $product->id) }}">
-                <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="Image">
+                <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
             </a>
-            <div class="card-body">
-                <h5 class="card-title text-capitalize">
-                    <small>
-                        <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
-                    </small>
-                </h5>
-                <p class="card-text">${{ $product->price }}</p>
+            <div class="card-body px-0">
+                <h5 class="card-title text-capitalize"> <a
+                        href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h5>
+                <h5 class="card-text">${{ $product->price }}</h5>
             </div>
         </div>
     </div>
@@ -244,8 +241,8 @@
 
 <!-- Category Description -->
 <div class="row mt-5">
-    <div class="col-md-12 text-center text-uppercase my-4">
-        <h3 class="display-5">{{ $categorySelected->name }}</h3>
+    <div class="col-md-12 text-center my-4">
+        <h3 class="display-5 text-uppercase">{{ $categorySelected->name }}</h3>
         <p class="lead">{{ $categorySelected->description }}</p>
     </div>
 </div>

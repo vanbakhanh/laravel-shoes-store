@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h3 class="card-title">{{ trans('order.pending') }} ({{ $ordersPending->count() }})</h3>
                 <div class="table-responsive">
-                    <table id="table1" class="table table-hover table-bordered text-center">
+                    <table id="table1" class="table table-hover table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">{{ trans('order.id') }}</th>
@@ -25,7 +25,7 @@
                             @foreach ($ordersPending as $orderPending)
                             <tr>
                                 <th scope="row">{{ $orderPending->id }}</th>
-                                <td>{{ $orderPending->user->name }}</td>
+                                <td>{{ $orderPending->user->email }}</td>
                                 <td>{{ $orderPending->quantity }}</td>
                                 <td>${{ $orderPending->total }}</td>
                                 <td>{{ $orderPending->created_at }}</td>
@@ -67,7 +67,7 @@
                                 @foreach ($ordersVerified as $orderVerified)
                                 <tr>
                                     <th scope="row">{{ $orderVerified->id }}</th>
-                                    <td>{{ $orderVerified->user->name }}</td>
+                                    <td>{{ $orderVerified->user->email }}</td>
                                     <td>{{ $orderVerified->quantity }}</td>
                                     <td>${{ $orderVerified->total }}</td>
                                     <td>{{ $orderVerified->created_at }}</td>

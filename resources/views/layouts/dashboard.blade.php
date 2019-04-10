@@ -129,7 +129,24 @@
                 @yield('content')
             </div>
             <!-- Footer -->
-            @include('layouts.footer')
+            <footer>
+                <div class="container">
+                    <div class="py-4 border-top">
+                        <div class="row">
+                            <div class="col text-left">
+                                <p class="m-0">
+                                    {{ trans('layouts.copyright') }}
+                                </p>
+                            </div>
+                            <div class="col text-right">
+                                <p class="m-0">
+                                    <a href="#">Back to top</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 

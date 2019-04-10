@@ -21,7 +21,7 @@ return [
     'change_password' => 'Đổi mật khẩu',
     'logout' => 'Đăng xuất',
     'search' => 'Tìm kiếm',
-    'copyright' => 'Bản quyền thuộc về',
+    'copyright' => 'Bản quyền © 2019. Đã đăng ký Bản quyền.',
     'dashboard' => 'Bảng điều khiển',
     'user' => 'Người dùng',
     'product' => 'Sản phẩm',
