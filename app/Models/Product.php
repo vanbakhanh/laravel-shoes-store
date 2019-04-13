@@ -6,9 +6,14 @@ use App\Models\AbstractModel;
 
 class Product extends AbstractModel
 {
-    const MALE = 0;
+    const MEN = 0;
 
-    const FEMALE = 1;
+    const WOMEN = 1;
+
+    const GENDER_TEXT = [
+        self::MEN => 'men',
+        self::WOMEN => 'women',
+    ];
 
     protected $fillable = [
         'name',
@@ -53,6 +58,16 @@ class Product extends AbstractModel
         }
 
         return $images;
+    }
+
+    public function getGenderAttribute($value)
+    {
+        return self::GENDER_TEXT[$value];
+    }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
     }
 
     public function reviews()

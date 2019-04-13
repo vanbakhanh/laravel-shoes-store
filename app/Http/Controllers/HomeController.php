@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
+use Session;
 
 class HomeController extends Controller
 {
@@ -46,11 +47,7 @@ class HomeController extends Controller
         $categorySelected = $this->categoryRepository->findOrFail($id);
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 
-        if ($gender == Product::MALE) {
-            return view('frontend.home.men', compact(['products', 'categories', 'categorySelected']));
-        } else if ($gender == Product::FEMALE) {
-            return view('frontend.home.women', compact(['products', 'categories', 'categorySelected']));
-        }
+        return view('frontend.home.' . Product::GENDER_TEXT[$gender], compact(['products', 'categories', 'categorySelected']));
     }
 
     /**
@@ -58,7 +55,7 @@ class HomeController extends Controller
      */
     public function men($id)
     {
-        return $this->getProductsFollowGender($id, Product::MALE);
+        return $this->getProductsFollowGender($id, Product::MEN);
     }
 
     /**
@@ -66,7 +63,7 @@ class HomeController extends Controller
      */
     public function women($id)
     {
-        return $this->getProductsFollowGender($id, Product::FEMALE);
+        return $this->getProductsFollowGender($id, Product::WOMEN);
     }
 
     /**
@@ -86,7 +83,7 @@ class HomeController extends Controller
      */
     public function changeLanguage($language)
     {
-        \Session::put('website_language', $language);
+        Session::put('website_language', $language);
 
         return back();
     }

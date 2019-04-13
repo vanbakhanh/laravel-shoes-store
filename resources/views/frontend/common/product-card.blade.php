@@ -6,21 +6,18 @@
 @foreach ($products as $product)
 <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4 results-row">
     <div class="card card-product h-100">
-        <a href="{{ route('product.show', $product->id) }}">
-            <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
+        <a href="{{ route('product.show', $product->id) }}" class="swap-on-hover">
+            <img class="card-img-top img-front" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
+            <img class="card-img-top img-back" src="{{ asset($product->image[1]) }}" alt="{{ $product->name }}">
         </a>
         <div class="card-body px-0">
-            <div class="mb-1">
-                @if ($product->gender == 'male')
-                <span><a href="{{ route('category.men', $product->category_id) }}">{{ $product->category->name }}</a></span>
-                @else
-                <span><a href="{{ route('category.women', $product->category_id) }}">{{ $product->category->name }}</a></span>
-                @endif
+            <div class="mb-2">
+                <span><a href="{{ route('category.' . $product->gender, $product->category_id) }}">{{ $product->category->name }}</a></span>
                 <span class="stars-outer float-right">
                     <div class="stars-inner" style="width: {{ $product->reviews->avg('rating')/5*100 }}%"></div>
                 </span>
             </div>
-            <h5 class="card-title text-capitalize"> <a
+            <h5 class="card-text"> <a
                     href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h5>
             <h5 class="card-text price">${{ $product->price }}</h5>
         </div>

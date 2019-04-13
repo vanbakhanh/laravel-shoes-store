@@ -40,7 +40,7 @@ return [
     'more' => 'See more',
     'review_title' => 'Customer Reviews',
     'login' => 'Login to write review',
-    'review' => 'Review',
+    'review' => 'Reviews',
     'no_review' => 'No review',
     'write_preview' => 'Write a review',
     'colors' => 'Colors',

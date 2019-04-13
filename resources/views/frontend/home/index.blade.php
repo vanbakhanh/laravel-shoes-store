@@ -6,7 +6,7 @@
 
 <h3 class="text-center text-uppercase mb-4">{{ trans('home.new') }}</h3>
 <div class="row">
-    @include('frontend.home.common.item')
+    @include('frontend.common.product-card')
 </div>
 <div class="d-flex justify-content-center">{{ $products->links() }}</div>
 

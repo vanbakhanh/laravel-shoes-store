@@ -59,10 +59,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     public function getProductsSuggestion($productSelected)
     {
         return $this->model()->where('category_id', $productSelected->category_id)
-            ->where('id', '!=', $productSelected->id)
+            ->where('id', '<>', $productSelected->id)
             ->where('gender', $productSelected->gender)
             ->get()
-            ->shuffle()
             ->take(6);
     }
 

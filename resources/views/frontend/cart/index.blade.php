@@ -28,6 +28,7 @@
                     {{ Form::open(['class' => 'form-horizontal']) }}
                     <tr>
                         <td>
+                            <img src="{{ asset($item->options->image[0]) }}" width="50" height="50" alt="Image" class="mr-2">
                             <a href="{{ route('product.show', $item->id) }}">{{ $item->name }}</a>
                         </td>
                         <td>{{ $item->options->size }}</td>

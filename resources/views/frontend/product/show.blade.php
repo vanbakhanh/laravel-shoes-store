@@ -44,11 +44,7 @@
     </div>
     <div class="col-lg-6 col-md-12 text-center">
         <p class="mt-2 mb-4">
-            @if ($productSelected->gender == 'male')
-            {{ trans('product.category_men', ['category' => $categorySelected->name]) }}
-            @else
-            {{ trans('product.category_women', ['category' => $categorySelected->name]) }}
-            @endif
+            {{ trans('product.category_' . $productSelected->gender, ['category' => $categorySelected->name]) }}
         </p>
         <h3 class="my-2 text-uppercase">{{ $productSelected->name }}</h3>
         <h3 class="my-4">$<b>{{ $productSelected->price }}</b></h3>
@@ -122,11 +118,12 @@
     @foreach ($productsSuggestion as $product)
     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
         <div class="card card-product h-100 text-center">
-            <a href="{{ route('product.show', $product->id) }}">
-                <img class="card-img-top" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
+            <a href="{{ route('product.show', $product->id) }}" class="swap-on-hover">
+                <img class="card-img-top img-front" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
+                <img class="card-img-top img-back" src="{{ asset($product->image[1]) }}" alt="{{ $product->name }}">
             </a>
             <div class="card-body px-0">
-                <h5 class="card-title text-capitalize"> <a
+                <h5 class="card-title"> <a
                         href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h5>
                 <h5 class="card-text">${{ $product->price }}</h5>
             </div>
@@ -136,11 +133,7 @@
 </div>
 <div class="row">
     <p class="col-md-12 text-center text-uppercase my-2">
-        @if ($productSelected->gender == 'male')
-        <a href="{{ route('category.men', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
-        @else
-        <a href="{{ route('category.women', $productSelected->category_id) }}">{{ trans('product.more') }}</a>
-        @endif
+        <a href="{{ route('category.' . $productSelected->gender, $productSelected->category_id) }}">{{ trans('product.more') }}</a>
     </p>
 </div>
 

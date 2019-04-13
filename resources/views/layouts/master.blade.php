@@ -27,7 +27,7 @@
     @include('layouts.navbar')
 
     @section('modal')
-    @include('layouts.modal')
+        @include('frontend.common.auth-modal')
     @show
 
     <div class="container" id="content">

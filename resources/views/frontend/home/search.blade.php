@@ -9,7 +9,7 @@
     <p>{{ trans('home.top_results', ['products' => $products->count()]) }}</p>
 </div>
 <div class="row">
-    @include('frontend.home.common.item')
+    @include('frontend.common.product-card')
 </div>
 
 @endsection

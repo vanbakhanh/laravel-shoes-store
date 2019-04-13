@@ -1,11 +1,7 @@
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 .table td {
-    vertical-align: middle;
-}
-
-.bg-gray {
-    background-color: #f6f6f6;
+  vertical-align: middle !important;
 }
