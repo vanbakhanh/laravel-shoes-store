@@ -39,5 +39,6 @@ return [
     'total' => 'Tổng tiền',
     'first_name' => 'Họ',
     'last_name' => 'Tên',
+    'review' => 'Đánh giá',
 
 ];

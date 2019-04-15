@@ -20,7 +20,7 @@ return [
     'color' => 'Color',
     'price' => 'Price',
     'quantity' => 'Quantity',
-    'action' => 'Action',
+    'remove' => 'Remove',
     'ship_address' => 'Shipping address',
     'logged_in' => 'You are not logged in.',
     'login' => 'Login to checkout now!',
@@ -35,5 +35,7 @@ return [
     'tax' => 'Tax',
     'total' => 'Total',
     'checkout' => 'Checkout',
+    'product' => 'Product',
+    'image' => 'Image',
 
 ];

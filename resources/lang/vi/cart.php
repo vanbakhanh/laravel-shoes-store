@@ -20,7 +20,7 @@ return [
     'color' => 'Màu sắc',
     'price' => 'Giá',
     'quantity' => 'Số lượng',
-    'action' => 'Hành động',
+    'remove' => 'Xóa',
     'ship_address' => 'Địa chỉ giao hàng',
     'logged_in' => 'Bạn chưa đăng nhập.',
     'login' => 'Đăng nhập và thanh toán ngay!',
@@ -35,5 +35,7 @@ return [
     'tax' => 'Thuế',
     'total' => 'Tổng tiền',
     'checkout' => 'Thanh toán',
+    'product' => 'Sản phẩm',
+    'image' => 'Hình ảnh',
 
 ];

@@ -36,5 +36,7 @@ return [
 	'my_order' => 'Đơn hàng của tôi',
 	'recent' => 'Đơn hàng gần đây',
 	'empty' => 'Không có đơn hàng nào',
+	'product' => 'Sản phẩm',
+    'image' => 'Hình ảnh',
 
 ];

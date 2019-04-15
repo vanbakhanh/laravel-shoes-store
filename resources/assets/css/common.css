@@ -5,3 +5,8 @@ html {
 .table td {
   vertical-align: middle !important;
 }
+
+.card {
+  border: 1px solid #dadce0;
+  box-shadow: none;
+}

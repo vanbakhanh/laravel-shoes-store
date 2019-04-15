@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light mb-4">
+<nav id="navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light shadow-none">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img src="{{ asset('storage/logo/logo-black.png') }}" width="60" height="20" alt="logo">
@@ -48,67 +48,46 @@
                     </a>
                 </li>
             </ul>
-            <!-- Search Form -->
-            {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline my-2 my-lg-0 mr-auto', 'role' => 'search']) }}
-            {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm', 'placeholder' => trans('layouts.search')]) }}
-            {{ Form::close() }}
+
             <!-- Right -->
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline px-4', 'role' => 'search']) }}
+                        {{ Form::search('keyword', '', ['class' => 'form-control shadow-none', 'placeholder' => trans('layouts.search'), 'autofocus']) }}
+                        {{ Form::close() }}
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
+                        <i class="fas fa-shopping-cart"></i> {{ Cart::count() }}
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-globe-asia"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
+                            {{ trans('layouts.english') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
+                            {{ trans('layouts.vietnamese') }}
+                        </a>
+                    </div>
+                </li>
                 @guest
                 <li class="nav-item">
-                    <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
-                        {{ trans('layouts.cart') }} {{ Cart::count() }}
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @if ('vi' == session()->get('website_language', 'en'))
-                        {{ trans('layouts.vietnamese') }}
-                        @else
-                        {{ trans('layouts.english') }}
-                        @endif
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
-                            {{ trans('layouts.english') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
-                            {{ trans('layouts.vietnamese') }}
-                        </a>
-                    </div>
-                </li>
-                <form class="form-inline">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                        data-target="#authModalCenter">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#authModalCenter">
                         {{ trans('layouts.login') }}
-                    </button>
-                </form>
+                    </a>
+                </li>
                 @else
-                <li class="nav-item">
-                    <a class="nav-link" id="cart-qty" href="{{ route('cart.index') }}">
-                        {{ trans('layouts.cart') }} {{ Cart::count() }}
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @if ('vi' == session()->get('website_language', 'en'))
-                        {{ trans('layouts.vietnamese') }}
-                        @else
-                        {{ trans('layouts.english') }}
-                        @endif
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('user.language', ['en']) }}">
-                            {{ trans('layouts.english') }}
-                        </a>
-                        <a class="dropdown-item" href="{{ route('user.language', ['vi']) }}">
-                            {{ trans('layouts.vietnamese') }}
-                        </a>
-                    </div>
-                </li>
                 <li class="dropdown nav-item">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

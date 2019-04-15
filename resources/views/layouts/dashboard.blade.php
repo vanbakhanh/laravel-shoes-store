@@ -77,7 +77,7 @@
         <div id="page-content-wrapper">
             <div class="container" id="content">
                 <!-- Navbar -->
-                <nav id="nav-hide" class="navbar sticky-top navbar-expand-lg navbar-light bg-light rounded mb-4">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light rounded mb-4">
                     <div id="toggler">
                         <button id="menu-toggle" class="navbar-toggler" type="button">
                             <span class="navbar-toggler-icon"></span>

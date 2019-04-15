@@ -17,7 +17,7 @@ return [
     'id' => 'ID',
     'action' => 'Action',
     'create' => 'Create',
-    'update' => 'Update',
+    'update' => 'Save changes',
     'edit' => 'Edit',
     'delete' => 'Delete',
     'gender' => 'Gender',
@@ -31,7 +31,7 @@ return [
     'comment' => 'Comment',
     'order' => 'Order',
     'password' => 'Password',
-    'change_password' => 'Change password',
+    'change_password' => 'Change Password',
     'new_password' => 'New password',
     'confirm_password' => 'Confirm password',
     'male' => 'Male',
@@ -39,5 +39,6 @@ return [
     'total' => 'Total',
     'first_name' => 'First name',
     'last_name' => 'Last name',
+    'review' => 'Review',
 
 ];

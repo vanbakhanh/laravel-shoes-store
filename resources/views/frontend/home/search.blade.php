@@ -4,12 +4,14 @@
 
 @section('content')
 
-<div class="col-md-12 text-uppercase text-center mb-4">
-    <h3>{{ trans('home.search', ['keyword' => $keyword]) }}</h3>
-    <p>{{ trans('home.top_results', ['products' => $products->count()]) }}</p>
-</div>
-<div class="row">
-    @include('frontend.common.product-card')
+<div class="container">
+    <div class="col-md-12 text-uppercase text-center py-4 m-0">
+        <h3>{{ trans('home.search', ['keyword' => $keyword]) }}</h3>
+        <p>{{ trans('home.top_results', ['products' => $products->count()]) }}</p>
+    </div>
+    <div class="row">
+        @include('frontend.common.product-card')
+    </div>
 </div>
 
 @endsection

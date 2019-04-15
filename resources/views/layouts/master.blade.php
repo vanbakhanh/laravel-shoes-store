@@ -30,7 +30,7 @@
         @include('frontend.common.auth-modal')
     @show
 
-    <div class="container" id="content">
+    <div id="content">
         @include('layouts.notification')
 
         @yield('content')

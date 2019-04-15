@@ -9,16 +9,18 @@ body {
 }
 
 /* Navbar */
-
-#nav-hide {
-  transition: all 0.3s ease;
+#navbar {
+  transition: 0.4s;
 }
 
 /* Card Product */
-
 .card-product {
   border: none !important;
   box-shadow: none !important;
+}
+
+.card-product img {
+  border-radius: 0.25rem;
 }
 
 .card-product img:hover {
@@ -45,7 +47,6 @@ body {
 }
 
 /* Rating Star */
-
 .stars-outer {
   position: relative;
   display: inline-block;
@@ -75,7 +76,6 @@ body {
 }
 
 /* Rating Star Form */
-
 .rating-stars ul {
   list-style-type: none;
   padding: 0;
@@ -101,7 +101,48 @@ body {
 }
 
 /* Footer */
-
 .footer-social a {
   font-size: 20px;
+}
+
+/* Blocks */
+.site-blocks-cover {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.site-blocks-cover,
+.site-blocks-cover .row {
+  min-height: 500px;
+  height: calc(100vh + 20px);
+}
+
+.site-blocks-cover h1 {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+@media (min-width: 768px) {
+  .site-blocks-cover h1 {
+    font-size: 50px;
+  }
+}
+
+.site-blocks-cover p {
+  font-size: 20px;
+  line-height: 35px;
+  padding-bottom: 100px;
+}
+
+.site-blocks-cover .intro-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Collection box */
+#collection-box {
+  margin-top: -100px;
+  border-radius: 0.25rem;
+  background: #FFF;
 }

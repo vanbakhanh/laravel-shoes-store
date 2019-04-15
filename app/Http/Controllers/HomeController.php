@@ -43,7 +43,9 @@ class HomeController extends Controller
      */
     protected function getProductsFollowGender($id, $gender)
     {
-        $categories = $this->categoryRepository->orderBy('name')->get();
+        $categories = $this->categoryRepository->with([
+            'products' => function ($q) use ($gender) {$q->where('gender', $gender);},
+        ])->orderBy('name')->get();
         $categorySelected = $this->categoryRepository->findOrFail($id);
         $products = $this->productRepository->getProductsFollowGenderAndCategory($id, $gender);
 

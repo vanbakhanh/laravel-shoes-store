@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'manager' => 'Order manager',
+    'manager' => 'Order Manager',
     'pending' => 'Pending',
     'id' => 'ID',
     'user' => 'User',
@@ -31,10 +31,12 @@ return [
     'name' => 'Name',
     'email' => 'Email',
     'phone' => 'Phone',
-    'address' => 'Address shipping',
+    'address' => 'Address Shipping',
     'verify' => 'Verify',
-    'my_order' => 'My order',
-    'recent' => 'Recent order',
+    'my_order' => 'My Order',
+    'recent' => 'Recent Order',
     'empty' => 'There is no order',
+    'product' => 'Product',
+    'image' => 'Image',
 
 ];
