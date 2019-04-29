@@ -55,6 +55,9 @@
                     <a href="{{ route('category.create') }}">{{ trans('layouts.category') }}</a>
                 </li>
                 <li>
+                    <a href="{{ route('review.index') }}">{{ trans('layouts.review') }}</a>
+                </li>
+                <li>
                     <a href="{{ route('color.create') }}">{{ trans('layouts.color') }}</a>
                 </li>
                 <li>

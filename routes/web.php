@@ -65,6 +65,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('/product', 'ProductController');
         Route::resource('/size', 'SizeController');
         Route::resource('/color', 'ColorController');
+        Route::resource('/review', 'ReviewController');
 
         // Order
         Route::group(['prefix' => 'order'], function () {
@@ -100,7 +101,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('/comment', 'CommentController');
 
         // Review
-        Route::resource('/review', 'ReviewController');
+        Route::resource('/review', 'ReviewController', ['only' => ['create']]);
 
         // Order
         Route::group(['prefix' => 'order'], function () {

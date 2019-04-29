@@ -38,5 +38,6 @@ return [
     'admin' => 'Người quản lý',
     'manager' => 'Quản lý',
     'my_order' => 'Đơn hàng của tôi',
+    'review' => 'Đánh giá',
 
 ];

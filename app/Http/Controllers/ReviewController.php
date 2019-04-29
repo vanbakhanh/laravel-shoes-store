@@ -27,7 +27,9 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $reviews = $this->reviewRepository->all();
+
+        return view('backend.review.index', compact('reviews'));
     }
 
     /**
@@ -98,6 +100,8 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->reviewRepository->findOrFail($id)->delete();
+
+        return back()->with('status', trans('messages.deleted_success'));
     }
 }

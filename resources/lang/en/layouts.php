@@ -38,5 +38,6 @@ return [
     'admin' => 'Administrator',
     'manager' => 'Manager',
     'my_order' => 'My order',
+    'review' => 'Review',
     
 ];
