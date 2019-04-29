@@ -28,20 +28,20 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li>
-                    <h5 class="my-4">{{ trans('layouts.manager') }}</h5>
+                <li class="sidebar-nav-logo">
+                    <img src="{{ asset('storage/logo/logo-black.png') }}" width="60" height="20" alt="logo">
                 </li>
                 <li>
-                    <a href="{{ route('admin.index') }}">{{ trans('layouts.admin') }}</a>
+                    <a href="{{ route('admin.index') }}"><i class="fas fa-user-shield"></i>{{ trans('layouts.admin') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('user.index') }}">{{ trans('layouts.user') }}</a>
+                    <a href="{{ route('user.index') }}"><i class="fas fa-users"></i>{{ trans('layouts.user') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('order.manager') }}">{{ trans('layouts.order') }}</a>
+                    <a href="{{ route('order.manager') }}"><i class="fas fa-shopping-cart"></i>{{ trans('layouts.order') }}</a>
                 </li>
                 <li>
-                    <a href="#product" data-toggle="collapse" aria-expanded="false">{{ trans('layouts.product') }}</a>
+                    <a href="#product" data-toggle="collapse" aria-expanded="false"><i class="fas fa-box-open"></i>{{ trans('layouts.product') }}</a>
                     <ul class="collapse list-unstyled" id="product">
                         <li>
                             <a href="{{ route('product.create') }}">{{ trans('layouts.creat_product') }}</a>
@@ -52,25 +52,24 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{ route('category.create') }}">{{ trans('layouts.category') }}</a>
+                    <a href="{{ route('category.create') }}"><i class="fas fa-filter"></i>{{ trans('layouts.category') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('review.index') }}">{{ trans('layouts.review') }}</a>
+                    <a href="{{ route('review.index') }}"><i class="fas fa-star"></i>{{ trans('layouts.review') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('color.create') }}">{{ trans('layouts.color') }}</a>
+                    <a href="{{ route('color.create') }}"><i class="fas fa-palette"></i>{{ trans('layouts.color') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('size.create') }}">{{ trans('layouts.size') }}</a>
+                    <a href="{{ route('size.create') }}"><i class="fas fa-pencil-ruler"></i>{{ trans('layouts.size') }}</a>
                 </li>
-                <br>
                 <li>
                     <a
-                        href="{{ route('admin.password.edit', Auth::user()->id) }}">{{ trans('layouts.change_password') }}</a>
+                        href="{{ route('admin.password.edit', Auth::user()->id) }}"><i class="fas fa-lock"></i>{{ trans('layouts.change_password') }}</a>
                 </li>
                 <li>
                     <a href="{{ route('admin.logout') }}"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ trans('layouts.logout') }}</a>
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i>{{ trans('layouts.logout') }}</a>
                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
@@ -132,7 +131,7 @@
                 @yield('content')
             </div>
             <!-- Footer -->
-            <footer>
+            <footer class="mt-4">
                 <div class="container">
                     <div class="py-4 border-top">
                         <div class="row">

@@ -39,6 +39,7 @@
 
     <!-- Optional JavaScript -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/user.js') }}"></script>
 
     @yield('script')
 </body>

@@ -60,19 +60,35 @@ body {
 }
 
 .sidebar-nav li {
-  text-indent: 20px;
   line-height: 35px;
+}
+
+.sidebar-nav-logo {
+  text-align: center;
+  padding: 25px 0;
 }
 
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #444;
+  color: #5f6368;
+  padding-left: 10px;
+  font-weight: 500;
 }
 
 .sidebar-nav li a:hover {
   text-decoration: none;
-  background-color: #fbfbfb;
+  background-color: #e8f0fe;
+  color: #2196F3;
+}
+
+.sidebar-nav li a i {
+  min-width: 50px;
+  text-align: center;
+}
+
+.sidebar-nav li ul {
+  text-indent: 50px;
 }
 
 @media(min-width:768px) {
