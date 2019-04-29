@@ -4,13 +4,9 @@ body {
   flex-direction: column;
 }
 
-#content {
-  flex: 1;
-}
-
 /* Navbar */
 #navbar {
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
 /* Card Product */
@@ -21,11 +17,11 @@ body {
 
 .card-product img {
   border-radius: 0.25rem;
+  transition: all 0.3s;
 }
 
 .card-product img:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  transition: all 0.5s ease;
 }
 
 .swap-on-hover {
@@ -39,7 +35,6 @@ body {
   top: 0;
   left: 0;
   z-index: 99;
-  transition: opacity 0.5s ease;
 }
 
 .swap-on-hover:hover .img-back {
@@ -119,29 +114,12 @@ body {
 }
 
 .site-blocks-cover h1 {
-  font-size: 30px;
-  font-weight: 900;
-}
-
-@media (min-width: 768px) {
-  .site-blocks-cover h1 {
-    font-size: 50px;
-  }
-}
-
-.site-blocks-cover p {
-  font-size: 20px;
-  line-height: 35px;
-  padding-bottom: 100px;
-}
-
-.site-blocks-cover .intro-text {
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 3rem;
+  color: #FFF;
 }
 
 /* Collection box */
-#collection-box {
+#shop {
   margin-top: -100px;
   border-radius: 0.25rem;
   background: #FFF;

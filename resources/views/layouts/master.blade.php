@@ -12,9 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/user.css') }}">
-
-    <!-- Optional JavaScript -->
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/aos.css') }}">
 
     <!-- Title -->
     <title>@yield('title')</title>
@@ -27,16 +25,22 @@
     @include('layouts.navbar')
 
     @section('modal')
-        @include('frontend.common.auth-modal')
+    @include('frontend.common.auth-modal')
     @show
 
-    <div id="content">
-        @include('layouts.notification')
+    @yield('cover')
 
-        @yield('content')
+    <div class="container">
+    @include('layouts.notification')
+    @yield('content')
     </div>
 
     @include('layouts.footer')
+
+    <!-- Optional JavaScript -->
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+    @yield('script')
 </body>
 
 </html>

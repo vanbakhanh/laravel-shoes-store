@@ -24,3 +24,10 @@ function scrollFunction() {
         document.getElementById("navbar").classList.add("shadow-none");
     }
 }
+
+// initialize AOS
+var AOS = require('aos');
+AOS.init({
+    duration: 700,
+    once: true,
+});

@@ -21,7 +21,7 @@ return [
     'change_password' => 'Change password',
     'logout' => 'Logout',
     'search' => 'Search',
-    'copyright' => 'Copyright ©2019. All rights reserved.',
+    'copyright' => 'Copyright © 2019. All rights reserved.',
     'dashboard' => 'Dashboard',
     'user' => 'User',
     'product' => 'Product',

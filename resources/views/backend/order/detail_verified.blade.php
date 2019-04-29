@@ -32,6 +32,7 @@
         <table class="table table-hover table-bordered">
             <thead>
                 <tr>
+                    <th scope="col">{{ trans('order.image') }}</th>
                     <th scope="col">{{ trans('order.item') }}</th>
                     <th scope="col">{{ trans('order.quantity') }}</th>
                     <th scope="col">{{ trans('order.size') }}</th>
@@ -42,6 +43,9 @@
             <tbody>
                 @foreach ($orderDetail->products as $orderProduct)
                 <tr>
+                    <td>
+                        <img src="{{ asset($orderProduct->image[0]) }}" width="50" height="50" alt="Image">
+                    </td>
                     <td><a
                             href="{{ route('product.show', $orderProduct->pivot->product_id) }}">{{ $orderProduct->name }}</a>
                     </td>

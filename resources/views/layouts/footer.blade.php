@@ -9,9 +9,10 @@
                         illum dolore eu feugiat nulla facilisis.</p>
                     <h3>Follow Us On Social:</h3>
                     <div class="footer-social">
-                        <a href="#" class="mr-4"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="mr-4"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/vanbakhanh" target="_blank" class="mr-4"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/vanbakhanh" target="_blank" class="mr-4"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/vanbakhanh/" target="_blank" class="mr-4"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/vanbakhanh/"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
 
@@ -26,9 +27,14 @@
                 <div class="footer-widget col-lg-2 col-md-6 col-sm-6 col-12 mb-4 mb-xs-3">
                     <h4 class="title"><span>My Account</span></h4>
                     <ul class="list-unstyled">
-                        <li><a href="#">My account</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Order Tracking</a></li>
+                        @auth
+                        <li><a href="{{ route('user.edit', Auth::user()->id) }}">My account</a></li>
+                        @endauth
+                        @guest
+                        <li><a href="{{ route('login') }}">My account</a></li>
+                        @endguest
+                        <li><a href="{{ route('cart.index') }}">Wishlist</a></li>
+                        <li><a href="{{ route('order') }}">Order Tracking</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Shipping Information</a></li>
                     </ul>

@@ -58,7 +58,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         {{ Form::open(['route' => ['search'], 'method' => 'GET', 'class' => 'form-inline px-4', 'role' => 'search']) }}
-                        {{ Form::search('keyword', '', ['class' => 'form-control shadow-none', 'placeholder' => trans('layouts.search'), 'autofocus']) }}
+                        {{ Form::search('keyword', '', ['class' => 'form-control form-control-sm shadow-none', 'placeholder' => trans('layouts.search'), 'autofocus']) }}
                         {{ Form::close() }}
                     </div>
                 </li>
