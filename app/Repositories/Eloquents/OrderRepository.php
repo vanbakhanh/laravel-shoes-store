@@ -24,6 +24,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     {
         return User::findOrFail(Auth::user()->id)
             ->orders()
+            ->with('products')
             ->get()
             ->sortByDesc('created_at');
     }

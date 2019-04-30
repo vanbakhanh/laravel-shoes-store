@@ -4,17 +4,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-3">
-        <h3 class="my-4">{{ trans('order.my_order') }} ({{ count($orders) }})</h3>
-        <div class="list-group list-group-flush mb-4">
-            @foreach ($orders as $order)
-            <a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
-                {{ $order->created_at }} - {{ trans('order.order') }} {{ $order->id }}
-            </a>
-            @endforeach
-        </div>
-    </div>
-    <div class="col-md-9 table-responsive">
+    <div class="col-md-12 table-responsive">
         <div class="row">
             <div class="col-md-12">
                 <h3 class="float-left my-4">{{ trans('order.recent') }}</h3>
@@ -29,16 +19,21 @@
         <table class="table table-bordered text-center">
             <thead>
                 <tr>
+                    <th scope="col">{{ trans('order.id') }}</th>
                     <th scope="col">{{ trans('order.image') }}</th>
                     <th scope="col">{{ trans('order.product') }}</th>
                     <th scope="col">{{ trans('order.total') }}</th>
                     <th scope="col">{{ trans('order.quantity') }}</th>
-                    <th scope="col">{{ trans('order.order') }}</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($orderDetail->products as $orderProduct)
                 <tr>
+                    <td>
+                        <a href="{{ route('order.detail', $orderProduct->pivot->order_id) }}">
+                            {{ $orderProduct->pivot->order_id }}
+                        </a>
+                    </td>
                     <td>
                         <img src="{{ asset($orderProduct->image[0]) }}" width="50" height="50" alt="Image">
                     </td>
@@ -49,16 +44,47 @@
                     </td>
                     <td>${{ $orderProduct->pivot->total }}</td>
                     <td>{{ $orderProduct->pivot->qty }}</td>
-                    <td>
-                        <a href="{{ route('order.detail', $orderProduct->pivot->order_id) }}">
-                            {{ $orderProduct->pivot->order_id }}
-                        </a>
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
         @endif
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="my-4">{{ trans('order.my_order') }} ({{ count($orders) }})</h3>
+        <table id="table" class="table table-hover table-bordered text-center">
+            <thead>
+                <tr>
+                    <th scope="col">{{ trans('order.id') }}</th>
+                    <th scope="col">{{ trans('order.created') }}</th>
+                    <th scope="col">{{ trans('order.product') }}</th>
+                    <th scope="col">{{ trans('order.quantity') }}</th>
+                    <th scope="col">{{ trans('order.total') }}</th>
+                    <th scope="col">{{ trans('order.status') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orders as $order)
+                <tr>
+                    <th><a href="{{ route('order.detail', $order->id) }}">{{ $order->id }}</a></th>
+                    <td>{{ $order->created_at }}</td>
+                    <td>
+                        @if (count($order->products) == 1)
+                        {{ $order->products[0]->name }}
+                        @else
+                        {{ $order->products[0]->name }}...
+                        {{ trans('order.other_products', ['num' => count($order->products) - 1]) }}
+                        @endif
+                    </td>
+                    <td>{{ $order->quantity }}</td>
+                    <td>${{ $order->total }}</td>
+                    <td>{{ $order->status }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection

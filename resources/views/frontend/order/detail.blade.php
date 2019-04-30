@@ -5,7 +5,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-3">
-        <h3 class="my-4">{{ trans('order.my_order') }} ({{ count($orders) }})</h3>
+        <h3 class="my-4">{{ trans('order.recent') }}</h3>
         <div class="list-group list-group-flush mb-4">
             @foreach ($orders as $order)
             <a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
@@ -13,6 +13,7 @@
             </a>
             @endforeach
         </div>
+        <a href="{{ route('order') }}" class="btn btn-outline-primary btn-block">{{ trans('order.view_more') }}</a>
     </div>
     <div class="col-md-9 table-responsive">
         <div class="row">

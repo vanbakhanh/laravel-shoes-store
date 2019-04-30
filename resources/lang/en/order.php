@@ -40,5 +40,8 @@ return [
     'image' => 'Image',
     'shipped' => 'Shipped',
     'canceled' => 'Canceled',
+    'status' => 'Status',
+    'other_products' => 'and :num other products',
+    'view_more' => 'View more',
 
 ];

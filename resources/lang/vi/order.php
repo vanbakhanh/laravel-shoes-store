@@ -39,6 +39,9 @@ return [
 	'product' => 'Sản phẩm',
 	'image' => 'Hình ảnh',
 	'shipped' => 'Đã giao hàng',
-    'canceled' => 'Đã hủy',
+	'canceled' => 'Đã hủy',
+	'status' => 'Trạng thái',
+	'other_products' => 'và :num sản phẩm khác',
+	'view_more' => 'Xem thêm',
 
 ];

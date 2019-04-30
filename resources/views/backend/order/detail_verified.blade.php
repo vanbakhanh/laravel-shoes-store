@@ -15,6 +15,7 @@
             </a>
             @endforeach
         </div>
+        <a href="{{ route('order.manager') }}" class="btn btn-outline-primary btn-block">{{ trans('order.view_more') }}</a>
     </div>
     <div class="col-md-9 table-responsive">
         <div class="row">

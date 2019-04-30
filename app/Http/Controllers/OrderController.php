@@ -39,7 +39,7 @@ class OrderController extends Controller
      */
     public function detail($id)
     {
-        $orders = $this->orderRepository->getOrdersFollowUser();
+        $orders = $this->orderRepository->getOrdersFollowUser()->take(10);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -73,7 +73,7 @@ class OrderController extends Controller
             return back();
         }
 
-        $ordersPending = $this->orderRepository->getOrders(Order::PENDING)->take(15);
+        $ordersPending = $this->orderRepository->getOrders(Order::PENDING)->take(10);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -91,7 +91,7 @@ class OrderController extends Controller
             return back();
         }
 
-        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED)->take(15);
+        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED)->take(10);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -109,7 +109,7 @@ class OrderController extends Controller
             return back();
         }
 
-        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->take(15);
+        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->take(10);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
