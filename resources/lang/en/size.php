@@ -13,7 +13,7 @@ return [
 
     'new_title' => 'New size',
     'edit_title' => 'Edit size',
-    'list_title' => 'List size',
+    'list_title' => 'List sizes',
     'empty' => 'There is no size',
     'name' => 'Name',
     'id' => 'ID',

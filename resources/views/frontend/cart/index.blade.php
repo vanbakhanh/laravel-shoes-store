@@ -97,22 +97,21 @@
                         <td class="text-right">{{ Cart::count() }}</td>
                     </tr>
                     <tr>
-                        <th scope="row">{{ trans('cart.sub_total') }}</th>
-                        <td class="text-right">${{ Cart::subTotal() }}</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">{{ trans('cart.tax') }}</th>
-                        <td class="text-right">${{ Cart::Tax() }}</td>
-                    </tr>
-                    <tr>
                         <th scope="row">{{ trans('cart.total') }}</th>
                         <td class="text-right">${{ Cart::total() }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{ trans('cart.payment_method') }}</th>
+                        <td class="text-right">
+                            <select name="payment" id="payment" class="form-control">
+                                <option value="0">{{ trans('cart.payment_on_delivery') }}</option>
+                            </select>
+                        </td>
                     </tr>
                 </tbody>
             </table>
             <div class="text-right">
-                @if (Cart::count() == 0)
-                @else
+                @if (Cart::count() !== 0)
                 <a href="{{ route('checkout') }}" class="btn btn-primary">{{ trans('cart.checkout') }}</a>
                 @endif
             </div>

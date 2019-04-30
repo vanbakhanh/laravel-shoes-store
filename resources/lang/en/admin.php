@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'title' => 'List administrator',
+    'title' => 'List administrators',
     'empty' => 'There is no admin',
     'name' => 'Name',
     'email' => 'Email',

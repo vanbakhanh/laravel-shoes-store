@@ -7,12 +7,15 @@ use App\Models\AbstractModel;
 class Order extends AbstractModel
 {
     const PENDING = 0;
-
     const VERIFIED = 1;
+    const SHIPPED = 2;
+    const CANCELED = 3;
 
     const TEXT = [
         self::PENDING => 'Pending',
         self::VERIFIED => 'Verified',
+        self::SHIPPED => 'Shipped',
+        self::CANCELED => 'Canceled',
     ];
 
     protected $fillable = [

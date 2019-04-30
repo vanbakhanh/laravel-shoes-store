@@ -11155,10 +11155,10 @@
     </style>
 </head>
 
-<body class="bg-white">
+<body class="bg-light">
     <div class="container">
         <div class="row justify-content-center my-4">
-            <div class="col-md-8 bg-light rounded shadow py-4">
+            <div class="col-md-10 bg-white rounded shadow py-4">
                 <p>Hi {{ $user->profile->full_name }},</p>
                 <p>Thanks for registering for an account on Nike! Before we get started, we just need to confirm that
                     this

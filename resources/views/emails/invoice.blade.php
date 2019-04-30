@@ -11155,10 +11155,10 @@
     </style>
 </head>
 
-<body class="bg-white">
+<body class="bg-light">
     <div class="container">
         <div class="row justify-content-center my-4">
-            <div class="col-md-8 bg-light rounded shadow py-4">
+            <div class="col-md-10 bg-white rounded shadow py-4">
                 <div class="row">
                     <div class="col-md-12">
                         <p>Thank you for your order</p>

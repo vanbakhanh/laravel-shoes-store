@@ -13,7 +13,7 @@ return [
 
     'new_title' => 'New product',
     'edit_title' => 'Edit product',
-    'list_title' => 'List product',
+    'list_title' => 'List products',
     'empty' => 'There is no product',
     'name' => 'Name',
     'id' => 'ID',

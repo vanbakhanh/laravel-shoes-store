@@ -4,8 +4,8 @@ namespace App\Repositories\Eloquents;
 
 use App\Models\Order;
 use App\Models\User;
-use App\Repositories\Eloquents\BaseRepository;
 use App\Repositories\Contracts\OrderRepositoryInterface;
+use App\Repositories\Eloquents\BaseRepository;
 use Auth;
 
 class OrderRepository extends BaseRepository implements OrderRepositoryInterface
@@ -28,25 +28,17 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             ->sortByDesc('created_at');
     }
 
-    public function getOrdersPending()
+    public function getOrders($status)
     {
         return $this->model()->with('user')
-            ->where('status', Order::PENDING)
+            ->where('status', $status)
             ->get()
             ->sortByDesc('created_at');
     }
 
-    public function getOrdersVerified()
+    public function updateStatusOrder($id)
     {
-        return $this->model()->with('user')
-            ->where('status', Order::VERIFIED)
-            ->get()
-            ->sortByDesc('created_at');
-    }
-
-    public function verifyOrder($id)
-    {
-        return $this->model()->findOrFail($id)->update(['status' => Order::VERIFIED]);
+        return $this->model()->where('id', $id)->increment('status');
     }
 
     public function deleteOrder($id)

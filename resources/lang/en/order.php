@@ -38,5 +38,7 @@ return [
     'empty' => 'There is no order',
     'product' => 'Product',
     'image' => 'Image',
+    'shipped' => 'Shipped',
+    'canceled' => 'Canceled',
 
 ];

@@ -72,7 +72,8 @@ Route::group(['middleware' => 'locale'], function () {
             Route::get('/', 'OrderController@manager')->name('order.manager');
             Route::get('/detail/{id}/pending', 'OrderController@managerDetailPending')->name('order.detail.pending');
             Route::get('/detail/{id}/verified', 'OrderController@managerDetailVerified')->name('order.detail.verified');
-            Route::get('/verify/{id}', 'OrderController@verify')->name('order.verify');
+            Route::get('/detail/{id}/shipped', 'OrderController@managerDetailShipped')->name('order.detail.shipped');
+            Route::get('/status/{id}/update', 'OrderController@updateStatus')->name('order.status.update');
             Route::delete('/delete/{id}', 'OrderController@destroy')->name('order.delete');
         });
 

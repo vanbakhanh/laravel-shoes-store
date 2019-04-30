@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'list_title' => 'List user',
+    'list_title' => 'List users',
     'empty' => 'There is no user',
     'name' => 'Name',
     'id' => 'ID',

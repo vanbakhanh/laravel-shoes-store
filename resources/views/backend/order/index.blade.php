@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12 my-4">
+    <div class="col-md-12 mt-4">
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
@@ -89,12 +89,56 @@
             </div>
         </div>
     </div>
+    <div class="col-md-12 my-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{ trans('order.shipped') }} ({{ $ordersShipped->count() }})</h3>
+                <div class="table-responsive">
+                    <div class="table-responsive">
+                        <table id="table3" class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">{{ trans('order.id') }}</th>
+                                    <th scope="col">{{ trans('order.user') }}</th>
+                                    <th scope="col">{{ trans('order.quantity') }}</th>
+                                    <th scope="col">{{ trans('order.total') }}</th>
+                                    <th scope="col">{{ trans('order.created') }}</th>
+                                    <th scope="col">{{ trans('order.action') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($ordersShipped as $orderShipped)
+                                <tr>
+                                    <th scope="row">{{ $orderShipped->id }}</th>
+                                    <td>{{ $orderShipped->user->email }}</td>
+                                    <td>{{ $orderShipped->quantity }}</td>
+                                    <td>${{ $orderShipped->total }}</td>
+                                    <td>{{ $orderShipped->created_at }}</td>
+                                    <td>
+                                        {{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $orderShipped->id]]) }}
+                                        <div class="btn-group btn-group-toggle">
+                                            <a href="{{ route('order.detail.shipped', $orderShipped->id) }}"
+                                                class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a>
+                                            {{ Form::submit(trans('order.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
+                                        </div>
+                                        {{ Form::close() }}
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
     $(document).ready(function () {
         $('#table1').DataTable();
         $('#table2').DataTable();
+        $('#table3').DataTable();
     });
 </script>
 

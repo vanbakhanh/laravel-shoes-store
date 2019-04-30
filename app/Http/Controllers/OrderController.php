@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 
 class OrderController extends Controller
@@ -52,12 +53,14 @@ class OrderController extends Controller
      */
     public function manager()
     {
-        $ordersPending = $this->orderRepository->getOrdersPending();
+        $ordersPending = $this->orderRepository->getOrders(Order::PENDING);
 
-        $ordersVerified = $this->orderRepository->getOrdersVerified();
+        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED);
+
+        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED);
 
         return view('backend.order.index', compact([
-            'ordersVerified', 'ordersPending',
+            'ordersVerified', 'ordersPending', 'ordersShipped',
         ]));
     }
 
@@ -66,7 +69,11 @@ class OrderController extends Controller
      */
     public function managerDetailPending($id)
     {
-        $ordersPending = $this->orderRepository->getOrdersPending()->take(15);
+        if ($this->orderRepository->findOrFail($id)->status !== Order::TEXT[Order::PENDING]) {
+            return back();
+        }
+
+        $ordersPending = $this->orderRepository->getOrders(Order::PENDING)->take(15);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -80,7 +87,11 @@ class OrderController extends Controller
      */
     public function managerDetailVerified($id)
     {
-        $ordersVerified = $this->orderRepository->getOrdersVerified()->take(15);
+        if ($this->orderRepository->findOrFail($id)->status !== Order::TEXT[Order::VERIFIED]) {
+            return back();
+        }
+
+        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED)->take(15);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
@@ -90,11 +101,29 @@ class OrderController extends Controller
     }
 
     /**
+     * Display the view of manager shipped orders - admin.
+     */
+    public function managerDetailShipped($id)
+    {
+        if ($this->orderRepository->findOrFail($id)->status !== Order::TEXT[Order::SHIPPED]) {
+            return back();
+        }
+
+        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->take(15);
+
+        $orderDetail = $this->orderRepository->findOrder($id);
+
+        return view('backend.order.detail_shipped', compact([
+            'ordersShipped', 'orderDetail',
+        ]));
+    }
+
+    /**
      * Verify orders are pending - admin.
      */
-    public function verify($id)
+    public function updateStatus($id)
     {
-        $this->orderRepository->verifyOrder($id);
+        $this->orderRepository->updateStatusOrder($id);
 
         return redirect()->route('order.manager');
     }

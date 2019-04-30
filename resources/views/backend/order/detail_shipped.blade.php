@@ -6,12 +6,12 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h3 class="my-4">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
+        <h3 class="my-4">{{ trans('order.shipped') }} ({{ $ordersShipped->count() }})</h3>
         <div class="list-group list-group-flush">
-            @foreach ($ordersVerified as $orderVerified)
-            <a href="{{ route('order.detail.verified', $orderVerified->id) }}"
+            @foreach ($ordersShipped as $orderShipped)
+            <a href="{{ route('order.detail.shipped', $orderShipped->id) }}"
                 class="list-group-item list-group-item-action">
-                {{ $orderVerified->created_at }} - {{ trans('order.order') }} {{ $orderVerified->id }}
+                {{ $orderShipped->created_at }} - {{ trans('order.order') }} {{ $orderShipped->id }}
             </a>
             @endforeach
         </div>
@@ -81,10 +81,6 @@
                 </tr>
             </tbody>
         </table>
-        <div class="row mb-4">
-            <a href="{{ route('order.status.update', $orderDetail->id) }}"
-                class="btn btn-primary btn-block">{{ trans('order.shipped') }}</a>
-        </div>
     </div>
 </div>
 

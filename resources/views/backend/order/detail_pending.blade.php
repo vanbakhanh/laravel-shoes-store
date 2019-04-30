@@ -82,7 +82,7 @@
             </tbody>
         </table>
         <div class="row mb-4">
-            <a href="{{ route('order.verify', $orderDetail->id) }}"
+            <a href="{{ route('order.status.update', $orderDetail->id) }}"
                 class="btn btn-primary btn-block">{{ trans('order.verify') }}</a>
         </div>
     </div>

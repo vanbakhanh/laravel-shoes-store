@@ -18,14 +18,8 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="float-left my-4">{{ trans('order.recent') }}</h3>
-                @if ($orderDetail == null)
-                @else
-                @if ($orderDetail->status == 'Pending')
-                <h3 class="float-right my-4">{{ trans('order.pending') }}</h3>
-                @endif
-                @if ($orderDetail->status == 'Verified')
-                <h3 class="float-right my-4">{{ trans('order.verified') }}</h3>
-                @endif
+                @if ($orderDetail !== null)
+                <h3 class="float-right my-4">{{ trans('order.' . strtolower($orderDetail->status)) }}</h3>
                 @endif
             </div>
         </div>

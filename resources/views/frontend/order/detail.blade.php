@@ -28,20 +28,29 @@
             </div>
         </div>
         <div class="jumbotron">
-            @if ($orderDetail->status == 'Pending')
-            <h3 class="text-center">{{ trans('order.pending') }}</h3>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+            <div class="row">
+                <div class="col">
+                    <h3 class="text-center text-warning">{{ trans('order.pending') }}</h3>
+                </div>
+                <div class="col">
+                    <h3 class="text-center text-primary">{{ trans('order.verified') }}</h3>
+                </div>
+                <div class="col">
+                    <h3 class="text-center text-success">{{ trans('order.shipped') }}</h3>
+                </div>
+            </div>
+            <div class="progress bg-light rounded">
+                @if($orderDetail->status == 'Pending')
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"
+                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 15%"></div>
+                @elseif($orderDetail->status == 'Verified')
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar"
                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+                @elseif($orderDetail->status == 'Shipped')
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                @endif
             </div>
-            @endif
-            @if ($orderDetail->status == 'Verified')
-            <h3 class="text-center">{{ trans('order.verified') }}</h3>
-            <div class="progress">
-                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar"
-                    aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-            </div>
-            @endif
         </div>
         <table class="table table-bordered text-center">
             <thead>

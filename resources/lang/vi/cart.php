@@ -37,5 +37,7 @@ return [
     'checkout' => 'Thanh toán',
     'product' => 'Sản phẩm',
     'image' => 'Hình ảnh',
+    'payment_method' => 'Phương thức thanh toán',
+    'payment_on_delivery' => 'Thanh toán khi giao hàng',
 
 ];

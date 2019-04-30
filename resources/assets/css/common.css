@@ -1,8 +1,10 @@
-.table td {
+.table td,
+.table tr,
+.table th {
   vertical-align: middle !important;
 }
 
-.card {
+/* .card {
   border: 1px solid #dadce0;
   box-shadow: none;
-}
+} */

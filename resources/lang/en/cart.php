@@ -37,5 +37,7 @@ return [
     'checkout' => 'Checkout',
     'product' => 'Product',
     'image' => 'Image',
+    'payment_method' => 'Payment method',
+    'payment_on_delivery' => 'Payment on delivery',
 
 ];

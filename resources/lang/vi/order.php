@@ -37,6 +37,8 @@ return [
 	'recent' => 'Đơn hàng gần đây',
 	'empty' => 'Không có đơn hàng nào',
 	'product' => 'Sản phẩm',
-    'image' => 'Hình ảnh',
+	'image' => 'Hình ảnh',
+	'shipped' => 'Đã giao hàng',
+    'canceled' => 'Đã hủy',
 
 ];

@@ -13,7 +13,7 @@ return [
 
     'new_title' => 'New color',
     'edit_title' => 'Edit color',
-    'list_title' => 'List color',
+    'list_title' => 'List colors',
     'empty' => 'There is no color',
     'name' => 'Name',
     'id' => 'ID',

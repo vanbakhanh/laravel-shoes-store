@@ -8,11 +8,9 @@ interface OrderRepositoryInterface
 
     public function getOrdersFollowUser();
 
-    public function getOrdersPending();
+    public function getOrders($status);
 
-    public function getOrdersVerified();
-
-    public function verifyOrder($id);
+    public function updateStatusOrder($id);
 
     public function deleteOrder($id);
 }
