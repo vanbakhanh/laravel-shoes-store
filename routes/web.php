@@ -21,6 +21,8 @@ Route::group(['middleware' => 'locale'], function () {
      */
 
     Auth::routes();
+    Route::get('login/{provider}', 'SocialController@redirect');
+    Route::get('login/{provider}/callback','SocialController@callback');
 
     // User
     Route::group(['prefix' => 'user'], function () {
@@ -122,6 +124,11 @@ Route::group(['middleware' => 'locale'], function () {
     Route::get('/category/men/{id}', 'HomeController@men')->name('category.men');
     Route::get('/category/women/{id}', 'HomeController@women')->name('category.women');
     Route::get('/search', 'HomeController@search')->name('search');
+
+    // Policy
+    Route::get('/policy', function () {
+        return view('frontend.policy.index');
+    })->name('policy');
 
     //Product
     Route::resource('/product', 'ProductController', ['only' => 'show']);

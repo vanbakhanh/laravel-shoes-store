@@ -28,10 +28,13 @@
     @include('frontend.common.auth-modal')
     @show
 
+    <div class="container">
+    @include('layouts.notification')
+    </div>
+
     @yield('cover')
 
     <div class="container">
-    @include('layouts.notification')
     @yield('content')
     </div>
 

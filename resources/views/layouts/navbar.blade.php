@@ -47,6 +47,11 @@
                         {{ trans('layouts.dashboard') }}
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('policy') }}">
+                        {{ trans('layouts.policy') }}
+                    </a>
+                </li>
             </ul>
 
             <!-- Right -->

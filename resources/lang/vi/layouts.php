@@ -39,5 +39,6 @@ return [
     'manager' => 'Quản lý',
     'my_order' => 'Đơn hàng của tôi',
     'review' => 'Đánh giá',
+    'policy' => 'Chính sách',
 
 ];

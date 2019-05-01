@@ -39,5 +39,6 @@ return [
     'manager' => 'Manager',
     'my_order' => 'My order',
     'review' => 'Review',
+    'policy' => 'Policy',
     
 ];
