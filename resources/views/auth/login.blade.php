@@ -10,9 +10,10 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body col-md-8 offset-md-2">
-                <h3 class="card-title">{{ trans('auth.login') }}</h3>
+                <h3 class="card-title text-center py-2">{{ trans('auth.login') }}</h3>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
+                    @include('frontend.common.oauth-button')
                     <div class="form-group">
                         <label for="email">{{ trans('auth.email') }}</label>
                         <input id="email" type="email"
@@ -41,12 +42,10 @@
                                 <input class="form-check-input" type="checkbox" name="remember"
                                     {{ old('remember') ? 'checked' : '' }}>{{ trans('auth.remember') }}
                             </label>
+                            <a href="{{ route('password.request') }}" class="float-right">
+                                {{ trans('auth.forgot') }}
+                            </a>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <a href="{{ route('password.request') }}">
-                            {{ trans('auth.forgot') }}
-                        </a>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">

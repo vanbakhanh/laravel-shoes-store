@@ -40,6 +40,7 @@
                     <div id="login" class="tab-pane fade active show">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
+                            @include('frontend.common.oauth-button')
                             <div class="form-group">
                                 <input id="emailLogin" type="email"
                                     class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
@@ -69,13 +70,13 @@
                                         <input class="form-check-input" type="checkbox" name="remember"
                                             {{ old('remember') ? 'checked' : '' }}>{{ trans('auth.remember') }}
                                     </label>
+                                    <a class="float-right" href="{{ route('password.request') }}">
+                                        {{ trans('auth.forgot') }}
+                                    </a>
                                 </div>
                             </div>
-                            <div class="form-group float-right">
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ trans('auth.forgot') }}
-                                </a>
-                                <button type="submit" class="btn btn-primary">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     {{ trans('auth.login') }}
                                 </button>
                             </div>
@@ -84,6 +85,7 @@
                     <div id="register" class="tab-pane fade">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
+                            @include('frontend.common.oauth-button')
                             <div class="form-group">
                                 <input id="firstNameRegister" type="text"
                                     class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
@@ -135,11 +137,8 @@
                                     name="password_confirmation" placeholder="{{ trans('auth.confirm_password') }}"
                                     required>
                             </div>
-                            <div class="form-group float-right">
-                                <button type="button" class="btn btn-link" data-dismiss="modal">
-                                    {{ trans('auth.cancel') }}
-                                </button>
-                                <button type="submit" class="btn btn-primary">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     {{ trans('auth.register') }}
                                 </button>
                             </div>

@@ -21,8 +21,8 @@ Route::group(['middleware' => 'locale'], function () {
      */
 
     Auth::routes();
-    Route::get('login/{provider}', 'SocialController@redirect');
-    Route::get('login/{provider}/callback','SocialController@callback');
+    Route::get('oauth/{provider}', 'SocialController@redirect')->name('oauth');
+    Route::get('oauth/{provider}/callback','SocialController@callback');
 
     // User
     Route::group(['prefix' => 'user'], function () {

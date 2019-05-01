@@ -124,3 +124,19 @@ body {
   border-radius: 0.25rem;
   background: #FFF;
 }
+
+/* Button */
+.btn-google {
+  color: #FFF !important;
+  background-color: #ea4335;
+}
+
+.btn-facebook {
+  color: #FFF !important;
+  background-color: #3b5998;
+}
+
+.btn-twitter {
+  color: #FFF !important;
+  background-color: #1c9deb;
+}

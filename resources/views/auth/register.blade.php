@@ -10,9 +10,10 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-body col-md-8 offset-md-2">
-                <h3 class="card-title">{{ trans('auth.register') }}</h3>
+                <h3 class="card-title text-center py-2">{{ trans('auth.register') }}</h3>
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
+                    @include('frontend.common.oauth-button')
                     <div class="form-group">
                         <label for="firstname">{{ trans('auth.first_name') }}</label>
                         <input id="firstname" type="text"
