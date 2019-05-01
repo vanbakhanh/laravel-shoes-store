@@ -3,7 +3,6 @@
 @section('title', trans('size.new_title'))
 
 @section('content')
-
 {{ Form::open(['route' => ['size.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -22,7 +21,6 @@
     </div>
 </div>
 {{ Form::close() }}
-
 <div class="row justify-content-center">
     <div class="col-md-12 mt-4">
         <div class="card">
@@ -66,5 +64,4 @@
         </div>
     </div>
 </div>
-
 @endsection

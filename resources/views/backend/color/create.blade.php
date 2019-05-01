@@ -3,7 +3,6 @@
 @section('title', trans('color.new_title'))
 
 @section('content')
-
 {{ Form::open(['route' => ['color.store'], 'method' => 'POST', 'class' => 'form-horizontal']) }}
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -65,5 +64,4 @@
         </div>
     </div>
 </div>
-
 @endsection

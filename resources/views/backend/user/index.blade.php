@@ -3,7 +3,6 @@
 @section('title', trans('user.list_title'))
 
 @section('content')
-
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -52,5 +51,4 @@
         </div>
     </div>
 </div>
-
 @endsection

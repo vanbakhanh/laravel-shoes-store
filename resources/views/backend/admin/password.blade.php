@@ -3,7 +3,6 @@
 @section('title', trans('admin.change_password'))
 
 @section('content')
-
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -30,5 +29,4 @@
         </div>
     </div>
 </div>
-
 @endsection

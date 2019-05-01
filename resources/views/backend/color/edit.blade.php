@@ -3,7 +3,6 @@
 @section('title', trans('color.edit_title'))
 
 @section('content')
-
 {{ Form::open(['route' => ['color.update', $color->id], 'method' => 'PUT', 'class' => 'form-horizontal']) }}
 <div class="row justify-content-center">
     <div class="col-md-12">
@@ -22,5 +21,4 @@
     </div>
 </div>
 {{ Form::close() }}
-
 @endsection

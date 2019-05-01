@@ -4,7 +4,14 @@
   vertical-align: middle !important;
 }
 
-/* .card {
-  border: 1px solid #dadce0;
-  box-shadow: none;
-} */
+.card,
+.btn,
+.btn-group .btn+.btn,
+.btn-group .btn+.btn-group>.dropdown-toggle,
+.navbar {
+  box-shadow: 0 1px 3px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.btn-link {
+  box-shadow: none !important;
+}

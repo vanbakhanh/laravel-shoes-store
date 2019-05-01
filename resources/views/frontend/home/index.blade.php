@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-<div id="shop">
+<div id="shop" data-aos="fade-up">
     <h3 class="text-center text-uppercase py-4 m-0" data-aos="zoom-in">{{ trans('home.new') }}</h3>
     <div class="row mx-2">
         @include('frontend.common.product-card')

@@ -6,14 +6,14 @@
 <div class="row">
     <div class="col-md-3">
         <h3 class="my-4">{{ trans('order.recent') }}</h3>
-        <div class="list-group list-group-flush mb-4">
+        <div class="list-group list-group-flush">
             @foreach ($orders as $order)
             <a href="{{ route('order.detail', $order->id) }}" class="list-group-item list-group-item-action">
                 {{ $order->created_at }} - {{ trans('order.order') }} {{ $order->id }}
             </a>
             @endforeach
         </div>
-        <a href="{{ route('order') }}" class="btn btn-outline-primary btn-block">{{ trans('order.view_more') }}</a>
+        <a href="{{ route('order') }}" class="btn btn-outline-primary btn-block mt-4">{{ trans('order.view_more') }}</a>
     </div>
     <div class="col-md-9 table-responsive">
         <div class="row">

@@ -20,7 +20,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function updateCategory($category, $id)
     {
-        return $this->model()->update($id, $category);
+        return $this->model()->findOrFail($id)->update($category);
     }
 
     public function deleteCategory($id)

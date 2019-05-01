@@ -15,7 +15,6 @@ class CommentRepository extends BaseRepository implements CommentRepositoryInter
 
     public function createComment($comment)
     {
-
         return $this->model()->create($comment);
     }
 }
