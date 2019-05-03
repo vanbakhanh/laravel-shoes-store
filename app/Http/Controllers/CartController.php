@@ -72,8 +72,10 @@ class CartController extends Controller
      */
     public function checkout()
     {
-        $this->cartRepository->checkout();
+        if ($this->cartRepository->checkout()) {
+            return back()->with('status', trans('messages.paymented'));
+        }
 
-        return back()->with('status', trans('messages.paymented'));
+        return back()->withErrors(trans('cart.profile_error'));
     }
 }

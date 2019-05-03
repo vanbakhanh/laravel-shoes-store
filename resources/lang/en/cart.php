@@ -39,5 +39,6 @@ return [
     'image' => 'Image',
     'payment_method' => 'Payment method',
     'payment_on_delivery' => 'Payment on delivery',
+    'profile_error' => 'Fill out your information before checkout.'
 
 ];

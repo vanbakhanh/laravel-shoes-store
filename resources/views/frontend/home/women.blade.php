@@ -43,3 +43,7 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+@include('frontend.common.product-card-script')
+@endsection
