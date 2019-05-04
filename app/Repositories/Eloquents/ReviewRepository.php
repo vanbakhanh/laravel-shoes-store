@@ -15,6 +15,14 @@ class ReviewRepository extends BaseRepository implements ReviewRepositoryInterfa
 
     public function createReview($review)
     {
-        $this->model()->updateOrCreate($review);
+        $user = auth()->user();
+
+        $oldReview = $user->reviews()->where('product_id', $review['product_id'])->exists();
+
+        if ($oldReview) {
+            return $user->reviews()->where('product_id', $review['product_id'])->update($review);
+        }
+
+        return $user->reviews()->create($review);
     }
 }

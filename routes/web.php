@@ -104,7 +104,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::resource('/comment', 'CommentController');
 
         // Review
-        Route::resource('/review', 'ReviewController', ['only' => ['create']]);
+        Route::resource('/review', 'ReviewController', ['only' => ['store']]);
 
         // Order
         Route::group(['prefix' => 'order'], function () {

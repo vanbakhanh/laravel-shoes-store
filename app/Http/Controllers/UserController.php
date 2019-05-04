@@ -76,7 +76,7 @@ class UserController extends Controller
     public function edit($id)
     {
         if (Auth::check() && Auth::user()->id == $id) {
-            $user = $this->userRepository->findOrFail($id)->with('profile')->first();
+            $user = $this->userRepository->editUser($id);
 
             return view('frontend.user.edit', compact('user'));
         }

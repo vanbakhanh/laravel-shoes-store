@@ -37,4 +37,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
         return $user;
     }
+
+    public function editUser($id)
+    {
+        return $this->model()->where('id', $id)->with('profile')->first();
+    }
 }

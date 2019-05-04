@@ -51,7 +51,6 @@ class ReviewController extends Controller
     public function store(ReviewStoreRequest $request)
     {
         $review = $request->only('title', 'body', 'rating', 'product_id');
-        $review['user_id'] = auth()->user()->id;
 
         $this->reviewRepository->createReview($review);
 

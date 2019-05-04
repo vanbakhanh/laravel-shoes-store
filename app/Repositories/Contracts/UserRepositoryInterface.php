@@ -11,4 +11,6 @@ interface UserRepositoryInterface
     public function changePassword($password, $id);
 
     public function verifyUser($token);
+
+    public function editUser($id);
 }
