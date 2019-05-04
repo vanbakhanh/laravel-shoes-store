@@ -2,11 +2,16 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background: #ffffff;
 }
 
 /* Navbar */
 #navbar {
   transition: 0.3s;
+}
+
+.shrink {
+  padding: 5px 10px;
 }
 
 /* Card Product */
@@ -96,33 +101,40 @@ body {
 }
 
 /* Footer */
+footer {
+  background: #ffffff;
+}
+
 .footer-social a {
   font-size: 20px;
 }
 
-/* Blocks */
-.site-blocks-cover {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+/* Cover */
+.carousel {
+  height: 500px;
 }
 
-.site-blocks-cover,
-.site-blocks-cover .row {
-  min-height: 500px;
-  height: calc(100vh + 20px);
+.carousel-inner {
+  height: 500px;
 }
 
-.site-blocks-cover h1 {
-  font-size: 3rem;
-  color: #FFF;
+.carousel-item {
+  height: 500px;
 }
 
-/* Collection box */
-#shop {
-  margin-top: -100px;
-  border-radius: 0.25rem;
-  background: #FFF;
+.carousel-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carousel-caption h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.carousel-caption p {
+  font-size: 20px;
 }
 
 /* Button */
@@ -139,4 +151,49 @@ body {
 .btn-twitter {
   color: #FFF !important;
   background-color: #1c9deb;
+}
+
+/* Benefit */
+.benefit_row {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.benefit_col {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.benefit_item {
+  height: 100px;
+  background: #f6f6f6;
+  border-right: solid 1px #FFFFFF;
+  padding-left: 25px;
+}
+
+.benefit_col:last-child .benefit_item {
+  border-right: none;
+}
+
+.benefit_icon i {
+  font-size: 30px;
+  color: #2196F3;
+}
+
+.benefit_content {
+  padding-left: 22px;
+}
+
+.benefit_content h6 {
+  text-transform: uppercase;
+  line-height: 18px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.benefit_content p {
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 0px;
+  color: #51545f;
 }

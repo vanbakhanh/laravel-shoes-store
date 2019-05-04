@@ -1,7 +1,7 @@
 <!--Footer section start-->
-<footer>
+<footer class="mt-4">
     <div class="container">
-        <div class="pt-4 mt-4 border-top">
+        <div class="pt-4 border-top">
             <div class="row">
 
                 <div class="footer-widget col-lg-6 col-md-6 col-sm-6 col-12 mb-4 mb-xs-3">
@@ -9,9 +9,12 @@
                         illum dolore eu feugiat nulla facilisis.</p>
                     <h3>Follow Us On Social:</h3>
                     <div class="footer-social">
-                        <a href="https://facebook.com/vanbakhanh" target="_blank" class="mr-4"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/vanbakhanh" target="_blank" class="mr-4"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/vanbakhanh/" target="_blank" class="mr-4"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/vanbakhanh" target="_blank" class="mr-4"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/vanbakhanh" target="_blank" class="mr-4"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/vanbakhanh/" target="_blank" class="mr-4"><i
+                                class="fab fa-instagram"></i></a>
                         <a href="https://www.linkedin.com/in/vanbakhanh/"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
