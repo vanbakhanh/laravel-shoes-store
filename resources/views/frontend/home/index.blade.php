@@ -14,22 +14,22 @@
             <div class="carousel-item active">
                 <img src="/storage/cover/1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h1>First slide label</h1>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h1 data-aos="fade-left">NIKE FLYKNIT</h1>
+                    <p data-aos="fade-right">Lightweight support for each cut, stride or strike.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="/storage/cover/2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h1>Second slide label</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h1>NIKE AIR MAX</h1>
+                    <p>Lightweight support for each cut, stride or strike.</p>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="/storage/cover/3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                    <h1>Third slide label</h1>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <h1>NIKE AIR MAX</h1>
+                    <p>Lightweight support for each cut, stride or strike.</p>
                 </div>
             </div>
         </div>
@@ -62,13 +62,15 @@
         </div>
     </div>
 </div>
+
 <div class="new-arrivals mt-5" data-aos="fade-up">
     <h2 class="text-center text-uppercase py-4 m-0" data-aos="zoom-in">{{ trans('home.new') }}</h2>
     <div class="row">
         @include('frontend.common.product-card')
     </div>
-    <div class="d-flex justify-content-center" data-aos="fade-down">{{ $products->links() }}</div>
+    <div class="d-flex justify-content-center" data-aos="zoom-in">{{ $products->links() }}</div>
 </div>
+
 <div class="benefit mt-5" data-aos="flip-down">
     <div class="row benefit_row">
         <div class="col-lg-3 benefit_col">

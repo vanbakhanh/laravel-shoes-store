@@ -21,7 +21,6 @@ body {
 }
 
 .card-product img {
-  border-radius: 0.25rem;
   transition: all 0.3s;
 }
 
@@ -109,14 +108,29 @@ footer {
   font-size: 20px;
 }
 
-/* Cover */
+/* Carousel */
+.carousel-item {
+  height: 90vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.carousel-caption {
+  top: 5%;
+}
+
 .carousel-caption h1 {
   text-transform: uppercase;
-  font-weight: 700;
+  font-size: 50px;
+  font-weight: 900;
 }
 
 .carousel-caption p {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* Button */
@@ -184,7 +198,7 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 600px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
