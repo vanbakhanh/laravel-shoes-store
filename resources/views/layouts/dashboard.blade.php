@@ -145,7 +145,7 @@
                             </div>
                             <div class="col text-right">
                                 <p class="m-0">
-                                    <a href="#">Back to top</a>
+                                    <a href="#">{{ trans('layouts.back_to_top') }}</a>
                                 </p>
                             </div>
                         </div>

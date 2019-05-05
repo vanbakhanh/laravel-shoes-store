@@ -23,6 +23,6 @@ return [
     'search' => "Tìm kiếm cho ':keyword'",
     'top_results' => "Tìm kiếm hàng đầu :products kết quả",
     'colors' => 'Màu sắc',
-    'sizes' => 'Kích thước', 
+    'sizes' => 'Kích thước',
 
 ];

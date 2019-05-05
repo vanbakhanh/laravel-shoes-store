@@ -162,16 +162,18 @@ footer {
 .benefit_col {
   padding-left: 0px;
   padding-right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f6f6f6;
+  border-right: solid 1px #FFFFFF;
 }
 
 .benefit_item {
   height: 100px;
-  background: #f6f6f6;
-  border-right: solid 1px #FFFFFF;
-  padding-left: 25px;
 }
 
-.benefit_col:last-child .benefit_item {
+.benefit_col:last-child .benefit_col {
   border-right: none;
 }
 
@@ -186,14 +188,10 @@ footer {
 
 .benefit_content h6 {
   text-transform: uppercase;
-  line-height: 18px;
-  font-weight: 500;
   margin-bottom: 0px;
 }
 
 .benefit_content p {
-  font-size: 12px;
-  line-height: 18px;
   margin-bottom: 0px;
   color: #51545f;
 }

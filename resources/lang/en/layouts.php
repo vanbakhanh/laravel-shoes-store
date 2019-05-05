@@ -9,7 +9,7 @@ return [
     |
     | Include all view in folder layouts.
     |
-    */
+     */
 
     'home' => 'Home',
     'men' => 'Men',
@@ -40,5 +40,28 @@ return [
     'my_order' => 'My order',
     'review' => 'Review',
     'policy' => 'Policy',
-    
+    'back_to_top' => 'Back to top',
+    'about_us' => 'About us',
+    'my_account' => 'My account',
+    'open_time' => 'Opening time',
+    'shopping_guide' => 'Shopping guide',
+    'delivery_info' => 'Delivery information',
+    'privacy_policy' => 'Privacy policy',
+    'our_store' => 'Our store',
+    'wishlist' => 'Wishlist',
+    'order_tracking' => 'Order tracking',
+    'shipping_info' => 'Shipping information',
+    'mon' => 'Mon',
+    'fri' => 'Fri',
+    'sat' => 'Sat',
+    'sun' => 'Sun',
+    'closed' => 'Closed',
+    'work_all_holiday' => 'We work all the holidays',
+    'follow_on_social' => 'Follow us on social',
+    'slogan' => 'Inspiring the world\'s athletes, Nike delivers innovative products, experiences and services.',
+    'free_shipping' => 'Free shipping',
+    'cash_on_delivery' => 'Cash on delivery',
+    'days_return' => 'Days return',
+    'open_all_week' => 'Opening all week',
+
 ];

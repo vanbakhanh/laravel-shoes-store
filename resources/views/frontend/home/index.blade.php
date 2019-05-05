@@ -52,8 +52,7 @@
             <div class="benefit_item d-flex flex-row align-items-center">
                 <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
                 <div class="benefit_content">
-                    <h6>free shipping</h6>
-                    <p>Suffered Alteration in Some Form</p>
+                    <h6>@lang('layouts.free_shipping')</h6>
                 </div>
             </div>
         </div>
@@ -61,8 +60,7 @@
             <div class="benefit_item d-flex flex-row align-items-center">
                 <div class="benefit_icon"><i class="fa fa-money-bill-alt" aria-hidden="true"></i></div>
                 <div class="benefit_content">
-                    <h6>cach on delivery</h6>
-                    <p>The Internet Tend To Repeat</p>
+                    <h6>@lang('layouts.cash_on_delivery')</h6>
                 </div>
             </div>
         </div>
@@ -70,8 +68,7 @@
             <div class="benefit_item d-flex flex-row align-items-center">
                 <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
                 <div class="benefit_content">
-                    <h6>45 days return</h6>
-                    <p>Making it Look Like Readable</p>
+                    <h6>5 @lang('layouts.days_return')</h6>
                 </div>
             </div>
         </div>
@@ -79,8 +76,7 @@
             <div class="benefit_item d-flex flex-row align-items-center">
                 <div class="benefit_icon"><i class="fa fa-clock" aria-hidden="true"></i></div>
                 <div class="benefit_content">
-                    <h6>opening all week</h6>
-                    <p>8AM - 09PM</p>
+                    <h6>@lang('layouts.open_all_week')</h6>
                 </div>
             </div>
         </div>
