@@ -110,24 +110,6 @@ footer {
 }
 
 /* Cover */
-.carousel {
-  height: 500px;
-}
-
-.carousel-inner {
-  height: 500px;
-}
-
-.carousel-item {
-  height: 500px;
-}
-
-.carousel-item img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .carousel-caption h1 {
   text-transform: uppercase;
   font-weight: 700;
@@ -194,4 +176,40 @@ footer {
 .benefit_content p {
   margin-bottom: 0px;
   color: #51545f;
+}
+
+/* Banner */
+.banner_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.banner_category {
+  height: 50px;
+  background: #FFFFFF;
+  min-width: 180px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.banner_category a {
+  display: block;
+  color: #1e1e27;
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 50px;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+.banner_category a:hover {
+  color: #b5aec4;
 }

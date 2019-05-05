@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = $this->productRepository->with(['category', 'reviews'])->orderBy('created_at', 'desc')->paginate(24);
+        $products = $this->productRepository->with(['category', 'reviews'])->orderBy('created_at', 'desc')->simplePaginate(8);
 
         return view('frontend.home.index', compact('products'));
     }

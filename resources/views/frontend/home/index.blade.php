@@ -19,14 +19,14 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/storage/cover/4.jpg" class="d-block w-100" alt="...">
+                <img src="/storage/cover/2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Second slide label</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/storage/cover/5.jpg" class="d-block w-100" alt="...">
+                <img src="/storage/cover/3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h1>Third slide label</h1>
                     <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
@@ -46,7 +46,30 @@
 @endsection
 
 @section('content')
-<div class="benefit my-4">
+<div class="banner row mt-5">
+    <div class="col-md-6" data-aos="fade-right">
+        <div class="banner_item align-items-center" style="background-image:url(storage/cover/banner_women.jpg)">
+            <div class="banner_category">
+                <a href="{{ route('category.women', 1) }}">@lang('layouts.women')</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6" data-aos="fade-left">
+        <div class="banner_item align-items-center" style="background-image:url(storage/cover/banner_men.jpg)">
+            <div class="banner_category">
+                <a href="{{ route('category.men', 1) }}">@lang('layouts.men')</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="new-arrivals mt-5" data-aos="fade-up">
+    <h2 class="text-center text-uppercase py-4 m-0" data-aos="zoom-in">{{ trans('home.new') }}</h2>
+    <div class="row">
+        @include('frontend.common.product-card')
+    </div>
+    <div class="d-flex justify-content-center" data-aos="fade-down">{{ $products->links() }}</div>
+</div>
+<div class="benefit mt-5" data-aos="flip-down">
     <div class="row benefit_row">
         <div class="col-lg-3 benefit_col">
             <div class="benefit_item d-flex flex-row align-items-center">
@@ -81,13 +104,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="new-arrivals" data-aos="fade-up">
-    <h3 class="text-center text-uppercase py-4 m-0" data-aos="zoom-in">{{ trans('home.new') }}</h3>
-    <div class="row">
-        @include('frontend.common.product-card')
-    </div>
-    <div class="d-flex justify-content-center">{{ $products->links() }}</div>
 </div>
 @endsection
