@@ -110,7 +110,7 @@
 <!-- Products Suggestion Row -->
 <div class="row mt-5" data-aos="zoom-in">
     <div class="col-md-12 my-4 text-center">
-        <h3 class="text-uppercase">{{ trans('product.recommend_title') }}</h3>
+        <h3 class="title">{{ trans('product.recommend_title') }}</h3>
     </div>
 </div>
 <div class="row justify-content-center" data-aos="fade-up">
@@ -127,7 +127,7 @@
                 @endif
             </a>
             <div class="card-body px-0">
-                <h5 class="card-title"> <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
+                <h5 class="card-text"> <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
                 </h5>
                 <h5 class="card-text">${{ $product->price }}</h5>
             </div>
@@ -145,7 +145,7 @@
 <!-- Reviews -->
 <div class="row mt-5" id="review" data-aos="zoom-in">
     <div class="col-md-12 my-4 text-center">
-        <h3 class="text-uppercase">{{ trans('product.review_title') }}</h3>
+        <h3 class="title">{{ trans('product.review_title') }}</h3>
     </div>
 </div>
 
@@ -242,7 +242,7 @@
 <!-- Category Description -->
 <div class="row mt-5 mb-4" data-aos="zoom-in">
     <div class="col-md-8 offset-md-2 text-center">
-        <h3 class="display-5 text-uppercase">{{ $categorySelected->name }}</h3>
+        <h3 class="title">{{ $categorySelected->name }}</h3>
         <p class="lead">{{ $categorySelected->description }}</p>
     </div>
 </div>

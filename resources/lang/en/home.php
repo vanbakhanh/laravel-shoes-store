@@ -20,7 +20,7 @@ return [
     'sort' => 'Sort by',
     'price' => 'Price',
     'results' => 'Results',
-    'search' => "Seach for ':keyword'",
+    'search' => "Search for ':keyword'",
     'top_results' => "Top :products results",
     'colors' => 'Colors',
     'sizes' => 'Sizes', 

@@ -101,24 +101,37 @@ body {
 
 /* Footer */
 footer {
-  background: #ffffff;
+  background: #f6f6f6;
 }
 
 .footer-social a {
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.footer-address ul {
+  padding: 0;
+}
+
+.footer-address ul li {
+  display: block;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.footer-address ul li .address-text p,
+.footer-address ul li .address-text a {
+  margin: 0;
+}
+
+.address-icon {
+  display: block;
+  text-align: center;
+  float: left;
+  width: 15px;
+  margin-right: 20px;
 }
 
 /* Carousel */
-.carousel-item {
-  height: 90vh;
-  min-height: 350px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 .carousel-caption {
   top: 5%;
 }
@@ -175,7 +188,6 @@ footer {
 
 .benefit_icon i {
   font-size: 30px;
-  color: #2196F3;
 }
 
 .benefit_content {
@@ -214,10 +226,6 @@ footer {
 
 .banner_category a {
   display: block;
-  color: #1e1e27;
-  text-transform: uppercase;
-  font-size: 22px;
-  font-weight: 600;
   text-align: center;
   line-height: 50px;
   width: 100%;

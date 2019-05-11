@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <h3>{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
+                    <h3 class="card-title">{{ trans('order.verified') }} ({{ $ordersVerified->count() }})</h3>
                     <div class="list-group list-group-flush">
                         @foreach ($ordersVerified as $orderVerified)
                         <a href="{{ route('order.detail.verified', $orderVerified->id) }}"
@@ -23,8 +23,8 @@
                 <div class="col-md-9 table-responsive">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="float-left">{{ trans('order.order') }} #{{ $orderDetail->id }}</h3>
-                            <h3 class="float-right">{{ trans('order.total') }} ${{ $orderDetail->total }}</h3>
+                            <h3 class="card-title float-left">{{ trans('order.order') }} #{{ $orderDetail->id }}</h3>
+                            <h3 class="card-title float-right">{{ trans('order.total') }} ${{ $orderDetail->total }}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +33,7 @@
                             <p class="float-right">{{ trans('order.updated') }} {{ $orderDetail->updated_at }}</p>
                         </div>
                     </div>
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-hover table-bordered text-center">
                         <thead>
                             <tr>
                                 <th scope="col">{{ trans('order.image') }}</th>

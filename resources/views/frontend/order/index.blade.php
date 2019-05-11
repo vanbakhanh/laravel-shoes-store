@@ -7,15 +7,15 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
+                <div class="col-md-12">
+                    <h3 class="card-title float-left">{{ trans('order.recent') }}</h3>
+                    @if ($orderDetail !== null)
+                    <h3 class="card-title float-right">{{ trans('order.' . strtolower($orderDetail->status)) }}</h3>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 table-responsive">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="float-left">{{ trans('order.recent') }}</h3>
-                            @if ($orderDetail !== null)
-                            <h3 class="float-right">{{ trans('order.' . strtolower($orderDetail->status)) }}</h3>
-                            @endif
-                        </div>
-                    </div>
                     @if ($orderDetail == null)
                     <p>{{ trans('order.empty') }}</p>
                     @else
@@ -63,9 +63,9 @@
 <div class="justify-content-center">
     <div class="card">
         <div class="card-body">
+            <h3 class="card-title">{{ trans('order.my_order') }} ({{ count($orders) }})</h3>
             <div class="row">
                 <div class="col-md-12">
-                    <h3>{{ trans('order.my_order') }} ({{ count($orders) }})</h3>
                     <table id="table" class="table table-hover table-bordered text-center">
                         <thead>
                             <tr>

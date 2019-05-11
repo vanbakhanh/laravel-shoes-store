@@ -19,3 +19,28 @@ body {
 .btn-link {
   box-shadow: none !important;
 }
+
+.title,
+.card-title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+.card-title {
+  padding: 10px 0;
+}
+
+a {
+  color: #333;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+footer p,
+footer a {
+  color: #666;
+}

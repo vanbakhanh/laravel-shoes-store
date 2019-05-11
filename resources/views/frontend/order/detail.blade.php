@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <h3>{{ trans('order.recent') }}</h3>
+                    <h3 class="card-title">{{ trans('order.recent') }}</h3>
                     <div class="list-group list-group-flush">
                         @foreach ($orders as $order)
                         <a href="{{ route('order.detail', $order->id) }}"
@@ -23,8 +23,9 @@
                 <div class="col-md-9 table-responsive">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="float-left">{{ trans('order.order') }} #{{ $orderDetail->id }}</h3>
-                            <h3 class="float-right">{{ trans('order.total') }} ${{ $orderDetail->total }}</h3>
+                            <h3 class="card-title float-left">{{ trans('order.order') }} #{{ $orderDetail->id }}</h3>
+                            <h3 class="card-title float-right">{{ trans('order.total') }} ${{ $orderDetail->total }}
+                            </h3>
                         </div>
                     </div>
                     <div class="row">
