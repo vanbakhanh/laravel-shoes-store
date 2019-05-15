@@ -8,12 +8,12 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
-                    <h3 class="card-title">{{ trans('order.pending') }} ({{ $ordersPending->count() }})</h3>
+                    <h3 class="card-title">{{ trans('order.' . $orderDetail->status) }} ({{ $orders->count() }})</h3>
                     <div class="list-group list-group-flush">
-                        @foreach ($ordersPending as $orderPending)
-                        <a href="{{ route('order.detail.pending', $orderPending->id) }}"
+                        @foreach ($orders as $order)
+                        <a href="{{ route('order.detail.' . $orderDetail->status, $order->id) }}"
                             class="list-group-item list-group-item-action">
-                            {{ $orderPending->created_at }} - {{ trans('order.order') }} {{ $orderPending->id }}
+                            {{ $order->created_at }} - {{ trans('order.order') }} {{ $order->id }}
                         </a>
                         @endforeach
                     </div>
@@ -24,7 +24,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="card-title float-left">{{ trans('order.order') }} #{{ $orderDetail->id }}</h3>
-                            <h3 class="card-title float-right">{{ trans('order.total') }} ${{ $orderDetail->total }}</h3>
+                            <h3 class="card-title float-right">{{ trans('order.total') }} ${{ $orderDetail->total }}
+                            </h3>
                         </div>
                     </div>
                     <div class="row">
@@ -85,10 +86,21 @@
                             </tr>
                         </tbody>
                     </table>
+                    @if ($orderDetail->status == 'pending')
                     <div class="row mb-4">
                         <a href="{{ route('order.status.update', $orderDetail->id) }}"
                             class="btn btn-primary btn-block">{{ trans('order.verify') }}</a>
                     </div>
+                    <div class="row mb-4">
+                        <a href="{{ route('order.status.cancel', $orderDetail->id) }}"
+                            class="btn btn-danger btn-block">{{ trans('order.cancel') }}</a>
+                    </div>
+                    @elseif ($orderDetail->status == 'verified')
+                    <div class="row mb-4">
+                        <a href="{{ route('order.status.update', $orderDetail->id) }}"
+                            class="btn btn-primary btn-block">{{ trans('order.shipped') }}</a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

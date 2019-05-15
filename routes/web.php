@@ -22,7 +22,7 @@ Route::group(['middleware' => 'locale'], function () {
 
     Auth::routes();
     Route::get('oauth/{provider}', 'SocialController@redirect')->name('oauth');
-    Route::get('oauth/{provider}/callback','SocialController@callback');
+    Route::get('oauth/{provider}/callback', 'SocialController@callback');
 
     // User
     Route::group(['prefix' => 'user'], function () {
@@ -72,10 +72,13 @@ Route::group(['middleware' => 'locale'], function () {
         // Order
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', 'OrderController@manager')->name('order.manager');
-            Route::get('/detail/{id}/pending', 'OrderController@managerDetailPending')->name('order.detail.pending');
-            Route::get('/detail/{id}/verified', 'OrderController@managerDetailVerified')->name('order.detail.verified');
-            Route::get('/detail/{id}/shipped', 'OrderController@managerDetailShipped')->name('order.detail.shipped');
+            Route::get('/{status}', 'OrderController@managerStatus')->name('order.manager.status');
+            Route::get('/pending/{id}', 'OrderController@managerDetail')->name('order.detail.pending');
+            Route::get('/verified/{id}', 'OrderController@managerDetail')->name('order.detail.verified');
+            Route::get('/shipped/{id}', 'OrderController@managerDetail')->name('order.detail.shipped');
+            Route::get('/canceled/{id}', 'OrderController@managerDetail')->name('order.detail.canceled');
             Route::get('/status/{id}/update', 'OrderController@updateStatus')->name('order.status.update');
+            Route::get('/status/{id}/cancel', 'OrderController@cancelOrderForAdmin')->name('order.status.cancel');
             Route::delete('/delete/{id}', 'OrderController@destroy')->name('order.delete');
         });
 
@@ -110,6 +113,7 @@ Route::group(['middleware' => 'locale'], function () {
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', 'OrderController@index')->name('order');
             Route::get('/detail/{id}', 'OrderController@detail')->name('order.detail');
+            Route::get('/cancel/{id}', 'OrderController@cancelOrderForUser')->name('order.cancel');
         });
     });
 

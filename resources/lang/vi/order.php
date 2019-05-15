@@ -32,7 +32,7 @@ return [
 	'email' => 'Email',
 	'phone' => 'Điện thoại',
 	'address' => 'Địa chỉ giao hàng',
-	'verify' => 'Xác nhận',
+	'verify' => 'Xác nhận đơn hàng',
 	'my_order' => 'Đơn hàng của tôi',
 	'recent' => 'Đơn hàng gần đây',
 	'empty' => 'Không có đơn hàng nào',
@@ -40,8 +40,10 @@ return [
 	'image' => 'Hình ảnh',
 	'shipped' => 'Đã giao hàng',
 	'canceled' => 'Đã hủy',
+	'cancel' => 'Hủy đơn hàng',
 	'status' => 'Trạng thái',
 	'other_products' => 'và :num sản phẩm khác',
 	'view_more' => 'Xem thêm',
+	'view' => 'Xem',
 
 ];

@@ -36,6 +36,11 @@
                     </div>
                     <div class="jumbotron">
                         <div class="row">
+                            @if ($orderDetail->status == 'canceled')
+                            <div class="col">
+                                <h3 class="text-center text-danger">{{ trans('order.canceled') }}</h3>
+                            </div>
+                            @else
                             <div class="col">
                                 <h3 class="text-center text-warning">{{ trans('order.pending') }}</h3>
                             </div>
@@ -45,18 +50,23 @@
                             <div class="col">
                                 <h3 class="text-center text-success">{{ trans('order.shipped') }}</h3>
                             </div>
+                            @endif
                         </div>
                         <div class="progress bg-light rounded">
-                            @if($orderDetail->status == 'Pending')
+                            @if ($orderDetail->status == 'pending')
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning"
                                 role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
                                 style="width: 15%"></div>
-                            @elseif($orderDetail->status == 'Verified')
+                            @elseif ($orderDetail->status == 'verified')
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
                                 role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
                                 style="width: 50%"></div>
-                            @elseif($orderDetail->status == 'Shipped')
+                            @elseif ($orderDetail->status == 'shipped')
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                                style="width: 100%"></div>
+                            @elseif ($orderDetail->status == 'canceled')
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
                                 role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
                                 style="width: 100%"></div>
                             @endif
@@ -116,6 +126,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    @if ($orderDetail->status == 'pending')
+                    <div class="row mb-4">
+                        <a href="{{ route('order.cancel', $orderDetail->id) }}"
+                            class="btn btn-danger btn-block">{{ trans('order.cancel') }}</a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

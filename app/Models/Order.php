@@ -12,10 +12,17 @@ class Order extends AbstractModel
     const CANCELED = 3;
 
     const TEXT = [
-        self::PENDING => 'Pending',
-        self::VERIFIED => 'Verified',
-        self::SHIPPED => 'Shipped',
-        self::CANCELED => 'Canceled',
+        self::PENDING => 'pending',
+        self::VERIFIED => 'verified',
+        self::SHIPPED => 'shipped',
+        self::CANCELED => 'canceled',
+    ];
+
+    const STATUS = [
+        'pending' => self::PENDING,
+        'verified' => self::VERIFIED,
+        'shipped' => self::SHIPPED,
+        'canceled' => self::CANCELED,
     ];
 
     protected $fillable = [

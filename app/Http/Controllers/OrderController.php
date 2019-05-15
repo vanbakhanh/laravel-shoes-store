@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Repositories\Contracts\OrderRepositoryInterface;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -53,68 +54,50 @@ class OrderController extends Controller
      */
     public function manager()
     {
-        $ordersPending = $this->orderRepository->getOrders(Order::PENDING);
+        $ordersPending = $this->orderRepository->getOrders(Order::PENDING)->count();
+        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED)->count();
+        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->count();
+        $ordersCanceled = $this->orderRepository->getOrders(Order::CANCELED)->count();
 
-        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED);
-
-        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED);
-
-        return view('backend.order.index', compact([
-            'ordersVerified', 'ordersPending', 'ordersShipped',
+        return view('backend.order.manager', compact([
+            'ordersVerified', 'ordersPending', 'ordersShipped', 'ordersCanceled',
         ]));
     }
 
     /**
-     * Display the view of manager pending orders - admin.
+     * Display the view of manager orders follow status - admin.
      */
-    public function managerDetailPending($id)
+    public function managerStatus($status)
     {
-        if ($this->orderRepository->findOrFail($id)->status !== Order::TEXT[Order::PENDING]) {
-            return back();
-        }
+        $ordersPending = $this->orderRepository->getOrders(Order::PENDING)->count();
+        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED)->count();
+        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->count();
+        $ordersCanceled = $this->orderRepository->getOrders(Order::CANCELED)->count();
 
-        $ordersPending = $this->orderRepository->getOrders(Order::PENDING)->take(10);
+        $orders = $this->orderRepository->getOrders(Order::STATUS[$status]);
 
-        $orderDetail = $this->orderRepository->findOrder($id);
-
-        return view('backend.order.detail_pending', compact([
-            'ordersPending', 'orderDetail',
+        return view('backend.order.status', compact([
+            'orders', 'status', 'ordersVerified', 'ordersPending', 'ordersShipped', 'ordersCanceled',
         ]));
     }
 
     /**
-     * Display the view of manager verified orders - admin.
+     * Display the view of manager orders detail - admin.
      */
-    public function managerDetailVerified($id)
+    public function managerDetail(Request $request, $id)
     {
-        if ($this->orderRepository->findOrFail($id)->status !== Order::TEXT[Order::VERIFIED]) {
+        $status = strtolower($request->segment(3));
+
+        if ($this->orderRepository->findOrFail($id)->status !== $status) {
             return back();
         }
 
-        $ordersVerified = $this->orderRepository->getOrders(Order::VERIFIED)->take(10);
+        $orders = $this->orderRepository->getOrders(Order::STATUS[$status])->take(10);
 
         $orderDetail = $this->orderRepository->findOrder($id);
 
-        return view('backend.order.detail_verified', compact([
-            'ordersVerified', 'orderDetail',
-        ]));
-    }
-
-    /**
-     * Display the view of manager shipped orders - admin.
-     */
-    public function managerDetailShipped($id)
-    {
-        if ($this->orderRepository->findOrFail($id)->status !== Order::TEXT[Order::SHIPPED]) {
-            return back();
-        }
-
-        $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->take(10);
-
-        $orderDetail = $this->orderRepository->findOrder($id);
-
-        return view('backend.order.detail_shipped', compact([
-            'ordersShipped', 'orderDetail',
+        return view('backend.order.detail', compact([
+            'orders', 'orderDetail',
         ]));
     }
 
@@ -123,9 +106,28 @@ class OrderController extends Controller
      */
     public function updateStatus($id)
     {
+        $status = $this->orderRepository->findOrFail($id)->status;
+
         $this->orderRepository->updateStatusOrder($id);
 
-        return redirect()->route('order.manager');
+        return redirect()->route('order.manager.status', ['status' => $status]);
+    }
+
+    /**
+     * Cancel orders - admin.
+     */
+    public function cancelOrderForAdmin($id)
+    {
+        $this->orderRepository->cancelOrder($id);
+
+        return redirect()->route('order.manager.status', ['status' => Order::TEXT[Order::PENDING]]);
+    }
+
+    public function cancelOrderForUser($id)
+    {
+        $this->orderRepository->cancelOrder($id);
+
+        return redirect()->route('order');
     }
 
     /**

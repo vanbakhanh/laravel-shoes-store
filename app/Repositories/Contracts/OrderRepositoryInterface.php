@@ -12,5 +12,7 @@ interface OrderRepositoryInterface
 
     public function updateStatusOrder($id);
 
+    public function cancelOrder($id);
+
     public function deleteOrder($id);
 }
