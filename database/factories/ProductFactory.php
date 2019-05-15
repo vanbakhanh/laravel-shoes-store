@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Product::class, function (Faker $faker) {
     return [
-        'name' => $faker->unique()->word,
+        'name' => 'Nike ' . $faker->word . ' ' . $faker->lexify('???'),
         'price' => $faker->numberBetween($min = 10, $max = 200),
         'gender' => rand(0, 1),
         'description' => $faker->text($maxNbChars = 200),

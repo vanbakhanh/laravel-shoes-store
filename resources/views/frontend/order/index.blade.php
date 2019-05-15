@@ -93,7 +93,7 @@
                                 </td>
                                 <td>{{ $order->quantity }}</td>
                                 <td>${{ $order->total }}</td>
-                                <td>{{ $order->status }}</td>
+                                <td class="text-capitalize">{{ $order->status }}</td>
                                 <td><a href="{{ route('order.detail', $order->id) }}"
                                         class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a></td>
                             </tr>

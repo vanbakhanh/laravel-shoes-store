@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         });
 
         User::find(1)->update([
-            'email' => 'user@laravel.com',
+            'email' => 'user@shoesstore.com',
             'password' => 'secret',
             'status' => User::ACTIVE,
         ]);

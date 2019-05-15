@@ -17,14 +17,15 @@
         </a>
         <div class="card-body px-0">
             <div class="mb-2">
-                <span><a href="{{ route('category.' . $product->gender, $product->category_id) }}">{{ $product->category->name }}</a></span>
+                <span><a class="card-text text-muted"
+                        href="{{ route('category.' . $product->gender, $product->category_id) }}">{{ $product->category->name }}</a></span>
                 <span class="stars-outer float-right">
                     <div class="stars-inner" style="width: {{ $product->reviews->avg('rating')/5*100 }}%"></div>
                 </span>
             </div>
-            <h5 class="card-text"> <a
+            <h5 class="card-text"><a
                     href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a></h5>
-            <h5 class="card-text price">${{ $product->price }}</h5>
+            <h5 class="card-text text-muted price">${{ $product->price }}</h5>
         </div>
     </div>
 </div>

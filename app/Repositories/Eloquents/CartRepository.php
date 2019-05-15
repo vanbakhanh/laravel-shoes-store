@@ -43,34 +43,34 @@ class CartRepository implements CartRepositoryInterface
 
     public function checkout()
     {
-        try {
-            $user = Auth::user();
-            $profile = $user->profile;
+        $user = Auth::user();
+        $profile = $user->profile;
 
-            $order = $user->orders()->create([
-                'total' => Cart::total(2, '.', ''),
-                'status' => Order::PENDING,
-                'quantity' => Cart::count(),
-                'address' => $profile->address,
-            ]);
-
-            foreach (Cart::content() as $data) {
-                $order->products()->attach($data->id, [
-                    'qty' => $data->qty,
-                    'total' => $data->price * $data->qty,
-                    'size' => $data->options->size,
-                    'color' => $data->options->color,
-                ]);
-            }
-            Cart::destroy();
-
-            $orderProducts = $order->products()->get();
-
-            Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user, $profile));
-
-            return true;
-        } catch (\Throwable $th) {
+        if (!$profile->address || !$profile->phone) {
             return false;
         }
+
+        $order = $user->orders()->create([
+            'total' => Cart::total(2, '.', ''),
+            'status' => Order::PENDING,
+            'quantity' => Cart::count(),
+            'address' => $profile->address,
+        ]);
+
+        foreach (Cart::content() as $data) {
+            $order->products()->attach($data->id, [
+                'qty' => $data->qty,
+                'total' => $data->price * $data->qty,
+                'size' => $data->options->size,
+                'color' => $data->options->color,
+            ]);
+        }
+        Cart::destroy();
+
+        $orderProducts = $order->products()->get();
+
+        Mail::to($user)->send(new OrderShipped($orderProducts, $order, $user, $profile));
+
+        return true;
     }
 }

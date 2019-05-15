@@ -110,7 +110,9 @@ class OrderController extends Controller
 
         $this->orderRepository->updateStatusOrder($id);
 
-        return redirect()->route('order.manager.status', ['status' => $status]);
+        return redirect()
+            ->route('order.manager.status', ['status' => $status])
+            ->with('status', trans('messages.updated_success'));
     }
 
     /**
@@ -120,14 +122,16 @@ class OrderController extends Controller
     {
         $this->orderRepository->cancelOrder($id);
 
-        return redirect()->route('order.manager.status', ['status' => Order::TEXT[Order::PENDING]]);
+        return redirect()
+            ->route('order.manager.status', ['status' => Order::TEXT[Order::PENDING]])
+            ->with('status', trans('messages.canceled_success'));
     }
 
     public function cancelOrderForUser($id)
     {
         $this->orderRepository->cancelOrder($id);
 
-        return redirect()->route('order');
+        return redirect()->route('order')->with('status', trans('messages.canceled_success'));
     }
 
     /**

@@ -67,7 +67,7 @@ class Product extends AbstractModel
 
     public function getNameAttribute($value)
     {
-        return ucfirst($value);
+        return ucwords($value);
     }
 
     public function reviews()

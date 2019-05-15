@@ -116,7 +116,7 @@
 <div class="row justify-content-center" data-aos="fade-up">
     @foreach ($productsSuggestion as $product)
     <div class="col-lg-2 col-md-4 col-sm-4 col-6">
-        <div class="card card-product h-100 text-center">
+        <div class="card card-product">
             <a href="{{ route('product.show', $product->id) }}" class="swap-on-hover">
                 @if (count($product->image) > 1)
                 <img class="card-img-top img-front" src="{{ asset($product->image[0]) }}" alt="{{ $product->name }}">
@@ -129,7 +129,7 @@
             <div class="card-body px-0">
                 <h5 class="card-text"> <a href="{{ route('product.show', $product->id) }}">{{ $product->name }}</a>
                 </h5>
-                <h5 class="card-text">${{ $product->price }}</h5>
+                <h5 class="card-text text-muted">${{ $product->price }}</h5>
             </div>
         </div>
     </div>
