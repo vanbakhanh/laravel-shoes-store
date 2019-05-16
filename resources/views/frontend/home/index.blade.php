@@ -12,21 +12,21 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="/storage/cover/1.jpg" class="d-block w-100" alt="...">
+                <img src="/storage/cover/4.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h1 data-aos="fade-left">NIKE FLYKNIT</h1>
                     <p data-aos="fade-right">Lightweight support for each cut, stride or strike.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/storage/cover/2.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
+                <img src="/storage/cover/5.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block text-left text-dark">
                     <h1>NIKE AIR MAX</h1>
                     <p>Lightweight support for each cut, stride or strike.</p>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="/storage/cover/3.jpg" class="d-block w-100" alt="...">
+                <img src="/storage/cover/6.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h1>NIKE AIR MAX</h1>
                     <p>Lightweight support for each cut, stride or strike.</p>

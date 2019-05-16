@@ -133,12 +133,12 @@ footer {
 
 /* Carousel */
 .carousel-caption {
-  top: 5%;
+  top: 20%;
 }
 
 .carousel-caption h1 {
   text-transform: uppercase;
-  font-size: 50px;
+  font-size: 70px;
   font-weight: 900;
 }
 
@@ -205,6 +205,10 @@ footer {
 }
 
 /* Banner */
+.banner {
+  overflow-x: hidden;
+}
+
 .banner_item {
   display: flex;
   flex-direction: column;
