@@ -1,7 +1,6 @@
 // initialize AOS
 var AOS = require('aos');
 AOS.init({
-  duration: 800,
   once: true,
 });
 

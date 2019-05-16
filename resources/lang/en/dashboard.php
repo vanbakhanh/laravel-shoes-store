@@ -23,5 +23,8 @@ return [
     'comment' => 'Comments',
     'sold' => 'Sold',
     'review' => 'Reviews',
+    'daily_orders' => 'Daily orders',
+    'daily_profit' => 'Daily profit',
+    'daily_selling_products' => 'Daily selling products',
 
 ];

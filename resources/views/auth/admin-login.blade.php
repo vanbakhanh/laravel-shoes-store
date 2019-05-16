@@ -41,12 +41,10 @@
                                 <input class="form-check-input" type="checkbox" name="remember"
                                     {{ old('remember') ? 'checked' : '' }}> {{ trans('auth.remember') }}
                             </label>
+                            <a href="{{ route('admin.password.request') }}" class="float-right">
+                                {{ trans('auth.forgot') }}
+                            </a>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <a href="{{ route('admin.password.request') }}">
-                            {{ trans('auth.forgot') }}
-                        </a>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">

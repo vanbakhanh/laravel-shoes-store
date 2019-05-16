@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/chart.css') }}">
 
     <!-- Title -->
     <title>@yield('title')</title>
@@ -157,6 +158,7 @@
 
     <!-- Optional JavaScript -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chart.js') }}"></script>
 
     <!-- Toggle action -->
     <script type="text/javascript">
@@ -165,6 +167,9 @@
             $("#wrapper").toggleClass("toggled");
         });
     </script>
+
+    <!-- Custom script -->
+    @yield('script')
 </body>
 
 </html>

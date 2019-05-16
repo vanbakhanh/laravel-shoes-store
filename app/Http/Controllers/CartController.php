@@ -73,7 +73,7 @@ class CartController extends Controller
     public function checkout()
     {
         if ($this->cartRepository->checkout()) {
-            return back()->with('status', trans('messages.paymented'));
+            return redirect()->route('order')->with('status', trans('messages.paymented'));
         }
 
         return back()->withErrors(trans('cart.profile_error'));

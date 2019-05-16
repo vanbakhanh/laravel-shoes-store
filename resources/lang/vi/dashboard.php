@@ -23,5 +23,8 @@ return [
     'comment' => 'Đánh giá',
     'sold' => 'Đã bán',
     'review' => 'Đánh giá',
+    'daily_orders' => 'Đơn hàng hàng ngày',
+    'daily_profit' => 'Lợi nhuận hàng ngày',
+    'daily_selling_products' => 'Sản phẩm được bán hàng ngày',
 
 ];
