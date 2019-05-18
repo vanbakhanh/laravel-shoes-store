@@ -6,13 +6,6 @@
 <div class="card-deck text-center mb-4">
     <div class="card">
         <div class="card-body">
-            <p class="card-text">{{ trans('dashboard.admin') }}</p>
-            <h3 class="card-title">{{ $admins }}</h3>
-            <a class="card-link" href="{{ route('admin.index') }}">{{ trans('dashboard.view') }}</a>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-body">
             <p class="card-text">{{ trans('dashboard.user') }}</p>
             <h3 class="card-title">{{ $users }}</h3>
             <a class="card-link" href="{{ route('user.index') }}">{{ trans('dashboard.view') }}</a>
