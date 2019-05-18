@@ -20,7 +20,17 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
 
     public function deleteUser($id)
     {
-        return $this->model()->findOrFail($id)->delete();
+        $user = $this->model()->findOrFail($id);
+
+        if ($user) {
+            $user->profile()->delete();
+            $user->socialAccounts()->delete();
+            $user->delete();
+
+            return true;
+        }
+
+        return false;
     }
 
     public function changePassword($password, $id)

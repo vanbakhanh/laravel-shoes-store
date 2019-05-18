@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\AbstractModel;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends AbstractModel
+class Category extends Model
 {
     protected $fillable = [
         'name',

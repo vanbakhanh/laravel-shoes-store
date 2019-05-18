@@ -87,6 +87,7 @@
 @endsection
 
 @section('script')
+@isset($orders['chart'])
 <script>
     var ordersTotalData = new Chart(document.getElementById('ordersTotalData'), {
         type: 'bar',
@@ -174,4 +175,5 @@
         }
     });
 </script>
+@endisset
 @endsection

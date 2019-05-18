@@ -28,7 +28,6 @@ class CreateOrderProductTable extends Migration
                 ->references('id')->on('products')
                 ->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

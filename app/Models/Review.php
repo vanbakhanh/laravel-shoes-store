@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\AbstractModel;
+use Illuminate\Database\Eloquent\Model;
 
-class Review extends AbstractModel
+class Review extends Model
 {
     protected $fillable = [
         'title',

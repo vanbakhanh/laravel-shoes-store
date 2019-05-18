@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\AbstractModel;
+use Illuminate\Database\Eloquent\Model;
 
-class Product extends AbstractModel
+class Product extends Model
 {
     const MEN = 0;
 

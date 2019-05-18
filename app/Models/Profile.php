@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\AbstractModel;
+use Illuminate\Database\Eloquent\Model;
 
-class Profile extends AbstractModel
+class Profile extends Model
 {
     const AVATAR_DEFAULT = 'avatar-default.png';
 

@@ -24,7 +24,6 @@ class CreateProductSizeTable extends Migration
                 ->references('id')->on('sizes')
                 ->onDelete('cascade');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
