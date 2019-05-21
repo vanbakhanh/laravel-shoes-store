@@ -45,5 +45,6 @@ return [
 	'other_products' => 'và :num sản phẩm khác',
 	'view_more' => 'Xem thêm',
 	'view' => 'Xem',
+	'price' => 'Giá',
 
 ];

@@ -12,7 +12,7 @@ return [
     */
 
     'cart' => 'Giỏ hàng',
-    'detail' => 'Chi tiết đơn hàng',
+    'detail' => 'Giỏ hàng của bạn',
     'empty' => 'Không có sản phẩm nào trong giỏ hàng.',
     'shopping' => 'Tiếp tục mua sắm nào!',
     'item' => 'Mặt hàng',

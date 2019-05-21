@@ -46,7 +46,7 @@ class Product extends Model
 
     public function orders()
     {
-        return $this->belongsToMany('App\Models\Order')->withTimestamps()->withPivot('qty', 'total', 'color', 'size');
+        return $this->belongsToMany('App\Models\Order')->withTimestamps()->withPivot('qty', 'price', 'total', 'color', 'size');
     }
 
     public function getImageAttribute($image)

@@ -175,7 +175,7 @@
         <div class="d-flex w-100 justify-content-between">
             <h5>{{ $review->title }}</h5>
             <p class="text-muted">by <b>{{ $review->user->profile->full_name }}</b>
-                {{ $review->created_at->diffForHumans() }}</p>
+                {{ $review->updated_at->diffForHumans() }}</p>
         </div>
         <div class="stars-outer mb-1">
             <div class="stars-inner" style="width: {{ $review->rating/5*100 }}%"></div>

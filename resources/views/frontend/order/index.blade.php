@@ -25,8 +25,8 @@
                                 <th scope="col">{{ trans('order.id') }}</th>
                                 <th scope="col">{{ trans('order.image') }}</th>
                                 <th scope="col">{{ trans('order.product') }}</th>
-                                <th scope="col">{{ trans('order.total') }}</th>
                                 <th scope="col">{{ trans('order.quantity') }}</th>
+                                <th scope="col">{{ trans('order.total') }}</th>
                                 <th scope="col">{{ trans('order.action') }}</th>
                             </tr>
                         </thead>
@@ -46,8 +46,8 @@
                                         {{$orderProduct->name }}
                                     </a>
                                 </td>
-                                <td>${{ $orderProduct->pivot->total }}</td>
                                 <td>{{ $orderProduct->pivot->qty }}</td>
+                                <td>${{ $orderProduct->pivot->total }}</td>
                                 <td><a href="{{ route('order.detail', $orderProduct->pivot->order_id) }}"
                                         class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a></td>
                             </tr>

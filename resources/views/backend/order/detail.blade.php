@@ -39,9 +39,10 @@
                             <tr>
                                 <th scope="col">{{ trans('order.image') }}</th>
                                 <th scope="col">{{ trans('order.item') }}</th>
-                                <th scope="col">{{ trans('order.quantity') }}</th>
                                 <th scope="col">{{ trans('order.size') }}</th>
                                 <th scope="col">{{ trans('order.color') }}</th>
+                                <th scope="col">{{ trans('order.price') }}</th>
+                                <th scope="col">{{ trans('order.quantity') }}</th>
                                 <th scope="col">{{ trans('order.total') }}</th>
                             </tr>
                         </thead>
@@ -54,9 +55,10 @@
                                 <td><a
                                         href="{{ route('product.show', $orderProduct->pivot->product_id) }}">{{ $orderProduct->name }}</a>
                                 </td>
-                                <td>{{ $orderProduct->pivot->qty }}</td>
                                 <td>{{ $orderProduct->pivot->size }}</td>
                                 <td>{{ $orderProduct->pivot->color }}</td>
+                                <td>${{ $orderProduct->pivot->price }}</td>
+                                <td>{{ $orderProduct->pivot->qty }}</td>
                                 <td>${{ $orderProduct->pivot->total }}</td>
                             </tr>
                             @endforeach

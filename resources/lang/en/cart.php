@@ -12,7 +12,7 @@ return [
     */
 
     'cart' => 'Cart',
-    'detail' => 'Order detail',
+    'detail' => 'Your cart',
     'empty' => 'There is no item in cart.',
     'shopping' => 'Continue shopping now!',
     'item' => 'Item',

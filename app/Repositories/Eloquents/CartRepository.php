@@ -60,6 +60,7 @@ class CartRepository implements CartRepositoryInterface
         foreach (Cart::content() as $data) {
             $order->products()->attach($data->id, [
                 'qty' => $data->qty,
+                'price' => $data->price,
                 'total' => $data->price * $data->qty,
                 'size' => $data->options->size,
                 'color' => $data->options->color,

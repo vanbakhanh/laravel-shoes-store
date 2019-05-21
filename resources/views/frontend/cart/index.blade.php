@@ -20,6 +20,7 @@
                         <th scope="col">{{ trans('cart.color') }}</th>
                         <th scope="col">{{ trans('cart.price') }}</th>
                         <th scope="col">{{ trans('cart.quantity') }}</th>
+                        <th scope="col">{{ trans('cart.total') }}</th>
                         <th scope="col">{{ trans('cart.remove') }}</th>
                     </tr>
                 </thead>
@@ -35,11 +36,12 @@
                         </td>
                         <td>{{ $item->options->size }}</td>
                         <td>{{ $item->options->color }}</td>
-                        <td>${{ ($item->price) * ($item->qty) }}</td>
+                        <td>${{ $item->price }}</td>
                         <td>
                             {{ Form::hidden('rowId', $item->rowId, ['id' => 'rowId' . $item->id]) }}
                             {{ Form::number('qty', $item->qty, ['class' => 'form-control form-control-sm text-center w-50 mx-auto', 'min' => '1', 'max' => '10', 'id' => 'qty' . $item->id]) }}
                         </td>
+                        <td>${{ ($item->price) * ($item->qty) }}</td>
                         <td>
                             <a id="remove{{ $item->id }}" href="#"><i class="fas fa-trash"></i></a>
                         </td>

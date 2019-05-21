@@ -79,8 +79,9 @@
                                 <th scope="col">{{ trans('order.product') }}</th>
                                 <th scope="col">{{ trans('order.size') }}</th>
                                 <th scope="col">{{ trans('order.color') }}</th>
-                                <th scope="col">{{ trans('order.total') }}</th>
+                                <th scope="col">{{ trans('order.price') }}</th>
                                 <th scope="col">{{ trans('order.quantity') }}</th>
+                                <th scope="col">{{ trans('order.total') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,8 +97,9 @@
                                 </td>
                                 <td>{{ $orderProduct->pivot->size }}</td>
                                 <td>{{ $orderProduct->pivot->color }}</td>
-                                <td>${{ $orderProduct->pivot->total }}</td>
+                                <td>${{ $orderProduct->pivot->price }}</td>
                                 <td>{{ $orderProduct->pivot->qty }}</td>
+                                <td>${{ $orderProduct->pivot->total }}</td>
                             </tr>
                             @endforeach
                         </tbody>

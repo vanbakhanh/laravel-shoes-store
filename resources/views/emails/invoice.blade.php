@@ -11186,9 +11186,10 @@
                     <thead>
                         <tr>
                             <th scope="col">Items</th>
-                            <th scope="col">Quantity</th>
                             <th scope="col">Size</th>
                             <th scope="col">Color</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Total</th>
                         </tr>
                     </thead>
@@ -11198,9 +11199,10 @@
                             <td><a
                                     href="{{ route('product.show', $orderProduct->pivot->product_id) }}">{{ $orderProduct->name }}</a>
                             </td>
-                            <td>{{ $orderProduct->pivot->qty }}</td>
                             <td>{{ $orderProduct->pivot->size }}</td>
                             <td>{{ $orderProduct->pivot->color }}</td>
+                            <td>${{ $orderProduct->pivot->price }}</td>
+                            <td>{{ $orderProduct->pivot->qty }}</td>
                             <td>${{ $orderProduct->pivot->total }}</td>
                         </tr>
                         @endforeach

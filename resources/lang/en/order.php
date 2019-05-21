@@ -45,5 +45,6 @@ return [
     'other_products' => 'and :num other products',
     'view_more' => 'View more',
     'view' => 'View',
+    'price' => 'Price',
 
 ];
