@@ -43,7 +43,7 @@
                         </td>
                         <td>${{ ($item->price) * ($item->qty) }}</td>
                         <td>
-                            <a id="remove{{ $item->id }}" href="#"><i class="fas fa-trash"></i></a>
+                            <a id="remove{{ $item->id }}" href="#"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
                     {{ Form::close() }}

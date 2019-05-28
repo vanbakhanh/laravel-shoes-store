@@ -59,8 +59,10 @@ class OrderController extends Controller
         $ordersShipped = $this->orderRepository->getOrders(Order::SHIPPED)->count();
         $ordersCanceled = $this->orderRepository->getOrders(Order::CANCELED)->count();
 
+        $orders = $this->orderRepository->all();
+
         return view('backend.order.manager', compact([
-            'ordersVerified', 'ordersPending', 'ordersShipped', 'ordersCanceled',
+            'ordersVerified', 'ordersPending', 'ordersShipped', 'ordersCanceled', 'orders',
         ]));
     }
 

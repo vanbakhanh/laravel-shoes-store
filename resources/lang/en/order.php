@@ -46,5 +46,6 @@ return [
     'view_more' => 'View more',
     'view' => 'View',
     'price' => 'Price',
+    'all' => 'All orders',
 
 ];

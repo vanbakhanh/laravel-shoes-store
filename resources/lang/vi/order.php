@@ -46,5 +46,6 @@ return [
 	'view_more' => 'Xem thêm',
 	'view' => 'Xem',
 	'price' => 'Giá',
+	'all' => 'Tất cả đơn hàng',
 
 ];

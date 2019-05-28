@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h3 class="card-title">{{ trans('order.' . $status) }}</h3>
                 <div class="table-responsive">
-                    <table id="table1" class="table table-hover table-bordered text-center">
+                    <table id="table" class="table table-hover table-bordered text-center">
                         <thead>
                             <tr>
                                 <th scope="col">{{ trans('order.id') }}</th>
@@ -29,7 +29,7 @@
                                 <td>
                                     {{ Form::open(['method' => 'DELETE', 'route' => ['order.delete', $order->id]]) }}
                                     <div class="btn-group btn-group-toggle">
-                                        <a href="{{ route('order.detail.' . $status, $order->id) }}"
+                                        <a href="{{ route('order.detail.' . $order->status, $order->id) }}"
                                             class="btn btn-outline-info btn-sm">{{ trans('order.detail') }}</a>
                                         {{ Form::submit(trans('order.delete'), ['class' => 'btn btn-outline-danger btn-sm']) }}
                                     </div>
