@@ -121,13 +121,13 @@
                 label: 'Total profit per day',
                 data: @json($orders['chart']['profit']['data']),
                 backgroundColor: [
-                    '#f9fd50',
-                    '#85ef47',
-                    '#00bd56',
-                    '#207dff',
-                    '#dae1e7',
-                    '#dd6b4d',
-                    '#c54fa7'
+                    '#103155',
+                    '#FAB004',
+                    '#A3D7C9',
+                    '#FD9C2A',
+                    '#21846F',
+                    '#2A0C4E',
+                    '#9E2B25'
                 ]
             }]
         },

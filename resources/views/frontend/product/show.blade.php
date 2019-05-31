@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Nike ' . $productSelected->name)
+@section('title', $productSelected->name)
 
 @section('content')
 <!-- Portfolio Item Row -->
